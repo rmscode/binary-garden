@@ -1,1 +1,52 @@
-site_name: My Docs
+site_name: My Notes
+
+## Navbar options
+nav:
+  - Home: index.md
+  - Notes: notes.md
+
+## Theme options
+theme:
+  name: material
+
+  palette:
+    scheme: slate
+
+  #font:
+    #text: Fira Code
+
+  navigation_depth: 2
+  locale: en
+  highlightjs: true
+  prev_next_buttons_location: both
+  #logo: MarkdownImages/NEPLogo.png
+
+  features:
+    - navigation.tracking
+    #- navigation.tabs
+    #- navigation.tabs.sticky
+    - navigation.path
+    - navigation.top
+    - toc.follow
+    - toc.nested
+    - toc.integrate
+    - navigation.prune
+    - navigation.indexes
+
+  shortcuts:
+    help: 191    # ?
+    next: 78     # n
+    previous: 80 # p
+    search: 83   # s
+
+# Markdown extensions
+markdown_extensions:
+  - toc:
+      permalink: "#"
+      toc_depth: 2
+
+# Plugins
+plugins:
+  - search
+  #- blog
+  - offline
