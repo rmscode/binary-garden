@@ -3,6 +3,12 @@ site_name: My Docs
 ## Navbar options
 nav:
   - Home: index.md
+  - General: general.md
+  - Hardware: hardware.md
+  - Networking: networking.md
+  - Notes: notes.md
+  - Software: software.md
+  - SOP: sop.md
   - Notes: notes.md
 
 ## Theme options
