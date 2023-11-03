@@ -77,7 +77,7 @@ VLT-1(conf-vlt-1)# exit
 
 > Before you configure the VLTi on peer interfaces, remove each interface from L2 mode with `no switchport`. This is shown below.
 
-> **NOTE** Dell did not mention any specific port requirements for the interfaces used for VLTi. They just insist on deploying more than one as best practice.
+> **NOTE** Dell did not mention any specific requirements for the interfaces used for VLTi. They just insist on deploying more than one as best practice.
 
 ```bash
 VLT-1(config)# interface ethernet 1/1/8
