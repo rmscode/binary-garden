@@ -6,7 +6,7 @@ When labbing in GNS3, it takes quite a bit a time for the OS10 appliances to boo
 
 The switch I used for the VLT peers and access switch in this lab - "Dell OS10 S5248F-10.5.6.0.47".
 
-> **NOTE** The default QEMU adapter count in the appliance's settings is 10. I tried to expand this to 57 get the full range of the appliance's interfaces (1/1/1-1/1/56), but the appliance to failed to boot. I left it at 10 and just used the first 10 interfaces (1x mgmt, 8x eth).
+> **NOTE** The default QEMU adapter count in the appliance's settings is 10. I tried to expand this to 57 get the full range of the appliance's interfaces (1/1/1-1/1/56), but the appliance failed to boot. I left it at 10 and just used the first 10 interfaces (1x mgmt, 8x eth).
 
 ## Setting the hostnames
 
