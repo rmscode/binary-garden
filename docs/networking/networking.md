@@ -108,13 +108,13 @@ VLT-1(conf-vlt-1)# vlt-mac C2:AC:50:08:FE:D9
 >
 > The backup destination is the IP address of the peer that is not the local switch.
 
-*VLT Peer 1*
+*VLT Peer 1*:
 
 ```bash
 VLT-1(conf-vlt-1)# backup destination 10.1.1.2
 ```
 
-*VLT Peer 2*
+*VLT Peer 2*:
 
 ```bash
 VLT-2(conf-vlt-1)# backup destination 10.1.1.1
@@ -260,7 +260,6 @@ VLT-2(conf-if-ma-1/1/1)# copy running-configuration startup-configuration
 VLT-2(conf-if-ma-1/1/1)# exit
 VLT-2(config)# spanning-tree mode rstp
 VLT-2(config)# vlt-domain domain 1
-% Error: Value out of range(1-255).
 VLT-2(config)# vlt-domain 1
 VLT-2(conf-vlt-1)# exit
 VLT-2(config)# interface ethernet 1/1/8
