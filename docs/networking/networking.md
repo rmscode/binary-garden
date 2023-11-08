@@ -1,4 +1,6 @@
-# Dell EMC OS10 GNS3 LAB
+# Dell EMC Networking
+
+## Dell EMC OS10
 
 When labbing in GNS3, it takes quite a bit a time for the OS10 appliances to boot the first time. Be patient. Login with linuxadmin/linuxadmin and then logout. Skipping this will result in an "incorrect login" notice when trying to login to the default admin/admin. I have no idea why that is...
 
@@ -8,7 +10,7 @@ The switch I used for the VLT peers and access switch in this lab - "Dell OS10 S
 
 > **NOTE** The default QEMU adapter count in the appliance's settings is 10. I tried to expand this to 57 get the full range of the appliance's interfaces (1/1/1-1/1/56), but the appliance failed to boot. I left it at 10 and just used the first 10 interfaces (1x mgmt, 9x eth).
 
-## Setting the hostnames
+### Setting the hostnames
 
 VLT Peer 1
 
@@ -34,7 +36,7 @@ OS10(config)# hostname ACCESS
 ACCESS(config)#
 ```
 
-## OOB management Interface Configuration
+### OOB management Interface Configuration
 
 ```bash
 VLT-1# configure
@@ -55,16 +57,16 @@ VLT-1#
 
 > I set VLT-2 to 10.1.1.2
 
-## VLT Configuration
+### VLT Configuration
 
-### 1. Enable STP globally on each VLT peer
+#### 1. Enable STP globally on each VLT peer
 
 ```bash
 VLT-1# configure
 VLT-1(config)# spanning-tree mode rstp
 ```
 
-### 2. Create a VLT domain on each VLT peer
+#### 2. Create a VLT domain on each VLT peer
 
 > The VLT domain requires an ID number (1-255). Configure the same ID on both peers.
 
@@ -73,7 +75,7 @@ VLT-1(config)# vlt-domain 1
 VLT-1(conf-vlt-1)# exit
 ```
 
-### 3. Configure VLTi interfaces on each VLT peer
+#### 3. Configure VLTi interfaces on each VLT peer
 
 > Before you configure the VLTi on peer interfaces, remove each interface from L2 mode with `no switchport`. This is shown below.
 
@@ -90,7 +92,7 @@ VLT-1(config)# vlt-domain 1
 VLT-1(conf-vlt-1)# discovery-interface ethernet 1/1/8-1/1/9
 ```
 
-### 4. (Optional) Manually configure the same default VLT MAC address on each VLT peer. This minimizes the time required to sync the default MAC of the VLT domain on both peers when one reboots
+#### 4. (Optional) Manually configure the same default VLT MAC address on each VLT peer. This minimizes the time required to sync the default MAC of the VLT domain on both peers when one reboots
 
 > While configuring a VLT MAC address, if the 8th bit of the MAC address is a 1, then the MAC address is considered to be a multicast MAC address. There are locally defined MAC addresses. For these addresses, the second least significant bit in the first byte must be a 1, which signifies a locally defined address.
 >
@@ -102,7 +104,7 @@ VLT-1(conf-vlt-1)# discovery-interface ethernet 1/1/8-1/1/9
 VLT-1(conf-vlt-1)# vlt-mac C2:AC:50:08:FE:D9
 ```
 
-### 5. Configure VLT heartbeat backup link on each VLT peer
+#### 5. Configure VLT heartbeat backup link on each VLT peer
 
 > Dell [recommends using the OOB management network connection for the VLT backup link](https://www.dell.com/support/manuals/en-us/dell-emc-smartfabric-os10/smartfabric-os-user-guide-10-5-3/configure-the-vlt-peer-liveliness-check?guid=guid-d140525e-19a1-4d53-8334-e7ec196a9da1&lang=en-us).
 >
@@ -148,7 +150,7 @@ Destination VRF                : default
 
 > **BE ADVISED** Upon this successful VLT-peer formation; the switches automatically created a non-configurable *port-channel 1000* interface consisting of our VLTi interfaces and *VLAN 4094*. Each are reserved for internal VLT communication.
 
-### 6. Configure VLT port channels (LAGs) between each VLT peer and attached devices
+#### 6. Configure VLT port channels (LAGs) between each VLT peer and attached devices
 
 > Remember, *port channel 1000* is reserved. Port channel IDs can be any number between *1 to 999* or *1001 to 2000*.
 
@@ -166,7 +168,7 @@ VLT-1(config)#
 
 A port-channel was also added to the access switch on interfaces eth 1/1/1 and 1/1/2...
 
-### 7. Verification
+#### 7. Verification
 
 ```bash
 VLT-1(config)# exit
