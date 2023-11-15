@@ -10,7 +10,8 @@ nav:
   - SOP: sop/SOP.md
   - Notes: 
     - Notes: notes/notes.md
-    - '2023': notes/2023.md
+    - 2023: notes/2023.md
+    - Archive: notes/archive.md
 
 ## Theme options
 theme:
