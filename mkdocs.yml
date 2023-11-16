@@ -58,6 +58,7 @@ markdown_extensions:
       toc_depth: 3
   - abbr
   - admonition
+  - def_list
 
 # Plugins
 plugins:
