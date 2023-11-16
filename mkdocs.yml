@@ -35,11 +35,15 @@ theme:
     - navigation.tabs.sticky
     - navigation.path
     - navigation.top
+    #- navigation.sections
     - toc.follow
     - toc.nested
     - toc.integrate
     - navigation.prune
     - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - search.share
 
   shortcuts:
     help: 191    # ?
@@ -51,7 +55,9 @@ theme:
 markdown_extensions:
   - toc:
       permalink: "#"
-      toc_depth: 2
+      toc_depth: 3
+  - abbr
+  - admonition
 
 # Plugins
 plugins:
