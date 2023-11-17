@@ -169,6 +169,45 @@ DellEMC(conf)# interface range Te1/1,2,3,4
 DellEMC(conf-if-range-te-1/1,2,3,4)# flowcontrol rx on tx on
 ```
 
+### Other
+
+#### Auto lock configuration mode
+
+You can configure the switch to automtically lock configuration mode for other users while you are making changes. This prevents other users from making changes while you are working. This is useful for preventing configuration conflicts.
+
+```shell
+configuration mode exclusive auto
+```
+
+#### Tracking login activity
+
+By default, this is off. To enable it, use the following command:
+
+```shell
+login statistics enable
+```
+
+Displaying the login activity:
+
+```shell
+show login statistics
+```
+
+#### Limit concurrent sessions
+
+```shell
+login concurrent-session limit 1
+```
+
+#### Port Monitoring
+
+Allows you to mirror traffic of one port to another. This is useful for analyzing traffic with a packet capture tool like Wireshark. You also have the ability to remotely monitor a port. In a remote port monitoring session, monitored traffic is tagged with a VLAN ID and switched on a user-defined, non-routable L2 VLAN. Allowing you to sniff from a distance.
+
+```shell
+DellEMC(conf)# monitor session 0
+DellEMC(conf-mon-sess-0)# $source te 1/1 dest te 1/2 dir rx
+```
+
 ## OS10
 
 When labbing in GNS3, it takes quite a bit a time for the OS10 appliances to boot the first time. Be patient. Login with linuxadmin/linuxadmin and then logout. Skipping this will result in an "incorrect login" notice when trying to login to the default admin/admin. I have no idea why that is...
