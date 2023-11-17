@@ -265,9 +265,9 @@ VLT-1#
 
 > I set VLT-2 to 10.1.1.2
 
-### VLT Configuration
+### Configure VLT
 
-#### 1. Enable STP globally on each VLT peer
+#### 1. Enable STP globally on each peer
 
 ```bash
 VLT-1# configure
@@ -286,7 +286,7 @@ VLT-1(conf-vlt-1)# exit
 #### 3. Configure VLTi interfaces on each VLT peer
 
 > Before you configure the VLTi on peer interfaces, remove each interface from L2 mode with `no switchport`. This is shown below.
-
+>
 > **NOTE** Dell did not mention any specific requirements for the interfaces used for VLTi. They just insist on deploying more than one as best practice.
 
 ```bash
@@ -390,7 +390,7 @@ VLT Unit ID    Port-Channel      Status    Configured ports    Active ports
 
 > The asterisk indicates what VLT peer I am currently logged into.
 
-I started a ping from a client PC connected to the access switch to a NIC Teamed server connected to the VLT domain. I then suspended various links between the access switch, server and VLT domain. The pings dropped 1-2 times at most before resuming in each case. 
+I started a ping from a client PC connected to the access switch to a NIC Teamed server connected to the VLT domain. I then suspended various links between the access switch, server and VLT domain. The pings dropped 1-2 times at most before resuming in each case.
 
 I also killed each of the VLT peers. For each peer failure test, the pings initially dropped everyother 2 packets for about 90 seconds and then traffic resumed normally. That convergence time can be reduced by adjusting the heartbeat interval and timeout values. We would have to do some real world testing to determine what values would be appropriate for our environment . . . in GNS3, the vlt debug info showed that the failover completed in about 30 seconds.
 
