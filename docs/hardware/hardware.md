@@ -364,7 +364,7 @@ Destination VRF                : default
 
 ```bash
 VLT-1(conf-vlt-1)# exit
-VLT-1(confg)# interface port-channel 10   # (1)!
+VLT-1(config)`#` interface port-channel 10   # (1)!
 VLT-1(conf-if-po-10)# no shutdown
 VLT-1(conf-if-po-10)# vlt-port-channel 10   # (2)!
 VLT-1(conf-if-po-10)# exit
