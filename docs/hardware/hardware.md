@@ -431,10 +431,10 @@ ACCESS(conf-if-eth1/1/2)# show configuration
 !
 interface ethernet1/1/2
  no shutdown
- channel-group 20 mode active    <- This is what I needed to remove
+ channel-group 20 mode active # (1) 
  no switchport
  flowcontrol receive off
-ACCESS(conf-if-eth1/1/2)# no channel-group    <- Used no command to remove
+ACCESS(conf-if-eth1/1/2)# no channel-group #(2) 
 ACCESS(conf-if-eth1/1/2)# show configuration
 !
 interface ethernet1/1/2
@@ -442,6 +442,9 @@ interface ethernet1/1/2
  switchport access vlan 1
  flowcontrol receive off
 ```
+
+1. This is what I needed to remove
+2. Used no command to remove
 
 **Orphan port** - I saw this in the Dell docs a few times an had no idea what it referred to. Whenever they use that term, they are making reference to a port that is NOT part of a VLT port-channel (LAG).
 
