@@ -25,7 +25,7 @@ To run an EXEC Privilege mode command from the CONFIGURE mode, precede the comma
 
 ### Setting the hostname
 
-```shell
+```bash
 DellEMC> enable
 DellEMC# configure
 DellEMC(conf)# hostname Switch-A
@@ -34,7 +34,7 @@ Switch-A(conf)#
 
 ### OOB Management Interface Configuration
 
-```shell
+```bash
 DellEMC# configure
 DellEMC(conf)# interface ManagementEthernet 1/1
 DellEMC(conf-if-ma-1/1)# no ip address dhcp
@@ -47,7 +47,7 @@ DellEMC(conf)#
 
 ### Configure username & password for remote SSH accesss
 
-```shell
+```bash
 DellEMC(conf)# enable password <password>
 DellEMC(conf)# username <username> password <password>
 DellEMC(conf)# ip ssh server enable
@@ -55,7 +55,7 @@ DellEMC(conf)# ip ssh server enable
 
 ### Configure time zone and NTP
 
-```shell
+```bash
 DellEMC(conf)# clock timezone UTC -5
 DellEMC(conf)# ntp server <ip>
 DellEMC(conf)# show ntp associations
@@ -79,7 +79,7 @@ VLT-1(conf-rstp)# exit
 
 > **NOTE** Dell does not mention any specific requirements for which interfaces to use for the VLTi. They just insist on using more than one as best practice.
 
-```shell
+```bash
 DellEMC# configure
 DellEMC(conf)# interface range FortyGigabitEthernet 1/49-1/50
 DellEMC(conf-if-range-fo-1/47,fo-1/48)# no shutdown
@@ -96,7 +96,7 @@ DellEMC(conf-if-po-1000)# exit
 
 > The VLT domain requires an ID number (1-1000). Configure the same ID on both peers.
 
-```shell
+```bash
 DellEMC(conf)# vlt domain 1
 DellEMC(conf-vlt-1)# back-up destination <mgmt IP of peer>
 DellEMC(conf-vlt-1)# peer-link port-channel 100
@@ -113,7 +113,7 @@ DellEMC(conf-vlt-1)# system-mac mac-address 00:11:22:33:44:55
 
 #### 6. Confirm the state of the VLT domain
 
-```shell
+```bash
 DellEMC# show vlt brief
 DellEMC# show vlt statistics
 DellEMC# show vlt backup-link
@@ -140,20 +140,20 @@ OS9 switches have two boot banks, A and B. It's good practice to upload new frmw
 
 #### 1. Make a copy of the running configuration
 
-```shell
+```bash
 DellEMC> enable
 DellEMC# copy startup-config tftp://10.1.1.25/OS9_Switch-A.conf
 ```
 
 #### 2. Upload the new firmware to image B
 
-```shell
+```bash
 DellEMC# upgrade system tftp://10.1.1.25/FTOS-SK-9.14.bin b: 
 ```
 
 #### 3. Change active boot bank and reload
 
-```shell
+```bash
 DellEMC# configure
 DellEMC(conf)# boot system stack-unit 1 primary system b:
 DellEMC(conf)# exit
@@ -164,7 +164,7 @@ DellEMC# reload
 
 To avoid dropping packets during heavy utilization, enable flow control on the interfaces connected to iSCSI storage.
 
-```shell
+```bash
 DellEMC(conf)# interface range Te1/1,2,3,4
 DellEMC(conf-if-range-te-1/1,2,3,4)# flowcontrol rx on tx on
 ```
@@ -175,7 +175,7 @@ DellEMC(conf-if-range-te-1/1,2,3,4)# flowcontrol rx on tx on
 
 You can configure the switch to automtically lock configuration mode for other users while you are making changes. This prevents other users from making changes while you are working. This is useful for preventing configuration conflicts.
 
-```shell
+```bash
 configuration mode exclusive auto
 ```
 
@@ -183,19 +183,19 @@ configuration mode exclusive auto
 
 By default, this is off. To enable it, use the following command:
 
-```shell
+```bash
 login statistics enable
 ```
 
 Displaying the login activity:
 
-```shell
+```bash
 show login statistics
 ```
 
 #### Limit concurrent sessions
 
-```shell
+```bash
 login concurrent-session limit 1
 ```
 
@@ -203,7 +203,7 @@ login concurrent-session limit 1
 
 Allows you to mirror traffic of one port to another. This is useful for analyzing traffic with a packet capture tool like Wireshark. You also have the ability to remotely monitor a port. In a remote port monitoring session, monitored traffic is tagged with a VLAN ID and switched on a user-defined, non-routable L2 VLAN. Allowing you to sniff from a distance.
 
-```shell
+```bash
 DellEMC(conf)# monitor session 0
 DellEMC(conf-mon-sess-0)# $source te 1/1 dest te 1/2 dir rx
 ```
@@ -364,15 +364,19 @@ Destination VRF                : default
 
 ```bash
 VLT-1(conf-vlt-1)# exit
-VLT-1(confg)# interface port-channel 10   <-Creating the port channel
+VLT-1(confg)# interface port-channel 10   # (1)!
 VLT-1(conf-if-po-10)# no shutdown
-VLT-1(conf-if-po-10)# vlt-port-channel 10   <-Enabling VLT on the port channel
+VLT-1(conf-if-po-10)# vlt-port-channel 10   # (2)!
 VLT-1(conf-if-po-10)# exit
 VLT-1(confg)# interface ethernet 1/1/1
-VLT-1(conf-if-eth1/1/1)# channel-group 10 mode active   <-Assigning port channel to interface
+VLT-1(conf-if-eth1/1/1)# channel-group 10 mode active   # (3)!
 VLT-1(conf-if-eth1/1/1)# exit
 VLT-1(config)#
 ```
+
+1. Creating the port channel
+2. Enabling VLT on the port channel
+3. Assigning port channel to interface
 
 A port-channel was also added to the access switch on interfaces eth 1/1/1 and 1/1/2...
 
@@ -431,10 +435,10 @@ ACCESS(conf-if-eth1/1/2)# show configuration
 !
 interface ethernet1/1/2
  no shutdown
- channel-group 20 mode active # (1) 
+ channel-group 20 mode active # (1)!
  no switchport
  flowcontrol receive off
-ACCESS(conf-if-eth1/1/2)# no channel-group #(2) 
+ACCESS(conf-if-eth1/1/2)# no channel-group #(2)!
 ACCESS(conf-if-eth1/1/2)# show configuration
 !
 interface ethernet1/1/2
