@@ -27,7 +27,6 @@ theme:
   locale: en
   highlightjs: true
   prev_next_buttons_location: both
-  #logo: MarkdownImages/NEPLogo.png
 
   features:
     - navigation.tracking
