@@ -364,19 +364,15 @@ Destination VRF                : default
 
 ```bash
 VLT-1(conf-vlt-1)# exit
-VLT-1(config)# interface port-channel 10   `# (1)!`
+VLT-1(config)# interface port-channel 10
 VLT-1(conf-if-po-10)# no shutdown
-VLT-1(conf-if-po-10)# vlt-port-channel 10   # (2)!
+VLT-1(conf-if-po-10)# vlt-port-channel 10
 VLT-1(conf-if-po-10)# exit
 VLT-1(confg)# interface ethernet 1/1/1
-VLT-1(conf-if-eth1/1/1)# channel-group 10 mode active   # (3)!
+VLT-1(conf-if-eth1/1/1)# channel-group 10 mode active
 VLT-1(conf-if-eth1/1/1)# exit
 VLT-1(config)#
 ```
-
-1. Creating the port channel
-2. Enabling VLT on the port channel
-3. Assigning port channel to interface
 
 A port-channel was also added to the access switch on interfaces eth 1/1/1 and 1/1/2...
 
@@ -435,10 +431,10 @@ ACCESS(conf-if-eth1/1/2)# show configuration
 !
 interface ethernet1/1/2
  no shutdown
- channel-group 20 mode active # (1)!
+ channel-group 20 mode active
  no switchport
  flowcontrol receive off
-ACCESS(conf-if-eth1/1/2)# no channel-group #(2)!
+ACCESS(conf-if-eth1/1/2)# no channel-group
 ACCESS(conf-if-eth1/1/2)# show configuration
 !
 interface ethernet1/1/2
@@ -446,9 +442,6 @@ interface ethernet1/1/2
  switchport access vlan 1
  flowcontrol receive off
 ```
-
-1. This is what I needed to remove
-2. Used no command to remove
 
 **Orphan port** - I saw this in the Dell docs a few times an had no idea what it referred to. Whenever they use that term, they are making reference to a port that is NOT part of a VLT port-channel (LAG).
 
