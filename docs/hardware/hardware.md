@@ -136,7 +136,7 @@ DellEMC(conf-if-po-10)# vlt-peer-lag port-channel 10
 
 ### Upgrading the Firmware
 
-OS9 switches have two boot banks, A and B. It's good practice to upload new frmware into on boot bank and keep the old firmware in the other in case you need to roll back.
+OS9 switches have two boot banks, A and B. It's good practice to upload new firmware into on boot bank and keep the old firmware in the other in case you need to roll back.
 
 #### 1. Make a copy of the startup configuration
 
@@ -451,7 +451,7 @@ interface ethernet1/1/2
 
 So, in our GNS3 lab . . . The switch labeled "Access" is the upstream member and the "Server" is the downstream member. The client PC is connected to the access switch via an orphan port.
 
-**What is looks like in one go**:
+**What it looks like in one go**:
 
 ```bash
 OS10# configure terminal
