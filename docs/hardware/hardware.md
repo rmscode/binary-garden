@@ -138,7 +138,7 @@ DellEMC(conf-if-po-10)# vlt-peer-lag port-channel 10
 
 OS9 switches have two boot banks, A and B. It's good practice to upload new frmware into on boot bank and keep the old firmware in the other in case you need to roll back.
 
-#### 1. Make a copy of the running configuration
+#### 1. Make a copy of the startup configuration
 
 ```bash
 DellEMC> enable
