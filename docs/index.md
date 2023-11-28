@@ -26,6 +26,12 @@ Admonitions are special highlighted blocks for displaying information. The follo
     massa, nec semper lorem quam in massa.
     ```
 
+    !!! note
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+    nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+    massa, nec semper lorem quam in massa.
+
 ### Definition Lists
 
 Adds the ability to add definition lists (more commonly known as description lists – dl in HTML) via Markdown to a document.
