@@ -67,6 +67,7 @@ markdown_extensions:
   - abbr
   - admonition
   - def_list
+  - pymdownx.tilde
 
 # Plugins
 plugins:
