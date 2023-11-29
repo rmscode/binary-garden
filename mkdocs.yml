@@ -24,7 +24,7 @@ theme:
   #font:
     #text: Fira Code
 
-  navigation_depth: 2
+  navigation_depth: 3
   locale: en
   highlightjs: true
   prev_next_buttons_location: both
@@ -35,7 +35,6 @@ theme:
     - navigation.tabs.sticky
     - navigation.path
     - navigation.top
-    #- navigation.sections
     - toc.follow
     - toc.nested
     - toc.integrate
@@ -61,6 +60,8 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
   - toc:
       permalink: "#"
       toc_depth: 3
