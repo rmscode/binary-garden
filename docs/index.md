@@ -10,7 +10,7 @@ This static site made with [Material](https://squidfunk.github.io/mkdocs-materia
 * `mkdocs gh-deploy` - Deploy the documentation to GitHub Pages.
 * `mkdocs -h` - Print help message and exit.
 
-## Special Markdown
+## Markdown Extensions
 
 ### Admonitions
 
