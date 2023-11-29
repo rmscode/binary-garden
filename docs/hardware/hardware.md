@@ -1,21 +1,32 @@
-# Dell EMC Networking
+# Hardware
 
-## OS9
+## Dell EMC
 
-OS 9 CLI Modes
+!!! info
 
-- EXEC: The default mode after login with the privilege level of 1. The most used command in this mode is `show`.
-- EXEC Privilege:  Contains commands to view configurations, clear counters, manage configuration files, run diagnostics, and enable or disable debug operations. The privilege level is 15, which is unrestricted.
-- CONFIGURATION mode: This mode allows you to configure security features, time settings, set logging and SNMP functions, configure static ARP and MAC addresses, and set line cards on the system.
-  - Beneathe this mode are several submodes that apply to interfaces, protocols and features. For example, `interface` mode allows you to configure interface settings, `ip` mode allows you to configure IP settings, and `vlan` mode allows you to configure VLAN settings.
+    Dell EMC (Enterprise Marketing Corporation) is a subsidiary of Dell Technologies that sells data storage, information security, virtualization, analytics, cloud computing and other products and services that enable organizations to store, manage, protect, and analyze data. Dell EMC's target markets include large companies and small- and medium-sized businesses across various vertical markets.
 
-The prompt changes to indicate the mode you are in . . .
+### OS9 Network Operating System
 
-| Mode           | Command                         | Prompt                    |
-| -------------- | ------------------------------- | ------------------------- |
-| EXEC           | None. This is the default mode. | `Dell> Hello world!`      |
-| EXEC Privilege | `enable`                        | `Dell# Hello world!`      |
-| CONFIGURE      | `configure`                     | `Dell(conf)# Hello word!` |
+#### CLI Modes
+
+=== "EXEC"
+
+    - The default mode after login with the privilege level of 1. This mode allows you to view the system status, run diagnostic commands, and view system statistics. You cannot make configuration changes in this mode.
+    - The prompt for this mode is the hostname followed by `>`. Example - `DellEMC> Hello world!`.
+
+=== "EXEC Privilege"
+
+    - Contains commands to view configurations, clear counters, manage configuration files, run diagnostics, and enable or disable debug operations. The privilege level is 15, which is unrestricted.
+    - Enter this mode by using the `enable` command.
+    - The prompt for this mode is the hostname followed by `#`. Example -`DellEMC# Hello world!`.
+
+=== "CONFIGURATION"
+
+    - This mode allows you to configure security features, time settings, set logging and SNMP functions, configure static ARP and MAC addresses, and set line cards on the system.
+        - Beneathe this mode are several submodes that apply to interfaces, protocols and features. For example, `interface` mode allows you to configure interface settings, `ip` mode allows you to configure IP settings, and `vlan` mode allows you to configure VLAN settings.
+    - Enter this mode by using the `configure` command.
+    - The prompt for this mode is the hostname followed by `(conf)#`. Example - `DellEMC(conf)# Hello world!`.
 
 To exit a mode or its sub-mode and return to the previous mode, use the `exit` command.
 
@@ -23,29 +34,33 @@ To return to the EXEC Privilege mode from any mode, use the `end` command.
 
 To run an EXEC Privilege mode command from the CONFIGURE mode, precede the command with the `do` command. This is useful for running `show` commands or saving the configuration without exiting the CONFIGURE mode.
 
-### Setting the hostname
+#### Setting the hostname
 
-```bash
+```shell
 DellEMC> enable
 DellEMC# configure
 DellEMC(conf)# hostname Switch-A
 Switch-A(conf)#
 ```
 
-### OOB Management Interface Configuration
+#### OOB Management Interface Configuration
 
 ```bash
 DellEMC# configure
-DellEMC(conf)# interface ManagementEthernet 1/1
-DellEMC(conf-if-ma-1/1)# no ip address dhcp
+DellEMC(conf)# interface ManagementEthernet 1/1    #(1)
+DellEMC(conf-if-ma-1/1)# no ip address dhcp        #(2)
 DellEMC(conf-if-ma-1/1)# ip address 10.1.1.1/24
-DellEMC(conf-if-ma-1/1)# no shutdown
+DellEMC(conf-if-ma-1/1)# no shutdown               #(3)
 DellEMC(conf-if-ma-1/1)# management route 0.0.0.0/0 10.1.1.10/24
 DellEMC(conf-if-ma-1/1)# exit
 DellEMC(conf)# 
 ```
 
-### Configure username & password for remote SSH accesss
+1. The `interface` command is used to enter interface configuration mode.
+2. The `no` command is used to negate a command. In this case, we are negating the `ip address dhcp` command and essentially removing that setting from the interface.
+3. This enables the interface and keeps it enabled after a reboot.
+
+#### Configure username & password for remote SSH accesss
 
 ```bash
 DellEMC(conf)# enable password <password>
@@ -53,7 +68,7 @@ DellEMC(conf)# username <username> password <password>
 DellEMC(conf)# ip ssh server enable
 ```
 
-### Configure time zone and NTP
+#### Configure time zone and NTP
 
 ```bash
 DellEMC(conf)# clock timezone UTC -5
@@ -63,13 +78,19 @@ DellEMC(conf)# show ntp status
 DellEMC(conf)# show clock
 ```
 
-### VLT Configuration
+### VLT (Virtual Link Trunking)
+
+!!! info
+
+    Virtual Link Trunking is Dell's implementation of MLAG (Multi-Chassis Link Aggregation). It allows you to create a port-channel (LAG) between two switches and have them act as one logical switch. This provides redundancy and load balancing.
 
 #### 1. Enable STP globally on each VLT peer
 
-> Dell recommends, at least initially, to enable STP globally on each VLT peer. This is to prevent loops in the event of a misconfiguration. Once the VLT domain is configured, STP can be disabled.
+!!! tip
 
-```bash
+    Dell recommends, at least initially, to enable STP globally on each VLT peer. This is to prevent loops in the event of a misconfiguration.
+
+```shell
 VLT-1(conf)# protocol spanning-tree rstp
 VLT-1(conf-rstp)# no disable
 VLT-1(conf-rstp)# exit
@@ -208,7 +229,7 @@ DellEMC(conf)# monitor session 0
 DellEMC(conf-mon-sess-0)# $source te 1/1 dest te 1/2 dir rx
 ```
 
-## OS10
+### OS10 Network Operating System
 
 When labbing in GNS3, it takes quite a bit a time for the OS10 appliances to boot the first time. Be patient. Login with linuxadmin/linuxadmin and then logout. Skipping this will result in an "incorrect login" notice when trying to login to the default admin/admin. I have no idea why that is...
 
@@ -218,7 +239,7 @@ The switch I used for the VLT peers and access switch in this lab - "Dell OS10 S
 
 > **NOTE** The default QEMU adapter count in the appliance's settings is 10. I tried to expand this to 57 get the full range of the appliance's interfaces (1/1/1-1/1/56), but the appliance failed to boot. I left it at 10 and just used the first 10 interfaces (1x mgmt, 9x eth).
 
-### Setting the hostnames
+#### Setting the hostnames
 
 VLT Peer 1
 
@@ -244,7 +265,7 @@ OS10(config)# hostname ACCESS
 ACCESS(config)#
 ```
 
-### OOB management Interface Configuration
+#### OOB management Interface Configuration
 
 ```bash
 VLT-1# configure
@@ -267,14 +288,14 @@ VLT-1#
 
 ### Configure VLT
 
-#### 1. Enable STP globally on each peer
+1. Enable STP globally on each peer
 
 ```bash
 VLT-1# configure
 VLT-1(config)# spanning-tree mode rstp
 ```
 
-#### 2. Create a VLT domain on each VLT peer
+2. Create a VLT domain on each VLT peer
 
 > The VLT domain requires an ID number (1-255). Configure the same ID on both peers.
 
@@ -283,7 +304,7 @@ VLT-1(config)# vlt-domain 1
 VLT-1(conf-vlt-1)# exit
 ```
 
-#### 3. Configure VLTi interfaces on each VLT peer
+3. Configure VLTi interfaces on each VLT peer
 
 > Before you configure the VLTi on peer interfaces, remove each interface from L2 mode with `no switchport`. This is shown below.
 >
@@ -300,7 +321,7 @@ VLT-1(config)# vlt-domain 1
 VLT-1(conf-vlt-1)# discovery-interface ethernet 1/1/8-1/1/9
 ```
 
-#### 4. (Optional) Manually configure the same default VLT MAC address on each VLT peer. This minimizes the time required to sync the default MAC of the VLT domain on both peers when one reboots
+1. (Optional) Manually configure the same default VLT MAC address on each VLT peer. This minimizes the time required to sync the default MAC of the VLT domain on both peers when one reboots
 
 > While configuring a VLT MAC address, if the 8th bit of the MAC address is a 1, then the MAC address is considered to be a multicast MAC address. There are locally defined MAC addresses. For these addresses, the second least significant bit in the first byte must be a 1, which signifies a locally defined address.
 >
@@ -312,7 +333,7 @@ VLT-1(conf-vlt-1)# discovery-interface ethernet 1/1/8-1/1/9
 VLT-1(conf-vlt-1)# vlt-mac C2:AC:50:08:FE:D9
 ```
 
-#### 5. Configure VLT heartbeat backup link on each VLT peer
+1. Configure VLT heartbeat backup link on each VLT peer
 
 > Dell [recommends using the OOB management network connection for the VLT backup link](https://www.dell.com/support/manuals/en-us/dell-emc-smartfabric-os10/smartfabric-os-user-guide-10-5-3/configure-the-vlt-peer-liveliness-check?guid=guid-d140525e-19a1-4d53-8334-e7ec196a9da1&lang=en-us).
 >
@@ -358,7 +379,7 @@ Destination VRF                : default
 
 > **BE ADVISED** Upon this successful VLT-peer formation; the switches automatically created a non-configurable *port-channel 1000* interface consisting of our VLTi interfaces and *VLAN 4094*. Each are reserved for internal VLT communication.
 
-#### 6. Configure VLT port channels (LAGs) between each VLT peer and attached devices
+1. Configure VLT port channels (LAGs) between each VLT peer and attached devices
 
 > Remember, *port channel 1000* is reserved. Port channel IDs can be any number between *1 to 999* or *1001 to 2000*.
 
