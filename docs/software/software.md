@@ -77,13 +77,13 @@ This group type provides a way to assign access to resources on your network. Yo
 
 ### Group Scope
 
+!!! note inline end
+      Remember when I said that Microsoft's naming of these groups is confusing? This is specifically what I was talking about. At first glance, for me anyway, its hard to tell exactly what objectives the "universal", "global" or "domain local" scopes achieve. I think its easier to to think of Domain Local Groups as *Resource Groups* and Global Groups as *Account Groups*. I'll get into that a bit more in the following sections.
+
 Each group has a scope that identifies the extent to which the group is applied in the domain tree or forest. The scope defines where in the network permissions can  be granted for the group. The three group scopes are Universal, Global and Domain Local.
 
 !!! info
       In addition to these three scopes, the default groups in the Builtin container have a group scope of Builtin Local. This group scope and group type can't be changed.
-
-!!! note
-      Remember when I said that Microsoft's naming of these groups is confusing? This is specifically what I was talking about. At first glance, for me anyway, its hard to tell exactly what objectives the "universal", "global" or "domain local" scopes achieve. I think its easier to to think of Domain Local Groups as *Resource Groups* and Global Groups as *Account Groups*. I'll get into that a bit more in the following sections.
 
 #### The Universal Scope
 
