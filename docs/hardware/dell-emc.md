@@ -298,6 +298,8 @@ VLT-1(conf-if-te-1/51-lacp)# port-channel 10 mode active
 
 > **NOTE** Form a link aggregation with the interfaces of the upstream switch that are connected to the VLT domain's port-channel. If this is another Dell switch, you can create a port-channel in the same way as shown above excluding the `vlt-peer-lag` command.
 
+[*Reference 1*](https://infohub.delltechnologies.com/l/dell-emc-networking-with-isilon-front-end-deployment-and-best-practices-1/layer-2-topology-configurations-7/)
+
 ### Upgrading the Firmware
 
 OS9 switches have two boot banks, A and B. It's good practice to upload new firmware into on boot bank and keep the old firmware in the other in case you need to roll back.
