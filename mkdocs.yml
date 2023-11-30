@@ -4,7 +4,9 @@ site_name: My Docs
 nav:
   - Home: index.md
   - General: general/general.md
-  - Hardware: hardware/hardware.md
+  - Hardware: 
+    - hardware/index.md
+    - Dell EMC: hardware/dell-emc.md
   - Networking: networking/networking.md
   - Software: software/software.md
   - SOP: sop/SOP.md
