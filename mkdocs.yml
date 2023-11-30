@@ -11,7 +11,7 @@ nav:
   - Software: software/software.md
   - SOP: sop/SOP.md
   - Notes: 
-    - Notes: notes/notes.md
+    - notes/index.md
     - 2023: notes/2023.md
     - Server Research 2023: notes/ServerResearch2023.md
     - Archive: notes/archive.md
