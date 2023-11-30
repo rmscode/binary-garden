@@ -32,6 +32,12 @@ To return to the EXEC Privilege mode from any mode, use the `end` command.
 
 To run an EXEC Privilege mode command from the CONFIGURE mode, precede the command with the `do` command. This is useful for running `show` commands or saving the configuration without exiting the CONFIGURE mode.
 
+[*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/cli-modes?guid=guid-c2dacafb-b58b-43bb-a295-669a21dc2d18&lang=en-us)
+
+!!! tip "Obtaining Help"
+
+    Enter `?` after a command prompt to list all of the available keywords. Entering `?` after a partial keyword lists all of the keywords that begin with the specified letters. Entering a [space] and then `?` after a keyword lists all of the keywords that can follow the specified keyword.
+
 ### Setting the hostname
 
 ```shell
@@ -41,34 +47,42 @@ DellEMC(conf)# hostname Switch-A
 Switch-A(conf)#
 ```
 
+[*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-a-host-name?guid=guid-4fb6a556-a309-4d56-abfe-2fa6ccee1183&lang=en-us)
+
 ### OOB Management Interface Configuration
 
-```bash
+```shell
 DellEMC# configure
 DellEMC(conf)# interface ManagementEthernet 1/1    #(1)
 DellEMC(conf-if-ma-1/1)# no ip address dhcp        #(2)
-DellEMC(conf-if-ma-1/1)# ip address 10.1.1.1/24
-DellEMC(conf-if-ma-1/1)# no shutdown               #(3)
-DellEMC(conf-if-ma-1/1)# management route 0.0.0.0/0 10.1.1.10/24
+DellEMC(conf-if-ma-1/1)# ip address 10.1.1.1/24    #(3)
+DellEMC(conf-if-ma-1/1)# no shutdown               #(4)
+DellEMC(conf-if-ma-1/1)# management route 0.0.0.0/0 10.1.1.254
 DellEMC(conf-if-ma-1/1)# exit
 DellEMC(conf)# 
 ```
 
-1. The `interface` command is used to enter interface configuration mode.
+1. The `interface` command is used to enter interface configuration submode.
 2. The `no` command is used to negate a command. In this case, we are negating the `ip address dhcp` command and essentially removing that setting from the interface.
-3. This enables the interface and keeps it enabled after a reboot.
+3. Setting the IP address of the management interface
+4. This enables the interface and keeps it enabled after a reboot.
 
-### Configure username & password for remote SSH accesss
+[*Reference: Management Port IP*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configure-the-management-port-ip-address?guid=guid-d18626b7-74dd-4a2b-a4b7-bb8a852386e5&lang=en-us)</br>
+[*Reference: Management Route*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configure-a-management-route?guid=guid-e615d634-8863-4c93-92d1-5b269fd756ab&lang=en-us)
 
-```bash
+### Configure a user for remote SSH accesss
+
+```shell
 DellEMC(conf)# enable password <password>
 DellEMC(conf)# username <username> password <password>
 DellEMC(conf)# ip ssh server enable
 ```
 
+[*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-a-username-and-password?guid=guid-5afd0af5-ceac-4a0c-b3c8-e14ee7bcddb4&lang=en-us)
+
 ### Configure time zone and NTP
 
-```bash
+```shell
 DellEMC(conf)# clock timezone UTC -5
 DellEMC(conf)# ntp server <ip>
 DellEMC(conf)# show ntp associations
@@ -76,80 +90,211 @@ DellEMC(conf)# show ntp status
 DellEMC(conf)# show clock
 ```
 
-### VLT (Virtual Link Trunking)
+[*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/system-time-and-date?guid=guid-047210d7-7dae-4a6d-86df-37a79e8e8b9f&lang=en-us)
+
+### Saving the running configuration
+
+The running config contains the current system configuration. If you do not copy the running config to the startup config, any changes that you made will not be saved and will be lost after a reboot.
+
+Save the running config to the startup config on the internal flash:
+
+```shell
+DellEMC# copy running-config startup-config
+```
+
+Save the running config (or startup config) to an FTP server:
+
+```shell
+DellEMC# copy running-config ftp:// username:password@<hostip>/filepath/ filename
+```
+
+[*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/save-the-running-configuration?guid=guid-30740b60-fdc7-4980-b20e-06e195bbaf13&lang=en-us)
+
+### Virtual Link Trunking (VLT)
 
 !!! info
 
     Virtual Link Trunking is Dell's implementation of MLAG (Multi-Chassis Link Aggregation). It allows you to create a port-channel (LAG) between two switches and have them act as one logical switch. This provides redundancy and load balancing.
 
-#### 1. Enable STP globally on each VLT peer
+#### VLT Terminology
+
+`VLT Backup Link`
+
+:   The backup link monitors the connectivity between the VLT peer switches. The backup link sends configurable, periodic keep alive messages between the VLT peer switches. Dell recommends using the OOB management network connection for the VLT backup link. The backup destination is the IP address of the peer that is not the local switch.
+
+`VLT Interconnect (VLTi)`
+
+:   The link used to synchronize states between the VLT peer switches. It is formed by creating one or more port-channels (LAGs) between the VLT peers.
+
+`VLT Domain`
+
+:   This domain includes both the VLT peer devices, VLT interconnect, and all of the port channels in the VLT connected to the attached devices. It is also associated to the configuration mode that you must use to assign VLT global parameters.
+
+`VLT Peer Device`
+
+:   One of a pair of devices that are connected with the special port-channel known as the VLT interconnect (VLTi).
+
+`Enhanced VLT (eVLT)`
+
+:   Combining two VLT domains. eVLT can operate in layer 2 and layer 3 modes. eVLT is also known as mVLT.
+
+---
+
+!!! note
+
+    For brevity, when a configuration step is identical for both VLT peers, I will only show CLI examples for one of the peers . . . "VLT-1" in this case.
+
+#### 1. Enable STP globally on *each* VLT peer
 
 !!! tip
 
     Dell recommends, at least initially, to enable STP globally on each VLT peer. This is to prevent loops in the event of a misconfiguration.
 
+=== "VLT Peer 1"
+
+    ```shell
+    VLT-1> enable
+    VLT-1# configure
+    VLT-1(conf)# protocol spanning-tree rstp
+    VLT-1(conf-rstp)# no disable
+    VLT-1(conf-rstp)# bridge-priority 4096
+    VLT-1(conf-rstp)# exit
+    ```
+
+=== "VLT Peer 2"
+
+    ```shell
+    VLT-2> enable
+    VLT-2# configure
+    VLT-2(conf)# protocol spanning-tree rstp
+    VLT-2(conf-rstp)# no disable
+    VLT-2(conf-rstp)# bridge-priority 8192
+    VLT-2(conf-rstp)# exit
+    ```
+
+#### 2. Configure the VLT interconnect (VLTi) between *each* of the peers
+
+!!! note
+
+    The VLTi may consist of any 10G or 40G ports, but a combination of 10G *and* 40G ports is not supported. Dell recommends forming the VLTi with at least 2 port-channels as best practice.
+
 ```shell
-VLT-1(conf)# protocol spanning-tree rstp
-VLT-1(conf-rstp)# no disable
-VLT-1(conf-rstp)# exit
+VLT-1(conf)# interface range FortyGigabitEthernet 1/49-1/50    #(1)
+VLT-1(conf-if-range-fo-1/47,fo-1/48)# description "Member of port-channel 1000 for the VLT Interconnect"    #(2)
+VLT-1(conf-if-range-fo-1/47,fo-1/48)# no shutdown
+VLT-1(conf-if-range-fo-1/47,fo-1/48)# exit
+VLT-1(conf)# interface port-channel 1000    #(3)
+VLT-1(conf-if-po-1000)# description "VLT Interconnect"
+VLT-1(conf-if-po-1000)# channel-member FortyGigabitEthernet 1/49    #(4)
+VLT-1(conf-if-po-1000)# channel-member FortyGigabitEthernet 1/50
+VLT-1(conf-if-po-1000)# no shutdown
+VLT-1(conf-if-po-1000)# exit
 ```
 
-#### 2. Establish VLT interconnect (VLTi) between the peers
+1. That's right! The `interface range` command allows you to select multiple interfaces at once for configuration. We'll be using these interfaces for the VLTi.
+2. The `description` command is really useful for labeling interfaces and port-channels, among other things. When using the the `show` command, the description will be displayed first. Its not required, but it's good practice.
+3. Configuring a port-channel (LAG) for the VLTi. In OS9, the # can be anything from 1-2000. I chose 1000 because it aligns with the port-channel # that is automically reserved for the VLTi in OS10...and it's easy to remember.
+4. Selecting the interfaces that will be used to form the port-channel.
 
-> **NOTE** Dell does not mention any specific requirements for which interfaces to use for the VLTi. They just insist on using more than one as best practice.
+*Repeat these steps on the other VLT peer.*
 
-```bash
-DellEMC# configure
-DellEMC(conf)# interface range FortyGigabitEthernet 1/49-1/50
-DellEMC(conf-if-range-fo-1/47,fo-1/48)# no shutdown
-DellEMC(conf-if-range-fo-1/47,fo-1/48)# exit
-DellEMC(conf)# interface port-channel 100
-DellEMC(conf-if-po-1000)# description "VLT Interconnect"
-DellEMC(conf-if-po-1000)# channel-member FortyGigabitEthernet 1/49
-DellEMC(conf-if-po-1000)# channel-member FortyGigabitEthernet 1/50
-DellEMC(conf-if-po-1000)# no shutdown
-DellEMC(conf-if-po-1000)# exit
+[*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-a-vlt-interconnect?guid=guid-882304c2-cca8-4554-a96b-2f5b0c5b7a72&lang=en-us)
+
+#### 3. Enabling VLT and join switches to the VLT domain
+
+=== "VLT Peer 1"
+
+    ```shell
+    VLT-1(conf)# vlt domain 1    #(1)
+    VLT-1(conf-vlt-1)# back-up destination 10.1.1.2    #(2)
+    VLT-1(conf-vlt-1)# peer-link port-channel 1000    #(3)
+    VLT-1(conf-vlt-1)# primary-priority 1    #(4)
+    VLT-1(conf-vlt-1)# exit
+    ```
+
+    1. The VLT domain requires an ID number (1-1000). Configure the same ID on the peer switch to allow for common peering.
+    2. This is the OOB management IP address of VLT peer 2. You can optionally specify the time `interval`. The range is from 1 to 5 seconds. The default is 3 seconds.
+    3. Configuring the port-channel that will be used as the VLTi.
+    4. (Optional). The system elects a primary and secondary VLT device, but you can confugure the roles before the election process if you wish. The lowest value is elected as the primary (1-65535).
+
+=== "VLT Peer 2"
+
+    ```shell
+    VLT-2(conf)# vlt domain 1
+    VLT-2(conf-vlt-1)# back-up destination 10.1.1.1    #(1)
+    VLT-2(conf-vlt-1)# peer-link port-channel 1000
+    VLT-2(conf-vlt-1)# primary-priority 2
+    VLT-2(conf-vlt-1)# exit
+    ```
+
+    1. The OOB management IP address of the VLT peer 1.
+
+[*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/enabling-vlt-and-creating-a-vlt-domain?guid=guid-4f2e6faf-30b2-4eb3-aef0-d5457c1c33b2&lang=en-us)
+
+#### 4. Configure the default VLT MAC address on each peer (Optional)
+
+!!! info
+
+    When you create a VLT domain, a VLT-system MAC address used for internal system operations is automatically created. However, you can explicitly configure the default MAC address for the VLT domain. Doing so can help minimize the time required for the VLT system to sync the default MAC address of the VLT domain on both peers when one peer reboots. The format is aaaa.bbbb.cccc.
+
+```shell
+VLT-1(conf)# vlt domain 1
+VLT-2(conf-vlt-1)# system-mac mac-address 00:11:22:33:44:55
 ```
 
-#### 3. Create and join switches to the VLT domain
+*Repeat these steps on the other VLT peer.*
 
-> The VLT domain requires an ID number (1-1000). Configure the same ID on both peers.
-
-```bash
-DellEMC(conf)# vlt domain 1
-DellEMC(conf-vlt-1)# back-up destination <mgmt IP of peer>
-DellEMC(conf-vlt-1)# peer-link port-channel 100
-DellEMC(conf-vlt-1)# primary-priority 1
-DellEMC(conf-vlt-1)# exit
-```
-
-#### 4. To improve convergence, configure the same default VLT MAC address on both peers. This is optional, but recommended
-
-```bash
-DellEMC(conf)# vlt domain 1
-DellEMC(conf-vlt-1)# system-mac mac-address 00:11:22:33:44:55
-```
+[*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/reconfiguring-the-default-vlt-settings-optional?guid=guid-61b3dde6-6906-4147-a27a-becc917d6c21&lang=en-us)
 
 #### 6. Confirm the state of the VLT domain
 
-```bash
-DellEMC# show vlt brief
-DellEMC# show vlt statistics
-DellEMC# show vlt backup-link
-DellEMC# show interface port-channel 100
+```shell
+VLT-1# show vlt brief
+VLT Domain Brief
+------------------
+Domain ID : 1
+Role : Primary
+Role Priority : 1
+ICL Link Status : Up    #(1)
+HeartBeat Status : Up
+VLT Peer Status : Up
+Version : 6(3)
+Local System MAC address : 00:01:e8:8a:e9:91
+Remote System MAC address : 00:01:e8:8a:e9:76
+Remote system version : 6(3)
+Delay-Restore timer : 90 seconds
+
+Delay-Restore Abort Threshold : 60 seconds
+Peer-Routing : Disabled
+Peer-Routing-Timeout timer : 0 seconds
+Multicast peer-routing timeout : 150 seconds
 ```
 
-#### 7. Create a VLT port-channel (LAG) on each peer to connect them to an upstream switch
+1. ICL stands for "[inter-chassis link](https://www.dell.com/support/kbdoc/en-us/000179606/powerstore-alerts-ethernet-switch-inter-chassis-link-peer-presence)". This is the VLTi.
 
-```bash
-DellEMC(conf)# interface FortyGigabitEthernet 1/51
-DellEMC(conf-if-te-1/1)# port-channel-protocol LACP
-DellEMC(conf-if-te-1/1-lacp)# port-channel 10 mode active
-DellEMC(conf-if-te-1/1-lacp)# interface port-channel 10
-DellEMC(conf-if-po-10)# portmode hybrid
-DellEMC(conf-if-po-10)# switchport
-DellEMC(conf-if-po-10)# vlt-peer-lag port-channel 10
+#### 7. Connecting a VLT Domain to a TOR switch
+
+To connect to an attached device, like another switch, configure the same port-channel ID number on each peer switch in the VLT domain. This will create a single logical link (LAG) between the VLT domain and the attached device.
+
+```shell
+VLT-1(conf)# interface port-channel 10
+VLT-1(conf-if-po-10)# description "Upstream port-channel connected to SwitchName"
+VLT-1(conf-if-po-10)# no shutdown
+VLT-1(conf-if-po-10)# no ip address
+VLT-1(conf-if-po-10)# switchport    #(1)
+VLT-1(conf-if-po-10)# vlt-peer-lag port-channel 10    #(2)
+VLT-1(conf-if-po-10)# exit
+VLT-1(conf)# interface FortyGigabitEthernet 1/51
+VLT-1(conf-if-te-1/51)# description "Member of port-channel 10 for upstream connection to SwitchName"
+VLT-1(conf-if-te-1/51)# no shutdown
+VLT-1(conf-if-te-1/51)# port-channel-protocol LACP    #(3)
+VLT-1(conf-if-te-1/51-lacp)# port-channel 10 mode active
 ```
+
+1. The port-channel needs to be in layer 2 mode.
+2. Configuring this port-channel as a VLT peer port channel.
+3. Configuring LACP on the interface.
+4. Joining the interface to the port-channel in LACP mode.
 
 > **NOTE** Form a link aggregation with the interfaces of the upstream switch that are connected to the VLT domain's port-channel. If this is another Dell switch, you can create a port-channel in the same way as shown above excluding the `vlt-peer-lag` command.
 
@@ -159,20 +304,20 @@ OS9 switches have two boot banks, A and B. It's good practice to upload new firm
 
 #### 1. Make a copy of the startup configuration
 
-```bash
+```shell
 DellEMC> enable
 DellEMC# copy startup-config tftp://10.1.1.25/OS9_Switch-A.conf
 ```
 
 #### 2. Upload the new firmware to image B
 
-```bash
+```shell
 DellEMC# upgrade system tftp://10.1.1.25/FTOS-SK-9.14.bin b: 
 ```
 
 #### 3. Change active boot bank and reload
 
-```bash
+```shell
 DellEMC# configure
 DellEMC(conf)# boot system stack-unit 1 primary system b:
 DellEMC(conf)# exit
@@ -185,7 +330,7 @@ DellEMC# reload
 
 To avoid dropping packets during heavy utilization, enable flow control on the interfaces connected to iSCSI storage.
 
-```bash
+```shell
 DellEMC(conf)# interface range Te1/1,2,3,4
 DellEMC(conf-if-range-te-1/1,2,3,4)# flowcontrol rx on tx on
 ```
@@ -194,7 +339,7 @@ DellEMC(conf-if-range-te-1/1,2,3,4)# flowcontrol rx on tx on
 
 You can configure the switch to automtically lock configuration mode for other users while you are making changes. This prevents other users from making changes while you are working. This is useful for preventing configuration conflicts.
 
-```bash
+```shell
 configuration mode exclusive auto
 ```
 
@@ -202,19 +347,19 @@ configuration mode exclusive auto
 
 By default, this is off. To enable it, use the following command:
 
-```bash
+```shell
 login statistics enable
 ```
 
 Displaying the login activity:
 
-```bash
+```shell
 show login statistics
 ```
 
 #### Limit concurrent sessions
 
-```bash
+```shell
 login concurrent-session limit 1
 ```
 
@@ -222,7 +367,7 @@ login concurrent-session limit 1
 
 Allows you to mirror traffic of one port to another. This is useful for analyzing traffic with a packet capture tool like Wireshark. You also have the ability to remotely monitor a port. In a remote port monitoring session, monitored traffic is tagged with a VLAN ID and switched on a user-defined, non-routable L2 VLAN. Allowing you to sniff from a distance.
 
-```bash
+```shell
 DellEMC(conf)# monitor session 0
 DellEMC(conf-mon-sess-0)# $source te 1/1 dest te 1/2 dir rx
 ```
@@ -241,7 +386,7 @@ The switch I used for the VLT peers and access switch in this lab - "Dell OS10 S
 
 VLT Peer 1
 
-```bash
+```shell
 OS10# configure
 OS10(config)# hostname VLT-1
 VLT-1(config)#
@@ -249,7 +394,7 @@ VLT-1(config)#
 
 VLT Peer 2
 
-```bash
+```shell
 OS10# configure
 OS10(config)# hostname VLT-2
 VLT-2(config)#
@@ -257,7 +402,7 @@ VLT-2(config)#
 
 Access switch
 
-```bash
+```shell
 OS10# configure
 OS10(config)# hostname ACCESS
 ACCESS(config)#
@@ -265,7 +410,7 @@ ACCESS(config)#
 
 ### OOB management Interface Configuration
 
-```bash
+```shell
 VLT-1# configure
 VLT-1(config)# interface mgmt 1/1/1
 VLT-1(conf-if-ma-1/1/1)# no ip address dhcp
@@ -288,7 +433,7 @@ VLT-1#
 
 #### 1. Enable STP globally on each peer
 
-```bash
+```shell
 VLT-1# configure
 VLT-1(config)# spanning-tree mode rstp
 ```
@@ -297,7 +442,7 @@ VLT-1(config)# spanning-tree mode rstp
 
 > The VLT domain requires an ID number (1-255). Configure the same ID on both peers.
 
-```bash
+```shell
 VLT-1(config)# vlt-domain 1
 VLT-1(conf-vlt-1)# exit
 ```
@@ -308,7 +453,7 @@ VLT-1(conf-vlt-1)# exit
 >
 > **NOTE** Dell did not mention any specific requirements for the interfaces used for VLTi. They just insist on deploying more than one as best practice.
 
-```bash
+```shell
 VLT-1(config)# interface ethernet 1/1/8
 VLT-1(conf-if-eth1/1/9)# no switchport
 VLT-1(conf-if-eth1/1/9)# exit
@@ -327,7 +472,7 @@ VLT-1(conf-vlt-1)# discovery-interface ethernet 1/1/8-1/1/9
 >
 > I fed that information to Chat-GPT to generate a MAC address for me.
 
-```bash
+```shell
 VLT-1(conf-vlt-1)# vlt-mac C2:AC:50:08:FE:D9
 ```
 
@@ -339,19 +484,19 @@ VLT-1(conf-vlt-1)# vlt-mac C2:AC:50:08:FE:D9
 
 *VLT Peer 1*:
 
-```bash
+```shell
 VLT-1(conf-vlt-1)# backup destination 10.1.1.2
 ```
 
 *VLT Peer 2*:
 
-```bash
+```shell
 VLT-2(conf-vlt-1)# backup destination 10.1.1.1
 ```
 
 It was at this point that I linked eth 1/1/8-1/1/9 of each switch together. VLT Peer 1 immediately recognized both links and indicated that "VLT unit 2 is up" and that "VLT interconnect link between unit 1 and unit 2 is up". However, when I checked the status of the heartbeat link, it was down. This made sense. The backup links couldn't communicate with eachother because they weren't physically connected to a network. For the purposes of this lab, I directly connected the two interfaces together. In a production environment, the heart beat will traverse the management network the interfaces are connected to.
 
-```bash
+```shell
 VLT-1(conf-vlt-1)# exit
 VLT-1(config)# show vlt 1 backup-link
 VLT Backup Link
@@ -381,7 +526,7 @@ Destination VRF                : default
 
 > Remember, *port channel 1000* is reserved. Port channel IDs can be any number between *1 to 999* or *1001 to 2000*.
 
-```bash
+```shell
 VLT-1(conf-vlt-1)# exit
 VLT-1(config)# interface port-channel 10
 VLT-1(conf-if-po-10)# no shutdown
@@ -397,7 +542,7 @@ A port-channel was also added to the access switch on interfaces eth 1/1/1 and 1
 
 #### 7. Verification
 
-```bash
+```shell
 VLT-1(config)# exit
 VLT-1# show vlt 1 vlt-port-detail
 vlt-port-channel ID : 10
@@ -417,7 +562,7 @@ I also killed each of the VLT peers. For each peer failure test, the pings initi
 
 List port groups and their members. This will show the full range, port grouping and speed of all the interfaces on the switch.
 
-```bash
+```shell
 VLT-1# show port-group
 
 Port-group            Mode           Ports     FEM
@@ -444,7 +589,7 @@ port-group1/1/18      Eth 100g-1x    56         -
 
 I misconfigured a port channel on the access switch connected to the VLT domain and needed to figure out how to remove/undo the settings. This is how I did it:
 
-```bash
+```shell
 ACCESS(config)# interface ethernet 1/1/2
 ACCESS(conf-if-eth1/1/2)# show configuration
 !
@@ -472,7 +617,7 @@ So, in our GNS3 lab . . . The switch labeled "Access" is the upstream member and
 
 **What it looks like in one go**:
 
-```bash
+```shell
 OS10# configure terminal
 OS10(config)# hostname VLT-2
 VLT-2(config)# interface mgmt 1/1/1
