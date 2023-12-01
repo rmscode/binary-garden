@@ -1,6 +1,6 @@
 # Documentation & Notes
 
-This static site was generated [Material](https://squidfunk.github.io/mkdocs-material/) for [MkDocs](https://www.mkdocs.org).
+This static site was generated using [Material](https://squidfunk.github.io/mkdocs-material/) for [MkDocs](https://www.mkdocs.org).
 
 ## MkDocs Commands
 
