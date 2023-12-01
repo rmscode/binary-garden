@@ -351,7 +351,7 @@ What I *think* this means is that if you have something like a server connected 
 
 ---
 
-This [VLT Technical guide](https://i.dell.com/sites/content/business/large-business/merchandizing/en/Documents/Dell_Force10_S4810_VLT_Technical_Guide.pdf) contains some information for tuning various settings to achieve faster convergence. I haven't looked through much of it yet.
+This [VLT Technical guide](https://i.dell.com/sites/content/business/large-business/merchandizing/en/Documents/Dell_Force10_S4810_VLT_Technical_Guide.pdf) contains some information for tuning various settings to achieve faster convergence. I haven't looked through much of it yet, but I did spot a line that said "If the network is not tuned, some failures can lead to outages up to 30 seconds. The proposed heavy tuning reduces that to around 2-3 seconds (inter-VLAN routing) or 200-300 milliseconds (Layer2)." **200-300 MILLISECONDS**.
 
 ### Uplink Failure Detection (UFD)
 
