@@ -113,6 +113,32 @@ DellEMC# copy running-config ftp:// username:password@<hostip>/filepath/ filenam
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/save-the-running-configuration?guid=guid-30740b60-fdc7-4980-b20e-06e195bbaf13&lang=en-us)
 
+### Upgrading the Firmware
+
+OS9 switches have two boot banks, A and B. It's good practice to upload new firmware into on boot bank and keep the old firmware in the other in case you need to roll back.
+
+#### 1. Make a copy of the startup configuration
+
+```shell
+DellEMC> enable
+DellEMC# copy startup-config tftp://10.1.1.25/OS9_Switch-A.conf
+```
+
+#### 2. Upload the new firmware to image B
+
+```shell
+DellEMC# upgrade system tftp://10.1.1.25/FTOS-SK-9.14.bin b: 
+```
+
+#### 3. Change active boot bank and reload
+
+```shell
+DellEMC# configure
+DellEMC(conf)# boot system stack-unit 1 primary system b:
+DellEMC(conf)# exit
+DellEMC# reload
+```
+
 ### Virtual Link Trunking (VLT)
 
 !!! warning inline end "BE ADVISED..."
@@ -319,32 +345,6 @@ I read the following blurb on [some guys blog](https://devnull0.com/2017/11/03/d
 "If the source is connected to an orphan (non-spanned, non-VLT) port in a VLT peer, the receiver is connected to a VLT (spanned) portchannel, and the VLT port-channel link between the VLT peer connected to the source and ToR is down, traffic is duplicated due to route inconsistency between peers. To avoid this scenario, Dell Networking recommends confguring both the source and the receiver on a spanned VLT VLAN."
 
 What I think he's saying is that if you have something like a server connected to a VLT domain via 2 independant NICs (No LAG), and something like an upstream TOR switch is connected to the same VLT domain via a port-channel (LAG), and that port-channel link (one of them?) goes down, routing issues can arise. If that is the case, then its something we need to consider because that is how our network will be set up . . . No port-channels/LAGs between the servers and the VLT domain, but a port-channel/lag between the VLT domain and 3rd "access" switch on the wall (or top of rack..whever we put it).
-
-### Upgrading the Firmware
-
-OS9 switches have two boot banks, A and B. It's good practice to upload new firmware into on boot bank and keep the old firmware in the other in case you need to roll back.
-
-#### 1. Make a copy of the startup configuration
-
-```shell
-DellEMC> enable
-DellEMC# copy startup-config tftp://10.1.1.25/OS9_Switch-A.conf
-```
-
-#### 2. Upload the new firmware to image B
-
-```shell
-DellEMC# upgrade system tftp://10.1.1.25/FTOS-SK-9.14.bin b: 
-```
-
-#### 3. Change active boot bank and reload
-
-```shell
-DellEMC# configure
-DellEMC(conf)# boot system stack-unit 1 primary system b:
-DellEMC(conf)# exit
-DellEMC# reload
-```
 
 ### Other
 
