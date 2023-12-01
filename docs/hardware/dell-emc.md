@@ -338,15 +338,32 @@ VLT-1(conf-if-te-1/51-lacp)# port-channel 10 mode active    #(4)
 
     Don't forget to create a LAG on the attached device and configure LACP as well.
 
-#### Misc OS9 VLT notes
+#### Things to consider
 
-I read the following blurb on [some guys blog](https://devnull0.com/2017/11/03/dell-networking-vlt-concepts/):
+!!! quote "Dell"
 
-"If the source is connected to an orphan (non-spanned, non-VLT) port in a VLT peer, the receiver is connected to a VLT (spanned) portchannel, and the VLT port-channel link between the VLT peer connected to the source and ToR is down, traffic is duplicated due to route inconsistency between peers. To avoid this scenario, Dell Networking recommends confguring both the source and the receiver on a spanned VLT VLAN."
+    If the source is connected to an orphan (non-spanned, non-VLT) port in a VLT peer, the receiver is connected to a VLT(spanned) port-channel, and the VLT port-channel link between the VLT peer connected to the source and ToR is down, traffic is duplicated due to route inconsistency between peers. To avoid this scenario, Dell EMC Networking recommends configuring both the source and the receiver on a spanned VLT VLAN.
 
-What I think he's saying is that if you have something like a server connected to a VLT domain via 2 independant NICs (No LAG), and something like an upstream TOR switch is connected to the same VLT domain via a port-channel (LAG), and that port-channel link (one of them?) goes down, routing issues can arise. If that is the case, then its something we need to consider because that is how our network will be set up . . . No port-channels/LAGs between the servers and the VLT domain, but a port-channel/lag between the VLT domain and 3rd "access" switch on the wall (or top of rack..whever we put it).
+What I *think* means is that if you have something like a server connected to a VLT domain via 2 independant NICs (No LAG), and something like an upstream TOR switch connected to the same VLT domain via a port-channel (LAG), and that port-channel link (one of them?) goes down, routing issues can arise. If that is the case, then its something we need to consider because that is how our network will be set up - No port-channels/LAGs between the servers and the VLT domain, but a port-channel/lag between the VLT domain and 3rd "access" switch on the wall (or top of rack..whever we put it).
+
+[Specifying VLT Nodes in a PVLAN](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/specifying-vlt-nodes-in-a-pvlan?guid=guid-ab6e056d-e4c7-4910-b807-b09102f1083b)</br>
+[Configuring a VLT VLAN or LAG in a PVLAN](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-a-vlt-vlan-or-lag-in-a-pvlan?guid=guid-fad07f16-bf47-45b1-a36d-58f3a75a82f8)
 
 ### Other
+
+#### Uplink Failure Detection (UFD)
+
+!!! info "Feature Description"
+
+   Uplink failure detection (UFD) provides detection of the loss of upstream connectivity and, if used with network interface controller (NIC) teaming, automatic recovery from a failed link. A switch provides upstream connectivity for devices, such as servers. If a switch loses its upstream connectivity, downstream devices also lose their connectivity. However, the devices do not receive a direct indication that upstream connectivity is lost because connectivity to the switch is still operational. UFD allows a switch to associate downstream interfaces with upstream interfaces. When upstream connectivity fails, the switch disables the downstream links. Failures on the downstream links allow downstream devices to recognize the loss of upstream connectivity.
+
+For example, as shown below, Switches S1 and S2 both have upstream upstream connectivity to Router R1 and downstream connectivity to the server. UFD operation is shown in Steps A through C:
+
+- In Step A, the server configuration uses the connection to S1 as the primary path. Network traffic flows from the server to S1 and then upstream to R1.
+- In Step B, the upstream link between S1 and R1 fails. The server continues to use the link to S1 for its network traffic, but the traffic is not successfully switched through S1 because the upstream link is down.
+- In Step C, UFD on S1 disables the link to the server. The server then stops using the link to S1 and switches to using its link to S2 to send traffic upstream to R1.
+
+![UFD Example](UFD-example.png)
 
 #### Flow control for iSCSI
 
