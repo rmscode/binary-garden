@@ -349,6 +349,10 @@ What I *think* this means is that if you have something like a server connected 
 [Specifying VLT Nodes in a PVLAN](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/specifying-vlt-nodes-in-a-pvlan?guid=guid-ab6e056d-e4c7-4910-b807-b09102f1083b)</br>
 [Configuring a VLT VLAN or LAG in a PVLAN](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-a-vlt-vlan-or-lag-in-a-pvlan?guid=guid-fad07f16-bf47-45b1-a36d-58f3a75a82f8)
 
+---
+
+This [VLT Technical guide](https://i.dell.com/sites/content/business/large-business/merchandizing/en/Documents/Dell_Force10_S4810_VLT_Technical_Guide.pdf) contains some information for tuning various settings to achieve faster convergence. I haven't looked through much of it yet.
+
 ### Uplink Failure Detection (UFD)
 
 !!! info "Feature Description"
