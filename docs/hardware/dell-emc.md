@@ -73,12 +73,15 @@ DellEMC(conf)#
 ### Configure a user for remote SSH accesss
 
 ```shell
-DellEMC(conf)# enable password <password>
+DellEMC(conf)# enable password <password>    #(1)
 DellEMC(conf)# username <username> password <password>
 DellEMC(conf)# ip ssh server enable
 ```
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-a-username-and-password?guid=guid-5afd0af5-ceac-4a0c-b3c8-e14ee7bcddb4&lang=en-us)
+1. EXEC Privilege mode is unrestricted by default. Configure a password as a basic security measure.
+
+[*Reference: `Enable Password`*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-the-enable-password?guid=guid-cf0ca3a8-65f4-4859-b058-ecb7c424f0ec&lang=en-us)</br>
+[*Reference: Username and Password*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-a-username-and-password?guid=guid-5afd0af5-ceac-4a0c-b3c8-e14ee7bcddb4&lang=en-us)
 
 ### Configure time zone and NTP
 
@@ -94,7 +97,7 @@ DellEMC(conf)# show clock
 
 ### Saving the running configuration
 
-The running config contains the current system configuration. If you do not copy the running config to the startup config, any changes that you made will not be saved and will be lost after a reboot.
+The running config contains the current system configuration. If you do not copy (save) the running config to the startup config, any changes that you made will be lost after a reboot.
 
 Save the running config to the startup config on the internal flash:
 
@@ -112,9 +115,13 @@ DellEMC# copy running-config ftp:// username:password@<hostip>/filepath/ filenam
 
 ### Virtual Link Trunking (VLT)
 
+!!! warning inline end "BE ADVISED..."
+
+    As of 10/30/23 we have been unable to test and confirm these steps in a GNS3 lab. We will need to do so on the S4048 switches themselves and update this section where necessary.
+
 !!! info
 
-    Virtual Link Trunking is Dell's implementation of MLAG (Multi-Chassis Link Aggregation). It allows you to create a port-channel (LAG) between two switches and have them act as one logical switch. This provides redundancy and load balancing.
+    Virtual Link Trunking is Dell's implementation of MLAG (Multi-Chassis Link Aggregation). It allows you to create a port-channel (LAG) between two switches and have them act as one logical switch. This provides redundancy and load balancing. 
 
 #### VLT Terminology
 
@@ -288,17 +295,30 @@ VLT-1(conf)# interface FortyGigabitEthernet 1/51
 VLT-1(conf-if-te-1/51)# description "Member of port-channel 10 for upstream connection to SwitchName"
 VLT-1(conf-if-te-1/51)# no shutdown
 VLT-1(conf-if-te-1/51)# port-channel-protocol LACP    #(3)
-VLT-1(conf-if-te-1/51-lacp)# port-channel 10 mode active
+VLT-1(conf-if-te-1/51-lacp)# port-channel 10 mode active    #(4)
 ```
 
-1. The port-channel needs to be in layer 2 mode.
-2. Configuring this port-channel as a VLT peer port channel.
-3. Configuring LACP on the interface.
-4. Joining the interface to the port-channel in LACP mode.
+1. The `switchport` command puts the port-channel in layer 2 mode.
+2. The `vlt-peer-lag` command associates the port-channel to the corresponding port-channel in the VLT peer for the VLT connection to an dattached device.
+3. Entering LACP configuration mode for the interface.
+4. Add port-channel 10 and enable LACP.
 
-> **NOTE** Form a link aggregation with the interfaces of the upstream switch that are connected to the VLT domain's port-channel. If this is another Dell switch, you can create a port-channel in the same way as shown above excluding the `vlt-peer-lag` command.
+*Repeat these steps on the other VLT peer.*
 
-[*Reference 1*](https://infohub.delltechnologies.com/l/dell-emc-networking-with-isilon-front-end-deployment-and-best-practices-1/layer-2-topology-configurations-7/)
+[*Reference 1*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/connecting-a-vlt-domain-to-an-attached-access-device-switch-or-server?guid=guid-99a5a114-5dbc-4286-b64f-c5e43c4edf26&lang=en-us) </br>
+[*Reference 2*](https://infohub.delltechnologies.com/l/dell-emc-networking-with-isilon-front-end-deployment-and-best-practices-1/layer-2-topology-configurations-7/)
+
+!!! note
+
+    Don't forget to create a LAG on the attached device and configure LACP as well.
+
+#### Misc OS9 VLT notes
+
+I read the following blurb on [some guys blog](https://devnull0.com/2017/11/03/dell-networking-vlt-concepts/):
+
+"If the source is connected to an orphan (non-spanned, non-VLT) port in a VLT peer, the receiver is connected to a VLT (spanned) portchannel, and the VLT port-channel link between the VLT peer connected to the source and ToR is down, traffic is duplicated due to route inconsistency between peers. To avoid this scenario, Dell Networking recommends confguring both the source and the receiver on a spanned VLT VLAN."
+
+What I think he's saying is that if you have something like a server connected to a VLT domain via 2 independant NICs (No LAG), and something like an upstream TOR switch is connected to the same VLT domain via a port-channel (LAG), and that port-channel link (one of them?) goes down, routing issues can arise. If that is the case, then its something we need to consider because that is how our network will be set up . . . No port-channels/LAGs between the servers and the VLT domain, but a port-channel/lag between the VLT domain and 3rd "access" switch on the wall (or top of rack..whever we put it).
 
 ### Upgrading the Firmware
 
@@ -375,6 +395,10 @@ DellEMC(conf-mon-sess-0)# $source te 1/1 dest te 1/2 dir rx
 ```
 
 ## OS10 Network Operating System
+
+!!! info
+
+    I need to clean this section up a bit...references and more detail needed.
 
 When labbing in GNS3, it takes quite a bit a time for the OS10 appliances to boot the first time. Be patient. Login with linuxadmin/linuxadmin and then logout. Skipping this will result in an "incorrect login" notice when trying to login to the default admin/admin. I have no idea why that is...
 
