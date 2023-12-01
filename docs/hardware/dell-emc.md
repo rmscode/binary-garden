@@ -363,7 +363,7 @@ For example, as shown below, Switches S1 and S2 both have upstream upstream conn
 - In Step B, the upstream link between S1 and R1 fails. The server continues to use the link to S1 for its network traffic, but the traffic is not successfully switched through S1 because the upstream link is down.
 - In Step C, UFD on S1 disables the link to the server. The server then stops using the link to S1 and switches to using its link to S2 to send traffic upstream to R1.
 
-![UFD Example](UFD-example.png)
+![UFD Example](UFD-example.jpeg)
 
 #### Flow control for iSCSI
 
