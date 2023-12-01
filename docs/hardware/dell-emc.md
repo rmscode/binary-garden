@@ -279,7 +279,7 @@ VLT-2(conf-vlt-1)# system-mac mac-address 00:11:22:33:44:55
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/reconfiguring-the-default-vlt-settings-optional?guid=guid-61b3dde6-6906-4147-a27a-becc917d6c21&lang=en-us)
 
-#### 6. Confirm the state of the VLT domain
+#### 5. Confirm the state of the VLT domain
 
 ```shell
 VLT-1# show vlt brief
@@ -344,7 +344,7 @@ VLT-1(conf-if-te-1/51-lacp)# port-channel 10 mode active    #(4)
 
     If the source is connected to an orphan (non-spanned, non-VLT) port in a VLT peer, the receiver is connected to a VLT(spanned) port-channel, and the VLT port-channel link between the VLT peer connected to the source and ToR is down, traffic is duplicated due to route inconsistency between peers. To avoid this scenario, Dell EMC Networking recommends configuring both the source and the receiver on a spanned VLT VLAN.
 
-What I *think* means is that if you have something like a server connected to a VLT domain via 2 independant NICs (No LAG), and something like an upstream TOR switch connected to the same VLT domain via a port-channel (LAG), and that port-channel link (one of them?) goes down, routing issues can arise. If that is the case, then its something we need to consider because that is how our network will be set up - No port-channels/LAGs between the servers and the VLT domain, but a port-channel/lag between the VLT domain and 3rd "access" switch on the wall (or top of rack..whever we put it).
+What I *think* this means is that if you have something like a server connected to a VLT domain via 2 independant NICs (No LAG), and something like an upstream TOR switch connected to the same VLT domain via a port-channel (LAG), and that port-channel link (one of them?) goes down, routing issues can arise. If that is the case, then its something we need to consider because that is how our network will be set up - No port-channels/LAGs between the servers and the VLT domain, but a port-channel/lag between the VLT domain and 3rd "access" switch on the wall (or top of rack..whever we put it).
 
 [Specifying VLT Nodes in a PVLAN](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/specifying-vlt-nodes-in-a-pvlan?guid=guid-ab6e056d-e4c7-4910-b807-b09102f1083b)</br>
 [Configuring a VLT VLAN or LAG in a PVLAN](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-a-vlt-vlan-or-lag-in-a-pvlan?guid=guid-fad07f16-bf47-45b1-a36d-58f3a75a82f8)
