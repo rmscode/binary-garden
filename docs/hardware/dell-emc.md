@@ -342,7 +342,7 @@ VLT-1(conf-if-te-1/51-lacp)# port-channel 10 mode active    #(4)
 
 !!! quote "Dell"
 
-    If the source is connected to an orphan (non-spanned, non-VLT) port in a VLT peer, the receiver is connected to a VLT(spanned) port-channel, and the VLT port-channel link between the VLT peer connected to the source and ToR is down, traffic is duplicated due to route inconsistency between peers. To avoid this scenario, Dell EMC Networking recommends configuring both the source and the receiver on a spanned VLT VLAN.
+    If the source is connected to an orphan (non-spanned, non-VLT) port in a VLT peer, the receiver is connected to a VLT (spanned) port-channel, and the VLT port-channel link between the VLT peer connected to the source and ToR is down, traffic is duplicated due to route inconsistency between peers. To avoid this scenario, Dell EMC Networking recommends configuring both the source and the receiver on a spanned VLT VLAN.
 
 What I *think* this means is that if you have something like a server connected to a VLT domain via 2 independant NICs (No LAG), and something like an upstream TOR switch connected to the same VLT domain via a port-channel (LAG), and that port-channel link (one of them?) goes down, routing issues can arise. If that is the case, then its something we need to consider because that is how our network will be set up - No port-channels/LAGs between the servers and the VLT domain, but a port-channel/lag between the VLT domain and 3rd "access" switch on the wall (or top of rack..whever we put it).
 
