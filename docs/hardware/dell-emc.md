@@ -4,6 +4,16 @@
 
     Dell EMC (Enterprise Marketing Corporation) is a subsidiary of Dell Technologies that sells data storage, information security, virtualization, analytics, cloud computing and other products and services that enable organizations to store, manage, protect, and analyze data. Dell EMC's target markets include large companies and small- and medium-sized businesses across various vertical markets.
 
+## Dell EMC Terminology
+
+`CRU`
+
+:   Customer Replaceable Unit. A part that can be replaced by the customer.
+
+`FRU`
+
+:   Field Replaceable Unit. A part that requires service expertise from Dell field technician.
+
 ## OS9 Network Operating System
 
 ### CLI Modes
