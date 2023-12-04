@@ -1,6 +1,6 @@
 #
 
-## PowerVault ME4 Series
+## PowerVault ME4024
 
 !!! info
 
@@ -56,9 +56,13 @@
 
     :   A PCM is a module that provides power and cooling to the enclosure. It is a hot-swappable module.
 
-### Front Panel LEDs
+### Front Panel
 
-Located on the left side of the front panel.
+#### Integers on the disks indicate drive slot numbering sequence.
+
+![ME4024 Fron Panel](GUID-EB01FA14-AC25-4933-A4C1-82131A9DBC20-low.jpg)
+
+#### LED Ops Panel
 
 ![ME4024 Front Panel LED](GUID-50A3FA88-6C9C-4FD4-837D-819D6D69CB28-low.jpg)
 
@@ -74,6 +78,35 @@ Located on the left side of the front panel.
 4. Identity:
       1. Blinking blue: System ID locator is activated.
       2. Off: Normal state
+
+### Rear Panel
+
+!!! info
+
+    Controller modules, IOMs, and PCMs are available as CRUs.
+
+#### Controller enclosure (4-port FC/iSCSI)
+
+[ME4024 Rear Panel (FC/iSCSI)](GUID-E0F56738-3FAD-4315-83AB-C3E277AF070C-low.jpg)
+
+1. Power cooling module slot 0
+2. Power cooling module slot 1
+3. Controller module slot A
+4. Controller module slot B
+
+#### Controller module (4-port FC/iSCSI)
+
+The top slot for holding controller modules is designated slot A and the bottom slot is designated slot B. The face plate details of the controller modules show the modules aligned for use in slot A. In this orientation, the controller module latch shown at the bottom of the module and it is in a closed/locked position. The following figures identify the ports on the controller modules.
+
+[ME4024 Controller Module (FC/iSCSI)](GUID-99E108C1-9D48-48C0-AA43-D67965E47F54-low.jpg)
+
+1. Back-end expansion SAS port
+2. Ethernet port used by management interfaces
+3. USB serial port (CLI)
+4. 3.5 mm serial port (CLI)
+5. 3.5 mm serial ports (service only)
+6. Reset
+7. CNC ports (ports 3, 2, 1, 0)
 
 ### Deployment Brief
 
