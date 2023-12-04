@@ -62,7 +62,7 @@
 
 ![ME4024 Fron Panel](GUID-EB01FA14-AC25-4933-A4C1-82131A9DBC20-low.jpg)
 
-#### LED Ops Panel
+#### 2U Operator Panel LEDs
 
 ![ME4024 Front Panel LED](GUID-50A3FA88-6C9C-4FD4-837D-819D6D69CB28-low.jpg)
 
@@ -107,6 +107,10 @@ The top slot for holding controller modules is designated slot A and the bottom 
 5. 3.5 mm serial ports (service only)
 6. Reset
 7. CNC ports (ports 3, 2, 1, 0)
+
+#### 12GB/s controller module LEDs
+
+
 
 ### Deployment Brief
 
