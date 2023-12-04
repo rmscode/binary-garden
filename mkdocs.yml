@@ -8,6 +8,7 @@ nav:
   - Hardware: 
     - hardware/index.md
     - Dell EMC: hardware/dell-emc.md
+    - PowerVault ME4 (WIP): hardware/powervault-me4-draft.md
   - Networking: 
     - networking/index.md
   - Software: 
@@ -67,6 +68,7 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+  - pymdownx.details
   - pymdownx.tabbed:
       alternate_style: true
   - toc:
