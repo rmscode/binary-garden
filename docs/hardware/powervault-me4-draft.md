@@ -78,7 +78,7 @@ Located on the left side of the front panel.
 ### Deployment Brief
 
 1. Unpack.
-2. Install the cotroller enclosure and optional expansion enclosure in the rack.
+2. Install the controller enclosure and optional expansion enclosure in the rack.
 3. Populate drawers with disks (DDICs). 2U encosures ship with disks installed.
 4. Cable the optional expansion enclosures.
 5. Connect the management ports.
@@ -90,7 +90,7 @@ Located on the left side of the front panel.
    - Install required host software.
 10. Perform the initial configuration tasks.
 
-### Connect to the management network
+#### Connect the management ports
 
 1. Connect an Ethernet cable to the network port on each controller module.
 2. Connect the other end of each Ethernet cable to a network that your management host can access, preferably on the same subnet.
@@ -101,30 +101,70 @@ Located on the left side of the front panel.
 
 ![Connect Management Network](GUID-25C7026E-50A7-45E6-9C0E-A9180C0419A1-low.jpg)
 
-### Cabling the controller host ports
+#### Cable the controller host ports (iSCSI)
 
-A host identifies an exteral port to which the storage system is attached. The external port may be a port in an I/O adapter (such as an FC HBA or ethernet NIC) in a server.
+A host identifies an external port to which the storage system is attached. The external port may be a port in an I/O adapter (such as an FC HBA or ethernet NIC) in a server.
 
 !!! note
 
     - Controller modules are not always shipped with preinstalled SFP+ transceivers. You might need to install SFP transceivers into the controller modules.
-    - Use the PowerVault Manager to set the host interface protocol for CNC ports using qualified SFP+ transceivers. ME4 Series models ship with CNC ports configured for FC, so you must configure these port for iSCSI when connecting to iSCSI hosts.
-
-#### iSCSI Protocol
-
-CNC ports can be configured to support iSCSI protocol in either four or two CNC ports. The CNC ports support 10 GbE but do not support 1 GbE.
-
-The 10GbE iSCSI ports are used for:
-
-- Connecting to 10GbE iSCSI hosts directly, or though a switch (or two for redundancy) used for 10GbE iSCSI traffic.
-- Connecting two storage systems through a switch for replication.
-
-!!! info
-
-    If you are using switches with mixed traffic (LAN/iSCSI), then a VLAN should be creaed to isolate iSCSI traffic from the rest of the switch traffic.
-
-#### 10GbE iSCSI host connection
+    - Use the PowerVault Manager to set the host interface protocol for CNC ports using qualified SFP+ transceivers. ME4 Series modules ship with CNC ports configured for FC, so you must configure these port for iSCSI when connecting to iSCSI hosts.
+    - If you are using switches with mixed traffic (LAN/iSCSI), then a VLAN should be created to isolate iSCSI traffic from the rest of the switch traffic.
 
 To connect controller modules supporting 10 GbE iSCSI host interface ports to a server HBA or switch, using the controller CNC ports, select a qualified 10 GbE SFP+ transceiver. Use the cabling diagram below to connect the host servers to the switches.
 
 ![Connecting hosts: ME4 Series 2U switch-attached – two servers, two switches](GUID-E63CC18D-EBBC-47BB-BDB3-F1874C6658F3-low.jpg)
+
+#### Connecting the power cords and power on the system
+
+Connect the power cable from each PCM on the enclosure rear panel to the power distibution unit as shown below:
+
+![Connection from PDU to PCM](GUID-482BB2AC-110A-44FA-81EF-4807439323D0-low.jpg)
+
+- Power on the storage system by connecting the power cables from the PCMs to the PDU, and moving the power switch on each PCM to the On posisition.
+    - With 2U enclosures, the System Power LED on the 2U Ops panel lights green when the enclosure power is activated.
+- When powering up, ensure to power up the enclosures and associated data host in the following order:
+    1. Drive enclosures—Ensures that the disks in the drive enclosure have enough time to completely spin up before being scanned by the controller modules within the controller enclosure. The LEDs blink while the enclosures power up. After the LEDs stop blinking the power-on sequence is complete. If the LEDs on the front and back of the enclosure are amber then a fault has been detected.
+    2. Controller enclosure—Depending upon the number and type of disks in the system, it may take several minutes for the system to become ready.
+    3. Data host—if powered off for maintenance purposes.
+- When powering off, reverse the order of steps that are used for powering on.
+
+#### Perform system and storage setup (guided)
+
+Upon completing the hardware installation, use PowerVault Manager to configure, provision, monitor and manage the storage system. When first accessing the PowerVault Manager, perform a firmware update before configuring your system. After the firmware update is complete, use the guided setup to verify the web browser requirements and then access the PowerVault Manager.
+
+!!! note
+
+    Not sure if this is still true, but the Dell docs say you cannot view PowerVault Manager Help content if you are using the Microsoft Edge browser that ships with Windows 10.
+
+Accessing the PowerVault Manager:
+
+1. Temporarily set the management host NIC to a 10.0.0.x address or to the same IPv6 subnet to enable communication with the storage system.
+2. In a supported web browser, type `https://10.0.0.2` to access controller module A on an IPv4 network.
+3. If the storage system is running G275 firmware:
+      1. Sign in to the PowerVault Manager using the following user name and password:
+         - Username: `manage`
+         - Password: `!manage`
+      2. Read and accept the Commercial Terms of Sale and End User License Agreement.
+4. If the storage system is running G280 firmware:
+      1. Click *Get Started*.
+      2. Read and accept the Commercial Terms of Sale and End User License Agreement.
+      3. Type a new user name for the storage system in the *Username* field.
+      4. Type password for the new username in the Password and Confirm Password fields.
+      5. Click Apply and Continue.
+
+Update the firmware:
+
+1. Using the PowerVault Manager, select Action > Update Firmware in the System topic.
+2. Locate firmware updates at <https://www.dell.com/support>. If newer versions are vailable, download the bundle file or relevant firmware components.
+3. Click *Browse*, select the firmware bundle file or component file, and click *OK*.
+
+Use guided setup:
+
+The *Welcome* panel provides topions for you to quickly set up your system by guiding you through the configuration and provisioning process.
+
+1. Access the *System Settings* panel and complete all the required options.
+2. Save your settings and exit to the *Welcome* panel.
+3. Access the *Storage Setup* panel and follow the prompts to begin provisioning your system by creating disk groups and pools.
+4. Save your settings and exit to the *Welcome* panel.
+5. Access the *Host Setup* panel and follow the promptsto continue provisioning your system by attaching hosts.
