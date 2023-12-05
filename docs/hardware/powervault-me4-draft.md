@@ -56,6 +56,10 @@
 
     :   A PCM is a module that provides power and cooling to the enclosure. It is a hot-swappable module.
 
+*Published: 12.04.2023*, *Revised: 12.05.2023*
+
+---
+
 ### Front Panel
 
 #### DDICs
