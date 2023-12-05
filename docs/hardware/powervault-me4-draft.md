@@ -207,11 +207,16 @@ The top slot for holding controller modules is designated slot A and the bottom 
 1. Connect an Ethernet cable to the network port on each controller module.
 2. Connect the other end of each Ethernet cable to a network that your management host can access, preferably on the same subnet.
 
+![Connect Management Network](../assets/GUID-25C7026E-50A7-45E6-9C0E-A9180C0419A1-low.jpg)
+
+1. Controller module in Slot A
+2. Controller module in Slot B
+3. Switch
+4. SAN
+
 !!! note
 
-    If you connect the iSCSI and management ports to the same physical switches, Dell recommends using separate VLANs.
-
-![Connect Management Network](../assets/GUID-25C7026E-50A7-45E6-9C0E-A9180C0419A1-low.jpg)
+    See also the topic about configuring network ports on controller modules - [Accessing the CLI - Setting the Network port IP addresses](#setting-the-network-port-ip-addresses).
 
 #### Cable the controller host ports (iSCSI)
 
@@ -277,10 +282,62 @@ Update the firmware:
 
 Use guided setup:
 
-The *Welcome* panel provides topions for you to quickly set up your system by guiding you through the configuration and provisioning process.
+The *Welcome* panel provides options for you to quickly set up your system by guiding you through the configuration and provisioning process.
 
 1. Access the *System Settings* panel and complete all the required options.
 2. Save your settings and exit to the *Welcome* panel.
 3. Access the *Storage Setup* panel and follow the prompts to begin provisioning your system by creating disk groups and pools.
 4. Save your settings and exit to the *Welcome* panel.
 5. Access the *Host Setup* panel and follow the prompts to continue provisioning your system by attaching hosts.
+
+### Accessing the CLI
+
+Embedded within the controller modules is a command-line interface (CLI) that enables you to manage and monitor the storage system. The CLI can be accessed in two ways:
+
+- Use SSH or Telnet on a management host that is remotely connected to a controller module network port through a LAN.
+- Use a serial cable to establish a serial connection from a computer to the CLU port on a controller module. Refer back to the [controller module rear panel diagram](#controller-module-4-port-fciscsi) for the location of the CLI ports.
+
+If the default IP addresses (10.0.0.2 - Controller A, 10.0.0.3 - Controller B) are not compatible with your network, you must set an IP addresses for each network port using the CLI.
+
+1. Obtain an IP address, subnet mask and gateway from your network administrator.
+2. Connect the provided 3.5mm/DB9 serial cable from a host computer with a serial port to the 3.5mm stereo plug CLI port on controller A. Alternatively, connect a generic mini-USB cable from a host computer to the USB CLI port on controller A.
+3. Start a terminal emulator configured to use the following display and connection settings:
+    1. Display Settings:
+          - **Terminal emulation mode** - VT-100 or ANSI (for color support)
+          - **Font** - Terminal
+          - **Translations** - None
+          - **Columns** - 80
+    2. Connection Settings:
+          - **Connector** - COM3
+          - **Baud rate** - 115,200
+          - **Data bits** - 8
+          - **Parity** - None
+          - **Stop bits** - 1
+          - **Flow control** - None
+4. Press `Enter` to display prompt if necessary.
+5. If you are connecting to a storage system with G275 firmware that has not been deployed, the default user/pass is `manage`/`!manage`. If your system has been deployed, login with a user that has the *manage* role.
+6. If you are connecting to a storage system with G280 firmware that has not been deployed, type `setup` at the login prompt and press `Enter`. Do not type anything at the password prompt and press `Enter`. If your system has been deployed, login with a user that has the *manage* role.
+
+#### Setting the Network port IP addresses (DHCP)
+
+!!! info
+
+    In DHCP mode, the network port IP address, subnet mask, and gateway are obtained from a DCHP server. If a DHCP server is not available, the current network addresses are not changed. To determine the addresses that are assigned to the controller modules, use the list of bindings on the DHCP server.
+
+To obtain an IP address via DHCP, use the `set network-parameters dhcp` command.
+
+#### Setting the Network port IP addresses (Static)
+
+To use a custom static IP address, use the `set network-parameters ip address netmask netmask gateway gateway controller a|b` command.
+
+Where:
+
+- address is the IP address of the controller module
+- netmask is the subnet mask
+- gateway is the IP address of the subnet router
+- a|b specifies the controller whose network parameters you are setting
+
+!!! example
+
+    `set network-parameters ip 192.168.0.10 netmask 255.255.255.0 gateway 192.168.0.1 controller a`
+    `set network-parameters ip 192.168.0.11 netmask 255.255.255.0 gateway 192.168.0.1 controller b`
