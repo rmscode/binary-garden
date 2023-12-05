@@ -223,7 +223,7 @@ To connect controller modules supporting 10 GbE iSCSI host interface ports to a 
 
 ![Connecting hosts: ME4 Series 2U switch-attached – two servers, two switches](../assets/GUID-E63CC18D-EBBC-47BB-BDB3-F1874C6658F3-low.jpg)
 
-#### Connecting the power cords and power on the system
+#### Connecting the power cords and powering on the system
 
 Connect the power cable from each PCM on the enclosure rear panel to the power distibution unit as shown below:
 
@@ -238,6 +238,10 @@ Connect the power cable from each PCM on the enclosure rear panel to the power d
 - When powering off, reverse the order of steps that are used for powering on.
 
 #### Perform system and storage setup (guided)
+
+!!! tip "System Information Worksheet"
+
+    Use the System Information Worksheet found on page 100 of the deployment guide to record the information that you need to install the ME4 Series storage system.
 
 Upon completing the hardware installation, use PowerVault Manager to configure, provision, monitor and manage the storage system. When first accessing the PowerVault Manager, perform a firmware update before configuring your system. After the firmware update is complete, use the guided setup to verify the web browser requirements and then access the PowerVault Manager.
 
@@ -275,4 +279,4 @@ The *Welcome* panel provides topions for you to quickly set up your system by gu
 2. Save your settings and exit to the *Welcome* panel.
 3. Access the *Storage Setup* panel and follow the prompts to begin provisioning your system by creating disk groups and pools.
 4. Save your settings and exit to the *Welcome* panel.
-5. Access the *Host Setup* panel and follow the promptsto continue provisioning your system by attaching hosts.
+5. Access the *Host Setup* panel and follow the prompts to continue provisioning your system by attaching hosts.
