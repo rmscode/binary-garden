@@ -1,48 +1,15 @@
 # Documentation & Notes
 
-This static site was generated using [Material](https://squidfunk.github.io/mkdocs-material/) for [MkDocs](https://www.mkdocs.org).
+This static site was generated using [MkDocs](https://www.mkdocs.org). The theme + markdown extensions are provided by [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
 
-## MkDocs Commands
+---
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs gh-deploy` - Deploy the documentation to GitHub Pages.
-* `mkdocs -h` - Print help message and exit.
+!!! note
 
-## Markdown Extensions
+    The documentation/notes within this site are a constant work in progress. I often quickly "brain dump" and return later to clean things up. If you have any questions or suggestions, please don't hesitate to reach out to me. 
 
-### Admonitions
+    - Ricky
 
-Admonitions are special highlighted blocks for displaying information. The following are available: `note`, `abstract`, `info`, `tip`, `success`, `question`, `warning`, `failure`, `danger`, `bug`, `example`, `quote`.
+## Navigation
 
-!!! example
-
-    ```md
-    !!! note
-
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
-        nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
-        massa, nec semper lorem quam in massa.
-    ```
-
-    !!! note
-
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
-        nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
-        massa, nec semper lorem quam in massa.
-
-### Definition Lists
-
-Adds the ability to add definition lists (more commonly known as description lists – dl in HTML) via Markdown to a document.
-
-!!! example
-
-    ```md
-    `PEBKAC`
-
-    :   Problem Exists Between Keyboard And Chair
-    ```
-
-    `PEBKAC`
-    :   Problem Exists Between Keyboard And Chair
+Use the navbar tabs at the top of the page to navigate between sections. The sidebar on the left contains a table of content for the current section.
