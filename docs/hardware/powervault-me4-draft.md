@@ -72,24 +72,24 @@
 
 === "1. System Power"
 
-    - Constant green: At least one PCM is supplying power.
-    - Off: System not operating.
+    - **Constant green**: At least one PCM is supplying power.
+    - **Off**: System not operating.
 
 === "2. Status/Health"
 
-    - Constant blue: System is powered on and controller is ready.
-    - Blinking blue: Controller management is busy.
-    - Constant amber: Module fault rpesent.
-    - Blinking amber: logical fault.
+    - **Constant blue**: System is powered on and controller is ready.
+    - **Blinking blue**: Controller management is busy.
+    - **Constant amber**: Module fault rpesent.
+    - **Blinking amber**: Logical fault.
 
 === "3. Unit ID Display"
 
-    - Green (seven-digit display: enclosure sequence)
+    - **Green seven-digit display**: Enclosure sequence
 
 === "4. Identity"
 
-    - Blinking blue: System ID locator is activated.
-    - Off: Normal state
+    - **Blinking blue**: System ID locator is activated.
+    - **Off**: Normal state
 
 ### Rear Panel
 
@@ -126,57 +126,57 @@ The top slot for holding controller modules is designated slot A and the bottom 
 
 === "1. Link Status/Activity for host 4/8/16 Gb FC"
 
-    1. Off: No link.
-    2. Green: Port connected and the link is up.
-    3. Blinking green: I/O activity.
+    - **Off**: No link.
+    - **Green**: Port connected and the link is up.
+    - **Blinking green**: I/O activity.
 
 === "2. Link Status/Activity 10GbE iSCS"
 
-    1. Off: No link.
-    2. Green: Port connected and the link is up.
-    3. Blinking green: I/O activity.
+    - **Off**: No link.
+    - **Green**: Port connected and the link is up.
+    - **Blinking green**: I/O activity.
 
 === "3. OK"
 
-    1. Green: Controller operating normally.
-    2. Blinking green: Booting.
-    3. Off: Controlller not, or is powered off.
+    - **Green**: Controller operating normally.
+    - **Blinking green**: Booting.
+    - **Off**: Controlller not, or is powered off.
 
 === "4. Fault"
 
-    1. Off: Controller operating normally.
-    2. Amber: Fault detected or service action required.
-    3. Blinking amber: Hardware-controlled power-up or a cache flush or restore error.
+    - **Off**: Controller operating normally.
+    - **Amber**: Fault detected or service action required.
+    - **Blinking amber**: Hardware-controlled power-up or a cache flush or restore error.
 
 === "5. OK to remove"
 
-    1. Off: Not prepared for removal.
-    2. Blue: Controller module is prepared for removal.
+    - **Off**: Not prepared for removal.
+    - **Blue**: Controller module is prepared for removal.
 
 === "6. Identity"
 
-    1. White: Controller is being identified.
+    - **White**: Controller is being identified.
 
 === "7. Cache Status"
 
-    1. Green: Cache is dirty (contains unwritten data) and operation is normal.
-    2. Off: In a working controller, cache is clean (contains no unwritten data). This is an occasional condition that occurs while the system is booting.
-    3. Blinking green: A CompactFlash flush or cache self-refresh is in progress, indicating cache activity.
+    - **Green**: Cache is dirty (contains unwritten data) and operation is normal.
+    - **Off**: In a working controller, cache is clean (contains no unwritten data). This is an occasional condition that occurs while the system is booting.
+    - **Blinking green**: A CompactFlash flush or cache self-refresh is in progress, indicating cache activity.
 
 === "8. Network Port Link Active Status"
 
-    1. Off: The Ethernet link is not established, or the link is down.
-    2. Green: The Ethernet link is up
+    - **Off**: The Ethernet link is not established, or the link is down.
+    - **Green**: The Ethernet link is up
 
 === "9. Network Port Link Speed"
 
-    1. Off: Link is up at 10/100 base-T negotiated speeds.
-    2. Amber: Link is up and negotiated at 1000 base-T.
+    - **Off**: Link is up at 10/100 base-T negotiated speeds.
+    - **Amber**: Link is up and negotiated at 1000 base-T.
 
 === "10. Expansion Port Status"
 
-    1. Off: The port is empty or the link is down.
-    2. Green: The port is connected and the link is up.
+    - **Off**: The port is empty or the link is down.
+    - **Green**: The port is connected and the link is up.
 
 ### Deployment Brief
 
