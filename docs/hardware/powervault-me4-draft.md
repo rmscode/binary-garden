@@ -60,11 +60,11 @@
 
 #### Integers on the disks indicate drive slot numbering sequence.
 
-![ME4024 Fron Panel](GUID-EB01FA14-AC25-4933-A4C1-82131A9DBC20-low.jpg)
+![ME4024 Fron Panel](../assets/GUID-EB01FA14-AC25-4933-A4C1-82131A9DBC20-low.jpg)
 
 #### 2U Operator Panel LEDs
 
-![ME4024 Front Panel LED](GUID-50A3FA88-6C9C-4FD4-837D-819D6D69CB28-low.jpg)
+![ME4024 Front Panel LED](../assets/GUID-50A3FA88-6C9C-4FD4-837D-819D6D69CB28-low.jpg)
 
 1. System Power:
       1. Constant green: At least one PCM is supplying power.
@@ -87,7 +87,7 @@
 
 #### Controller enclosure (4-port FC/iSCSI)
 
-![ME4024 Rear Panel (FC/iSCSI)](GUID-E0F56738-3FAD-4315-83AB-C3E277AF070C-low.jpg)
+![ME4024 Rear Panel (FC/iSCSI)](../assets/GUID-E0F56738-3FAD-4315-83AB-C3E277AF070C-low.jpg)
 
 1. Power cooling module slot 0
 2. Power cooling module slot 1
@@ -98,7 +98,7 @@
 
 The top slot for holding controller modules is designated slot A and the bottom slot is designated slot B. The face plate details of the controller modules show the modules aligned for use in slot A. In this orientation, the controller module latch shown at the bottom of the module and it is in a closed/locked position. The following figures identify the ports on the controller modules.
 
-![ME4024 Controller Module (FC/iSCSI)](GUID-99E108C1-9D48-48C0-AA43-D67965E47F54-low.jpg)
+![ME4024 Controller Module (FC/iSCSI)](../assets/GUID-99E108C1-9D48-48C0-AA43-D67965E47F54-low.jpg)
 
 1. Back-end expansion SAS port
 2. Ethernet port used by management interfaces
@@ -108,9 +108,11 @@ The top slot for holding controller modules is designated slot A and the bottom 
 6. Reset
 7. CNC ports (ports 3, 2, 1, 0)
 
-#### 12GB/s controller module LEDs
+#### Controller module LEDs
 
+![ME4024 Controller Module LEDs](../assets/GUID-2CCEAE51-984C-460B-8F44-A0BF1DA1E99D-low.jpg)
 
+1. 
 
 ### Deployment Brief
 
@@ -136,7 +138,7 @@ The top slot for holding controller modules is designated slot A and the bottom 
 
     If you connect the iSCSI and management ports to the same physical switches, Dell recommends using separate VLANs.
 
-![Connect Management Network](GUID-25C7026E-50A7-45E6-9C0E-A9180C0419A1-low.jpg)
+![Connect Management Network](../assets/GUID-25C7026E-50A7-45E6-9C0E-A9180C0419A1-low.jpg)
 
 #### Cable the controller host ports (iSCSI)
 
@@ -150,13 +152,13 @@ A host identifies an external port to which the storage system is attached. The 
 
 To connect controller modules supporting 10 GbE iSCSI host interface ports to a server HBA or switch, using the controller CNC ports, select a qualified 10 GbE SFP+ transceiver. Use the cabling diagram below to connect the host servers to the switches.
 
-![Connecting hosts: ME4 Series 2U switch-attached – two servers, two switches](GUID-E63CC18D-EBBC-47BB-BDB3-F1874C6658F3-low.jpg)
+![Connecting hosts: ME4 Series 2U switch-attached – two servers, two switches](../assets/GUID-E63CC18D-EBBC-47BB-BDB3-F1874C6658F3-low.jpg)
 
 #### Connecting the power cords and power on the system
 
 Connect the power cable from each PCM on the enclosure rear panel to the power distibution unit as shown below:
 
-![Connection from PDU to PCM](GUID-482BB2AC-110A-44FA-81EF-4807439323D0-low.jpg)
+![Connection from PDU to PCM](../assets/GUID-482BB2AC-110A-44FA-81EF-4807439323D0-low.jpg)
 
 - Power on the storage system by connecting the power cables from the PCMs to the PDU, and moving the power switch on each PCM to the On posisition.
     - With 2U enclosures, the System Power LED on the 2U Ops panel lights green when the enclosure power is activated.
