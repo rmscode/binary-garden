@@ -58,11 +58,15 @@
 
 ### Front Panel
 
-#### Integers on the disks indicate drive slot numbering sequence.
+#### DDICs
+
+!!! info ""
+
+    Integers on the disks indicate drive slot numbering sequence.
 
 ![ME4024 Fron Panel](../assets/GUID-EB01FA14-AC25-4933-A4C1-82131A9DBC20-low.jpg)
 
-#### 2U Operator Panel LEDs
+#### Operator Panel LEDs
 
 ![ME4024 Front Panel LED](../assets/GUID-50A3FA88-6C9C-4FD4-837D-819D6D69CB28-low.jpg)
 
@@ -149,18 +153,23 @@ The top slot for holding controller modules is designated slot A and the bottom 
 
 ### Deployment Brief
 
-1. Unpack.
-2. Install the controller enclosure and optional expansion enclosure in the rack.
-3. Populate drawers with disks (DDICs). 2U encosures ship with disks installed.
-4. Cable the optional expansion enclosures.
-5. Connect the management ports.
-6. Cable the controller host ports.
-7. Connect the power cords and power on the system.
-8. Perform system and storage setup.
-9. Perform host setup.
-   - Attach host servers.
-   - Install required host software.
-10. Perform the initial configuration tasks.
+!!! info "Required Tools"
+
+    - Phillips screwdriver
+    - Torx T20 bit for locks
+
+- [x] Unpack.
+- [x] Install the controller enclosure and optional expansion enclosure in the rack.
+- [x] Populate drawers with disks (DDICs). 2U encosures ship with disks installed.
+- [x]  Cable the optional expansion enclosures.
+- [ ] Connect the management ports.
+- [ ] Cable the controller host ports.
+- [ ] Connect the power cords and power on the system.
+- [ ] Perform system and storage setup.
+- [ ] Perform host setup.
+      - [ ] Attach host servers.
+      - [ ] Install required host software.
+- [ ] Perform the initial configuration tasks.
 
 #### Connect the management ports
 
