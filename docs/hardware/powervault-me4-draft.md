@@ -67,17 +67,17 @@
 ![ME4024 Front Panel LED](../assets/GUID-50A3FA88-6C9C-4FD4-837D-819D6D69CB28-low.jpg)
 
 1. System Power:
-      1. Constant green: At least one PCM is supplying power.
-      2. Off: System not operating.
+    1. Constant green: At least one PCM is supplying power.
+    2. Off: System not operating.
 2. Status/Health:
-      1. Constant blue: System is powered on and controller is ready.
-      2. Blinking blue: Controller management is busy.
-      3. Constant amber: Module fault rpesent.
-      4. Blinking amber: logical fault.
+    1. Constant blue: System is powered on and controller is ready.
+    2. Blinking blue: Controller management is busy.
+    3. Constant amber: Module fault rpesent.
+    4. Blinking amber: logical fault.
 3. Unit ID Display: Green (seven-digit display: enclosure sequence)
 4. Identity:
-      1. Blinking blue: System ID locator is activated.
-      2. Off: Normal state
+    1. Blinking blue: System ID locator is activated.
+    2. Off: Normal state
 
 ### Rear Panel
 
@@ -112,7 +112,40 @@ The top slot for holding controller modules is designated slot A and the bottom 
 
 ![ME4024 Controller Module LEDs](../assets/GUID-2CCEAE51-984C-460B-8F44-A0BF1DA1E99D-low.jpg)
 
-1. 
+1. Link Status/Activity for host 4/8/16 Gb FC
+    1. Off: No link.
+    2. Green: Port connected and the link is up.
+    3. Blinking green: I/O activity.
+2. Link Status/Activity 10GbE iSCSI
+    1. Off: No link.
+    2. Green: Port connected and the link is up.
+    3. Blinking green: I/O activity.
+3. OK
+    1. Green: Controller operating normally.
+    2. Blinking green: Booting.
+    3. Off: Controlller not, or is powered off.
+4. Fault
+    1. Off: Controller operating normally.
+    2. Amber: Fault detected or service action required.
+    3. Blinking amber: Hardware-controlled power-up or a cache flush or restore error.
+5. OK to remove
+    1. Off: Not prepared for removal.
+    2. Blue: Controller module is prepared for removal.
+6. Identity
+    1. White: Controller is being identified.
+7. Cache Status
+    1. Green: Cache is dirty (contains unwritten data) and operation is normal.
+    2. Off: In a working controller, cache is clean (contains no unwritten data). This is an occasional condition that occurs while the system is booting.
+    3. Blinking green: A CompactFlash flush or cache self-refresh is in progress, indicating cache activity.
+8. Network Port Link Active Status
+    1. Off: The Ethernet link is not established, or the link is down.
+    2. Green: The Ethernet link is up
+9. Network Port Link Speed
+    1. Off: Link is up at 10/100 base-T negotiated speeds.
+    2. Amber: Link is up and negotiated at 1000 base-T.
+10. Expansion Port Status
+    1. Off: The port is empty or the link is down.
+    2. Green: The port is connected and the link is up.
 
 ### Deployment Brief
 
