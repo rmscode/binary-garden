@@ -1,4 +1,7 @@
 site_name: My Docs
+repo_url: https://github.com/rmscode/MyDocs
+repo_name: rmscode/MyDocs
+edit_uri: edit/main/docs/
 
 ## Navbar options
 nav:
@@ -29,9 +32,6 @@ theme:
   palette:
     scheme: slate
 
-  #font:
-    #text: Fira Code
-
   navigation_depth: 3
   locale: en
   highlightjs: true
@@ -52,6 +52,8 @@ theme:
     - search.highlight
     - search.share
     - content.code.annotate
+    - content.action.edit
+    - content.action.view
 
   shortcuts:
     help: 191    # ?
@@ -92,4 +94,5 @@ plugins:
   - search
   - offline
   - encryptcontent
-  - blog
+  - git-revision-date-localized:
+      enable_creation_date: true
