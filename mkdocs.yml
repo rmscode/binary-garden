@@ -90,6 +90,6 @@ markdown_extensions:
 # Plugins
 plugins:
   - search
-  #- blog
   - offline
-  
+  - encryptcontent
+  - blog
