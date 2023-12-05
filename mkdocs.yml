@@ -69,6 +69,9 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tabbed:
       alternate_style: true
+  - toc:
+      permalink: "#"
+      toc_depth: 3
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
@@ -78,12 +81,11 @@ markdown_extensions:
   - pymdownx.caret
   - pymdownx.keys
   - pymdownx.mark
-  - toc:
-      permalink: "#"
-      toc_depth: 3
   - abbr
   - admonition
   - def_list
+  - attr_list
+  - md_in_html
 
 # Plugins
 plugins:
