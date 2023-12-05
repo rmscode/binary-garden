@@ -216,7 +216,7 @@ The top slot for holding controller modules is designated slot A and the bottom 
 
 !!! note
 
-    See also the topic about configuring network ports on controller modules - [Accessing the CLI - Setting the Network port IP addresses](#setting-the-network-port-ip-addresses).
+    See also the topic about configuring network ports on controller modules under ["Accessing the CLI"](#accessing-the-cli).
 
 #### Cable the controller host ports (iSCSI)
 
@@ -339,5 +339,7 @@ Where:
 
 !!! example
 
-    `set network-parameters ip 192.168.0.10 netmask 255.255.255.0 gateway 192.168.0.1 controller a`
-    `set network-parameters ip 192.168.0.11 netmask 255.255.255.0 gateway 192.168.0.1 controller b`
+    ```shell
+    set network-parameters ip 192.168.0.10 netmask 255.255.255.0 gateway 192.168.0.1 controller a
+    set network-parameters ip 192.168.0.11 netmask 255.255.255.0 gateway 192.168.0.1 controller b
+    ```
