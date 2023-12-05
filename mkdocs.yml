@@ -65,19 +65,25 @@ markdown_extensions:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
   - pymdownx.details
-  - pymdownx.tabbed:
-      alternate_style: true
+  - pymdownx.tilde
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
   - toc:
       permalink: "#"
       toc_depth: 3
   - abbr
   - admonition
   - def_list
-  - pymdownx.tilde
 
 # Plugins
 plugins:
