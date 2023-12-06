@@ -380,14 +380,14 @@ The following table shows recommended disk counts for RAID-6 and RAID-5 disk gro
 
     Note that parity is actually distributed among all the disks.
 
-| RAID Leve | Total Disks | Data Disks (Equivalent) | Parity Disks (Equivalent) |
-| --------- | ----------- | ----------------------- | ------------------------- |
-| RAID-6    | 4           | 2                       | 2                         |
-|           | 6           | 4                       | 2                         |
-|           | 10          | 8                       | 2                         |
-| RAID-5    | 3           | 2                       | 1                         |
-|           | 5           | 4                       | 1                         |
-|           | 9           | 8                       | 1                         |
+| RAID Level | Total Disks | Data Disks (Equivalent) | Parity Disks (Equivalent) |
+| ---------  | ----------- | ----------------------- | ------------------------- |
+| RAID-6     | 4           | 2                       | 2                         |
+|            | 6           | 4                       | 2                         |
+|            | 10          | 8                       | 2                         |
+| RAID-5     | 3           | 2                       | 1                         |
+|            | 5           | 4                       | 1                         |
+|            | 9           | 8                       | 1                         |
 
 ### Disk groups in a pool
 
