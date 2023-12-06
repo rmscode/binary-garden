@@ -254,7 +254,7 @@ Upon completing the hardware installation, use PowerVault Manager to configure, 
 
     Not sure if this is still true, but the Dell docs say you cannot view PowerVault Manager Help content if you are using the Microsoft Edge browser that ships with Windows 10.
 
-Accessing the PowerVault Manager:
+#### Accessing the PowerVault Manager
 
 1. Temporarily set the management host NIC to a 10.0.0.x address or to the same IPv6 subnet to enable communication with the storage system.
       - **Note**: If the default IP addresses (10.0.0.2 - Controller A, 10.0.0.3 - Controller B) are not compatible with your network, refer to ["Accessing the CLI"](#accessing-the-cli) to learn how to set the network port IP addresses.
@@ -271,7 +271,7 @@ Accessing the PowerVault Manager:
       4. Type password for the new username in the Password and Confirm Password fields.
       5. Click Apply and Continue.
 
-Update the firmware:
+#### Update the firmware
 
 1. Using the PowerVault Manager, select Action > Update Firmware in the System topic.
 2. Locate firmware updates at <https://www.dell.com/support>. If newer versions are vailable, download the bundle file or relevant firmware components.
