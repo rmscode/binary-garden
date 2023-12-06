@@ -33,7 +33,7 @@ theme:
     - search.highlight
     - search.share
     - toc.follow
-    - toc.integrate
+    # - toc.integrate
   palette:
     scheme: slate
 
