@@ -12,4 +12,4 @@ This static site was generated using [MkDocs](https://www.mkdocs.org). The theme
 
 ## Navigation
 
-Use the navbar tabs at the top of the page to navigate between category pages. The sidebar on the left contains a table of content for the current category/page.
+Navigate between sections using the top navbar or left sidebar. The right sidebar contains a table of content for the current section/page.
