@@ -4,7 +4,7 @@
 
 !!! info
 
-    The following notes/docs have been compiled from the following sources:
+    The ME4 series storage system has four different manuals that sometimes cross reference each other (e.g. - The owner's manual or deployment guide may call for you to reference the adminitrator's or CLI guide to complete a particular task). The objective of this document is to avoid the timesink & confusion that may bring during initial deployment by consolidating all relevant information into a single source of truth.
 
     - [PowerVault ME4 Owner's Manual](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_om_pub/)
     - [PowerVault ME4 Deployment Guide](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_dg_pub)
@@ -225,7 +225,7 @@ A host identifies an external port to which the storage system is attached. The 
 !!! note
 
     - Controller modules are not always shipped with preinstalled SFP+ transceivers. You might need to install SFP transceivers into the controller modules.
-    - Use the PowerVault Manager to set the host interface protocol for CNC ports using qualified SFP+ transceivers. ME4 Series modules ship with CNC ports configured for FC, so you must configure these port for iSCSI when connecting to iSCSI hosts.
+    - Use the PowerVault Manager to set the host interface protocol for CNC ports using qualified SFP+ transceivers. ME4 Series modules ship with CNC ports configured for FC, so you must configure these ports for iSCSI when connecting to iSCSI hosts.
     - If you are using switches with mixed traffic (LAN/iSCSI), then a VLAN should be created to isolate iSCSI traffic from the rest of the switch traffic.
 
 To connect controller modules supporting 10 GbE iSCSI host interface ports to a server HBA or switch, using the controller CNC ports, select a qualified 10 GbE SFP+ transceiver. Use the cabling diagram below to connect the host servers to the switches.
@@ -261,6 +261,7 @@ Upon completing the hardware installation, use PowerVault Manager to configure, 
 Accessing the PowerVault Manager:
 
 1. Temporarily set the management host NIC to a 10.0.0.x address or to the same IPv6 subnet to enable communication with the storage system.
+      - **Note**: If the default IP addresses (10.0.0.2 - Controller A, 10.0.0.3 - Controller B) are not compatible with your network, refer to ["Accessing the CLI"](#accessing-the-cli) to learn how to set the network port IP addresses.
 2. In a supported web browser, type `https://10.0.0.2` to access controller module A on an IPv4 network.
 3. If the storage system is running G275 firmware:
       1. Sign in to the PowerVault Manager using the following user name and password:
@@ -354,3 +355,11 @@ Show the IP address, subnet mask and gateway of a controller module: `show netwo
 Ping an address, such as the gateway: `ping 192.168.0.1`
 
 From another host, ping the controllers . . .
+
+!!! note
+
+    If you can't access your storage system for at least three minutes after changing the IP address, restart the controllers using the CLI command `restart mc both`.
+
+!!! warning "Caution"
+
+    When configuring an iSCSI storage system or a storage system that uses a combination of Fibre Channel and iSCSI SFPs, do not restart the Management Controller or exit the terminal emulator session until the CNC ports are configured as described ["Changing the host port settings"](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_dg_pub/changing-host-port-settings?guid=guid-4b22aaaa-ca95-4d45-82cd-a3499bb1890c&lang=en-us). 
