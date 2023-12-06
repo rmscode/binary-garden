@@ -1,6 +1,4 @@
-#
-
-## PowerVault ME4024
+# PowerVault ME4024
 
 !!! info
 
@@ -56,13 +54,11 @@
 
     :   A PCM is a module that provides power and cooling to the enclosure. It is a hot-swappable module.
 
-*Published: 12.04.2023*, *Revised: 12.05.2023*
-
 ---
 
-### Front Panel
+## Front Panel
 
-#### DDICs
+### DDICs
 
 !!! info
 
@@ -70,7 +66,7 @@
 
 ![ME4024 Fron Panel](../assets/GUID-EB01FA14-AC25-4933-A4C1-82131A9DBC20-low.jpg)
 
-#### Operator Panel LEDs
+### Operator Panel LEDs
 
 ![ME4024 Front Panel LED](../assets/GUID-50A3FA88-6C9C-4FD4-837D-819D6D69CB28-low.jpg)
 
@@ -95,13 +91,13 @@
     - **Blinking blue**: System ID locator is activated.
     - **Off**: Normal state
 
-### Rear Panel
+## Rear Panel
 
 !!! info
 
     Controller modules, IOMs, and PCMs are available as CRUs.
 
-#### Controller enclosure (4-port FC/iSCSI)
+### Controller enclosure (4-port FC/iSCSI)
 
 ![ME4024 Rear Panel (FC/iSCSI)](../assets/GUID-E0F56738-3FAD-4315-83AB-C3E277AF070C-low.jpg)
 
@@ -110,7 +106,7 @@
 3. Controller module slot A
 4. Controller module slot B
 
-#### Controller module (4-port FC/iSCSI)
+### Controller module (4-port FC/iSCSI)
 
 The top slot for holding controller modules is designated slot A and the bottom slot is designated slot B. The face plate details of the controller modules show the modules aligned for use in slot A. In this orientation, the controller module latch shown at the bottom of the module and it is in a closed/locked position. The following figures identify the ports on the controller modules.
 
@@ -124,7 +120,7 @@ The top slot for holding controller modules is designated slot A and the bottom 
 6. Reset
 7. CNC ports (ports 3, 2, 1, 0)
 
-#### Controller module LEDs
+### Controller module LEDs
 
 ![ME4024 Controller Module LEDs](../assets/GUID-2CCEAE51-984C-460B-8F44-A0BF1DA1E99D-low.jpg)
 
@@ -182,17 +178,17 @@ The top slot for holding controller modules is designated slot A and the bottom 
     - **Off**: The port is empty or the link is down.
     - **Green**: The port is connected and the link is up.
 
-### Deployment Brief
+## Deployment Brief
 
 !!! info "Required Tools"
 
     - Phillips screwdriver
     - Torx T20 bit for locks
 
-- [x] Unpack.
-- [x] Install the controller enclosure and optional expansion enclosure in the rack.
-- [x] Populate drawers with disks (DDICs). 2U encosures ship with disks installed.
-- [x]  Cable the optional expansion enclosures.
+- [ ] Unpack.
+- [ ] Install the controller enclosure and optional expansion enclosure in the rack.
+- [ ] Populate drawers with disks (DDICs). 2U encosures ship with disks installed.
+- [ ] Cable the optional expansion enclosures.
 - [ ] Connect the management ports.
 - [ ] Cable the controller host ports.
 - [ ] Connect the power cords and power on the system.
@@ -202,7 +198,7 @@ The top slot for holding controller modules is designated slot A and the bottom 
       - [ ] Install required host software.
 - [ ] Perform the initial configuration tasks.
 
-#### Connect the management ports
+### Connect the management ports
 
 1. Connect an Ethernet cable to the network port on each controller module.
 2. Connect the other end of each Ethernet cable to a network that your management host can access, preferably on the same subnet.
@@ -218,7 +214,7 @@ The top slot for holding controller modules is designated slot A and the bottom 
 
     See also the topic about configuring network ports on controller modules under ["Accessing the CLI"](#accessing-the-cli).
 
-#### Cable the controller host ports (iSCSI)
+### Cable the controller host ports (iSCSI)
 
 A host identifies an external port to which the storage system is attached. The external port may be a port in an I/O adapter (such as an FC HBA or ethernet NIC) in a server.
 
@@ -232,7 +228,7 @@ To connect controller modules supporting 10 GbE iSCSI host interface ports to a 
 
 ![Connecting hosts: ME4 Series 2U switch-attached – two servers, two switches](../assets/GUID-E63CC18D-EBBC-47BB-BDB3-F1874C6658F3-low.jpg)
 
-#### Connecting the power cords and powering on the system
+### Connecting the power cords and powering on the system
 
 Connect the power cable from each PCM on the enclosure rear panel to the power distibution unit as shown below:
 
@@ -246,7 +242,7 @@ Connect the power cable from each PCM on the enclosure rear panel to the power d
     3. Data host—if powered off for maintenance purposes.
 - When powering off, reverse the order of steps that are used for powering on.
 
-#### Perform system and storage setup (guided)
+### Perform system and storage setup (guided)
 
 !!! tip "System Information Worksheet"
 
@@ -291,7 +287,7 @@ The *Welcome* panel provides options for you to quickly set up your system by gu
 4. Save your settings and exit to the *Welcome* panel.
 5. Access the *Host Setup* panel and follow the prompts to continue provisioning your system by attaching hosts.
 
-### Accessing the CLI
+## Accessing the CLI
 
 Embedded within the controller modules is a command-line interface (CLI) that enables you to manage and monitor the storage system. The CLI can be accessed in two ways:
 
@@ -319,7 +315,7 @@ If the default IP addresses (10.0.0.2 - Controller A, 10.0.0.3 - Controller B) a
 5. If you are connecting to a storage system with G275 firmware that has not been deployed, the default user/pass is `manage`/`!manage`. If your system has been deployed, login with a user that has the *manage* role.
 6. If you are connecting to a storage system with G280 firmware that has not been deployed, type `setup` at the login prompt and press `Enter`. Do not type anything at the password prompt and press `Enter`. If your system has been deployed, login with a user that has the *manage* role.
 
-#### Setting the Network port IP addresses (DHCP)
+### Setting the Network port IP addresses (DHCP)
 
 !!! info
 
@@ -327,7 +323,7 @@ If the default IP addresses (10.0.0.2 - Controller A, 10.0.0.3 - Controller B) a
 
 To obtain an IP address via DHCP, use the `set network-parameters dhcp` command.
 
-#### Setting the Network port IP addresses (Static)
+### Setting the Network port IP addresses (Static)
 
 To use a custom static IP address, use the `set network-parameters ip address netmask netmask gateway gateway controller a|b` command.
 
@@ -348,7 +344,7 @@ Where:
     set network-parameters ip 192.168.0.11 netmask 255.255.255.0 gateway 192.168.0.1 controller b
     ```
 
-#### Verifying the new IP addresses and connectivity
+### Verifying the new IP addresses and connectivity
 
 Show the IP address, subnet mask and gateway of a controller module: `show network-parameters`
 
@@ -362,4 +358,6 @@ From another host, ping the controllers . . .
 
 !!! warning "Caution"
 
-    When configuring an iSCSI storage system or a storage system that uses a combination of Fibre Channel and iSCSI SFPs, do not restart the Management Controller or exit the terminal emulator session until the CNC ports are configured as described ["Changing the host port settings"](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_dg_pub/changing-host-port-settings?guid=guid-4b22aaaa-ca95-4d45-82cd-a3499bb1890c&lang=en-us). 
+    When configuring an iSCSI storage system or a storage system that uses a combination of Fibre Channel and iSCSI SFPs, do not restart the Management Controller or exit the terminal emulator session until the CNC ports are configured as described "[Changing the host port settings](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_dg_pub/changing-host-port-settings?guid=guid-4b22aaaa-ca95-4d45-82cd-a3499bb1890c&lang=en-us)".
+
+    Note: I would assume that this step is covered in the "[Perform system and storage setup](#perform-system-and-storage-setup-guided)" process (Guided setup - System Settings). 
