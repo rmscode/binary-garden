@@ -1,9 +1,80 @@
+# Project information
 site_name: My Docs
-repo_url: https://github.com/rmscode/MyDocs
-repo_name: rmscode/MyDocs
-edit_uri: edit/main/docs/
+site_url: https://rmscode.github.io/MyDocs/
+site_author: Ricky Saull
+site_description: >-
+  My personal documentation and note keeping site related to my work in IT.
 
-## Navbar options
+# Repository
+repo_name: rmscode/MyDocs
+repo_url: https://github.com/rmscode/MyDocs
+#edit_uri: edit/main/docs/
+
+# Copyright
+#copyright: Copyright &copy; 2023 Ricky Saull
+
+# Material theme configuration
+theme:
+  name: material
+  features:
+    - content.code.annotate
+    - content.action.edit
+    - content.action.view
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.path
+    - navigation.top
+    # - navigation.prune
+    # - navigation.indexes
+    - navigation.instant
+    - navigation.instant.progress
+    - search.suggest
+    - search.highlight
+    - search.share
+    - toc.follow
+    - toc.integrate
+  palette:
+    scheme: slate
+
+# Plugins
+plugins:
+  - search
+  - offline
+  #- encryptcontent
+  - git-revision-date-localized:
+      enable_creation_date: true
+
+# Extensions
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: "⚓︎"
+      permalink_title: "Anchor link to this section for reference"
+      toc_depth: 4
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tilde
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - abbr
+  - admonition
+  - def_list
+  - attr_list
+  - md_in_html
+
+# Page tree
 nav:
   - Home: index.md
   - General: 
@@ -24,75 +95,3 @@ nav:
     - 2023: notes/2023.md
     - Server Research 2023: notes/ServerResearch2023.md
     - Archive: notes/archive.md
-
-## Theme options
-theme:
-  name: material
-
-  palette:
-    scheme: slate
-
-  navigation_depth: 3
-  locale: en
-  highlightjs: true
-  prev_next_buttons_location: both
-
-  features:
-    - navigation.tracking
-    - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.path
-    - navigation.top
-    - toc.follow
-    - toc.nested
-    - toc.integrate
-    - navigation.prune
-    - navigation.indexes
-    - search.suggest
-    - search.highlight
-    - search.share
-    - content.code.annotate
-    - content.action.edit
-    - content.action.view
-
-  shortcuts:
-    help: 191    # ?
-    next: 78     # n
-    previous: 80 # p
-    search: 83   # s
-
-# Markdown extensions
-markdown_extensions:
-  - pymdownx.highlight:
-      anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.tabbed:
-      alternate_style: true
-  - toc:
-      permalink: "#"
-      toc_depth: 3
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - pymdownx.superfences
-  - pymdownx.details
-  - pymdownx.tilde
-  - pymdownx.critic
-  - pymdownx.caret
-  - pymdownx.keys
-  - pymdownx.mark
-  - abbr
-  - admonition
-  - def_list
-  - attr_list
-  - md_in_html
-
-# Plugins
-plugins:
-  - search
-  - offline
-  #- encryptcontent
-  - git-revision-date-localized:
-      enable_creation_date: true
