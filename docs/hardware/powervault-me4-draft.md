@@ -287,6 +287,10 @@ The *Welcome* panel provides options for you to quickly set up your system by gu
 4. Save your settings and exit to the *Welcome* panel.
 5. Access the *Host Setup* panel and follow the prompts to continue provisioning your system by attaching hosts.
 
+!!! example "Example: Attaching Windows Host"
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Ey4ADBLYTNI?si=MvZ4bjHI7gxq5Us3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 ## Accessing the CLI
 
 Embedded within the controller modules is a command-line interface (CLI) that enables you to manage and monitor the storage system. The CLI can be accessed in two ways:
