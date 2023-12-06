@@ -337,9 +337,20 @@ Where:
 - gateway is the IP address of the subnet router
 - a|b specifies the controller whose network parameters you are setting
 
-!!! example
+!!! info
 
+    Run the command for controller module A first, and then for controller module B.
+
+    Example:
     ```shell
     set network-parameters ip 192.168.0.10 netmask 255.255.255.0 gateway 192.168.0.1 controller a
     set network-parameters ip 192.168.0.11 netmask 255.255.255.0 gateway 192.168.0.1 controller b
     ```
+
+#### Verifying the new IP addresses and connectivity
+
+Show the IP address, subnet mask and gateway of a controller module: `show network-parameters`
+
+Ping an address, such as the gateway: `ping 192.168.0.1`
+
+From another host, ping the controllers . . .
