@@ -54,8 +54,6 @@
 
     :   A PCM is a module that provides power and cooling to the enclosure. It is a hot-swappable module.
 
----
-
 ## Front Panel
 
 ### DDICs
@@ -224,7 +222,9 @@ A host identifies an external port to which the storage system is attached. The 
     - Use the PowerVault Manager to set the host interface protocol for CNC ports using qualified SFP+ transceivers. ME4 Series modules ship with CNC ports configured for FC, so you must configure these ports for iSCSI when connecting to iSCSI hosts.
     - If you are using switches with mixed traffic (LAN/iSCSI), then a VLAN should be created to isolate iSCSI traffic from the rest of the switch traffic.
 
-To connect controller modules supporting 10 GbE iSCSI host interface ports to a server HBA or switch, using the controller CNC ports, select a qualified 10 GbE SFP+ transceiver. Use the cabling diagram below to connect the host servers to the switches.
+To connect controller modules supporting 10 GbE iSCSI host interface ports to a server HBA or switch, using the controller CNC ports, select a qualified 10 GbE SFP+ transceiver.
+
+Use the cabling diagram below to connect host servers to a switch-attached storage system.
 
 ![Connecting hosts: ME4 Series 2U switch-attached – two servers, two switches](../assets/GUID-E63CC18D-EBBC-47BB-BDB3-F1874C6658F3-low.jpg)
 
@@ -361,3 +361,5 @@ From another host, ping the controllers . . .
     When configuring an iSCSI storage system or a storage system that uses a combination of Fibre Channel and iSCSI SFPs, do not restart the Management Controller or exit the terminal emulator session until the CNC ports are configured as described "[Changing the host port settings](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_dg_pub/changing-host-port-settings?guid=guid-4b22aaaa-ca95-4d45-82cd-a3499bb1890c&lang=en-us)".
 
     Note: I would assume that this step is covered in the "[Perform system and storage setup](#perform-system-and-storage-setup-guided)" process (Guided setup - System Settings). 
+
+    The Dell docs do not explain the reason for precaution btw . . .
