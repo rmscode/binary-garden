@@ -388,7 +388,44 @@ From another host, ping the controllers . . .
 
 ### Adding a disk group
 
+You can create virtual or linear disk groups through the *Add Disk Group* panel in the PowerVault Manager.
 
+!!! note
+
+    After you create a disk group using one storage type, the system uses that storage type for additional disk groups. To switch to the other type, you must first remove all disk groups.
+
+Use the top section to:
+
+1. Name and define the disk group.
+2. Select the pool that it resides on.
+3. Choose its data protection (RAID) level.
+
+Use the middle section to:
+
+1. Review the Disk Selection summary.
+2. Verify that the *Complete* check box is green to indicate the minimum number of required disks to create the group have been selected.
+   - Note: For dedicated spares, the check box is always green.
+
+The bottom section lists the disks that are located within each enclosure in your system. Add disks to the disk group by doing one of the following:
+
+- Select a range of disks within an enclosure by entering a comma-separated list that contains the enclosure number and disk range in the Enter Range of Disks text box. Use the format `enclosure-number.disk-range,enclosure-number.disk-range`. For example, to select disks 3-12 in enclosure 1 and disks 5-23 in enclosure 2, enter `1.3-12,2.5-23`.
+- Select all disks by selecting the Select All checkbox (shocking).
+- Filter the disks in the list per disk type, enclosure ID, slot location, disk size, or health by entering applicable search criteria in the text box. Clear the filter by clicking the Clear Filters button (gasp).
+- Click individual disks within the table to select them and add them to the disk group.
+
+### About virtual and linear storage
+
+This product uses two different storage technologies that share a common user interface. One uses the virtual method while the other one uses the linear method.
+
+Virtual storage is a method of mapping logical storage requests to physical storage (disks). It inserts a layer of virtualization such that logical host I/O requests are mapped onto pages of storage. Each page is then mapped onto physical storage. Within each page the mapping is linear, but there is no direct relationship between adjacent logical pages and their physical storage.
+
+Some advantages of using virtual storage are:
+
+- It allows performance to scale as the number of disks in the pool increases.
+- It virtualizes physical storage, allowing volumes to share available resources in a highly efficient way.
+- It allows a volume to be comprised of more than 16 disks.
+
+Virtual storage provides the foundation for data-management features such as thin provisioning, automated tiered storage, SSD read cache, and the quick rebuild feature.
 
 ## Spare disks (for fault tolerance)
 
@@ -405,20 +442,6 @@ From another host, ping the controllers . . .
 !!! info
 
     A volume is a logical subdivision of a virtual or linear pool and can be mapped to host-based applications. A mapped volume provides addressable storage to a host (for example, a file system partition you create with your operating system or third-party tools).
-
-### About virtual and linear storage
-
-This product uses two different storage technologies that share a common user interface. One uses the virtual method while the other one uses the linear method.
-
-Virtual storage is a method of mapping logical storage requests to physical storage (disks). It inserts a layer of virtualization such that logical host I/O requests are mapped onto pages of storage. Each page is then mapped onto physical storage. Within each page the mapping is linear, but there is no direct relationship between adjacent logical pages and their physical storage.
-
-Some advantages of using virtual storage are:
-
-- It allows performance to scale as the number of disks in the pool increases.
-- It virtualizes physical storage, allowing volumes to share available resources in a highly efficient way.
-- It allows a volume to be comprised of more than 16 disks.
-
-Virtual storage provides the foundation for data-management features such as thin provisioning, automated tiered storage, SSD read cache, and the quick rebuild feature.
 
 ## Volume mapping
 
