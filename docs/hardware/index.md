@@ -2,5 +2,5 @@
 
 Lorem ipsum . . . hocus pocus. Still figuring out how I want to structure this stuff.
 
-- [Dell EMC](dell-emc.md)
-- [PowerVault ME4024 (WIP)](powervault-me4-draft.md)
+- [S4048-ON](../hardware/dell-emc/s4048-on.md)
+- [PowerVault ME4024 (WIP)](../hardware/dell-emc/powervault-me4-draft.md)
