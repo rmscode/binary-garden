@@ -79,8 +79,9 @@ nav:
     - general/index.md
   - Hardware: 
     - hardware/index.md
-    - Dell EMC: hardware/dell-emc.md
-    - PowerVault ME4 (WIP): hardware/powervault-me4-draft.md
+    - Dell EMC: 
+      - hardware/dell-emc/dell-emc.md
+      - hardware/dell-emc/powervault-me4-draft.md
   - Networking: 
     - networking/index.md
   - Software: 

@@ -222,11 +222,22 @@ A host identifies an external port to which the storage system is attached. The 
     - Use the PowerVault Manager to set the host interface protocol for CNC ports using qualified SFP+ transceivers. ME4 Series modules ship with CNC ports configured for FC, so you must configure these ports for iSCSI when connecting to iSCSI hosts.
     - If you are using switches with mixed traffic (LAN/iSCSI), then a VLAN should be created to isolate iSCSI traffic from the rest of the switch traffic.
 
-To connect controller modules supporting 10 GbE iSCSI host interface ports to a server HBA or switch, using the controller CNC ports, select a qualified 10 GbE SFP+ transceiver.
+To connect controller modules supporting 10 GbE iSCSI host interface ports to a server HBA/NIC or switch, using the controller CNC ports, select a qualified 10 GbE SFP+ transceiver.
 
 Use the cabling diagram below to connect host servers to a switch-attached storage system.
 
 ![Connecting hosts: ME4 Series 2U switch-attached – two servers, two switches](../assets/GUID-E63CC18D-EBBC-47BB-BDB3-F1874C6658F3-low.jpg)
+
+1. Host server A
+2. Host server B
+3. Switch A
+4. Switch B
+5. Controller module in Slot A
+6. Controller module in Slot B
+
+!!! note
+
+    Take note of how the CNC ports are connected to the switches. The reason for doing so is that each pair of ports (A0,A1 or A2,A3) are connected to a dedicated CNC chip. If you are not using all four ports on a controller, it is best to use one port from each pair (A0,A2) to ensure better I/O balance on the front end.
 
 ### Connecting the power cords and powering on the system
 
@@ -252,9 +263,13 @@ Upon completing the hardware installation, use PowerVault Manager to configure, 
 
 !!! note
 
-    Not sure if this is still true, but the Dell docs say you cannot view PowerVault Manager Help content if you are using the Microsoft Edge browser that ships with Windows 10.
+    The PowerVault web interface requires Firefox 57 or later, Chrome 57 or later, MS Internet Explorer 10 or 11, or Safari 10.1 or later. Dell say you cannot view PowerVault Manager Help content if you are using the Microsoft Edge browser that ships with Windows 10. 
 
 #### Accessing the PowerVault Manager
+
+!!! info
+
+    The [ME4 Series Administrators Guide](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub) is the primary reference for using the PowerVault Manager.
 
 1. Temporarily set the management host NIC to a 10.0.0.x address or to the same IPv6 subnet to enable communication with the storage system.
       - **Note**: If the default IP addresses (10.0.0.2 - Controller A, 10.0.0.3 - Controller B) are not compatible with your network, refer to ["Accessing the CLI"](#accessing-the-cli) to learn how to set the network port IP addresses.
@@ -277,19 +292,17 @@ Upon completing the hardware installation, use PowerVault Manager to configure, 
 2. Locate firmware updates at <https://www.dell.com/support>. If newer versions are vailable, download the bundle file or relevant firmware components.
 3. Click *Browse*, select the firmware bundle file or component file, and click *OK*.
 
-Use guided setup:
+#### Guided setup
 
 The *Welcome* panel provides options for you to quickly set up your system by guiding you through the configuration and provisioning process.
 
-1. Access the *System Settings* panel and complete all the required options.
+With guided setup, you must first configure your system settings by accessing the System Settings panel and completing all required options.
+
+1. From the *Welcome* panel, access the *System Settings* panel and complete all the required options.
 2. Save your settings and exit to the *Welcome* panel.
-3. Access the *Storage Setup* panel and follow the prompts to begin provisioning your system by creating disk groups and pools.
+3. Click *Storage Setup* and follow the prompts to begin provisioning your system by creating disk groups and pools.
 4. Save your settings and exit to the *Welcome* panel.
-5. Access the *Host Setup* panel and follow the prompts to continue provisioning your system by attaching hosts.
-
-!!! example "Example: Attaching Windows Host"
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/Ey4ADBLYTNI?si=MvZ4bjHI7gxq5Us3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+5. Click *Host Setup* and follow the prompts to continue provisioning your system by attaching hosts.
 
 ## Accessing the CLI
 
@@ -414,3 +427,8 @@ In a system cofigured to use either all FC or all iSCSI ports, use the ports in 
 4. A3,B3
 
 The reason for doing so is that each pair of ports (A0,A1 or A2,A3) are connected to a dedicated CNC chip. If you are not using all four ports on a controller, it is best to use one port from each pair (A0,A2) to ensure better I/O balance on the front end.
+
+## Snapshots
+
+The system can create snapshots of virtual volumes up to the maximum number supported by your system. Snapshots provide data protection by enabling you to create and save source volume data states at the point in time when the snapshot was created. Snapshots can be created manually or you can schedule snapshot creation. **After a snapshot has been created, the source volume cannot be expanded.**
+
