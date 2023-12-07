@@ -80,7 +80,7 @@ nav:
   - Hardware: 
     - hardware/index.md
     - Dell EMC: 
-      - hardware/dell-emc/dell-emc.md
+      - hardware/dell-emc/s4048-on.md
       - hardware/dell-emc/powervault-me4-draft.md
   - Networking: 
     - networking/index.md
