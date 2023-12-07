@@ -386,7 +386,7 @@ From another host, ping the controllers . . .
 
     A pool is an aggregation of one or more disk groups that serves as a container for volumes. Virtual and linear storage systems both use pools. A disk group is a group of disks of the same type, using a specific RAID level that is incorporated as a component of a pool, that stores volume data. For virtual pools, when volumes are added to a pool the data is distributed across the pool's disk groups. For linear pools, which can only have one disk group per pool, volumes are also added to the pool, which contains the volume data.
 
-### Adding a disk group
+### Add a disk group
 
 You can create virtual or linear disk groups through the *Add Disk Group* panel in the PowerVault Manager.
 
@@ -397,14 +397,14 @@ You can create virtual or linear disk groups through the *Add Disk Group* panel 
 Use the top section to:
 
 1. Name and define the disk group.
-2. Select the pool that it resides on.
+2. Select the pool that it resides on (only appears for virtual and read cache disk groups).
 3. Choose its data protection (RAID) level.
 
 Use the middle section to:
 
 1. Review the Disk Selection summary.
 2. Verify that the *Complete* check box is green to indicate the minimum number of required disks to create the group have been selected.
-   - Note: For dedicated spares, the check box is always green.
+      - Note: For dedicated spares, the check box is always green.
 
 The bottom section lists the disks that are located within each enclosure in your system. Add disks to the disk group by doing one of the following:
 
@@ -413,7 +413,52 @@ The bottom section lists the disks that are located within each enclosure in you
 - Filter the disks in the list per disk type, enclosure ID, slot location, disk size, or health by entering applicable search criteria in the text box. Clear the filter by clicking the Clear Filters button (gasp).
 - Click individual disks within the table to select them and add them to the disk group.
 
+### Remove a disk group
+
+1. In the Pools topic, select the pool for the disk groups that you are deleting in the pools table. Then, select the disk groups in the Related Disk Groups table.
+2. Select **Action > Remove Disk Groups**. The Remove Disk Groups panel opens.
+3. Click **OK**.
+4. Click **Yes** to continue. Otherwise, click **No**. If you clicked Yes, the disk groups and their volumes are deleted, the pool for the disk groups might be deleted, the disks for the disk groups become available, and the Related Disk Groups table is updated.
+
+### Expand a disk group
+
+1. In the Pools topic, select the pool for the disk group that you are expanding. Then select the disk group in the Expand Disk Group table.
+2. Select **Action > Expand Disk Group**. The Expand Disk Group panel opens displaying disk group information and disk tables.
+3. For disk groups with RAID-10 or RAID-50 configurations, choose the number of new sub-groups in the Additional Sub-groups list.
+4. Select additional disks that you want to add to the disk group from the table in the bottom section.
+5. Click **Modify**. A confirmation panel appears.
+6. Click **Yes** to continue. Otherwise click **No**. If you clicked Yes, the disk group expansion starts.
+7. To close the confirmation panel, click **OK**.
+
+### Managing spare disks (for fault tolerance)
+
+!!! info
+
+    Spare disks are unused disks in your system that you designate to automatically replace a failed disk, restoring fault tolerance to disk groups in the system. Types of spares include:
+
+    - Dedicated spare. Reserved for use by a specific linear disk group to replace a failed disk. Most secure way to provide spares for disk groups, but expensive to reserve a spare for each disk group.
+    - Global spare. Reserved for use by any fault-tolerant disk group to replace a failed disk.
+    - Dynamic spare. Available compatible disk that is automatically assigned to replace a failed disk in a fault-tolerant disk group.
+
+#### Add global spares
+
+1. In the Pools topic, select **Action > Manage Spare**. The Manage Spare panel opens.
+2. To add global spares, click on the available disks to highlight them.
+3. Click **Add Spares**. The system updates the global spares and a confirmation panel opens.
+4. To close the confirmation panel, click **OK**.
+
+#### Add dedicated spares
+
+1. In the Pools topic, select the linear pool for the disk group that you are modifying in the pools table. Then, select the disk group in the Related Disk Groups table.
+2. Select **Action > Manage Spares**. The Manage Spares panel opens.
+3. Check the **Assign dedicated spares to the disk group** box, then select the disk group in which you want the dedicated spare to reside.
+4. In the Add New Spares section, click on available disks to select them.
+5. Click **Add Spares**. The system updates the dedicated spares and a confirmation panel appears.
+6. To close the confirmation panel, click **OK**.
+
 ### About virtual and linear storage
+
+. . .
 
 This product uses two different storage technologies that share a common user interface. One uses the virtual method while the other one uses the linear method.
 
@@ -426,16 +471,6 @@ Some advantages of using virtual storage are:
 - It allows a volume to be comprised of more than 16 disks.
 
 Virtual storage provides the foundation for data-management features such as thin provisioning, automated tiered storage, SSD read cache, and the quick rebuild feature.
-
-## Spare disks (for fault tolerance)
-
-!!! info
-
-    Spare disks are unused disks in your system that you designate to automatically replace a failed disk, restoring fault tolerance to disk groups in the system. Types of spares include:
-
-    - Dedicated spare. Reserved for use by a specific linear disk group to replace a failed disk. Most secure way to provide spares for disk groups, but expensive to reserve a spare for each disk group.
-    - Global spare. Reserved for use by any fault-tolerant disk group to replace a failed disk.
-    - Dynamic spare. Available compatible disk that is automatically assigned to replace a failed disk in a fault-tolerant disk group.
 
 ## Volumes and volume groups
 
