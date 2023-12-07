@@ -380,6 +380,56 @@ From another host, ping the controllers . . .
 
     The Dell docs do not explain the reason for precaution btw . . .
 
+## Pools (Disk groups)
+
+!!! info
+
+    A pool is an aggregation of one or more disk groups that serves as a container for volumes. Virtual and linear storage systems both use pools. A disk group is a group of disks of the same type, using a specific RAID level that is incorporated as a component of a pool, that stores volume data. For virtual pools, when volumes are added to a pool the data is distributed across the pool's disk groups. For linear pools, which can only have one disk group per pool, volumes are also added to the pool, which contains the volume data.
+
+### Adding a disk group
+
+
+
+## Spare disks (for fault tolerance)
+
+!!! info
+
+    Spare disks are unused disks in your system that you designate to automatically replace a failed disk, restoring fault tolerance to disk groups in the system. Types of spares include:
+
+    - Dedicated spare. Reserved for use by a specific linear disk group to replace a failed disk. Most secure way to provide spares for disk groups, but expensive to reserve a spare for each disk group.
+    - Global spare. Reserved for use by any fault-tolerant disk group to replace a failed disk.
+    - Dynamic spare. Available compatible disk that is automatically assigned to replace a failed disk in a fault-tolerant disk group.
+
+## Volumes and volume groups
+
+!!! info
+
+    A volume is a logical subdivision of a virtual or linear pool and can be mapped to host-based applications. A mapped volume provides addressable storage to a host (for example, a file system partition you create with your operating system or third-party tools).
+
+### About virtual and linear storage
+
+This product uses two different storage technologies that share a common user interface. One uses the virtual method while the other one uses the linear method.
+
+Virtual storage is a method of mapping logical storage requests to physical storage (disks). It inserts a layer of virtualization such that logical host I/O requests are mapped onto pages of storage. Each page is then mapped onto physical storage. Within each page the mapping is linear, but there is no direct relationship between adjacent logical pages and their physical storage.
+
+Some advantages of using virtual storage are:
+
+- It allows performance to scale as the number of disks in the pool increases.
+- It virtualizes physical storage, allowing volumes to share available resources in a highly efficient way.
+- It allows a volume to be comprised of more than 16 disks.
+
+Virtual storage provides the foundation for data-management features such as thin provisioning, automated tiered storage, SSD read cache, and the quick rebuild feature.
+
+## Volume mapping
+
+!!! info
+
+    Mappings between a volume and one or more initiators, hosts, or host groups enable hosts to view and access the volume. There are two types of maps that can be created: default maps and explicit maps. Default maps enable all hosts to see the volume using a specified LUN and access permissions. Default mapping applies to any host that has not been explicitly mapped using different settings.
+
+!!! note
+
+     A LUN identifies a mapped volume to a host. Both controllers share a set of LUNs, and any unused LUN can be assigned to a mapping.
+
 ## Best Practices
 
 ### Pool setup
@@ -429,12 +479,3 @@ In a system cofigured to use either all FC or all iSCSI ports, use the ports in 
 4. A3,B3
 
 The reason for doing so is that each pair of ports (A0,A1 or A2,A3) are connected to a dedicated CNC chip. If you are not using all four ports on a controller, it is best to use one port from each pair (A0,A2) to ensure better I/O balance on the front end.
-
-## Snapshots
-
-The system can create snapshots of virtual volumes up to the maximum number supported by your system. Snapshots provide data protection by enabling you to create and save source volume data states at the point in time when the snapshot was created. Snapshots can be created manually or you can schedule snapshot creation. **After a snapshot has been created, the source volume cannot be expanded.**
-
-## Notificatoins
-
-Welcome panel > System settings > Notifications.
-
