@@ -246,7 +246,7 @@ Connect the power cable from each PCM on the enclosure rear panel to the power d
 
 !!! tip "System Information Worksheet"
 
-    Use the System Information Worksheet found on page 100 of the deployment guide to record the information that you need to install the ME4 Series storage system.
+    Use the System Information Worksheet found on page 100 of the [deployment guide](https://dl.dell.com/content/manual65252048-dell-powervault-me4-series-storage-system-deployment-guide.pdf?language=en-us) to record the information that you need to install the ME4 Series storage system.
 
 Upon completing the hardware installation, use PowerVault Manager to configure, provision, monitor and manage the storage system. When first accessing the PowerVault Manager, perform a firmware update before configuring your system. After the firmware update is complete, use the guided setup to verify the web browser requirements and then access the PowerVault Manager.
 
