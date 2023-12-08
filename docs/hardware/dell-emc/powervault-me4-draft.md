@@ -9,7 +9,7 @@
     - [PowerVault ME4 Administrator's Guide](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub)
     - [PowerVault ME4 Series Storage System CLI Guide](https://www.dell.com/support/manuals/en-us/powervault-me4024/me4_series_cli_pub)
 
-!!! Warning "Safe Operation"
+!!! Warning "Operational Safety"
 
     Operation of the enclosure with modules missing disrupts the airflow and prevents the enclosure from receiving sufficient cooling. For all 2U enclosures, all IOM and PCM slots must be populated. In addition, empty drive slots (bays) in 2U enclosures must hold blank drive carrier modules. For a 5U enclosure, all controller module, IOM, FCM, and PSU slots must be populated.
 
@@ -63,8 +63,6 @@
     Integers on the disks indicate drive slot numbering sequence.
 
 ![ME4024 Fron Panel](../../assets/GUID-EB01FA14-AC25-4933-A4C1-82131A9DBC20-low.jpg)
-
-![123]()
 
 ### Operator Panel LEDs
 
