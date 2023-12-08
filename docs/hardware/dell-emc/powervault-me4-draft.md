@@ -2,7 +2,7 @@
 
 !!! info
 
-    The ME4 series storage system has four different manuals that sometimes cross reference each other (e.g. - The owner's manual or deployment guide may call for you to reference the adminitrator's or CLI guide to complete a particular task). The objective of this document is to avoid the timesink & confusion that may bring during initial deployment by consolidating all relevant information into a single source of truth.
+    The ME4 series storage system has four different manuals that sometimes cross reference each other (e.g. - The owner's manual or deployment guide may call for you to reference the adminitrator's or CLI guide to complete a particular task). The objective of this document is to avoid the timesink & confusion that may create during initial deployment by consolidating all relevant information into a single source of truth.
 
     - [PowerVault ME4 Owner's Manual](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_om_pub/)
     - [PowerVault ME4 Deployment Guide](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_dg_pub)
@@ -183,18 +183,18 @@ The top slot for holding controller modules is designated slot A and the bottom 
     - Phillips screwdriver
     - Torx T20 bit for locks
 
-- [ ] Unpack.
-- [ ] Install the controller enclosure and optional expansion enclosure in the rack.
-- [ ] Populate drawers with disks (DDICs). 2U encosures ship with disks installed.
-- [ ] Cable the optional expansion enclosures.
-- [ ] Connect the management ports.
-- [ ] Cable the controller host ports.
-- [ ] Connect the power cords and power on the system.
-- [ ] Perform system and storage setup.
-- [ ] Perform host setup.
-      - [ ] Attach host servers.
-      - [ ] Install required host software.
-- [ ] Perform the initial configuration tasks.
+1. Unpack.
+2. Install the controller enclosure and optional expansion enclosure in the rack.
+3. Populate drawers with disks (DDICs). 2U encosures ship with disks installed.
+4. Cable the optional expansion enclosures.
+5. Connect the management ports.
+6. Cable the controller host ports.
+7. Connect the power cords and power on the system.
+8. Perform system and storage setup.
+9. Perform host setup.
+      1. Attach host servers.
+      2. Install required host software.
+10. Perform the initial configuration tasks.
 
 ### Connect the management ports
 
