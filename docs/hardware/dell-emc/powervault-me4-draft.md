@@ -296,6 +296,33 @@ Upon completing the hardware installation, use PowerVault Manager to configure, 
 
 #### Guided setup
 
+!!! info
+
+    When you first access the wizard, you are prompted to select the type of storage to use for your environment. Dell recommends using virtual storage.
+
+=== "Virtual Storage (Recommended)"
+
+    - Tiering
+    - Snapshots
+    - Replication
+    - Thin provisioning
+    - One pool per installed RAID controller and up to 16 disk groups per pool
+    - Maximum 1 PB usable capacity per pool with large pools feature enabled
+    - RAID levels 1, 5, 6, 10, and ADAPT
+    - Adding individual disks to increase RAID capacity is only supported for ADAPT disk groups
+    - Capacity can be increased by adding additional RAID disk groups
+    - Page size is static (4 MB)
+    - SSD read cache
+    - Global and/or dynamic hot spares
+
+=== "Linear Storage"
+
+    - Up to 32 pools per installed RAID controller and one disk group per pool
+    - RAID levels 0, 1, 3, 5, 6, 10, 50, ADAPT, and NRAID
+    - Adding individual disks to increase RAID capacity is supported for RAID 0, 3, 5, 6, 10, 50, and ADAPT disk groups
+    - Configurable chunk size per disk group
+    - Global, dedicated, and/or dynamic hot spares
+
 The *Welcome* panel provides options for you to quickly set up your system by guiding you through the configuration and provisioning process.
 
 With guided setup, you must first configure your system settings by accessing the System Settings panel and completing all required options.
@@ -380,7 +407,7 @@ From another host, ping the controllers . . .
 
     The Dell docs do not explain the reason for precaution btw . . .
 
-## Pools (Disk groups)
+## Pools
 
 !!! info
 
