@@ -91,6 +91,18 @@ nav:
     - sop/index.md
   - Notes: 
     - notes/index.md
-    - 2023: notes/2023.md
+    - 2023: 
+      - notes/2023/february.md
+      - notes/2023/march.md
+      - notes/2023/april.md
+      - notes/2023/may.md
+      - notes/2023/june.md
+      - notes/2023/july.md
+      - notes/2023/august.md
+      - notes/2023/september.md
+      - notes/2023/october.md
+      - notes/2023/november.md
+      - notes/2023/december.md
     - Server Research 2023: notes/ServerResearch2023.md
-    - Archive: notes/archive.md
+    - Archive: 
+      - notes/archive/2023.md
