@@ -81,7 +81,7 @@ nav:
     - hardware/index.md
     - Dell EMC: 
       - hardware/dell-emc/s4048-on.md
-      - hardware/dell-emc/powervault-me4-draft.md
+      - hardware/dell-emc/powervault-me4.md
     - Microsoft:
       - hardware/microsoft/surface-rt.md
   - Networking: 
