@@ -1,5 +1,7 @@
 # Windows Server Operating System
 
+> This page was last updated: *{{ git_revision_date_localized }}*
+
 ## Active Directory Domain Services (AD DS)
 
 !!! info

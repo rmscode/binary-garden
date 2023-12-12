@@ -1,5 +1,7 @@
 # PowerVault ME4024
 
+> This page was last updated: *{{ git_revision_date_localized }}*
+
 !!! info
 
     The ME4 series storage system has four different manuals that sometimes cross reference each other (e.g. - The owner's manual or deployment guide may call for you to reference the adminitrator's or CLI guide to complete a particular task). The objective of this document is to avoid the timesink & confusion that may create during initial deployment by consolidating all relevant information into a single source of truth.

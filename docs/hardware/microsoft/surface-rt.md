@@ -1,5 +1,7 @@
 # Microsoft Surface RT (Gen 1 2012)
 
+> This page was last updated: *{{ git_revision_date_localized }}*
+
 ## Surface Docking Station
 
 ### Issues with Ethernet
