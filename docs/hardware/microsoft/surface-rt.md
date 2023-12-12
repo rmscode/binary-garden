@@ -1,10 +1,8 @@
-# Microsoft Surface
+# Microsoft Surface RT (Gen 1 2012)
 
-## Surface RT (Gen 1 2012)
+## Surface Docking Station
 
-### Surface Docking Station
-
-#### Issues with Ethernet
+### Issues with Ethernet
 
 To resolve issues with Ethernet connectivity, try the following:
 
