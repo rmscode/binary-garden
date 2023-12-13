@@ -1,7 +1,5 @@
 # Documentation & Notes
 
-> This page was last updated: *{{ git_revision_date_localized }}*
-
 This static site was generated using [MkDocs](https://www.mkdocs.org). The theme + markdown extensions are provided by [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
 
 ---
