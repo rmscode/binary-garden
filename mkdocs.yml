@@ -44,6 +44,9 @@ plugins:
       enable_creation_date: true
       type: datetime
       timezone: America/New_York
+      exclude:
+        - index.md
+        - notes/*
 
 # Extensions
 markdown_extensions:
