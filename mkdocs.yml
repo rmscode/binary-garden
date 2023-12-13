@@ -89,12 +89,12 @@ nav:
       - hardware/dell-emc/powervault-me4.md
     - Microsoft:
       - hardware/microsoft/surface-rt.md
-    - raspberrypi.md
+    - hardware/raspberrypi.md
   - Networking: 
     - networking/index.md
   - Software: 
     - software/index.md
-    - pisignage.md
+    - software/pisignage.md
     - Windows Server: software/windows-server.md
   - SOP: 
     - sop/index.md
