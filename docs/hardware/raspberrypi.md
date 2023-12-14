@@ -1,6 +1,6 @@
 # Raspberry Pi
 
-!!! note "For information about display content from a Raspberry Pi, see [PiSignage](../software/pisignage.md).
+!!! note "For information about displaying content from a Raspberry Pi, see [PiSignage](../software/pisignage.md)."
 
 ---
 
