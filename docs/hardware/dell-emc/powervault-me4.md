@@ -384,7 +384,7 @@ From another host, ping the controllers . . .
 
     Note: I would assume that this step is covered in the "[Perform system and storage setup](#perform-system-and-storage-setup-guided)" process (Guided setup - System Settings). 
 
-    The Dell docs do not explain the reason for precaution btw . . .
+    The Dell docs do not explain the reason for this precaution btw . . .
 
 ## About virtual and linear storage
 
