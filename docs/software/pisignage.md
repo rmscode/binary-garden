@@ -8,7 +8,7 @@
 
 ## Configuration (Standalone Player)
 
-I wrote a shell script to speed up the deployment of standalone PiSignage players. Follow the steps below to get start.
+I wrote a shell script to speed up the deployment of standalone PiSignage players. Follow the steps below to get started.
 
 !!! note "In our current evironmemt, we use PiSignage 3.2.0 on Raspberry Pi 3 boards."
 
