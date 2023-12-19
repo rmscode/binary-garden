@@ -34,6 +34,11 @@ theme:
     # - toc.integrate
   palette:
     scheme: slate
+    primary: black
+    accent: indigo
+  font:
+    text: Roboto
+    code: Roboto Mono
 
 # Plugins
 plugins:
