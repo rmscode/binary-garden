@@ -413,7 +413,7 @@ You have two options for setting up DietPi - guided and automatic. Guided setup 
     #------------------------------------------------------------------------------------------------------
     ```
 
-DietPi will now go through a one time setup process based on the options in the dietpi.txt file. This may take several minutes. Once complete, make sure the Pi reboots and launches Chromium in kiosk mode.
+DietPi will now go through a one time setup process based on the options in the dietpi.txt file. This may take several minutes depending on the speed of the SD card. Once complete, make sure the Pi reboots and launches Chromium in kiosk mode.
 
 You'll notice that the cursor is still visible. To hide it, we'll have to edit the autostart file:
 
