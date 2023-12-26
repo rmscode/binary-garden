@@ -71,7 +71,7 @@ Download [DietPi](https://dietpi.com/#download), extract the `img` file from the
 
 You have two options for setting up DietPi - guided and automatic. Guided setup is pretty self explanatory as it will walk you through all of the basic options once you boot the Pi with the SD card. Below are the steps for automatic setup.
 
-1. Leaving the SD card in your computer, navigate to the 126 MB boot partition on the SD card in Windows Explorer and open the `dietpi.txt` file.
+1. Leaving the SD card in your computer, navigate to the 126 MB boot partition on the SD card in Windows Explorer and open the `dietpi.txt` file in a text editor of your choice.
     - Note: Of the two that you will see, this is the FAT32 formatted partition. The other is formatted in a linux filesystem and is not accessible in Windows.
 2. Copy and paste the contents from below into `dietpi.txt`, adjust the following options, and save.
     - `AUTO_SETUP_GLOBAL_PASSWORD` - Affects "root" and "dietpi" users and is used by dietpi-software for installs which require a password (e.g. web dashboard). During first run setup, the password is removed from this file and instead encrypted and saved to root filesystem.
@@ -413,7 +413,7 @@ You have two options for setting up DietPi - guided and automatic. Guided setup 
     #------------------------------------------------------------------------------------------------------
     ```
 
-DietPi will now go through a one time setup process based on the options in the dietpi.txt file. This may take several minutes depending on the speed of the SD card. Once complete, make sure the Pi reboots and launches Chromium in kiosk mode.
+DietPi will now go through a one time setup process based on the options in the dietpi.txt file. This may take several minutes depending on the speed of the SD card and software chosen to install in `dietpi.txt`. Once complete, make sure the Pi reboots and launches Chromium in kiosk mode.
 
 You'll notice that the cursor is still visible. To hide it, we'll have to edit the autostart file:
 
@@ -427,3 +427,15 @@ If the display resolution wasn't properly detected, you can manually set it in D
 1. `sudo dietpi-config`
 2. Display Options > Display Resolution > 1080P : 1920 x 1080
 3. Exit DietPi-Config and reboot.
+
+### Disable Boot Messages
+
+If you prefer to not see the boot messages when the Pi is starting up, you can disable them by editing the `cmdline.txt` file. This file is located in the same FAT32 boot partition as `dietpi.txt`. You will edit this file the same way you did `dietpi.txt` - by opening it in a text editor on your computer.
+
+The contents of the file should look something like this:
+
+```text
+root=PARTUUID=127c511a-02 rootfstype=ext4 rootwait net.ifnames=0 logo.nologo console=tty3
+```
+
+Change the `console=tty1` to `console=tty3` and add `vt.global_cursor_default=0 quite loglevel=0 splash` to the end of the line.
