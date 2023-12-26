@@ -67,12 +67,23 @@ To connect to the Pi, download and run [vncviewer64](https://github.com/TigerVNC
 
 ### Installation and Intial Setup
 
-Download [DietPi](https://dietpi.com/#download), extract the `img` file from the `xz` archive with [7zip](https://www.7-zip.org/), and flash it to an SD card. I used the [Raspberry Pi Imager](https://www.raspberrypi.org/software/) to flash the image to the SD card, but something else like [Balena Etcher](https://www.balena.io/etcher/) should work as well.
+1. Download [DietPi](https://dietpi.com/#download) and extract the `img` file from the `xz` archive with [7zip](https://www.7-zip.org/).
+2. Flash the image to an SD card. I used the [Raspberry Pi Imager](https://www.raspberrypi.org/software/), but something else like [Balena Etcher](https://www.balena.io/etcher/) will work as well.
+3. Place the SD card in the Pi and power it on.
+4. Follow the prompts on the screen to be guided through the initial setup.
+   - Alternatively, you can follow the [section below](#automatic-base-installation) for an automated first-boot experience.
 
-You have two options for setting up DietPi - guided and automatic. Guided setup is pretty self explanatory as it will walk you through all of the basic options once you boot the Pi with the SD card. Below are the steps for automatic setup.
+DietPi is minimal by design, allowing you to choose what software you want ot install and use. Just run `dietpi-software` and install whichever DietPi optimized software you'd like. To make further changes to your configuration, you can run `dietpi-launcher`.
 
-1. Leaving the SD card in your computer, navigate to the 126 MB boot partition on the SD card in Windows Explorer and open the `dietpi.txt` file in a text editor of your choice.
-    - Note: Of the two that you will see, this is the FAT32 formatted partition. The other is formatted in a linux filesystem and is not accessible in Windows.
+### Automatic Base Installation
+
+DietPi offers the option for an automatic first boot installation. Normally, during the first system boot there is an installation procedure which sets up your system initially. These steps need an amount of user interaction which can be overcome with the automatic base installation option described in this section. The automatized setup is based on the configuration file `/boot/dietpi.txt`. It can be edited prior to the first boot and will be evaluated during the first boot procedure. On subsequent boot procedures, the options in the file are not evaluated any more.
+
+??? info "Editing the contents of `/boot/dietpi.txt`"
+
+    For the Raspberry Pi, the file is located on a FAT32 partition which can be accessed on a Windows PC. In this case, `dietpi.txt` can be found in its root.
+
+1. Leave the SD card in your computer, navigate to the FAT32 boot partition in Windows Explorer and open the `dietpi.txt` file in a text editor of your choice.
 2. Copy and paste the contents from below into `dietpi.txt`, adjust the following options, and save.
     - `AUTO_SETUP_GLOBAL_PASSWORD` - Affects "root" and "dietpi" users and is used by dietpi-software for installs which require a password (e.g. web dashboard). During first run setup, the password is removed from this file and instead encrypted and saved to root filesystem.
     - `SOFTWARE_CHROMIUM_AUTOSTART_URL` - You'll need to grab a device key from the portal and paste it in the URL here.
@@ -413,16 +424,16 @@ You have two options for setting up DietPi - guided and automatic. Guided setup 
     #------------------------------------------------------------------------------------------------------
     ```
 
-DietPi will now go through a one time setup process based on the options in the dietpi.txt file. This may take several minutes depending on the speed of the SD card and software chosen to install in `dietpi.txt`. Once complete, make sure the Pi reboots and launches Chromium in kiosk mode.
+DietPi will now go through a one time setup process based on the options in the `dietpi.txt` file. This may take several minutes depending on the speed of the SD card and software chosen to install in `dietpi.txt`. Once complete, make sure the Pi reboots and launches Chromium in kiosk mode.
 
 You'll notice that the cursor is still visible. To hide it, we'll have to edit the autostart file:
 
 1. Close Chromium by pressing `Alt+F4` to reveal the terminal and run the following command:
     - `sudo nano /var/lib/dietpi/dietpi-software/installed/chromium-autostart.sh`
 2. Add `-- -nocursor` to the end of the last line so it looks likes this:
-    - `exec "$STARTX" "$FP_CHROMIUM" $CHROMIUM_OPTS "${URL:-https://dietpi.com/}" -- -nocursor`  
+    - `exec "$STARTX" "$FP_CHROMIUM" $CHROMIUM_OPTS "${URL:-https://dietpi.com/}" -- -nocursor`
 
-If the display resolution wasn't properly detected, you can manually set it in DietPi-Config:
+If the display resolution wasn't properly detected, you can manually set it in `DietPi-Config`:
 
 1. `sudo dietpi-config`
 2. Display Options > Display Resolution > 1080P : 1920 x 1080
