@@ -1,6 +1,6 @@
 # Raspberry Pi
 
-!!! note "For information about displaying content from a Raspberry Pi, see [PiSignage](../software/pisignage.md)."
+!!! note "For information about displaying content from a Raspberry Pi, see [PiSignage](../software/pisignage.md) or the section on [DietPi](#diet-pi)."
 
 ---
 
@@ -71,7 +71,7 @@ To connect to the Pi, download and run [vncviewer64](https://github.com/TigerVNC
 2. Flash the image to an SD card. I used the [Raspberry Pi Imager](https://www.raspberrypi.org/software/), but something else like [Balena Etcher](https://www.balena.io/etcher/) will work as well.
 3. Place the SD card in the Pi and power it on.
 4. Follow the prompts on the screen to be guided through the initial setup.
-   - Alternatively, you can follow the [section below](#automatic-base-installation) for an automated first-boot experience.
+      - Alternatively, you can follow the [section below](#automatic-base-installation) for an automated first-boot experience.
 
 DietPi is minimal by design, allowing you to choose what software you want ot install and use. Just run `dietpi-software` and install whichever DietPi optimized software you'd like. To make further changes to your configuration, you can run `dietpi-launcher`.
 
@@ -88,7 +88,7 @@ DietPi offers the option for an automatic first boot installation. Normally, dur
     - `AUTO_SETUP_GLOBAL_PASSWORD` - Affects "root" and "dietpi" users and is used by dietpi-software for installs which require a password (e.g. web dashboard). During first run setup, the password is removed from this file and instead encrypted and saved to root filesystem.
     - `SOFTWARE_CHROMIUM_AUTOSTART_URL` - You'll need to grab a device key from the portal and paste it in the URL here.
 
-??? info "dietpi.txt"
+??? abstract "dietpi.txt"
 
     ```txt
     # IMPORTANT:
