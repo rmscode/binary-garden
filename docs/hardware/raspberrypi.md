@@ -450,3 +450,29 @@ root=PARTUUID=127c511a-02 rootfstype=ext4 rootwait net.ifnames=0 logo.nologo con
 ```
 
 Change the `console=tty1` to `console=tty3` and add `vt.global_cursor_default=0 quite loglevel=0 splash` to the end of the line.
+
+## Hardening
+
+In an attempt to "harden" a raspberry Pi deployed in the wild where it may be easily accessed, like behind a TV, there are few things you can do. Keep in mind that any of the methods listed below are NOT bullet proof. A highly motivated bad actor will still do whatever they can to gain access to your systems.
+
+### Disable USB Ports
+
+Cutting power from the USB ports will prevent a bad actor from being able to attach USB devices like a keyboard/mouse.
+
+Install [uhubctl](https://github.com/mvp/uhubctl):
+
+```bash
+sudo apt install -y uhubctl
+```
+
+Power off all USB ports:
+
+```bash
+sudo uhubctl -l 1-1 -p 2 -a 0
+```
+
+??? info "Power is restored after a reboot"
+
+    We need to come up with a method to power off the USB ports at the end of each boot sequence. Thankfully, thats pretty easy to script using cronjobs or DietPi's autostart scripts. 
+
+    In our envonriment, we use DietPi to launch chromium in kiosk mode. Adding `sudo uhubctl -l 1-1 -p 2 -a 0` the `/var/lib/dietpi/dietpi-software/installed/chromium-autostart.sh` is easy enough.
