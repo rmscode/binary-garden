@@ -77,18 +77,18 @@ DietPi is minimal by design, allowing you to choose what software you want ot in
 
 ### Automatic Base Installation
 
-DietPi offers the option for an automatic first boot installation. Normally, during the first system boot there is an installation procedure which sets up your system initially. These steps need an amount of user interaction which can be overcome with the automatic base installation option described in this section. The automatized setup is based on the configuration file `/boot/dietpi.txt`. It can be edited prior to the first boot and will be evaluated during the first boot procedure. On subsequent boot procedures, the options in the file are not evaluated any more.
+DietPi offers the option for an automatic first boot installation which can overcome the manual interaction required during normal setup. The automatized setup is based on the configuration file `/boot/dietpi.txt`. It can be edited prior to the first boot and will be evaluated during the first boot procedure. On subsequent boot procedures, the options in the file are no longer evaluated. The main benefit to this method is the ability to create a "desired state" using `dietpi.txt` as a declarative model.
 
 ??? info "Editing the contents of `/boot/dietpi.txt`"
 
     For the Raspberry Pi, the file is located on a FAT32 partition which can be accessed on a Windows PC. In this case, `dietpi.txt` can be found in its root.
 
-1. Leave the SD card in your computer, navigate to the FAT32 boot partition in Windows Explorer and open the `dietpi.txt` file in a text editor of your choice.
+1. After flashing, leave the SD card in your computer, navigate to the FAT32 boot partition in Windows Explorer and open the `dietpi.txt` file in a text editor of your choice.
 2. Copy and paste the contents from below into `dietpi.txt`, adjust the following options, and save.
     - `AUTO_SETUP_GLOBAL_PASSWORD` - Affects "root" and "dietpi" users and is used by dietpi-software for installs which require a password (e.g. web dashboard). During first run setup, the password is removed from this file and instead encrypted and saved to root filesystem.
     - `SOFTWARE_CHROMIUM_AUTOSTART_URL` - You'll need to grab a device key from the portal and paste it in the URL here.
 
-??? abstract "dietpi.txt"
+??? abstract "dietpi.txt - Autostart Chromium in kiosk mode"
 
     ```txt
     # IMPORTANT:
