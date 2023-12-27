@@ -453,7 +453,7 @@ Change the `console=tty1` to `console=tty3` and add `vt.global_cursor_default=0 
 
 ## Hardening
 
-In an attempt to "harden" a raspberry Pi deployed in the wild where it may be easily accessed, like behind a TV, there are few things you can do. Keep in mind that any of the methods listed below are NOT bullet proof. A highly motivated bad actor will still do whatever they can to gain access to your systems.
+In an attempt to "harden" a raspberry Pi deployed in the wild that may be easily accessed, like behind a lobby TV, there are few things you can do. Keep in mind that any of the methods listed below are NOT bullet proof. A highly motivated bad actor will still do whatever they can to gain access to your systems.
 
 ### Disable USB Ports
 
@@ -471,7 +471,7 @@ Power off all USB ports:
 sudo uhubctl -l 1-1 -p 2 -a 0
 ```
 
-??? info "Power is restored after a reboot"
+??? note "Note: Power will be restored after a reboot."
 
     We need to come up with a method to power off the USB ports at the end of each boot sequence. Thankfully, thats pretty easy to script using cronjobs or DietPi's autostart scripts. 
 
