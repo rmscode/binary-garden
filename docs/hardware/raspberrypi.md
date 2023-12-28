@@ -59,15 +59,18 @@ To connect to the Pi, download and run [vncviewer64](https://github.com/TigerVNC
 
 ## Hardware Watchdog
 
-The Raspberry Pi features a hardware watchdog that can automatically restasrt the system when the kernel panics (crashes).
+The Raspberry Pi features a hardware watchdog that can automatically restart the system when the kernel panics (crashes).
 
 Enable the watchdog timer:
 
 ```bash
-sudo su
-echo 'dtparam=watchdog=on' >> /boot/config.txt
+sudo su #(1)!
+echo 'dtparam=watchdog=on' >> /boot/config.txt #(2)!
 reboot
 ```
+
+1. The `su` (short for substitute or switch user) utility allows you to run commands with another user’s privileges, by default the root user.
+2. FYI: `echo '<string>' >> <path_to_file>` appends the given string to the given file on a new line.
 
 Update and install watchdog:
 
@@ -76,21 +79,19 @@ sudo apt-get update
 sudo apt-get install watchdog
 ```
 
-Configure the timeouts:
+Configure the timeouts and watchdog refresh intervals:
 
 ```bash
 sudo su
 echo 'watchdog-device = /dev/watchdog' >> /etc/watchdog.conf
 echo 'watchdog-timeout = 15' >> /etc/watchdog.conf
 echo 'max-load-1 = 24' >> /etc/watchdog.conf
+echo 'RuntimeWatchdogSec=10' >> /etc/systemd/system.conf #(1)!
+echo 'ShutdownWatchdogSec=10min' >> /etc/systemd/system.conf #(2)!
 ```
 
-Add the following lines to `/etc/systemd/system.conf`:
-
-- `RuntimeWatchdogSec=10`
-  - *Refreshes the watchdog every 10 seconds and if the refresh fails, power cycle the system*
-- `ShutdownWatchdogSec=10min`
-  - *On shutdown, if the system takes longer than 10 minutes to reboot, power cycle the system*
+1. Refreshes the watchdog every 10 seconds and if the refresh fails, power cycle the system.
+2. On shutdown, if the system takes longer than 10 minutes to reboot, power cycle the system.
 
 Enable the service:
 
