@@ -57,6 +57,55 @@ To connect to the Pi, download and run [vncviewer64](https://github.com/TigerVNC
 
 [*Reference*](https://the-eg.github.io/2022/01/22/tigervnc-server-rpi.html)
 
+## Hardware Watchdog
+
+The Raspberry Pi features a hardware watchdog that can automatically restasrt the system when the kernel panics (crashes).
+
+Enable the watchdog timer:
+
+```bash
+sudo su
+echo 'dtparam=watchdog=on' >> /boot/config.txt
+reboot
+```
+
+Update and install watchdog:
+
+```bash
+sudo apt-get update
+sudo apt-get install watchdog
+```
+
+Configure the timeouts:
+
+```bash
+sudo su
+echo 'watchdog-device = /dev/watchdog' >> /etc/watchdog.conf
+echo 'watchdog-timeout = 15' >> /etc/watchdog.conf
+echo 'max-load-1 = 24' >> /etc/watchdog.conf
+```
+
+Add the following lines to `/etc/systemd/system.conf`:
+
+- `RuntimeWatchdogSec=10`
+  - *Refreshes the watchdog every 10 seconds and if the refresh fails, power cycle the system*
+- `ShutdownWatchdogSec=10min`
+  - *On shutdown, if the system takes longer than 10 minutes to reboot, power cycle the system*
+
+Enable the service:
+
+```bash
+sudo systemctl enable watchdog
+sudo systemctl start watchdog
+sudo systemctl status watchdog
+```
+
+!!! tip "If you want to test the watchdog, you can "fork bomb" the system to make the kernel panic."
+
+    ```bash
+    sudo bash -c ':(){ :|:& };:'
+    ```
+
 ## Diet Pi
 
 !!! info
