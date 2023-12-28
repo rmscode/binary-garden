@@ -518,8 +518,10 @@ sudo apt install -y uhubctl
 Power off all USB ports:
 
 ```bash
-sudo uhubctl -l 1-1 -p 2 -a 0
+sudo uhubctl -l 1-1 -p 2 -a 0 #(1)!
 ```
+
+1. If you need to power the USB ports back on for any reason, you can change `-a 0` to `-a 1`.
 
 ??? note "Note: Power will be restored after a reboot."
 
