@@ -500,7 +500,7 @@ The contents of the file should look something like this:
 root=PARTUUID=127c511a-02 rootfstype=ext4 rootwait net.ifnames=0 logo.nologo console=tty3
 ```
 
-Change the `console=tty1` to `console=tty3` and add `vt.global_cursor_default=0 quite loglevel=0 splash` to the end of the line.
+Change the `console=tty1` to `console=tty3` and add `vt.global_cursor_default=0 quiet loglevel=0 splash` to the end of the line.
 
 ## Hardening
 
