@@ -61,6 +61,13 @@ To connect to the Pi, download and run [vncviewer64](https://github.com/TigerVNC
 
 The Raspberry Pi features a hardware watchdog that can automatically restart the system when the kernel panics (crashes).
 
+Install watchdog:
+
+```bash
+sudo apt-get update
+sudo apt-get install watchdog
+```
+
 Enable the watchdog timer:
 
 ```bash
@@ -71,13 +78,6 @@ reboot
 
 1. The `su` (short for substitute or switch user) utility allows you to run commands with another user’s privileges, by default the root user.
 2. FYI: `echo '<string>' >> <path_to_file>` appends the given string to the given file on a new line.
-
-Update and install watchdog:
-
-```bash
-sudo apt-get update
-sudo apt-get install watchdog
-```
 
 Configure the timeouts and watchdog refresh intervals:
 
@@ -137,6 +137,7 @@ DietPi offers the option for an automatic first boot installation which can over
 2. Copy and paste the contents from below into `dietpi.txt`, adjust the following options, and save.
     - `AUTO_SETUP_GLOBAL_PASSWORD` - Affects "root" and "dietpi" users and is used by dietpi-software for installs which require a password (e.g. web dashboard). During first run setup, the password is removed from this file and instead encrypted and saved to root filesystem.
     - `SOFTWARE_CHROMIUM_AUTOSTART_URL` - You'll need to grab a device key from the portal and paste it in the URL here.
+    - `AUTO_SETUP_NET_HOSTNAME` - Sets the host name
 
 ??? abstract "dietpi.txt - Autostart Chromium in kiosk mode"
 
@@ -181,7 +182,7 @@ DietPi offers the option for an automatic first boot installation which can over
     AUTO_SETUP_DHCP_TO_STATIC=0
 
     # Hostname
-    AUTO_SETUP_NET_HOSTNAME=DietPi
+    AUTO_SETUP_NET_HOSTNAME=ChangeMe
 
     # Force Ethernet speeds: 0=automatic speed | 10 = 10 Mbit/s | 100 = 100 Mbit/s etc.
     # - Use this when your Ethernet adapter has an unstable 1 Gbit/s link.
@@ -523,7 +524,7 @@ sudo uhubctl -l 1-1 -p 2 -a 0 #(1)!
 
 1. If you need to power the USB ports back on for any reason, you can change `-a 0` to `-a 1`.
 
-??? note "Note: Power will be restored after a reboot."
+!!! note "Note: Power *will* be restored after a reboot."
 
     We need to come up with a method to power off the USB ports at the end of each boot sequence. Thankfully, thats pretty easy to script using cronjobs or DietPi's autostart scripts. 
 
