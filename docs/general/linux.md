@@ -62,25 +62,85 @@ A collection of commonly used commands/task in various linuz operating systems. 
 
 ## Compression Commands
 
+| Command                    | Description
+| -------------------------- | -----------
+| `tar cf my_dir.tar my_dir` | Create an uncompressed tar archive
+| `tar cfz my_dir.tar my_dir`| Create a tar archive with gzip compression
+| `gzip file`	             |  Compress a file with gzip compression
+| `tar xf file`	             |  Extract the contents of any type of tar archive
+| `gunzip file.gz`	         |  Decompress a file that has gzip compression
 
 ## Networking Commands
 
+| Command                | Description
+| ---------------------- | -----------
+| `ip a`	             | Show IP address and other information for all active interfaces
+| `ip r`	             | Show IP address of default gateway
+| `cat /etc/resolv.conf` | See what DNS servers your system is configured to use
+| `ping`	             | Send a ping request to a network device
+| `traceroute`	         | Trace the network path taken to a device
+| `ssh`	                 | Login to a remote device with SSH
 
 ## File Permissions and Ownership
 
+| Command            | Description
+| ------------------ | -----------
+| `chmod`            | Change the file permissions for a file or directory
+| `chown`            | Change the owner of a file or directory
+| `chgrp`            | Change the group of a file or directory
 
 ## User Management Commands
 
+| Command            | Description
+| ------------------ | -----------
+| `useradd`          | Low level utility for adding new user accounts
+| `adduser`          | High level utility for adding new user accounts
+| `deluser`          | Delete a user account
+| `usermod`          | Modify a user account
+| `groupadd`         | Create a new group
+| `delgroup`         | Delete a group
 
 ## System Resource Management Commands
 
+| Command                   | Description
+| ------------------------- | -----------
+| `free -m`	                | See how much memory is in use and free
+| `top`                     | See a list of processes and their resource usage
+| `htop`                    | A more human readable and interactive version of top
+| `nice`                    | Start a new process with a specified priority
+| `renice`                  | Change the nice value of a currently running process
+| `ps aux` OR `ps -ef`      | View all of the currently running processes
+| `kill` or `killall`       | Terminate a process
+| `kill -9` or `killall -9` | Terminate a process with SIGKILL signal
+| `bg`                      | Send a task to the background
+| `fg`                      | Bring a task to the foreground
 
 ## Environment Variable Commands
 
-
-## Kernel Information and Module Management
-
+| Command                                | Description
+| -------------------------------------- | -----------
+| `printenv` or `printenv variable_name` | List all environment variables on a Linux system, or a specific one
+| `whereis` and `which`                  | Find where a command in PATH is located
+| `export MY_SITE="linuxconfig.org"`     | Set a temporary environment variable (just an example, but use the same syntax)
+| `echo $VARIABLE`                       | Display the value of a variable
+| `unset`                                | Remove a variable
 
 ## Hardware Information Commands
 
-
+| Command                        | Description
+| ------------------------------ | -----------
+| `lspci`                        | See general information about host bridge, VGA controller, ethernet controller, USB controller, SATA controller, etc.
+| `dmidecode`                    | See some information about BIOS, motherboard, chassis, etc.
+| `cat /proc/cpuinfo`            | Retrieve processor type, socket, speed, configured flags, etc.
+| `x86info or x86info -a`        | See information about the CPU
+| `cat /proc/meminfo`            | See detailed information about system RAM
+| `lshw`                         | List all hardware components and see their configuration details
+| `lshw -C memory -short`        | Detect number of RAM slots used, speed, and size
+| `hwinfo`                       | List details for all hardware, including their device files and configuration options
+| `biosdecode`                   | Get some general information about your system’s BIOS
+| `dmidecode -s bios-vendor`     | Retrieve the name of your BIOS vendor with this simple command
+| `lsusb`                        | Get a list of USB devices plugged into your system
+| `ls -la /dev/disk/by-id/usb-*` | Retrieve a list of USB device files
+| `hdparm -I /dev/sdx`           | Get information about your hard drive’s make, model, serial number, firmware version, and configuration
+| `hdparm -tT /dev/sdx`	         | Show the speed of an installed hard drive – including cached reads and buffered disk reads
+| `wodim --devices`	             | Locate CD or DVD device file
