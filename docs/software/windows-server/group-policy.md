@@ -1,5 +1,7 @@
 # Group Policy
 
+Group Policy is an infrastructure that allows you to specify managed configurations for users and computers through Group Policy settings and Group Policy Preferences. To configure Group Policy settings that affect only a local computer or user, you can use the Local Group Policy Editor. You can manage Group Policy settings and Group Policy Preferences in an Active Directory Domain Services (AD DS) environment through the Group Policy Management Console (GPMC). Group Policy management tools also are included in the Remote Server Administration Tools pack to provide a way for you to administer Group Policy settings from your desktop.
+
 ??? info "Group Policy Terminology"
 
     `Group Policy Objects (GPOs)`
@@ -26,50 +28,49 @@
 
     :     The GPO computer configuration policies apply to the computer, not the user.
 
-## Group Policy Process Order
+## Processing Order and Precedence
 
 It is very important to understand the order in which group policies are applied. It is even more important to understand the order of precedence. This will be critical in group policy design and troubleshooting.
 
-### GPO Processing Order
-
-1. Local Group Policy Object &larr; **LEAST precedence**
+1. Local Group Policy Object &larr; *Processed **FIRST** with **LEAST** precedence*
 2. GPO linked to Site
 3. GPO linked to the domain
-4. GPO linked to an Organizational Unit &larr; **MOST precedence**
+4. GPO linked to an Organizational Unit &larr; *Processed **LAST** with **MOST** precedence*
 
 !!! info
 
     The GPO that applies last has the most precedence. What this means is if two policies have the same settings, the GPO with the most precedence will be applied. This is because it is applied last and will overwrite the other policy settings.
 
-### Example
+!!! example "Example Scenario"
 
-We have two GPOs, the name and policy settings are below.
+    We have two GPOs, the name and policy settings are below.
 
-1. **User – MSEdge Settings**: This GPO sets the home page to google.com. This GPO is applied to the Domain.
-2. **User – MSEdge Settings 2**: This GPO sets the home page to bing.com. This GPO is applied to an OU.
+    1. **User – MSEdge Settings 1**: This GPO sets the home page to google.com. This GPO is applied to the Domain.
+    2. **User – MSEdge Settings 2**: This GPO sets the home page to bing.com. This GPO is applied to an OU.
 
-!!! example
-      - Forest: ad.northeastprecast.com
-       - Domains
-         - ad.northeastprecast.com
-           - **[GPO]User MSEdge Settings** &larr; 
-           - NEP Computers
-           - NEP Groups
-           - NEP Users
-             - **[GPO]User MSEdge Settings 2** &larr; 
-             - Accounting
-             - HR
-             - Inactive
-             - IT
-             -  . . .
+    ---
 
-Can you guess which homepage will be applied?
+    - Forest: ad.northeastprecast.com
+      - Domains
+        - ad.northeastprecast.com
+          - **[GPO]User MSEdge Settings 1** &larr; 
+          - NEP Computers
+          - NEP Groups
+          - NEP Users
+            - **[GPO]User MSEdge Settings 2** &larr; 
+            - Accounting
+            - HR
+            - Inactive
+            - IT
+            -  . . .
 
-The "User - MSEdge Settings 2" GPO has the most precedence because it was applied last, so the answer is bing.com.
+    ??? question "Can you guess which homepage will be applied? (Expand for answer)"
 
-!!!note
+        The "User MSEdge Settings 2" GPO takes precedence because it was applied last, so the answer is bing.com.
 
-    So remember, for any GPOs that have conflicting policy settings, the GPO with the most precedence will win.
+!!! note
+
+    Remember, for any GPOs that have conflicting policy settings, the GPO with the most precedence will win.
 
 ## Managing Group Policies
 
@@ -108,7 +109,7 @@ When you select a GPO, the details will be displayed on the right side of the sc
 - **Settings**: Displays the policies configured by the GPO.
 - **Delegation**: Lists the permissions of the GPO.
 
-### To create a GPO
+### Create a GPO
 
 1. Right-Click on an OU and select "Create a GPO in this domain, link it here"
 2. Give the GPO a name
@@ -117,28 +118,26 @@ When you select a GPO, the details will be displayed on the right side of the sc
 
 ## Group Policy Preferences
 
-Group policy preference are ised to an initial configuration but allows user to change them. For exampl, a GPO preference can create a shortcut on the user's desktop but allow the user to delete it.
+Group policy preferences are comprised of initial configurations that can be changed by an end userr. For example, a GPO preference can create a shortcut on the user's desktop but allow the user to delete it if they want to. GPO preferences differ from policy settings because users cannot modify the policy settings.
 
-GPO preferences differ from policy settings because users cannot modify the policy settins.
-
-### GPO Preferences are primarily used for things like
+GPO preferences are typically used for things like:
 
 - Mapping network drives
-- Installing software
-- Installing printers
+- Installing helpful, but not required software
+- Wallpaper/screen saver settings
 - Desktop shortcuts
 
 ### Item-Level Targeting
 
-GPO preferences include a filtering option called "Item-Level targeting". This gives you granular control ver what objects (users or computers) the GPO applies to.
+GPO preferences include a filtering option called "Item-Level targeting". This gives you granular control over what objects (users or computers) the GPO applies to.
 
-### Examples:
+Examples:
 
 - Tartget computers with a specific OS
 - Target computers by IP
 - Target a security group
 
-### To create a GPO using preference and Item-Level targeting
+### Create a GPO preference with Item-Level targeting
 
 In this example, we'll create a new GPO preference that adds a desktop shortcut. We'll also use item-level targeting to apply the GPO to a security group.
 
@@ -150,18 +149,18 @@ In this example, we'll create a new GPO preference that adds a desktop shortcut.
 6. Select "New Item" > "Security group"
 7. Select the group you want to target and click OK
 
-## Group Policy Filtering
+## Group Policy Security Filtering
 
 Group policy security filtering allows you to control what users and computers a GPO is applied to. Each GPO has a security filtering section in the "Scope" tab and by default, all authenticated users have the right to apply the GPO.
 
-### How to exclude users from a GPO using security filtering
+### Exclude users from a GPO using security filtering
 
 1. Select a GPO and click the "Delegation" tab on the right.
 2. Click the "Advanced..." button in the lower right of the window.
 3. Click the "Add..." button and add your security group.
 4. Under permissions, select "Deny" for "apply group policy"
 
-### How to apply a GPO to specific Users or Computers with security filtering
+### Apply a GPO to specific Users or Computers with security filtering
 
 1. Create a security group for the users or computers
 2. Go to the desired GPO and then Security Filtering (Remember, bottom pane of the "Scope" tab when you click on the GPO)
@@ -209,7 +208,7 @@ This GPO should only be used for account policy settings, password policy, accou
 
     When you put multiple GPO settings into the default domain policy it becomes very difficult to troubleshoot and control GPO settings. It can also impact performance if the GPO has too many settings and every user and computer has to process them. It is best to use small GPOs (see tip #12) than to stuff everything into one big GPO.
 
-## 2. Do Not Modify the Default Domain Controller Policy
+### 2. Do Not Modify the Default Domain Controller Policy
 
 This GPO should only contain the User Rights Assignment Policy and Audit Policy. Any other settings to the Domain Controllers should be set in a separate GPO.
 
@@ -222,24 +221,24 @@ This GPO should only contain the User Rights Assignment Policy and Audit Policy.
 A good OU design makes it easier to apply and troubleshoot group policy. It is best to create an OU for computers and a separate OU for users. Then create sub-OUs on how you want to manage your objects. Its common to organize objects by department and functionality.
 
 !!! example
-            >    - Forest: ad.northeastprecast.com
-            >    - Domains
-            >        - ad.northeastprecast.com
-            >        - NEP Computers
-            >        - NEP Groups
-            >        - NEP Users
-            >            - Accounting
-            >            - HR
-            >            - Inactive
-            >            - IT
-            >            - Legal
-            >            - Management
-            >            - Marketing
-            >            - Operations
-            >            - PR
-            >            - Purchasing
-            >            - test-build1
-            >            - test-build2
+   - Forest: ad.northeastprecast.com
+     - Domains
+        - ad.northeastprecast.com
+        - NEP Computers
+        - NEP Groups
+        - NEP Users
+            - Accounting
+            - HR
+            - Inactive
+            - IT
+            - Legal
+            - Management
+            - Marketing
+            - Operations
+            - PR
+            - Purchasing
+            - test-build1
+            - test-build2
 
 !!! tip
 
@@ -250,32 +249,32 @@ A good OU design makes it easier to apply and troubleshoot group policy. It is b
 The only GPO that should be set at the domain (root) level is the Default Domain Policy. Anything set at the domain level will get applied to all user and computer objects. This could lead to all kinds of settings getting applied to objects that you don’t want. It’s better to apply the policies at a more granular level.
 
 !!! example
-            >  - Forest: ad.northeastprecast.com
-            >    - Domains
-            >      - ad.northeastprecast.com
-            >      - [GPO]Some-Policy &larr; **Nope, don't do this**
-            >        - NEP Computers
-            >        - NEP Groups
-            >        - NEP Users
-            >        - . . .
+   - Forest: ad.northeastprecast.com
+    - Domains
+      - ad.northeastprecast.com
+      - [GPO]Some-Policy &larr; **Nope, don't do this**
+        - NEP Computers
+        - NEP Groups
+        - NEP Users
+        - . . .
 
 ### 5. Apply GPO's to The Root of an OU
 
 Applying GPOs at the root of an OU will allow the sub-OUs to inherit these policies. This way you don’t need to link a policy to each individual OU.
 
 !!! example
-            >  - Forest: ad.northeastprecast.com
-            >    - Domains
-            >      - ad.northeastprecast.com
-            >        - NEP Computers
-            >        - NEP Groups
-            >        - NEP Users
-            >          - [GPO]User MSEdge Settings &larr; **Link to the root of the OU. Sub-OUs will inherit.**
-            >          - Accounting
-            >          - HR
-            >          - Inactive
-            >          - IT
-            >          -  . . .
+   - Forest: ad.northeastprecast.com
+    - Domains
+      - ad.northeastprecast.com
+        - NEP Computers
+        - NEP Groups
+        - NEP Users
+          - [GPO]User MSEdge Settings &larr; **Link to the root of the OU. Sub-OUs will inherit.**
+          - Accounting
+          - HR
+          - Inactive
+          - IT
+          -  . . .
 
 ### If you want to exclude OUs or a group of users you have a few options
 
@@ -302,10 +301,11 @@ If a GPO is linked to an OU and we don’t want it to be, delete it instead of d
 Being able to quickly identify what a GPO is for based on the name will make group policy administration much easier. Giving the GPOs a generic name like “laptop settings” is too generic and will confuse people.
 
 !!! example "Examples"
-      - [User]Browser-Settings
-      - [User]Office365-Settings
-      - [Computer]Screen-Lock-On
-      - [Computer]Install-Adobe-Acrobat
+
+   - [User]Browser-Settings
+   - [User]Office365-Settings
+   - [Computer]Screen-Lock-On
+   - [Computer]Install-Adobe-Acrobat
 
 ### 9. Speed Up GPO Processing by Disabling Unused Computer and User Configurations
 
@@ -334,17 +334,18 @@ Group policy can get way out of control if you let all your administrators make 
 It can be easy to fall into the trap of stuffing everything into one GPO. There really is no reason to do this, many small GPOs do not affect performance. Small GPOs make troubleshooting, managing, designing, and implementing 10x easier.
 
 !!! example "Examples of ways to split up GPOs into smaller policies"
-      - Browser Settings
-      - Security Settings
-      - Power Settings
-      - Microsoft Office Settings
-      - Network Settings
-      - Drive Mappings
-      - Power Settings
-      - Bitlocker
-      - Applocker
-      - Firewall rules
-      - and so on...
+
+   - Browser Settings
+   - Security Settings
+   - Power Settings
+   - Microsoft Office Settings
+   - Network Settings
+   - Drive Mappings
+   - Power Settings
+   - Bitlocker
+   - Applocker
+   - Firewall rules
+   - and so on...
 
 ### 13. Best Practices for Group Policy Performance
 
