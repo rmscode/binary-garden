@@ -135,9 +135,14 @@ DietPi offers the option for an automatic first boot installation which can over
 
 1. After flashing, leave the SD card in your computer, navigate to the FAT32 boot partition in Windows Explorer and open the `dietpi.txt` file in a text editor of your choice.
 2. Copy and paste the contents from below into `dietpi.txt`, adjust the following options, and save.
-    - `AUTO_SETUP_GLOBAL_PASSWORD` - Affects "root" and "dietpi" users and is used by dietpi-software for installs which require a password (e.g. web dashboard). During first run setup, the password is removed from this file and instead encrypted and saved to root filesystem.
-    - `SOFTWARE_CHROMIUM_AUTOSTART_URL` - You'll need to grab a device key from the portal and paste it in the URL here.
-    - `AUTO_SETUP_NET_HOSTNAME` - Sets the host name
+    - `AUTO_SETUP_GLOBAL_PASSWORD` 
+      - Affects "root" and "dietpi" users and is used by dietpi-software for installs which require a password (e.g. web dashboard). During first run setup, the password is removed from this file and instead encrypted and saved to root filesystem.
+    - `SOFTWARE_CHROMIUM_AUTOSTART_URL`
+      - The URL you want Chromium to open on start. You'll need to grab a device key from the portal and paste it in the URL here.
+    - `AUTO_SETUP_NET_HOSTNAME` 
+      - Sets the host name
+    - `AUTO_SETUP_INSTALL_SOFTWARE_ID`
+      - Use this option for the software packages you want installed during setup (each on a new line). List of software IDs [here](https://github.com/MichaIng/DietPi/wiki/DietPi-Software-list).
 
 ??? abstract "dietpi.txt - Autostart Chromium in kiosk mode"
 
