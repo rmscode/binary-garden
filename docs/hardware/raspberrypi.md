@@ -1,6 +1,8 @@
 # Raspberry Pi
 
-!!! note "For information about displaying content from a Raspberry Pi, see [PiSignage](../software/pisignage.md). As of 12/22/23, we are using [DietPi](../hardware/raspberrypi.md#diet-pi) and Chromium in kiosk mode. This allows us to update the OS and Chromium. Something we had to wait on the PiSignage developers for. This was a problem because we moved from a .NET MAUI app to Blazor WASM (for easier development) and it wouldn't work with the PiSignage build we had.
+!!! note "For information about displaying content from a Raspberry Pi, see [PiSignage](../software/pisignage.md). As of 12/22/23, we are using [DietPi](../hardware/raspberrypi.md#diet-pi) and Chromium in kiosk mode. This allows us to update the OS and Chromium. Something we had to wait on the PiSignage developers for. This was a problem because we moved from a .NET MAUI app to Blazor WASM (for easier development) and it wouldn't work with the PiSignage build we had."
+
+!!! tip "For a list of common Linux commands, see the [Linux Cheat Sheet](../general/linux-cheat-sheet.md)."
 
 ---
 
