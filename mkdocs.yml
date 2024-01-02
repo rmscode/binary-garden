@@ -103,7 +103,11 @@ nav:
   - Software: 
     - software/index.md
     - software/pisignage.md
-    - Windows Server: software/windows-server.md
+    - Windows Server OS: 
+      - software/windows-server/index.md
+      - software/windows-server/active-directory.md
+      - software/windows-server/dedup.md
+      - software/windows-server/group-policy.md
   - SOP: 
     - sop/index.md
   - Notes: 
