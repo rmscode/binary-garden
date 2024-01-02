@@ -68,7 +68,7 @@ sudo apt-get update
 sudo apt-get install watchdog
 ```
 
-Enable the hardware watchdog timer:
+### Enable the hardware watchdog timer
 
 ```bash
 sudo su #(1)!
@@ -79,7 +79,7 @@ reboot
 1. The `su` (short for substitute or switch user) utility allows you to run commands with another user’s privileges, by default the root user.
 2. FYI: `echo '<string>' >> <path_to_file>` appends the given string to the given file on a new line.
 
-Configure the timeouts and watchdog refresh intervals:
+### Configure the timeouts and watchdog refresh intervals
 
 ```bash
 sudo su
@@ -102,7 +102,7 @@ echo 'ShutdownWatchdogSec=10min' >> /etc/systemd/system.conf #(5)!
     
     For example, on a 4-core Raspberry Pi, you might set `max-load-1` to 5.0 or 6.0. These values indicate that the system is overloaded, because the system load is higher than the number of cores.
 
-Enable the service:
+### Enable and check the service
 
 ```bash
 sudo systemctl enable watchdog
