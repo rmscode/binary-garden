@@ -81,26 +81,27 @@ The Group Policy Management Console (GPMC) is used to manage group policy. It is
 3. **Group Policy Objects**: Lists all GPOs, linked and unlinked.
 
 !!! example
-      - Forest: ad.northeastprecast.com
-       - **Domains** &larr; **(1)**
-         - ad.northeastprecast.com
-           - [GPO]Default Domain Policy
-           - NEP Computers
-           - NEP Groups
-           - NEP Users
-             - **[GPO]User MSEdge Settings** &larr; **(2)**
-             - Accounting
-             - HR
-             - Inactive
-             - IT
-             - . . .
-          - **Group Policy Objects** &larr; **(3)**
-              - [GPO] Default Domain Policy
-              - [GPO] User MSEdge Settings
-              - [GPO] Another Policy
-              - [GPO] . . .
-          - WMI Filters
-          - Starter GPOs
+
+   - Forest: ad.northeastprecast.com
+     - **Domains** &larr; **(1)**
+       - ad.northeastprecast.com
+        - [GPO]Default Domain Policy
+        - NEP Computers
+        - NEP Groups
+        - NEP Users
+          - **[GPO]User MSEdge Settings** &larr; **(2)**
+          - Accounting
+          - HR
+          - Inactive
+          - IT
+          - . . .
+       - **Group Policy Objects** &larr; **(3)**
+           - [GPO] Default Domain Policy
+           - [GPO] User MSEdge Settings
+           - [GPO] Another Policy
+           - [GPO] . . .
+       - WMI Filters
+       - Starter GPOs
 
 When you select a GPO, the details will be displayed on the right side of the screen.
 
@@ -221,6 +222,7 @@ This GPO should only contain the User Rights Assignment Policy and Audit Policy.
 A good OU design makes it easier to apply and troubleshoot group policy. It is best to create an OU for computers and a separate OU for users. Then create sub-OUs on how you want to manage your objects. Its common to organize objects by department and functionality.
 
 !!! example
+
    - Forest: ad.northeastprecast.com
      - Domains
         - ad.northeastprecast.com
