@@ -82,7 +82,7 @@ sudo chown -R <YourUsername>:users data/
 
 ## API
 
-https://piathome.com/apidocs
+<https://piathome.com/apidocs>
 
 <span style="color:lightgreen">**POST**</span> `http://<PlayerIP>:8000/api/*`
 
