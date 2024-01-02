@@ -87,8 +87,9 @@ nav:
   - Home: index.md
   - General: 
     - general/index.md
+    - general/wsl.md
     - Cheat Sheets:
-      - general/linux.md
+      - general/linux-cheat-sheet.md
   - Hardware: 
     - hardware/index.md
     - Dell EMC: 
