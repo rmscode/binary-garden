@@ -1,5 +1,33 @@
 # Windows Subsystem for Linux (WSL)
 
+## How to Install Linux on Windows with WSL
+
+### Prerequisites
+
+- Windows 10 (Build 19041 and higher) or Windows 11
+
+If you are on earlier versions please see [the manual install page](https://learn.microsoft.com/en-us/windows/wsl/install-manual).
+
+### Install WSL command
+
+Everything you need to run WSL can be accomplished with a single command in an elevated PowerShell or Command Prompt.
+
+```ps
+wsl --install
+```
+
+This will enable the features necessary to run WSL and install the Ubuntu distro.
+
+### Change the default Linux Distro Installed
+
+By default, Ubuntu wil be installed. This can be changed with the `-d` flag.
+
+```ps
+wsl --install -d <distro name>
+```
+
+To see a list of available distros, enter `wsl --list --online`.
+
 ## Accessing a Linux File System Format on Windows from WSL
 
 If you find yourself needing to access the contents of a drive formatted in a Linux specific file system, but don't have immediate access to a computer running Linux, you can mount the media in WSL with this command - `sudo mount -t drvfs D: /mnt/d`.
