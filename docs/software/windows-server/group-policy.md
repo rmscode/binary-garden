@@ -80,28 +80,28 @@ The Group Policy Management Console (GPMC) is used to manage group policy. It is
 2. **Linked GPOs**: If an OU has a linked policy, it will be listed under that OU.
 3. **Group Policy Objects**: Lists all GPOs, linked and unlinked.
 
-!!! example
+!!! example "Example"
 
-   - Forest: ad.northeastprecast.com
-     - **Domains** &larr; **(1)**
-       - ad.northeastprecast.com
-        - [GPO]Default Domain Policy
-        - NEP Computers
-        - NEP Groups
-        - NEP Users
-          - **[GPO]User MSEdge Settings** &larr; **(2)**
-          - Accounting
-          - HR
-          - Inactive
-          - IT
-          - . . .
-       - **Group Policy Objects** &larr; **(3)**
-           - [GPO] Default Domain Policy
-           - [GPO] User MSEdge Settings
-           - [GPO] Another Policy
-           - [GPO] . . .
-       - WMI Filters
-       - Starter GPOs
+      - Forest: ad.northeastprecast.com
+        - **Domains** &larr; **(1)**
+          - ad.northeastprecast.com
+           - [GPO]Default Domain Policy
+           - NEP Computers
+           - NEP Groups
+           - NEP Users
+             - **[GPO]User MSEdge Settings** &larr; **(2)**
+             - Accounting
+             - HR
+             - Inactive
+             - IT
+             - . . .
+          - **Group Policy Objects** &larr; **(3)**
+              - [GPO] Default Domain Policy
+              - [GPO] User MSEdge Settings
+              - [GPO] Another Policy
+              - [GPO] . . .
+          - WMI Filters
+          - Starter GPOs
 
 When you select a GPO, the details will be displayed on the right side of the screen.
 
@@ -221,26 +221,26 @@ This GPO should only contain the User Rights Assignment Policy and Audit Policy.
 
 A good OU design makes it easier to apply and troubleshoot group policy. It is best to create an OU for computers and a separate OU for users. Then create sub-OUs on how you want to manage your objects. Its common to organize objects by department and functionality.
 
-!!! example
+!!! example "Example"
 
-   - Forest: ad.northeastprecast.com
-     - Domains
-        - ad.northeastprecast.com
-        - NEP Computers
-        - NEP Groups
-        - NEP Users
-            - Accounting
-            - HR
-            - Inactive
-            - IT
-            - Legal
-            - Management
-            - Marketing
-            - Operations
-            - PR
-            - Purchasing
-            - test-build1
-            - test-build2
+      - Forest: ad.northeastprecast.com
+        - Domains
+           - ad.northeastprecast.com
+           - NEP Computers
+           - NEP Groups
+           - NEP Users
+               - Accounting
+               - HR
+               - Inactive
+               - IT
+               - Legal
+               - Management
+               - Marketing
+               - Operations
+               - PR
+               - Purchasing
+               - test-build1
+               - test-build2
 
 !!! tip
 
@@ -250,33 +250,35 @@ A good OU design makes it easier to apply and troubleshoot group policy. It is b
 
 The only GPO that should be set at the domain (root) level is the Default Domain Policy. Anything set at the domain level will get applied to all user and computer objects. This could lead to all kinds of settings getting applied to objects that you don’t want. It’s better to apply the policies at a more granular level.
 
-!!! example
-   - Forest: ad.northeastprecast.com
-    - Domains
-      - ad.northeastprecast.com
-      - [GPO]Some-Policy &larr; **Nope, don't do this**
-        - NEP Computers
-        - NEP Groups
-        - NEP Users
-        - . . .
+!!! example "Example"
+
+      - Forest: ad.northeastprecast.com
+       - Domains
+         - ad.northeastprecast.com
+         - [GPO]Some-Policy &larr; **Nope, don't do this**
+           - NEP Computers
+           - NEP Groups
+           - NEP Users
+           - . . .
 
 ### 5. Apply GPO's to The Root of an OU
 
 Applying GPOs at the root of an OU will allow the sub-OUs to inherit these policies. This way you don’t need to link a policy to each individual OU.
 
-!!! example
-   - Forest: ad.northeastprecast.com
-    - Domains
-      - ad.northeastprecast.com
-        - NEP Computers
-        - NEP Groups
-        - NEP Users
-          - [GPO]User MSEdge Settings &larr; **Link to the root of the OU. Sub-OUs will inherit.**
-          - Accounting
-          - HR
-          - Inactive
-          - IT
-          -  . . .
+!!! example "Example"
+
+      - Forest: ad.northeastprecast.com
+       - Domains
+         - ad.northeastprecast.com
+           - NEP Computers
+           - NEP Groups
+           - NEP Users
+             - [GPO]User MSEdge Settings &larr; **Link to the root of the OU. Sub-OUs will inherit.**
+             - Accounting
+             - HR
+             - Inactive
+             - IT
+             -  . . .
 
 ### If you want to exclude OUs or a group of users you have a few options
 
@@ -304,10 +306,10 @@ Being able to quickly identify what a GPO is for based on the name will make gro
 
 !!! example "Examples"
 
-   - [User]Browser-Settings
-   - [User]Office365-Settings
-   - [Computer]Screen-Lock-On
-   - [Computer]Install-Adobe-Acrobat
+      - [User]Browser-Settings
+      - [User]Office365-Settings
+      - [Computer]Screen-Lock-On
+      - [Computer]Install-Adobe-Acrobat
 
 ### 9. Speed Up GPO Processing by Disabling Unused Computer and User Configurations
 
@@ -337,17 +339,17 @@ It can be easy to fall into the trap of stuffing everything into one GPO. There 
 
 !!! example "Examples of ways to split up GPOs into smaller policies"
 
-   - Browser Settings
-   - Security Settings
-   - Power Settings
-   - Microsoft Office Settings
-   - Network Settings
-   - Drive Mappings
-   - Power Settings
-   - Bitlocker
-   - Applocker
-   - Firewall rules
-   - and so on...
+      - Browser Settings
+      - Security Settings
+      - Power Settings
+      - Microsoft Office Settings
+      - Network Settings
+      - Drive Mappings
+      - Power Settings
+      - Bitlocker
+      - Applocker
+      - Firewall rules
+      - and so on...
 
 ### 13. Best Practices for Group Policy Performance
 
