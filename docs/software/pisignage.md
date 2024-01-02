@@ -79,3 +79,270 @@ cd pisignage-server
 npm install
 sudo chown -R <YourUsername>:users data/
 ```
+
+## API
+
+https://piathome.com/apidocs
+
+<span style="color:lightgreen">**POST**</span> `http://<PlayerIP>:8000/api/*`
+
+<span style="color:royalblue">**GET**</span> `http://<PlayerIP>:8000/api/*`
+
+##  Assets
+
+### Get all asset details
+
+### Get specific asset details
+
+### Create link asset (web link)
+<span style="color:lightgreen">**POST**</span> `http://<PlayerIP>:8000/api/links`
+
+JSON Payload:
+```json
+{
+  "details": {
+    "name": "NEP_Directory",
+    "type": ".weblink",
+    "link": "https://portal.northeastprecast.com/w/tv",
+    "hideTitle": "Unknown Type: [object Object]",
+    "numberOfItems": 0,
+    "zoom": 1,
+    "message": "string"
+  }
+}
+```
+
+CURL:
+```curl
+curl -X POST -H "accept: application/json" -H "Content-Type: application/json" ^
+-d "{\"details\": { \"name\":\"NEP_Directory\", \"type\": \".weblink\", \"link\": \"https://portal.northeastprecast.com/w/tv\", \"hideTitle\": \"Unknown Type: [object Object]\", \"zoom\": 1, \"message\":\"string\" } }" ^
+-u pi:pi http://<PlayerIP>:8000/api/links
+```
+
+### Upload asset files
+
+### Edit asset
+
+### Delete asset
+
+## Playlists
+
+### Get all playlist details
+<span style="color:royalblue">**GET**</span> `http://<PlayerIP>:8000/api/playlists`
+
+JSON Payload:
+```json
+empty
+```
+
+CURL:
+```curl
+curl -X POST -H "Content-Type: application/json" -u pi:pi http://<PlayerIP>:8000/api/play/playlists
+```
+
+### Get specific playlist details
+<span style="color:royalblue">**GET**</span> `http://<PlayerIP>:8000/api/playlists/<PlaylistName>`
+
+JSON Payload:
+```json
+empty
+```
+
+CURL:
+```curl
+curl -X POST -H "Content-Type: application/json" -u pi:pi http://<PlayerIP>:8000/api/play/playlists/<PlaylistName>
+```
+
+### Create playlist
+<span style="color:lightgreen">**POST**</span> `http://<PlayerIP>:8000/api/playlists`
+
+JSON Payload:
+```json
+{
+  "file": "A1_Lobby"
+}
+```
+
+CURL:
+```curl
+curl -X POST -H "Content-Type: application/json" ^
+-d "{\"file\": \"A1_Lobby\"}" ^
+-u pi:pi http://<PlayerIP>:8000/api/playlists
+```
+
+### Edit playlist details (add an asset to a playlist)
+<span style="color:lightgreen">**POST**</span> `http://<PlayerIP>:8000/api/playlists`
+
+JSON Payload:
+```json
+{
+  "assets": [
+    {
+      "filename": "NEP_Directory.weblink",
+      "duration": 100, // Seconds played before refresh or next asset
+      "isVideo": false,
+      "selected": true,
+      "option": {
+        "main": true,
+        "side": true,
+        "bottom": true,
+        "zone4": true,
+        "subduration": "Unknown Type: seconds",
+        "bannerText": "string"
+      },
+      "fullscreen": true,
+      "side": "string",
+      "bottom": "string",
+      "zone4": "string",
+      "zone5": "string",
+      "zone6": "string"
+    }
+  ]
+}
+```
+
+CURL:
+```curl
+curl -X POST -H "Content-Type: application/json" ^
+-d "{ \"assets\": [ { \"filename\": \"NEP_Directory.weblink\", \"duration\": 100, \"isVideo\": false, \"selected\": true, \"option\": { \"main\": true, \"side\": true, \"bottom\": true, \"zone4\": true, \"subduration\": \"Unknown Type: seconds\", \"bannerText\": \"string\" }, \"fullscreen\": true, \"side\": \"string\", \"bottom\": \"string\", \"zone4\": \"string\", \"zone5\": \"string\", \"zone6\": \"string\" } ] }" ^
+-u pi:pi http://<PlayerIP>:8000/api/playlists/Autogen_Playlist
+
+### Start a playlist
+<span style="color:lightgreen">**POST**</span> `http://<PlayerIP>:8000/api/play/playlists/<PlaylistName>`
+
+JSON Payload:
+```json
+{
+	"play": "true"
+}
+``` 
+CURL:
+```curl
+curl -X POST -H "Content-Type: application/json" -d "{\"play\": true}" -u pi:pi http://<PlayerIP>:8000/api/play/playlists/<PlaylistName>
+```
+
+### Start a playlist
+<span style="color:lightgreen">**POST**</span> `http://<PlayerIP>:8000/api/play/playlists/Directory`
+
+JSON Payload:
+```json
+{
+	"play": "true"
+}
+``` 
+CURL:
+```curl
+curl -X POST -H "Content-Type: application/json" -d "{\"play\": true}" -u pi:pi http://<PlayerIP>:8000/api/play/playlists/Directory
+```
+
+### Stop a playlist
+<span style="color:lightgreen">**POST**</span> `http://<PlayerIP>:8000/api/play/playlists/<PlaylistName>`
+
+JSON Payload:
+```json
+{
+	"stop": "true"
+}
+``` 
+CURL:
+```curl
+curl -X POST -H "Content-Type: application/json" -d "{\"stop\": true}" -u pi:pi http://<PlayerIP>:8000/api/play/playlists/<PlaylistName>
+```
+
+## Player Controls
+
+### Return the player status
+<span style="color:royalblue">**GET**</span> `http://<PlayerIP>:8000/api/status`
+
+JSON Payload:
+```
+empty
+```
+
+### Return the player settings
+<span style="color:royalblue">**GET**</span> `http://<PlayerIP>:8000/api/settings`
+
+JSON Payload:
+```
+empty
+``` 
+
+### Change player name and description
+<span style="color:lightgreen">**POST**</span> `http://<PlayerIP>:8000/api/settings/hostname`
+
+JSON Payload:
+```json
+{
+  "localName": "string",
+  "note": "string"
+}
+```
+
+CURL:
+```curl
+curl -X POST -H "Content-Type: application/json" ^ 
+-d "{ \"localName\": \"string\", \"note\": \"string\" }" ^
+-u pi:pi http://<PlayerIP>:8000/api/settings/hostname
+```
+
+### Change overscan options
+<span style="color:lightgreen">**POST**</span> `http://<PlayerIP>:8000/api/settings/overscan`
+
+JSON Payload:
+```json
+{
+  "overscan": {
+    "disable_overscan": true, //True or false
+    "horizontal": 0,
+    "vertical": 0
+  }
+}
+```
+
+CURL:
+```curl
+curl -X POST -H "Content-Type: application/json" ^
+-d "{ \"overscan\": { \"disable_overscan\": true, \"horizontal\": 0, \"vertical\": 0 } }" ^
+-u pi:pi http://<PlayerIP>:8000/api/settings/overscan
+```
+
+### Change default user/password
+<span style="color:lightgreen">**POST**</span> `http://<PlayerIP>:8000/api/settings/user`
+
+JSON Payload:
+```json
+{
+  "user": {
+    "name": "string",
+    "newpasswd": "string"
+  }
+}
+```
+
+CURL:
+```curl
+curl -X POST -H "Content-Type: application/json" ^
+-d "{ \"user\": { \"name\": \"pi\", \"newpasswd\": \"pi\" } }" ^
+-u pi:pi http://<PlayerIP>:8000/api/settings/user
+```
+ 
+### Schedule TV sleep time
+<span style="color:lightgreen">**POST**</span> `http://<PlayerIP>:8000/api/settings/sleep`
+
+JSON Payload:
+```json
+{
+  "sleep": {
+    "enable": true,
+    "ontime": "04:00", 
+    "offtime": "17:30" // 24 hour clock
+  }
+}
+```
+
+CURL:
+```curl
+curl -X POST -H "Content-Type: application/json" ^
+-d "{ \"sleep\": { \"enable\": true, \"ontime\": \"4:00\", \"offtime\": \"17:30\" } }" ^
+-u pi:pi http://<PlayerIP>:8000/api/settings/sleep
+```
