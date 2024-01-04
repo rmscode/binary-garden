@@ -435,6 +435,8 @@ Virtual storage provides the foundation for data-management features such as thi
 2. In the Advanced Settings section of the panel, set the options that apply to all iSCSI ports:
     - Enable Jumbo Frames: Enables or disables support for jumbo frames. Allowing for 100 bytes of overhead, a normal frame can contain a 1400-byte payload whereas a jumbo frame can contain a maximum 8900-byte payload for larger data transfers.
 
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/configure-iscsi-ports?guid=guid-9c7ddef3-9cae-4788-b553-dffdc99c4aa6&lang=en-us)
+
 ## Best Practices
 
 ### Pool setup
