@@ -423,6 +423,18 @@ Virtual storage provides the foundation for data-management features such as thi
     - Configurable chunk size per disk group
     - Global, dedicated, and/or dynamic hot spares
 
+## Enable Jumbo Frames
+
+!!! note
+
+    The use of Jumbo frames can succeed only if jumbo-frame support is enabled on all network components in the data path (SAN switches, server NICs...).
+
+1. Perform one of the following steps to configure iSCSI ports:
+    - In the home topic of the PowerVault manager, select Action > System Settings, then click Ports.
+    - In the System topic of the PowerVault Manager, select Action > System Settings, then click Ports.
+2. In the Advanced Settings section of the panel, set the options that apply to all iSCSI ports:
+    - Enable Jumbo Frames: Enables or disables support for jumbo frames. Allowing for 100 bytes of overhead, a normal frame can contain a 1400-byte payload whereas a jumbo frame can contain a maximum 8900-byte payload for larger data transfers.
+
 ## Best Practices
 
 ### Pool setup
