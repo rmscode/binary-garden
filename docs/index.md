@@ -10,6 +10,41 @@ This static site was generated using [MkDocs](https://www.mkdocs.org). The theme
     
     -Ricky
 
-## Navigation
+## Navigating and reading the Docs
 
-Navigate between sections using the left sidebar. The right sidebar contains a table of content for the current section/page.
+The left sidebar contains the main/categorical sections of the docs. The right sidebar contains the table of contents (sub-sections) for each main section.
+
+### Annotations
+
+Material for mkdocs has an annotations feature that I use heavily to insert important information within code blocks. If you see one, read it. They look like this - (1).
+{ .annotate }
+
+1.  :-)
+
+### Admonitions
+
+Material for mkdocs has an admonitions feature that I attempt to make good use of throughout my documentation.
+
+!!! note
+
+!!! abstract
+
+!!! info
+
+!!! tip
+
+!!! example
+
+!!! success
+
+!!! question
+
+!!! warning
+
+!!! failure
+
+!!! danger
+
+!!! bug
+
+!!! quote
