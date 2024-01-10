@@ -21,6 +21,8 @@ Material for mkdocs has an annotations feature that I use heavily to insert impo
 
 1.  :-)
 
+Be advised, that for certain code blocks a `#` will appear before the annotation symbol. It is *not* part of any code that I am showing. It is simply a bug with the way the theme renders annotations within code blocks for certain languages.
+
 ### Admonitions
 
 Material for mkdocs has an admonitions feature that I attempt to make good use of throughout my documentation.
