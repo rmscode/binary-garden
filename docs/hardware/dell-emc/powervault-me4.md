@@ -312,6 +312,33 @@ With guided setup, you must first configure your system settings by accessing th
 4. Save your settings and exit to the *Welcome* panel.
 5. Click *Host Setup* and follow the prompts to continue provisioning your system by attaching hosts.
 
+## Configure a Windows host with iSCSI network adapters
+
+!!! abstract "ToDo - Read and document!
+
+    <https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_dg_pub/configuring-a-windows-host-with-iscsi-network-adapters?guid=guid-da96d36d-7905-4a4a-bc5e-11fb102baa8e&lang=en-us>
+
+### Enable MPIO for the volumes on the Windows host
+
+1. Open Server Manager.
+2. Select Tools > MPIO.
+3. Click the Discover Multi-Paths tab.
+4. Select DellEMC ME4 in the Device Hardware Id list.
+5. Click Add and click Yes to reboot the Windows server.
+
+If DellEMC ME4 is not listed in the Device Hardware Id list:
+
+1. Ensure that there is more than one connection to a volume for multipathing.
+2. Ensure that Dell EMC ME4 is not already listed in the Devices list on the MPIO Devices tab.
+
+### Update the iSCSI initiator on the Windows host
+
+1. Open Server Manager.
+2. Click Tools > iSCSI initiator.
+3. Click the Volumes and Devices tab.
+4. Click Auto Configure.
+5. Click OK to close the iSCSI Initiator Properties window.
+
 ## Accessing the CLI
 
 Embedded within the controller modules is a command-line interface (CLI) that enables you to manage and monitor the storage system. The CLI can be accessed in two ways:
