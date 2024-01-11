@@ -42,7 +42,7 @@
 
 ## CLI Modes
 
-=== "EXEC"
+=== "EXEC Mode"
 
     - The default mode after login with the privilege level of 1. This mode allows you to view the system status, run diagnostic commands, and view system statistics. You cannot make configuration changes in this mode.
     - The prompt for this mode is the hostname followed by `>`. 
@@ -51,7 +51,7 @@
     
         `DellEMC> Hello world!`
 
-=== "EXEC Privilege"
+=== "EXEC Privilege Mode"
 
     - Contains commands to view configurations, clear counters, manage configuration files, run diagnostics, and enable or disable debug operations. The privilege level is 15, which is unrestricted.
     - Enter this mode by using the `enable` command.
@@ -61,7 +61,7 @@
     
         `DellEMC# Hello world!`
 
-=== "CONFIGURATION"
+=== "CONFIGURATION Mode"
 
     - This mode allows you to configure security features, time settings, set logging and SNMP functions, configure static ARP and MAC addresses, and set line cards on the system.
         - Beneathe this mode are several submodes that apply to interfaces, protocols and features. For example, `interface` mode allows you to configure interface settings, `ip` mode allows you to configure IP settings, and `vlan` mode allows you to configure VLAN settings.
