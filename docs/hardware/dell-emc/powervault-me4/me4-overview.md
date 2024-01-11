@@ -4,17 +4,6 @@
 
     The ME4 Series is a next gen entry-level block storage array that’s purpose-built and optimized for SAN/DAS simplicity and accelerated performance. It’s designed to meet the needs of the entry storage market, while also offering the flexibility to scale as needs grow.
 
-!!! Warning "Operational Safety"
-
-    Operation of the enclosure with modules missing disrupts the airflow and prevents the enclosure from receiving sufficient cooling. For all 2U enclosures, all IOM and PCM slots must be populated. In addition, empty drive slots (bays) in 2U enclosures must hold blank drive carrier modules. For a 5U enclosure, all controller module, IOM, FCM, and PSU slots must be populated.
-
-!!! Danger "Electrical Safety"
-
-    - The 2U enclosure must be operated from a power supply input voltage range of 100–240 VAC, 50/60Hz.
-    - The 5U enclosure must be operated from a power supply input voltage range of 200–240 VAC, 50/60Hz.
-    - Provide a power source with electrical overload protection to meet the requirements in the technical specification.
-    - The enclosure must be grounded before applying power.
-
 ??? info "PowerVault ME4 Series Terminology"
 
     `Customer Replaceable Unit (CRU)`
