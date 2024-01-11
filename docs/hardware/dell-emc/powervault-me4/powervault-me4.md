@@ -66,11 +66,11 @@
 
     Integers on the disks indicate drive slot numbering sequence.
 
-![ME4024 Fron Panel](../../assets/GUID-EB01FA14-AC25-4933-A4C1-82131A9DBC20-low.jpg)
+![ME4024 Fron Panel](../../../assets/GUID-EB01FA14-AC25-4933-A4C1-82131A9DBC20-low.jpg)
 
 ### Operator Panel LEDs
 
-![ME4024 Front Panel LED](../../assets/GUID-50A3FA88-6C9C-4FD4-837D-819D6D69CB28-low.jpg)
+![ME4024 Front Panel LED](../../../assets/GUID-50A3FA88-6C9C-4FD4-837D-819D6D69CB28-low.jpg)
 
 === "1. System Power"
 
@@ -101,7 +101,7 @@
 
 ### Controller enclosure (4-port FC/iSCSI)
 
-![ME4024 Rear Panel (FC/iSCSI)](../../assets/GUID-E0F56738-3FAD-4315-83AB-C3E277AF070C-low.jpg)
+![ME4024 Rear Panel (FC/iSCSI)](../../../assets/GUID-E0F56738-3FAD-4315-83AB-C3E277AF070C-low.jpg)
 
 1. Power cooling module slot 0
 2. Power cooling module slot 1
@@ -112,7 +112,7 @@
 
 The top slot for holding controller modules is designated slot A and the bottom slot is designated slot B. The face plate details of the controller modules show the modules aligned for use in slot A. In this orientation, the controller module latch shown at the bottom of the module and it is in a closed/locked position. The following figures identify the ports on the controller modules.
 
-![ME4024 Controller Module (FC/iSCSI)](../../assets/GUID-99E108C1-9D48-48C0-AA43-D67965E47F54-low.jpg)
+![ME4024 Controller Module (FC/iSCSI)](../../../assets/GUID-99E108C1-9D48-48C0-AA43-D67965E47F54-low.jpg)
 
 1. Back-end expansion SAS port
 2. Ethernet port used by management interfaces
@@ -124,7 +124,7 @@ The top slot for holding controller modules is designated slot A and the bottom 
 
 ### Controller module LEDs
 
-![ME4024 Controller Module LEDs](../../assets/GUID-2CCEAE51-984C-460B-8F44-A0BF1DA1E99D-low.jpg)
+![ME4024 Controller Module LEDs](../../../assets/GUID-2CCEAE51-984C-460B-8F44-A0BF1DA1E99D-low.jpg)
 
 === "1. Link Status/Activity for host 4/8/16 Gb FC"
 
@@ -205,7 +205,7 @@ The top slot for holding controller modules is designated slot A and the bottom 
 1. Connect an Ethernet cable to the network port on each controller module.
 2. Connect the other end of each Ethernet cable to a network that your management host can access, preferably on the same subnet.
 
-![Connect Management Network](../../assets/GUID-25C7026E-50A7-45E6-9C0E-A9180C0419A1-low.jpg)
+![Connect Management Network](../../../assets/GUID-25C7026E-50A7-45E6-9C0E-A9180C0419A1-low.jpg)
 
 1. Controller module in Slot A
 2. Controller module in Slot B
@@ -230,7 +230,7 @@ To connect controller modules supporting 10 GbE iSCSI host interface ports to a 
 
 Use the cabling diagram below to connect host servers to a switch-attached storage system.
 
-![Connecting hosts: ME4 Series 2U switch-attached – two servers, two switches](../../assets/GUID-E63CC18D-EBBC-47BB-BDB3-F1874C6658F3-low.jpg)
+![Connecting hosts: ME4 Series 2U switch-attached – two servers, two switches](../../../assets/GUID-E63CC18D-EBBC-47BB-BDB3-F1874C6658F3-low.jpg)
 
 1. Host server A
 2. Host server B
@@ -247,7 +247,7 @@ Use the cabling diagram below to connect host servers to a switch-attached stora
 
 Connect the power cable from each PCM on the enclosure rear panel to the power distibution unit as shown below:
 
-![Connection from PDU to PCM](../../assets/GUID-482BB2AC-110A-44FA-81EF-4807439323D0-low.jpg)
+![Connection from PDU to PCM](../../../assets/GUID-482BB2AC-110A-44FA-81EF-4807439323D0-low.jpg)
 
 - Power on the storage system by connecting the power cables from the PCMs to the PDU, and moving the power switch on each PCM to the On posisition.
     - With 2U enclosures, the System Power LED on the 2U Ops panel lights green when the enclosure power is activated.
@@ -261,7 +261,7 @@ Connect the power cable from each PCM on the enclosure rear panel to the power d
 
 !!! tip "System Information Worksheet"
 
-    Use the [System Information Worksheet](../../assets/me4-system-information-worksheet.pdf) found on page 100 of the [deployment guide](https://dl.dell.com/content/manual65252048-dell-powervault-me4-series-storage-system-deployment-guide.pdf?language=en-us) to record the information that you need to install the ME4 Series storage system.
+    Use the [System Information Worksheet](../../../assets/me4-system-information-worksheet.pdf) found on page 100 of the [deployment guide](https://dl.dell.com/content/manual65252048-dell-powervault-me4-series-storage-system-deployment-guide.pdf?language=en-us) to record the information that you need to install the ME4 Series storage system.
 
 Upon completing the hardware installation, use PowerVault Manager to configure, provision, monitor and manage the storage system. When first accessing the PowerVault Manager, perform a firmware update before configuring your system. After the firmware update is complete, use the guided setup to verify the web browser requirements and then access the PowerVault Manager.
 
@@ -320,7 +320,7 @@ Attached Windows hosts need to be properly configured in order to use the iSCSI 
 
 - Complete the PowerVault Manager guided setup process and storage setup process.
 - Refer to the cabling diagrams within this guide before attaching a host to the storage system.
-- Complete a [planning worksheet](../../assets/me4-system-information-worksheet.pdf) with the iSCSI network IP addresses to be used.
+- Complete a [planning worksheet](../../../assets/me4-system-information-worksheet.pdf) with the iSCSI network IP addresses to be used.
 
 ### Attach Windows host to the storage system
 
