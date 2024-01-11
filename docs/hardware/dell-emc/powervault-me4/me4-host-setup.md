@@ -1,6 +1,6 @@
-# Configure Windows Host with iSCSI Network Adapters
+# Perform Host Setup (Windows)
 
-Attached Windows hosts need to be properly configured in order to use the iSCSI protocol with the ME4 storage system and to enable MPIO volumes.
+Attached Windows hosts with iSCSI network adapters need to be properly configured in order to use the iSCSI protocol with the ME4 storage system and MPIO enabled volumes.
 
 ## Prerequisites
 
@@ -11,7 +11,7 @@ Attached Windows hosts need to be properly configured in order to use the iSCSI 
 ## Attach Windows host to the storage system
 
 1. Ensure that all network adapters have the latest supported firmware and drivers.
-2. Use the iSCSI cabling diagrams to connect the hosts to the storage system ether by using switches or connecting the hosts directly to the storage system.
+2. Use the [iSCSI cabling diagrams](../powervault-me4/me4-deployment-brief.md#cable-the-controller-host-ports-iscsi) to connect the hosts to the storage system ether by using switches or connecting the hosts directly to the storage system.
 3. Install MPIO on the iSCSI hosts (Document this if not in Matt's docs).
 
 ## Assign IP Addresses for each network adapter connecting to the iSCSI network
