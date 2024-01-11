@@ -12,7 +12,7 @@ This static site was generated using [MkDocs](https://www.mkdocs.org). The theme
 
 ## Navigating and reading the Docs
 
-The left sidebar contains the main/categorical sections of the docs. The right sidebar contains the table of contents (sub-sections) for each main section.
+The left sidebar contains the main/categorical sections of the docs. The right sidebar contains the table of contents for each main section.
 
 ### Annotations
 
