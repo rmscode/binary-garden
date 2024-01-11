@@ -18,6 +18,10 @@
       2. Install required host software.
 10. Perform the initial configuration tasks.
 
+!!! Warning "Operational Safety"
+
+    Operation of the enclosure with modules missing disrupts the airflow and prevents the enclosure from receiving sufficient cooling. For all 2U enclosures, all IOM and PCM slots must be populated. In addition, empty drive slots (bays) in 2U enclosures must hold blank drive carrier modules. For a 5U enclosure, all controller module, IOM, FCM, and PSU slots must be populated.
+
 ## Connect the management ports
 
 1. Connect an Ethernet cable to the network port on each controller module.
@@ -62,6 +66,13 @@ Use the cabling diagram below to connect host servers to a switch-attached stora
     Take note of how the CNC ports are connected to the switches. The reason for doing so is that each pair of ports (A0,A1 or A2,A3) are connected to a dedicated CNC chip. If you are not using all four ports on a controller, it is best to use one port from each pair (A0,A2) to ensure better I/O balance on the front end.
 
 ## Connecting the power cords and powering on the system
+
+!!! Danger "Electrical Safety"
+
+    - The 2U enclosure must be operated from a power supply input voltage range of 100–240 VAC, 50/60Hz.
+    - The 5U enclosure must be operated from a power supply input voltage range of 200–240 VAC, 50/60Hz.
+    - Provide a power source with electrical overload protection to meet the requirements in the technical specification.
+    - The enclosure must be grounded before applying power.
 
 Connect the power cable from each PCM on the enclosure rear panel to the power distibution unit as shown below:
 
