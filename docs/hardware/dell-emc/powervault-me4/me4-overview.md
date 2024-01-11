@@ -4,6 +4,14 @@
 
     The ME4 Series is a next gen entry-level block storage array that’s purpose-built and optimized for SAN/DAS simplicity and accelerated performance. It’s designed to meet the needs of the entry storage market, while also offering the flexibility to scale as needs grow.
 
+    Resources:
+
+    - [Owner's Manual](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_om_pub/)
+    - [Deployment Guide](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_dg_pub)
+    - [Administrator's Guide](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub)
+    - [Series Storage System CLI Guide](https://www.dell.com/support/manuals/en-us/powervault-me4024/me4_series_cli_pub) 
+    - [Best Practices Guide](https://www.delltechnologies.com/asset/en-us/products/storage/industry-market/dell_emc_me4_series_storage_system_best_practices.pdf)
+
 ??? info "PowerVault ME4 Series Terminology"
 
     `Customer Replaceable Unit (CRU)`
