@@ -114,7 +114,7 @@ nav:
         - OS10:
           - hardware/dell-emc/S4048-ON/os10.md
       - PowerVault ME4:
-        - hardware/dell-emc/powervault-me4.md
+        - hardware/dell-emc/powervault-me4/powervault-me4.md
 
     - Microsoft:
       - hardware/microsoft/surface-rt.md
