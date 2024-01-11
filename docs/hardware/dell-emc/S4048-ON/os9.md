@@ -163,7 +163,7 @@ DellEMC(conf)# username <username> password <password> privilege 15 #(1)
 
 Enable SSH:
 
-!!! note
+!!! info
 
     Starting with OS9 release 9.2(0.0), SSH server ver 2 is [enabled by default](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.5-cli-pub/ip-ssh-server?guid=guid-be099a43-0f16-477e-9c53-6892ba7f699e&lang=en-us#:~:text=NOTE%20Starting%20with%20Dell%20EMC%20Networking%20OS%20Release%209.2(0.0)%2C%20SSH%20server%20is%20enabled%20by%20default.). Entering these commands are mostly redundant...
 
@@ -177,7 +177,9 @@ Additionally, you can set a password for EXEC Privilege mode as it is unrestrict
 ```shell
 DellEMC(conf)# enable password <password> 
 ```
-*For more info on managing remote access to the terminal, see [this section](#managing-access-to-terminal-lines)*
+!!! note 
+
+    For more info on managing remote access to the terminal, see ["Managing Access to Terminal Lines"](../S4048-ON/os9-tty-access.md)
 
 [*Reference: Username and Password*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-a-username-and-password?guid=guid-5afd0af5-ceac-4a0c-b3c8-e14ee7bcddb4&lang=en-us)</br>
 [*Reference: Enable SSH by Password*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s5048f-on-9.14.2.4-config/enabling-ssh-authentication-by-password?guid=guid-0685bdc9-9b7f-4fa1-b0be-9e6c83da445d&lang=en-us)</br>
