@@ -1,4 +1,4 @@
-# PowerSwitch S4048-ON
+# Overview
 
 > This page was last updated: *{{ git_revision_date_localized }}*
 
@@ -15,10 +15,6 @@
     - Serial RS 232 and Micro-USB console ports
     - One out-of-band (OOB) RJ45 management port
     - LED display for the switch, fan, and power status
-
-!!! abstract "ToDo"
-
-    I think this document needs to be broken up and organized better...Perhaps move each major section to their own files so they are easier to navigate in mkdocs.
 
 ---
 
@@ -109,4 +105,4 @@ Download the [drivers](https://www.dell.com/support/home/en-us/drivers/driversde
 
 ---
 
-[OS9 CLI Configuration Docs](../S4048-ON/os9.md){ .md-button } [OS10 CLI Configuration Docs](../S4048-ON/os10.md){ .md-button }
+[OS9 CLI Configuration Docs](../../dell-emc/S4048-ON/os9.md){ .md-button } [OS10 CLI Configuration Docs](../../dell-emc/S4048-ON/os10.md){ .md-button }
