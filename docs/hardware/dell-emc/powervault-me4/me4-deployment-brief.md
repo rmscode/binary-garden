@@ -9,11 +9,11 @@
 2. Install the controller enclosure and optional expansion enclosure in the rack.
 3. Populate drawers with disks (DDICs). 2U encosures ship with disks installed.
 4. Cable the optional expansion enclosures.
-5. Connect the management ports.
-6. Cable the controller host ports.
-7. Connect the power cords and power on the system.
-8. Perform system and storage setup.
-9. Perform host setup.
+5. [Connect the management ports](#connect-the-management-ports).
+6. [Cable the controller host ports](#cable-the-controller-host-ports-iscsi).
+7. [Connect the power cords and power on the system](#connecting-the-power-cords-and-powering-on-the-system).
+8. [Perform system and storage setup](../powervault-me4/me4-guided-setup.md).
+9. [Perform host setup](../powervault-me4/me4-host-setup.md).
       1. Attach host servers.
       2. Install required host software.
 10. Perform the initial configuration tasks.
