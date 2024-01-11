@@ -114,7 +114,12 @@ nav:
         - OS10:
           - hardware/dell-emc/S4048-ON/os10.md
       - PowerVault ME4:
-        - hardware/dell-emc/powervault-me4/powervault-me4.md
+        - hardware/dell-emc/powervault-me4/me4-overview.md
+        - hardware/dell-emc/powervault-me4/me4-deployment-brief.md
+        - hardware/dell-emc/powervault-me4/me4-guided-setup.md
+        - hardware/dell-emc/powervault-me4/me4-config-win-hosts.md
+        - hardware/dell-emc/powervault-me4/me4-virtual-linear-storage.md
+        - hardware/dell-emc/powervault-me4/me4-best-practice.md
 
     - Microsoft:
       - hardware/microsoft/surface-rt.md
