@@ -1,4 +1,4 @@
-# 1. Getting Started with OS9
+# Getting Started with OS9
 
 [CLI Reference Guide for the S4048-ON System (9.14.2.4)](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.5-cli-pub/dell-command-line-reference-guide-for-the-s4048%E2%80%93on-system-9.14.2.5)
 
