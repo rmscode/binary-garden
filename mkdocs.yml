@@ -117,7 +117,7 @@ nav:
         - hardware/dell-emc/powervault-me4/me4-overview.md
         - hardware/dell-emc/powervault-me4/me4-deployment-brief.md
         - hardware/dell-emc/powervault-me4/me4-guided-setup.md
-        - hardware/dell-emc/powervault-me4/me4-config-win-hosts.md
+        - hardware/dell-emc/powervault-me4/me4-host-setup.md
         - hardware/dell-emc/powervault-me4/me4-virtual-linear-storage.md
         - hardware/dell-emc/powervault-me4/me4-best-practice.md
 
