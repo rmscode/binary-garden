@@ -4,7 +4,7 @@
 
 !!! info "Jumbo Frames + SAN"
 
-    Jumbo frames are Ethernet frames with more that 1500 bytes of payload. The MTU range on the S4048 is from 592 to 9216, with the default being 9216 (Jumbo). They must be correctly enabled throughout an entire iSCSI SAN from the NICs, Switches, and storage array ports, otherwise, behavior may be inconsistent. For guidance on what MTU size to set on the S4048 in conjunction with the PowerVault ME4 series storage array, see [this section](../../../hardware/dell-emc/powervault-me4.md#enable-jumbo-frames).
+    Jumbo frames are Ethernet frames with more that 1500 bytes of payload. The MTU range on the S4048 is from 592 to 9216, with the default being 9216 (Jumbo). They must be correctly enabled throughout an entire iSCSI SAN from the NICs, Switches, and storage array ports, otherwise, behavior may be inconsistent. For guidance on what MTU size to set on the S4048 in conjunction with the PowerVault ME4 series storage array, see [this section](../powervault-me4/powervault-me4.md#enable-jumbo-frames).
 
 If a packet includes a Layer 2 header, the difference in bytes between the link MTU and IP MTU must be enough to include the Layer 2 header. 
 
