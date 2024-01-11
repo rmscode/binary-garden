@@ -1,4 +1,4 @@
-# PowerVault ME4024
+# ME4024
 
 > This page was last updated: *{{ git_revision_date_localized }}*
 
