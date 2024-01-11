@@ -21,8 +21,8 @@ theme:
     - content.action.edit
     - content.action.view
     - navigation.tracking
-    #- navigation.tabs
-    #- navigation.tabs.sticky
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.path
     - navigation.top
     # - navigation.prune
@@ -98,20 +98,23 @@ nav:
   - Hardware: 
     - hardware/index.md
     - Dell EMC: 
+      - PowerSwitch S4048-ON:
+        - hardware/dell-emc/S4048-ON/overview.md
+        - OS9:
+          #- hardware/dell-emc/S4048-ON/overview.md
+          - hardware/dell-emc/S4048-ON/os9.md
+          - hardware/dell-emc/S4048-ON/os9-debugging.md
+          - hardware/dell-emc/S4048-ON/os9-file-management.md
+          - hardware/dell-emc/S4048-ON/os9-logging.md
+          - hardware/dell-emc/S4048-ON/os9-tty-access.md
+          - hardware/dell-emc/S4048-ON/os9-ufd.md
+          - hardware/dell-emc/S4048-ON/os9-vlan.md
+          - hardware/dell-emc/S4048-ON/os9-vlt.md
+          - hardware/dell-emc/S4048-ON/os9-other.md
+        - OS10:
+          - hardware/dell-emc/S4048-ON/os10.md
       - hardware/dell-emc/s4048-on.md
       - hardware/dell-emc/powervault-me4.md
-        # - S4048-ON:
-        #   - hardware/dell-emc/S4048-ON/overview.md
-        #   - hardware/dell-emc/S4048-ON/os9.md
-        #   - hardware/dell-emc/S4048-ON/os9-debugging.md
-        #   - hardware/dell-emc/S4048-ON/os9-file-management.md
-        #   - hardware/dell-emc/S4048-ON/os9-logging.md
-        #   - hardware/dell-emc/S4048-ON/os9-tty-access.md
-        #   - hardware/dell-emc/S4048-ON/os9-ufd.md
-        #   - hardware/dell-emc/S4048-ON/os9-vlan.md
-        #   - hardware/dell-emc/S4048-ON/os9-vlt.md
-        #   - hardware/dell-emc/S4048-ON/os9-other.md
-        #   - hardware/dell-emc/S4048-ON/os10.md
 
     - Microsoft:
       - hardware/microsoft/surface-rt.md
