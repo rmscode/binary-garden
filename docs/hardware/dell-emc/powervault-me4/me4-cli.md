@@ -5,11 +5,12 @@ Embedded within the controller modules is a command-line interface (CLI) that en
 - Use SSH or Telnet on a management host that is remotely connected to a controller module network port through a LAN.
 - Use a serial cable to establish a serial connection from a computer to the CLI port on a controller module. Refer back to the [controller module rear panel diagram](#controller-module-4-port-fciscsi) for the location of the CLI ports.
 
-If the default IP addresses (10.0.0.2 - Controller A, 10.0.0.3 - Controller B) are not compatible with your network, you must set an IP addresses for each network port using the CLI.
+!!! note
 
-1. Obtain an IP address, subnet mask and gateway from your network administrator.
-2. Connect a 3.5mm/DB9 serial cable from a host computer with a serial port to the 3.5mm stereo plug CLI port on controller A. Alternatively, connect a generic mini-USB cable from a host computer to the USB CLI port on controller A.
-3. Start a terminal emulator configured to use the following display and connection settings:
+    If the default IP addresses (10.0.0.2 - Controller A, 10.0.0.3 - Controller B) are not compatible with your network, you must set IP addresses for each network port using the CLI. The sections below cover doing so via [DHCP](../powervault-me4/me4-cli.md#set-the-network-port-ip-addresses-via-dhcp) or [statically](../powervault-me4/me4-cli.md#set-the-network-port-ip-addresses-statically).
+
+1. Connect a 3.5mm/DB9 serial cable from a host computer with a serial port to the 3.5mm stereo plug CLI port on controller A. Alternatively, connect a generic mini-USB cable from a host computer to the USB CLI port on controller A.
+2. Start a terminal emulator configured to use the following display and connection settings:
     1. Display Settings:
           - **Terminal emulation mode** - VT-100 or ANSI (for color support)
           - **Font** - Terminal
@@ -22,9 +23,9 @@ If the default IP addresses (10.0.0.2 - Controller A, 10.0.0.3 - Controller B) a
           - **Parity** - None
           - **Stop bits** - 1
           - **Flow control** - None
-4. Press `Enter` to display the CLI prompt if necessary.
-5. If you are connecting to a storage system with G275 firmware that has not been deployed, the default user/pass is `manage`/`!manage`. If your system has been deployed, login with a user that has the *manage* role.
-6. If you are connecting to a storage system with G280 firmware that has not been deployed, type `setup` at the login prompt and press `Enter`. Do not type anything at the password prompt and press `Enter`. If your system has been deployed, login with a user that has the *manage* role.
+3. Press `Enter` to display the CLI prompt if necessary.
+4. If you are connecting to a storage system with G275 firmware that has not been deployed, the default user/pass is `manage`/`!manage`. If your system has been deployed, login with a user that has the *manage* role.
+5. If you are connecting to a storage system with G280 firmware that has not been deployed, type `setup` at the login prompt and press `Enter`. Do not type anything at the password prompt and press `Enter`. If your system has been deployed, login with a user that has the *manage* role.
 
 ## Set the network port IP addresses via DHCP
 
