@@ -8,7 +8,7 @@ Upon completing the hardware installation, use PowerVault Manager to configure, 
 
 !!! note
 
-    The PowerVault web interface requires Firefox 57 or later, Chrome 57 or later, MS Internet Explorer 10 or 11, or Safari 10.1 or later. Dell says you cannot view Help content if you are using the Microsoft Edge browser that ships with Windows 10. I'm thinking they mean the non-chromium version . . . Haven't tested this yet.
+    The PowerVault web interface requires Firefox 57 or later, Chrome 57 or later, MS Internet Explorer 10 or 11, or Safari 10.1 or later. Dell says you cannot view Help content if you are using the Microsoft Edge browser that ships with Windows 10 . . . I'm thinking that this was pre Chromium Edge. 
 
 ## Accessing the PowerVault Manager
 
@@ -39,6 +39,8 @@ Upon completing the hardware installation, use PowerVault Manager to configure, 
 
 When the update completes, the system restarts.
 
+!!! tip "See also, [Firmware Updates](../powervault-me4/me4-firmware-updates.md)."
+
 ## Guided setup
 
 !!! info
@@ -58,7 +60,3 @@ With guided setup, you must first configure your system settings by accessing th
 !!! abstract
 
     There's more to add, I'm sure, but I figure it might be better to doc as we go from this point on.
-
----
-
-[:octicons-arrow-right-24: Next: Host Setup](../powervault-me4/me4-host-setup.md)
