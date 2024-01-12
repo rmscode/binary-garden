@@ -112,7 +112,7 @@ nav:
           - hardware/dell-emc/S4048-ON/os9-other.md
         - OS10:
           - hardware/dell-emc/S4048-ON/os10.md
-      - PowerVault ME4:
+      - PowerVault ME4 Storage:
         - hardware/dell-emc/powervault-me4/me4-overview.md
         - Getting Started:
           - hardware/dell-emc/powervault-me4/me4-deployment-brief.md
