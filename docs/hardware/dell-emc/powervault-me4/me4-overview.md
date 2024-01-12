@@ -191,3 +191,7 @@ The top slot for holding controller modules is designated slot A and the bottom 
 
     - **Off**: The port is empty or the link is down.
     - **Green**: The port is connected and the link is up. 
+
+---
+
+[:octicons-arrow-right-24: Next: Deployment Brief ](../powervault-me4/me4-deployment-brief.md)
