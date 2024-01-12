@@ -9,7 +9,7 @@
     - [Owner's Manual](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_om_pub/)
     - [Deployment Guide](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_dg_pub)
     - [Administrator's Guide](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub)
-    - [Series Storage System CLI Guide](https://www.dell.com/support/manuals/en-us/powervault-me4024/me4_series_cli_pub) 
+    - [CLI Guide](https://www.dell.com/support/manuals/en-us/powervault-me4024/me4_series_cli_pub) 
     - [Best Practices Guide](https://www.delltechnologies.com/asset/en-us/products/storage/industry-market/dell_emc_me4_series_storage_system_best_practices.pdf)
 
 ??? info "PowerVault ME4 Series Terminology"
@@ -76,7 +76,7 @@
 
 === "3. Unit ID Display"
 
-    - **Green seven-digit display**: Enclosure sequence
+    - **Green seven-digit display**: Shows the numerical position of the enclosure in the cabling sequence. The UID (Unit ID Display) is also the enclosure ID.
 
 === "4. Identity"
 
