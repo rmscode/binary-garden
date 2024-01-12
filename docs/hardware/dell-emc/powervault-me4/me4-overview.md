@@ -118,8 +118,6 @@
 3. Controller module slot A
 4. Controller module slot B
 
-See also, [troubleshooting PCM faults](me4-troubleshooting.md#pcm-faults).
-
 ### Controller module (4-port FC/iSCSI)
 
 The top slot for holding controller modules is designated slot A and the bottom slot is designated slot B. The face plate details of the controller modules show the modules aligned for use in slot A. In this orientation, the controller module latch shown at the bottom of the module and it is in a closed/locked position. The following figures identify the ports on the controller modules.
@@ -191,7 +189,3 @@ The top slot for holding controller modules is designated slot A and the bottom 
 
     - **Off**: The port is empty or the link is down.
     - **Green**: The port is connected and the link is up. 
-
----
-
-[:octicons-arrow-right-24: Next: Deployment Brief ](../powervault-me4/me4-deployment-brief.md)
