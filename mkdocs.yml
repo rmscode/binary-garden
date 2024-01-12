@@ -101,7 +101,6 @@ nav:
       - PowerSwitch S4048-ON:
         - hardware/dell-emc/S4048-ON/overview.md
         - OS9:
-          #- hardware/dell-emc/S4048-ON/overview.md
           - hardware/dell-emc/S4048-ON/os9.md
           - hardware/dell-emc/S4048-ON/os9-debugging.md
           - hardware/dell-emc/S4048-ON/os9-file-management.md
@@ -115,11 +114,17 @@ nav:
           - hardware/dell-emc/S4048-ON/os10.md
       - PowerVault ME4:
         - hardware/dell-emc/powervault-me4/me4-overview.md
-        - hardware/dell-emc/powervault-me4/me4-deployment-brief.md
-        - hardware/dell-emc/powervault-me4/me4-guided-setup.md
-        - hardware/dell-emc/powervault-me4/me4-host-setup.md
+        - Getting Started:
+          - hardware/dell-emc/powervault-me4/me4-deployment-brief.md
+          - hardware/dell-emc/powervault-me4/me4-guided-setup.md
+          - hardware/dell-emc/powervault-me4/me4-host-setup.md
+        # - hardware/dell-emc/powervault-me4/me4-overview.md
+        # - hardware/dell-emc/powervault-me4/me4-deployment-brief.md
+        # - hardware/dell-emc/powervault-me4/me4-guided-setup.md
+        # - hardware/dell-emc/powervault-me4/me4-host-setup.md
         - hardware/dell-emc/powervault-me4/me4-cli.md
         - hardware/dell-emc/powervault-me4/me4-virtual-linear-storage.md
+        - hardware/dell-emc/powervault-me4/me4-firmware-updates.md
         - hardware/dell-emc/powervault-me4/me4-troubleshooting.md
         - hardware/dell-emc/powervault-me4/me4-best-practice.md
 
