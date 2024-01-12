@@ -37,6 +37,8 @@ Upon completing the hardware installation, use PowerVault Manager to configure, 
 2. Locate firmware updates at <https://www.dell.com/support>. If newer versions are vailable, download the bundle file or relevant firmware components.
 3. Click *Browse*, select the firmware bundle file or component file, and click *OK*.
 
+When the update completes, the system restarts.
+
 ## Guided setup
 
 !!! info
@@ -52,3 +54,11 @@ With guided setup, you must first configure your system settings by accessing th
 3. Click *Storage Setup* and follow the prompts to begin provisioning your system by creating disk groups and pools.
 4. Save your settings and exit to the *Welcome* panel.
 5. Click *Host Setup* and follow the prompts to continue provisioning your system by attaching hosts.
+
+!!! abstract
+
+    There's more to add, I'm sure, but I figure it might be better to doc as we go from this point on.
+
+---
+
+[:octicons-arrow-right-24: Next: Host Setup](../powervault-me4/me4-host-setup.md)
