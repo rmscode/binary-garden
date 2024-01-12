@@ -88,3 +88,11 @@ The following table shows recommended disk counts for RAID-6 and RAID-5 disk gro
 | RAID-5     | 3           | 2                       | 1                         |
 |            | 5           | 4                       | 1                         |
 |            | 9           | 8                       | 1                         |
+
+## Firmware updates
+
+- In the health panel in the footer, verify that the system health status is OK. If the system health status is not OK, view the Health Reason value in the health panel in the footer and resolve all problems before you update the firmware.
+- Run the check `firmware-upgrade-health` CLI command before updating the firmware. This command performs a series of health checks to determine whether any conditions exist that need to be resolved before the firmware can be updated. Any conditions that are detected are listed with their potential risks.
+- If any unwritten cache data is present, the firmware update will not proceed. Before you can update the firmware, unwritten data must be removed from cache. For more information about the clear cache command, see the Dell PowerVault ME4 Series Storage System [CLI Guide](https://www.dell.com/support/manuals/en-us/powervault-me4024/me4_series_cli_pub).
+- If a disk group is quarantined, contact technical support for help resolving the problem that is causing the component to be quarantined before updating the firmware.
+- To ensure success of an online update, select a period of low I/O activity. This helps the update complete as quickly as possible and avoids disruption to host and applications due to timeouts. Attempting to update a storage system that is processing a large, I/O-intensive batch job may cause hosts to lose connectivity with the storage system.
