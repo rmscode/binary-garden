@@ -85,3 +85,7 @@ Connect the power cable from each PCM on the enclosure rear panel to the power d
     2. Controller enclosure—Depending upon the number and type of disks in the system, it may take several minutes for the system to become ready.
     3. Data host—if powered off for maintenance purposes.
 - When powering off, reverse the order of steps that are used for powering on.
+
+---
+
+[:octicons-arrow-right-24: Next: System and Storage Setup](../powervault-me4/me4-guided-setup.md)
