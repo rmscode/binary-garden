@@ -12,9 +12,9 @@
 
 In a dual-controller system, both controller modules should run the same firmware.
 
-### Prepare to update controller modules
+### Prepare to update the controller module(s)
 
-1. Download the appropriate firmware .zip file to your computer or network.
+1. [Download](https://www.dell.com/support/home/en-us/product-support/product/powervault-me4024/drivers) the appropriate firmware .zip file to your computer or network.
 2. Extract the firmware .bin file from the .zip file.
 3. If the storage system has a single controller, stop I/O to the storage system before you start the firmware update. 
 
@@ -24,7 +24,9 @@ In a dual-controller system, both controller modules should run the same firmwar
 
     A dual controller system connected to hosts with redundant pathways and properly configured multipathing software can be updated without stopping I/O. While one controller is being updated, the other continues to process I/O. [Source](https://www.dell.com/support/kbdoc/en-us/000120120/me4-how-to-upgrade-controller-firmware).
 
-### Update controller module firmware
+### Update the controller module(s)
+
+!!! note "Since we have a dual controller system, only the steps for using the PowerVault manager are listed below." 
 
 1. Perform one of the following as a user with the manage role:
       -  In the banner, click the system panel and select **Update Firmware**.
@@ -43,7 +45,7 @@ In a dual-controller system, both controller modules should run the same firmwar
 
 You can specify to update all disks or only specific disks. If you specify to update all disks and the system contains more than one type of disk, the update will be attempted on all disks in the system. The update will only succeed for disks whose type matches the file, and will fail for disks of other types.
 
-### Prepare to update disk-drives
+### Prepare to update the disk-drives
 
 1. Obtain the appropriate firmware file and download it to your computer or network.
 2. In the PowerVault Manager, prepare to use FTP:
@@ -54,7 +56,7 @@ You can specify to update all disks or only specific disks. If you specify to up
 
 > Document [enabling FTP](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/enable-or-disable-system-management-settings?guid=guid-e222335a-3e1b-446e-81ac-f7222649673a&lang=en-us)
 
-### Update disk firmware
+### Update the disk-drives
 
 !!! note
 
