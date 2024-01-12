@@ -17,7 +17,7 @@ Upon completing the hardware installation, use PowerVault Manager to configure, 
     The [ME4 Series Administrators Guide](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub) is the primary reference for using the PowerVault Manager.
 
 1. Temporarily set the management host NIC to a 10.0.0.x address or to the same IPv6 subnet to enable communication with the storage system.
-      - !!! note "If the default IP addresses (10.0.0.2 - Controller A, 10.0.0.3 - Controller B) are not compatible with your network, refer to ["Accessing the CLI"](../powervault-me4/me4-overview.md#accessing-the-cli) to learn how to set the network port IP addresses."
+      - !!! note "If the default IP addresses (10.0.0.2 - Controller A, 10.0.0.3 - Controller B) are not compatible with your network, refer to ["Accessing the CLI"](../powervault-me4/me4-cli.md) to learn how to set the network port IP addresses."
 2. In a supported web browser, type `https://10.0.0.2` to access controller module A on an IPv4 network.
 3. If the storage system is running G275 firmware:
       1. Sign in to the PowerVault Manager using the following user name and password:
