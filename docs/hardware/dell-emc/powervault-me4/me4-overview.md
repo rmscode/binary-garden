@@ -189,3 +189,19 @@ The top slot for holding controller modules is designated slot A and the bottom 
 
     - **Off**: The port is empty or the link is down.
     - **Green**: The port is connected and the link is up. 
+
+### Power Cooling Module (PCM)
+
+This example shows a PCM oriented for use in the left PCM slot of the enclosure rear panel.
+
+![ME4024 Power Cooling Module](../../../assets/GUID-8A0B9E11-ED2F-4146-9E6E-71905CCE917D-low.jpg)
+
+1. PCM OK LED (Green)
+2. AC Fail LED (Amber/blinking amber)
+3. Fan Fail LED (Amber/blinking amber)
+4. DC Fail LED (Amber/blinking amber)
+5. On/Off switch
+6. Power connector
+7. Release latch
+
+If any of the PCM LEDs are illuminated amber, a module fault condition or failure has occurred.
