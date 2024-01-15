@@ -34,3 +34,5 @@ Virtual storage provides the foundation for data-management features such as thi
     - Adding individual disks to increase RAID capacity is supported for RAID 0, 3, 5, 6, 10, 50, and ADAPT disk groups
     - Configurable chunk size per disk group
     - Global, dedicated, and/or dynamic hot spares
+
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/about-virtual-and-linear-storage?guid=guid-5bbe5bbb-bf63-484b-87d4-94d20cf6b5aa&lang=en-us)
