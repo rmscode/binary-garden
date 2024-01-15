@@ -34,10 +34,6 @@
 3. Switch
 4. SAN
 
-!!! note
-
-    See also the topic on [configuring network ports](me4-overview.md#set-the-network-port-ip-addresses-via-dhcp) on controller modules.
-
 ## Cable the controller host ports (iSCSI)
 
 A host identifies an external port to which the storage system is attached. The external port may be a port in an I/O adapter (such as an FC HBA or ethernet NIC) in a server.
