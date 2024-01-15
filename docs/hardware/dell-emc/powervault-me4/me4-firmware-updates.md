@@ -60,7 +60,7 @@ You can specify to update all disks or only specific disks. If you specify to up
 
 !!! note
 
-The CLI must be used to perform the firmware. Stopping I/O includes shutting down the storage controllers which in term shuts down access to the PowerVault manager.
+      "The CLI must be used to perform the firmware. Stopping I/O includes shutting down the storage controllers which in term shuts down access to the PowerVault manager."
 
 1. Open a command prompt and navgate to the directory containing the firmware update file to load.
 2. Type `ftp <controller-network-address>`. For example, `ftp 10.0.0.2`.
