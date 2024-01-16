@@ -120,7 +120,7 @@ nav:
           - hardware/dell-emc/powervault-me4/me4-host-setup.md
         - System Maintenance:
           - hardware/dell-emc/powervault-me4/me4-firmware-updates.md
-          - hardware/dell-emc.powervault-me4/me4-shutdown-controller.md
+          - hardware/dell-emc/powervault-me4/me4-shutdown-controller.md
         - hardware/dell-emc/powervault-me4/me4-cli.md
         - hardware/dell-emc/powervault-me4/me4-logging.md
         - hardware/dell-emc/powervault-me4/me4-virtual-linear-storage.md
