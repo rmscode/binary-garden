@@ -73,7 +73,15 @@ Syntax: `show events [a|b|both|error]`
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/download-system-logs?guid=guid-35296596-b4c6-4e7e-9249-d178538b402d&lang=en-us)
 
-## Transfer log data to a log-collection system
+## Configure remote syslog notifications
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/transfer-log-data-to-a-log-collection-system?guid=guid-974c7709-1bc4-4493-9f50-9b7be1eba40a&lang=en-us)
+1. In either the Home topic of System topic, select **Action** > **System Settings**, then click **Notifications**.
+2. Select the **Syslog** tab.
+3. Configure teh Syslog options.
+4. Save your settings by clicking **Apply**.
+5. Click **OK** on the confirmation panel that appears.
+6. Click **Test Syslog**. A test event is sent to the syslog server.
+7. Verify that the test notification reach the syslog server.
+8. Click **OK**.
 
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/configure-remote-syslog-notifications?guid=guid-6d66c817-8556-46fa-8bce-e9c38d1b5108&lang=en-us)
