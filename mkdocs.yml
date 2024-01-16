@@ -118,6 +118,10 @@ nav:
           - hardware/dell-emc/powervault-me4/me4-deployment-brief.md
           - hardware/dell-emc/powervault-me4/me4-guided-setup.md
           - hardware/dell-emc/powervault-me4/me4-host-setup.md
+        - System Concepts:
+          # - hardware/dell-emc/powervault-me4/me4-pools.md
+          # - hardware/dell-emc/powervault-me4/me4-disk-groups.md
+          # - hardware/dell-emc/powervault-me4/me4-virtual-linear-storage.md
         - System Maintenance:
           - hardware/dell-emc/powervault-me4/me4-firmware-updates.md
           - hardware/dell-emc/powervault-me4/me4-shutdown-controller.md
