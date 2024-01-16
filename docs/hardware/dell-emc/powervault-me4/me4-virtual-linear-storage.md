@@ -1,4 +1,4 @@
-# About virtual and linear storage
+# About Virtual and Linear Storage
 
 The ME4 series storage system uses two different storage technologies that share a common user interface. One uses the virtual method while the other one uses the linear method.
 
