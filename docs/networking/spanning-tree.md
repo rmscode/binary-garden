@@ -9,4 +9,14 @@ STP uses the Spanning-Tree Algorithm (SPA) to determine which interfaces should 
 1. Electing a root bridge. All interfaces on the switch elected as the root bridge are placed in a forwarding state.
 2. All other non-root switches determine the best path to the root bridge. The ports used to reach to the root bridge (root port) are placed in a forwarding state.
 3. On shared Ethernet segments, the switch with the best path to reach the root bridge is placed in a forwarding state. This is called the designated switch and its port is known as the designated port.
-4. All other interfaces are placed in a blocking state and will not forward trafic.
+4. All other interfaces are placed in a blocking state and will not forward traffic.
+
+!!! note
+
+    STP only considers working interfaces. Shutdown interfaces or interfaces without a link are placed in an STP disabled state.
+
+## Root bridge election
+
+## Root port election
+
+## Designated and non-designated ports
