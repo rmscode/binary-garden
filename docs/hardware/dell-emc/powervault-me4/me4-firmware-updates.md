@@ -16,9 +16,7 @@ In a dual-controller system, both controller modules should run the same firmwar
 
 1. [Download](https://www.dell.com/support/home/en-us/product-support/product/powervault-me4024/drivers) the appropriate firmware .zip file to your computer or network.
 2. Extract the firmware .bin file from the .zip file.
-3. If the storage system has a single controller, stop I/O to the storage system before you start the firmware update. 
-
-> Document [stopping I/O](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_om_pub/shutting-down-a-controller-module?guid=guid-0fdc7a08-1a01-4f66-bc37-d1ed052ac4d1&lang=en-us)
+3. If the storage system has a single controller, [stop I/O](me4-shutdown-controller.md) to the storage system before you start the firmware update. 
 
 !!! note
 
@@ -52,7 +50,7 @@ You can specify to update all disks or only specific disks. If you specify to up
       1. Determine the network-port IP addresses of the system controllers. (Defaults: A-10.0.0.2/B-10.0.0.3, or whatever you configured)
       2. Verify that the FTP/SFTP service is enabled on the system. (Action > System Settings System Services tab)
       3. Verify that the user you plan to use has manage role permissions and FTP/SFTP interface permissions.
-3. Stop I/O to the storage system. During the update all volumes will be temporarily inaccessible to hosts. If I/O is not stopped, mapped hosts will report I/O errors. Volume access is restored after the update completes.
+3. [Stop I/O](me4-shutdown-controller.md) to the storage system. During the update all volumes will be temporarily inaccessible to hosts. If I/O is not stopped, mapped hosts will report I/O errors. Volume access is restored after the update completes.
 
 > Document [enabling FTP](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/enable-or-disable-system-management-settings?guid=guid-e222335a-3e1b-446e-81ac-f7222649673a&lang=en-us)
 
