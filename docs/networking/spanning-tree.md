@@ -17,6 +17,8 @@ STP uses the Spanning-Tree Algorithm (SPA) to determine which interfaces should 
 
 ## Root bridge election
 
+In a network using Spanning Tree Protocol (STP), a root bridge is chosen from multiple switches. The selection is based on the lowest bridge ID, a combination of each switch's priority value and MAC address. When STP starts, each switch thinks it's the root bridge and sends BPDU (Bridge Protocol Data Unit) messages. The switch with the smallest bridge ID becomes the root bridge. If priority values tie, the switch with the lower MAC address wins. The chosen root bridge centralizes network topology and data forwarding paths.
+
 ## Root port election
 
 ## Designated and non-designated ports
