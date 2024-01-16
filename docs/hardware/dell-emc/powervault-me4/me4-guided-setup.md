@@ -47,6 +47,8 @@ When the update completes, the system restarts.
 
     When you first access the Welcome panel wizard, you are prompted to select the type of storage to use for your environment. Dell recommends using virtual storage. See the [About virtual and linear storage](../powervault-me4/me4-virtual-linear-storage.md) section for more information.
 
+    See also, [Best Practices: Performance](me4-best-practice.md#performance)
+
 The *Welcome* panel provides options for you to quickly set up your system by guiding you through the configuration and provisioning process.
 
 With guided setup, you must first configure your system settings by accessing the System Settings panel and completing all required options.
