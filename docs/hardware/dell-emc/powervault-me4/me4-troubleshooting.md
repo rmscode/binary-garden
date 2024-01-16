@@ -2,6 +2,11 @@
 
 !!! note "WIP . . . isn't necessarily complete or ordered correctly."
 
+!!! info "Event IDs"
+
+    When an event occurs in a storage system, an event message is recorded in the system event log. See the [Owner's Manual](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_om_pub/events?guid=guid-93692ce8-3105-4064-bdb9-40269e847f2f&lang=en-us) for a list of event IDs.
+
+
 ## Operators Panel LEDs
 
 The [Ops panel](../powervault-me4/me4-overview.md#operator-panel-leds) on the front of the enclosure located on the left ear flange of the 2U chassis provides status information at a glance.
