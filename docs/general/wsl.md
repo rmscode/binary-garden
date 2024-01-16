@@ -36,4 +36,4 @@ If you find yourself needing to access the contents of a drive formatted in a Li
 
 You can then navigate to that path with `cd /mnt/d`
 
-!!! tip "The C drive and other internal Windows drives should already be automatically be mounted in WSL."
+!!! tip "The C drive and other internal Windows drives should already be automatically mounted in WSL."
