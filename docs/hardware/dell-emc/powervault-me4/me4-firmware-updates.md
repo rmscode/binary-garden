@@ -24,8 +24,6 @@ In a dual-controller system, both controller modules should run the same firmwar
 
 ### Update the controller module(s)
 
-!!! note "Since we have a dual controller system, only the steps for using the PowerVault manager are listed below." 
-
 1. Perform one of the following as a user with the manage role:
       -  In the banner, click the system panel and select **Update Firmware**.
       -  In the System topic, select **Action** > **Update Firmware**.
@@ -36,6 +34,19 @@ In a dual-controller system, both controller modules should run the same firmwar
 5. Clear your web browser cache, then sign in to the PowerVault Manager. If PFU is still running on the controller you sign in to, a panel shows PFU progress and prevents you from performing other tasks until PFU is complete. 
 
 !!! note "Firmware updates typically takes 10 minutes for a controller with current CPLD firmware, or 20 minutes for a controller with downlevel CPLD firmware."
+
+??? tip "Use the activity progress interface"
+
+      1. From Home or System topic, select **Action** > **System Settings**, then click the **Services** tab. 
+      2. Enable **Activity Progress Reporting**. 
+      3. Navigate to `http://<controller-ip>:8081/cgi-bin/content.cgi?mc=<MC-ID>&refresh=true` where:
+         1.  `<controller-IP>` - IP address of the controller module
+         2.  `mc=A` - Shows output for controller A
+         3.  `mc=B` - Shows output for controller B
+         4.  `mc=both` - Shows output for both controllers
+         5.  `mc=self` - Shows output for the controller whose IP ip is specified in the URL
+
+
 
 ## Disk Firmware
 
@@ -58,12 +69,12 @@ You can specify to update all disks or only specific disks. If you specify to up
 
 !!! note
 
-      "The CLI must be used to perform the firmware. Stopping I/O includes shutting down the storage controllers which in term shuts down access to the PowerVault manager."
+      "The CLI must be used to perform the firmware. Stopping I/O includes shutting down the storage controllers which in turn shuts down access to the PowerVault manager."
 
 1. Open a command prompt and navgate to the directory containing the firmware update file to load.
 2. Type `ftp <controller-network-address>`. For example, `ftp 10.0.0.2`.
 3. Log in as a user with manage role permissions and FTP/SFTP interface permissions.
-4. Perform eith of the following tasks:
+4. Perform either of the following tasks:
       - Update all disks of the type that the firmware applies to: `put <firmware-file> disk`. For example, `put AS10.bin disk`.
       - Update specific disks: `put <firmware-file> disk:<enclosure-ID>:<slot-number>`. For example, `put AS10.bin disk:1:11`.
       - !!! warning "Do not perform a power cycle or controller restart during a firmware update. If the update is interrupted or there is a power failure, the module might become inoperative. If this issue occurs, contact technical support. The module might need to be returned to the factory for reprogramming."
