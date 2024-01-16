@@ -58,3 +58,11 @@ With guided setup, you must first configure your system settings by accessing th
 5. Click *Host Setup* and follow the prompts to continue provisioning your system by attaching hosts.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4024/me4_series_ag_pub/guided-setup?guid=guid-f2532697-d39f-4a6b-875d-8fe3a4688931&lang=en-us)
+
+## Adding, modifying, and deleting users
+
+Log in as a user with the `manage` role and perform the following:
+
+In the Home or System topic, select Action > System Settings, then click the Managing Users tab.
+
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4084/me4_series_ag_pub/adding-modifying-and-deleting-users?guid=guid-bb8280fb-7a05-4e13-8d41-21fa517e3b85&lang=en-us)
