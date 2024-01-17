@@ -22,3 +22,7 @@ In a network using Spanning Tree Protocol (STP), a root bridge is chosen from mu
 ## Root port election
 
 ## Designated and non-designated ports
+
+## Misc
+
+I wondered if different versions of spanning tree could coexist in the same network. The answer is yes, with planning. I was mostly concerned with STP and rSTP - They can coexist pretty seemlessly. rSTP can actually detect the presence of STP switches and fallback to STP operation for those switches.
