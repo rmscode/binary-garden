@@ -1,1 +1,5 @@
 # About Disk Groups
+
+A disk group is an aggregation of disks of the same type, using a specific RAID level that is incorporated as a component of a pool, for the purpose of storing volume data. Disk groups are used in both virtual and linear storage environments. You can add virtual, linear, or read-cache disk groups to a pool.
+
+All disks in a disk group must be the same type SSD: enterprise SAS, or midline SAS, For example, a disk group can contain different models of disks, and disks with different capacities and sector formats. If you mix disks with different capacities, the smallest disk determines the logical capacity of all other disks in the disk group, for all RAID levels except ADAPT. For example, the capacity of a disk group composed of one 500 GB disk and one 750 GB disk is equivalent to a disk group composed of two 500 GB disks. To maximize capacity, use disks of similar size.
