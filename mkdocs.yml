@@ -135,6 +135,7 @@ nav:
     - hardware/raspberrypi.md
   - Networking: 
     - networking/index.md
+    - networking/link-aggregation.md
     - networking/spanning-tree.md
   - Software: 
     - software/index.md
