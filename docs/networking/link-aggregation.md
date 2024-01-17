@@ -21,10 +21,6 @@ Link aggregation offers the following properties:
 - Data transmission will be distributed as frames over the physical links.
 - All frames forming part of a specific data communication packet will be transmitted over the same physical connection. This ensures the delivery of the individual frames of a data communication packet will be received in the correct order.
 
-!!! quote "A nice analogy I found . . ."
-
-    It's important to understand that while the bandwidth of a 2-port LAG link is 2Gbps, an individual flow will max out at 1Gbps. It's a highway with a 100MPH speed limit. We can add another lane and 2 cars can go 100MPH, but a single car can never go 200MPH. We're increasing the amount of traffic that can be carried, but not the max speed.
-
 ## Static Link Aggregation
 
 With a static link aggregate, all configuration settings will be setup on both participating LAG components once.
@@ -42,3 +38,7 @@ In constrast to static link aggregation, dynamic link aggregation (LACP) offers 
 
 - Even if one physical links fails, it will detect if the point-to-point connection is using a media converter, so that the link status at the switching port remains up. Because LACPDUs do not form a component of this connection, the link will be removed from the link aggregate. This ensures that packets will not be lost due to the failed link.
 - Both of the devices can mutually confirm the LAG configuration. With static link aggregation, errors in the configuration or wiring will often not be detected as quickly.
+
+!!! quote "A nice analogy I found . . ."
+
+    It's important to understand that while the bandwidth of a 2-port LAG link is 2Gbps, an individual flow will max out at 1Gbps. It's a highway with a 100MPH speed limit. We can add another lane and 2 cars can go 100MPH, but a single car can never go 200MPH. We're increasing the amount of traffic that can be carried, but not the max speed.
