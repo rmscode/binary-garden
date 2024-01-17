@@ -41,4 +41,4 @@ In constrast to static link aggregation, dynamic link aggregation (LACP) offers 
 
 !!! quote "A nice analogy I found . . ."
 
-    It's important to understand that while the bandwidth of a 2-port LAG link is 2Gbps, an individual flow will max out at 1Gbps. It's a highway with a 100MPH speed limit. We can add another lane and 2 cars can go 100MPH, but a single car can never go 200MPH. We're increasing the amount of traffic that can be carried, but not the max speed.
+    It's important to understand that while the bandwidth of a 2-port LACP link is 2Gbps, an individual flow will max out at 1Gbps. It's a highway with a 100MPH speed limit. We can add another lane and 2 cars can go 100MPH, but a single car can never go 200MPH. We're increasing the amount of traffic that can be carried, but not the max speed.
