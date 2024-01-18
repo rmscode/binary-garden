@@ -2,16 +2,23 @@
 
 !!! note "WIP . . . isn't necessarily complete or ordered correctly."
 
+## Health Status
+
+The PowerVault Manager uses health icons to show OK, Degraded, Fault, or Unknown status for the system and its components. Use the web application's GUI to drill down to find each component that has a problem, and follow the actions in the Recommendation field for the component. 
+
+!!! tip
+
+      Alternatively, you can check the health of the system with the CLI command `show system`.
+
+## Monitor event notifications
+
+With event notifications enabled, you can view event logs to monitor the health of the system and its components.
+
 !!! info "Event IDs"
 
-    When an event occurs in a storage system, an event message is recorded in the system event log. See the [Owner's Manual](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_om_pub/events?guid=guid-93692ce8-3105-4064-bdb9-40269e847f2f&lang=en-us) for a list of event IDs.
+    See the [Owner's Manual](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_om_pub/events?guid=guid-93692ce8-3105-4064-bdb9-40269e847f2f&lang=en-us) for a list of event IDs.
 
-
-## Operators Panel LEDs
-
-The [Ops panel](../powervault-me4/me4-overview.md#operator-panel-leds) on the front of the enclosure located on the left ear flange of the 2U chassis provides status information at a glance.
-
-### LED colors
+## Enclosure LEDs
 
 LED colors are used consistently throughout the enclosure and its components for indicating status:
 
@@ -19,9 +26,11 @@ LED colors are used consistently throughout the enclosure and its components for
 - **Blinking green/amber**: Non-critical condition.
 - **Amber**: Critical fault.
 
-### Actions
+### Operators Panel LEDs
 
-- If the Ops panel Module Fault (Status/Health) LED is on, check the module LEDs on the enclosure rear panel to narrow the fault to a CRU, a connection, or both.
+The [Ops panel](../powervault-me4/me4-overview.md#operator-panel-leds) displays the aggregated status of all the modules. If the Ops panel Module Fault (Status/Health) LED is on, perform the following actions: 
+
+- Check module LEDs on the enclosure rear panel to narrow the fault to a CRU, a connection, or both.
 - Check the event log for specific information regarding the fault, and follow any Recommended Actions.
 - If installing a controller module or IOM CRU:
     - Remove and reinstall the controller module or IOM per the Dell PowerVault ME4 Series Storage System [Owner’s Manual](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_om_pub/).
@@ -31,6 +40,32 @@ LED colors are used consistently throughout the enclosure and its components for
     - If the restart does not resolve the fault, remove the controller module or IOM and reinsert it.
 - If the previous actions do not resolve the fault, contact Dell for assistance.
 
+### PCM LEDs
+
+Under normal conditions, the power cooling module (PCM) OK LEDs wil be constant green.
+
+| PCM OK (GREEN) | FAIL FAN (AMBER) | AC FAIL (AMBER) | DC FAIL (AMBER) | STATUS 
+| -------------- | ---------------- | --------------- | --------------- | ------
+| On             | Off              | Off             | Off             | No AC power on any PCM
+| Off            | Off              | On              | On              | No AC power on this PCM only
+| On             | Off              | Off             | Off             | AC present; PCM working correctly
+| On             | Off              | Off             | On              | PCM fan speed is outside acceptable limits
+| Off            | On               | Off             | Off             | PCM fan has failed
+| Off            | On               | On              | On              | PCM fault (above temperature, above voltage, above current)
+| Off            | Blinking         | Blinking        | Blinking        | PCM firmware download is in progress
+
+### Disk Drive Carrier Module LEDs
+
+Under normal conditions, the green LED is on, and flickers as the drive operates. The amber LED will be off.
+
+| ACTIVITY LED (GREEN)          | FAULT LED (AMBER)       | STATUS/CONDITION*
+| ----------------------------- | ----------------------- | -----------------
+| Off                           | Off                     | Off (disk module/enclosure)
+| Off                           | Off                     | Not present
+| Blink off with activity       | Blinking: 1s on /1s off | Identify
+| - 1 down: Blink with activity | On                      | Drive link (PHY lane) down
+| - 2 down: Off                 |                         | 
+| On                            | On                      | Fault (leftover/failed/locked-out)
 
 ## Alarm conditions
 
