@@ -64,8 +64,35 @@ Under normal conditions, the green LED is on, and flickers as the drive operates
 | Off                           | Off                     | Not present
 | Blink off with activity       | Blinking: 1s on /1s off | Identify
 | - 1 down: Blink with activity | On                      | Drive link (PHY lane) down
-| - 2 down: Off                 |                         | 
+| - 2 down: Off                 |                         |
 | On                            | On                      | Fault (leftover/failed/locked-out)
+| Blink off with activity       | Off                     | Available
+| Blink off with activity       | Off                     | Storage system: Initializing
+| Blink off with activity       | Off                     | Storage system: Fault-tolerant
+| Blink off with activity       | Off                     | Storage system: Degraded (not critical)
+| Blink off with activity       | Blinking: 3s on/ 1s off | Storage system: Degraded (critical)
+| On                            | Off                     | Storage system: Quarantined
+| Blink off with activity       | Blinking: 3s on/ 1s off | Storage system: Offline (dequarantined)
+| Blink off with activity       | Off                     | Storage system: Reconstruction
+| Blink off with activity       | Off                     | Processing I/O (whether from host or internal activity)
+| *If multiple conditions occur simultaneously, the LED state behaves as indicated by the condition listed earliest in the table, as rows are read from top to bottom.
+
+### 12 Gb/s Controller Module LEDs 
+
+<https://www.dell.com/support/manuals/en-us/powervault-me4084/me4_series_om_pub/12-gbs-controller-module-leds?guid=guid-a717a6fc-0afe-4256-972a-b9e24bdfba0e&lang=en-us>
+
+| LED | DESCRIPTION | DEFINITION
+| --- |
+| 1   |
+| 2   |
+| 3   |
+| 4   |
+| 5   |
+| 6   |
+| 7   |
+| 8   |
+| 9   |
+| 10  |
 
 ## Alarm conditions
 
@@ -90,6 +117,45 @@ Under normal conditions, the green LED is on, and flickers as the drive operates
 | Insufficient power available                   | Warning                               | None
 
 !!! info "Use the PowerVault Manager to monitor the storage system event logs for information about enclosure-related events, and to determine any necessary recommended actions."
+
+## Thermal Monitoring
+
+Recommended actions...
+
+=== "SYMPTOM"
+
+      If the ambient air temp is below 77ºF, and teh fans are observed to increase in speed, then some restriction of airflow may be causing internal temps to rise. !!! note "This is not a fault condition."
+
+=== " CAUSE"
+
+      The first stage in the thermal control process is for the fans to automatically increase in speed when a thermal threshold is reached. This may be caused by higher ambient temperatures in the local environment, and may be perfectly normal.
+
+=== "RECOMMENDED ACTION"
+
+      1. Check the installation for any airflow restrictions at either the front or back of the enclosure. A minimum gap of 25 mm (1") at the front and 50 mm (2") at the rear is recommended.
+      2. Check for restrictions due to dust build-up. Clean as appropriate.
+      3. Check for excessive re-circulation of heated air from rear to front. Use of the enclosure in a fully enclosed rack is not recommended.
+      4. Verify that all blank modules are in place.
+      5. Reduce the ambient temperature.
+
+## Thermal Alarm
+
+=== "SYMPTOM"
+
+      1. Ops panel Module Fault LED is amber.
+      2. Fan Fail LED is illuminated on one or more PCMs.
+
+=== "CAUSE"
+
+      Internal temperature exceeds a preset threshold for the enclosure.
+
+=== "RECOMMENDED ACTION"
+
+      1. Verify that the local ambient environment temperature is within the acceptable range. (41ºF to 95ºF)
+      2. Check the installation for any airflow restrictions at either the front or back of the enclosure. A minimum gap of 25 mm (1") at the front and 50 mm (2") at the rear is recommended.
+      3. Check for restrictions due to dust build-up. Clean as appropriate.
+      4. Check for excessive re-circulation of heated air from rear to front. Use of the enclosure in a fully enclosed rack is not recommended.
+      5. If possible, shut down the enclosure and investigate the problem before continuing.
 
 ## Host-side connection troubleshooting featuring CNC ports
 
