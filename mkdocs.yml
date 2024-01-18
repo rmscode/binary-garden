@@ -125,6 +125,7 @@ nav:
         - System Maintenance:
           - hardware/dell-emc/powervault-me4/me4-firmware-updates.md
           - hardware/dell-emc/powervault-me4/me4-shutdown-controller.md
+          - hardware/dell-emc/powervault-me4/me4-module-removal.md
         - hardware/dell-emc/powervault-me4/me4-cli.md
         - hardware/dell-emc/powervault-me4/me4-logging.md
         - hardware/dell-emc/powervault-me4/me4-troubleshooting.md
