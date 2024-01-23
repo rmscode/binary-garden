@@ -130,13 +130,13 @@ nav:
         - hardware/dell-emc/powervault-me4/me4-logging.md
         - hardware/dell-emc/powervault-me4/me4-troubleshooting.md
         - hardware/dell-emc/powervault-me4/me4-best-practice.md
-
     - Microsoft:
       - hardware/microsoft/surface-rt.md
     - hardware/raspberrypi.md
   - Networking: 
     - networking/index.md
     - networking/link-aggregation.md
+    - networking/network-infrastructure.md
     - networking/spanning-tree.md
   - Software: 
     - software/index.md
