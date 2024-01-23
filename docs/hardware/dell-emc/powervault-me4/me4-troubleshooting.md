@@ -81,19 +81,6 @@ Under normal conditions, the green LED is on, and flickers as the drive operates
 
 <https://www.dell.com/support/manuals/en-us/powervault-me4084/me4_series_om_pub/12-gbs-controller-module-leds?guid=guid-a717a6fc-0afe-4256-972a-b9e24bdfba0e&lang=en-us>
 
-| LED | DESCRIPTION | DEFINITION
-| --- |
-| 1   |
-| 2   |
-| 3   |
-| 4   |
-| 5   |
-| 6   |
-| 7   |
-| 8   |
-| 9   |
-| 10  |
-
 ## Alarm conditions
 
 | Status                                         | Severity                              | Alarm
