@@ -196,6 +196,8 @@ VLT-1(conf-if-te-1/51-lacp)# port-channel 10 mode active    #(4)
 
     Dampening (or equivalent) should be configured on the attached device. Dampening will temporarily hold an interface down after a VLT peer device reload. A reload is detected as a flap: the link goes down and then up. Suggested dampening time is 30 seconds to 1 minute.
 
+    [This](os10.md#unexpected-behavior-while-testing-failure-scenarios) is also probably worth reading.
+
 [*Reference: Connecting a VLT domain to an attached access switch or device*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/connecting-a-vlt-domain-to-an-attached-access-device-switch-or-server?guid=guid-99a5a114-5dbc-4286-b64f-c5e43c4edf26&lang=en-us) </br>
 [*Reference: Layer 2 topology configurations*](https://infohub.delltechnologies.com/l/dell-emc-networking-with-isilon-front-end-deployment-and-best-practices-1/layer-2-topology-configurations-7/)</br>
 [*Reference: VLT Technical Guide*](https://i.dell.com/sites/content/business/large-business/merchandizing/en/Documents/Dell_Force10_S4810_VLT_Technical_Guide.pdf)
