@@ -139,16 +139,16 @@ nav:
     - networking/network-infrastructure.md
     - networking/spanning-tree.md
   - Servers:
-    - servers/msft-cluster.md
+    - Windows Server:
+      - servers/windows-server/index.md
+      - servers/windows-server/active-directory.md
+      - servers/windows-server/dedup.md
+      - servers/windows-server/group-policy.md
+      - servers/msft-cluster.md
   - Software: 
     - software/index.md
     - software/outlook.md
     - software/pisignage.md
-    - Windows Server OS: 
-      - software/windows-server/index.md
-      - software/windows-server/active-directory.md
-      - software/windows-server/dedup.md
-      - software/windows-server/group-policy.md
   - SOP: 
     - sop/index.md
   - Troubleshooting:

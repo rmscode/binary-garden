@@ -30,4 +30,4 @@
 
 `2 Tier/Layer Network`
 
-:   Also referred to as a "collapsed core" network, the core and distribution layers are combined into a single layer. This is the most common type of network in small to medium envrionments.
+:   Also referred to as a "collapsed core" network, the core and distribution layers are combined into a single layer. This is the most common type of network in small to medium envrionments. Core switches play double duty, acting as both core and distribution/aggregation switches.
