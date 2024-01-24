@@ -138,8 +138,11 @@ nav:
     - networking/link-aggregation.md
     - networking/network-infrastructure.md
     - networking/spanning-tree.md
+  - Servers:
+    - servers/msft-cluster.md
   - Software: 
     - software/index.md
+    - software/outlook.md
     - software/pisignage.md
     - Windows Server OS: 
       - software/windows-server/index.md
@@ -148,6 +151,9 @@ nav:
       - software/windows-server/group-policy.md
   - SOP: 
     - sop/index.md
+  - Troubleshooting:
+    - troubleshooting/msft-cluster-trouble.md
+    - troubleshooting/hyper-v-trouble.md
   - Notes: 
     - notes/index.md
     - 2024: notes/2024.md
