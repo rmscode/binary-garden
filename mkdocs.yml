@@ -144,7 +144,7 @@ nav:
       - servers/windows-server/active-directory.md
       - servers/windows-server/dedup.md
       - servers/windows-server/group-policy.md
-      - servers/msft-cluster.md
+      - servers/windows-server/msft-cluster.md
   - Software: 
     - software/index.md
     - software/outlook.md
