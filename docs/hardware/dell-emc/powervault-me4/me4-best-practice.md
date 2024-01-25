@@ -41,7 +41,7 @@ You should enable at least one notification service to monitor the system. Email
 !!! tip "Test Jumbo Frames in CommandPrompt/PowerShell"
 
     ```ps
-    ping -l 8000 -n 5 <ip of storage array>
+    ping -f -l 8000 <ip of storage array>
     ```
 
 ## Physical port selection
