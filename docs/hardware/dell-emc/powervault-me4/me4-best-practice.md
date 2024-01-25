@@ -37,6 +37,13 @@ You should enable at least one notification service to monitor the system. Email
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/configure-iscsi-ports?guid=guid-9c7ddef3-9cae-4788-b553-dffdc99c4aa6&lang=en-us)
 
+
+!!! tip "Test Jumbo Frames in CommandPrompt/PowerShell"
+
+    ```ps
+    ping -l 8000 -n 5 <ip of storage array>
+    ```
+
 ## Physical port selection
 
 In a system cofigured to use either all FC or all iSCSI ports, use the ports in the following order:
