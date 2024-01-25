@@ -147,6 +147,7 @@ nav:
       - servers/windows-server/msft-cluster.md
   - Software: 
     - software/index.md
+    - software/ms-teams.md
     - software/outlook.md
     - software/pisignage.md
   - SOP: 
