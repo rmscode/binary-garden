@@ -90,66 +90,65 @@ markdown_extensions:
 # Page tree
 nav:
   - Home: index.md
-  - General: 
+  - General:
     - general/index.md
-    - general/wsl.md
+    - Windows Susbsystem for Linux: general/wsl.md
     - Cheat Sheets:
-      - general/linux-cheat-sheet.md
+      - Linux Cheat Sheet: general/linux-cheat-sheet.md
   - Hardware: 
     - hardware/index.md
     - Dell EMC: 
       - PowerSwitch S4048-ON:
-        - hardware/dell-emc/S4048-ON/overview.md
+        - Overview: hardware/dell-emc/S4048-ON/overview.md
         - OS9:
-          - hardware/dell-emc/S4048-ON/os9.md
-          - hardware/dell-emc/S4048-ON/os9-debugging.md
-          - hardware/dell-emc/S4048-ON/os9-file-management.md
-          - hardware/dell-emc/S4048-ON/os9-logging.md
-          - hardware/dell-emc/S4048-ON/os9-tty-access.md
-          - hardware/dell-emc/S4048-ON/os9-ufd.md
-          - hardware/dell-emc/S4048-ON/os9-vlan.md
-          - hardware/dell-emc/S4048-ON/os9-vlt.md
-          - hardware/dell-emc/S4048-ON/os9-other.md
-        - OS10:
-          - hardware/dell-emc/S4048-ON/os10.md
+          - Getting Started: hardware/dell-emc/S4048-ON/os9.md
+          - Debugging and Diagnostics: hardware/dell-emc/S4048-ON/os9-debugging.md
+          - File Management: hardware/dell-emc/S4048-ON/os9-file-management.md
+          - Logging: hardware/dell-emc/S4048-ON/os9-logging.md
+          - Managing Access to Terminal Lines: hardware/dell-emc/S4048-ON/os9-tty-access.md
+          - Uplink Failure Detection: hardware/dell-emc/S4048-ON/os9-ufd.md
+          - VLAN Configurations: hardware/dell-emc/S4048-ON/os9-vlan.md
+          - Virtual Link Trunking (VLT): hardware/dell-emc/S4048-ON/os9-vlt.md
+          - Other: hardware/dell-emc/S4048-ON/os9-other.md
+        - OS10: hardware/dell-emc/S4048-ON/os10.md
       - PowerVault ME4 Storage:
-        - hardware/dell-emc/powervault-me4/me4-overview.md
+        - Overview: hardware/dell-emc/powervault-me4/me4-overview.md
         - Getting Started:
-          - hardware/dell-emc/powervault-me4/me4-deployment-brief.md
-          - hardware/dell-emc/powervault-me4/me4-guided-setup.md
-          - hardware/dell-emc/powervault-me4/me4-host-setup.md
+          - Deployment Brief: hardware/dell-emc/powervault-me4/me4-deployment-brief.md
+          - System and Storage Setup: hardware/dell-emc/powervault-me4/me4-guided-setup.md
+          - Host Setup (Windows): hardware/dell-emc/powervault-me4/me4-host-setup.md
         - System Concepts:
-          - hardware/dell-emc/powervault-me4/me4-pools.md
-          - hardware/dell-emc/powervault-me4/me4-disk-groups.md
-          - hardware/dell-emc/powervault-me4/me4-virtual-linear-storage.md
+          - About Pools: hardware/dell-emc/powervault-me4/me4-pools.md
+          - About Disk Groups: hardware/dell-emc/powervault-me4/me4-disk-groups.md
+          - About Virtual and Linear Storage: hardware/dell-emc/powervault-me4/me4-virtual-linear-storage.md
         - System Maintenance:
-          - hardware/dell-emc/powervault-me4/me4-firmware-updates.md
-          - hardware/dell-emc/powervault-me4/me4-shutdown-controller.md
-          - hardware/dell-emc/powervault-me4/me4-module-removal.md
-        - hardware/dell-emc/powervault-me4/me4-cli.md
-        - hardware/dell-emc/powervault-me4/me4-logging.md
-        - hardware/dell-emc/powervault-me4/me4-troubleshooting.md
-        - hardware/dell-emc/powervault-me4/me4-best-practice.md
+          - Firmware Updates: hardware/dell-emc/powervault-me4/me4-firmware-updates.md
+          - Shutting Down a Controller Module: hardware/dell-emc/powervault-me4/me4-shutdown-controller.md
+          - Module Removal & Replacement: hardware/dell-emc/powervault-me4/me4-module-removal.md
+        - Accessing the CLI: hardware/dell-emc/powervault-me4/me4-cli.md
+        - Logging: hardware/dell-emc/powervault-me4/me4-logging.md
+        - Troubleshooting: hardware/dell-emc/powervault-me4/me4-troubleshooting.md
+        - Best Practices: hardware/dell-emc/powervault-me4/me4-best-practice.md
     - Microsoft:
-      - hardware/microsoft/surface-rt.md
-    - hardware/raspberrypi.md
+      - Microsoft Surface: hardware/microsoft/surface-rt.md
+    - Raspberry Pi: hardware/raspberrypi.md
   - Networking: 
     - networking/index.md
-    - networking/link-aggregation.md
-    - networking/network-infrastructure.md
-    - networking/spanning-tree.md
+    - Link Aggregation & LACP Basics: networking/link-aggregation.md
+    - Understanding Network Infrastructure: networking/network-infrastructure.md
+    - Spanning Tree Protocol: networking/spanning-tree.md
   - Servers:
     - Windows Server:
       - servers/windows-server/index.md
-      - servers/windows-server/active-directory.md
-      - servers/windows-server/dedup.md
-      - servers/windows-server/group-policy.md
-      - servers/windows-server/msft-cluster.md
+      - Active Directory & Domain Services: servers/windows-server/active-directory.md
+      - Data Deduplication: servers/windows-server/dedup.md
+      - Group Policy: servers/windows-server/group-policy.md
+      - Failover Clustering: servers/windows-server/msft-cluster.md
   - Software: 
     - software/index.md
-    # - software/ms-teams.md
-    - software/outlook.md
-    - software/pisignage.md
+    # - Teams: software/ms-teams.md
+    - Outlook: software/outlook.md
+    - PiSignage: software/pisignage.md
   - SOP: 
     - sop/index.md
   - Troubleshooting:
