@@ -1,4 +1,4 @@
-# Perform Host Setup (Windows)
+# Host Setup (Windows)
 
 Attached Windows hosts with iSCSI network adapters need to be properly configured in order to use the iSCSI protocol with the ME4 storage system and MPIO enabled volumes.
 
