@@ -1,4 +1,4 @@
-# Perform System and Storage Setup
+# System and Storage Setup
 
 !!! tip "System Information Worksheet"
 
