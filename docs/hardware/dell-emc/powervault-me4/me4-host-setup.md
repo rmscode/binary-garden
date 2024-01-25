@@ -16,16 +16,39 @@ Attached Windows hosts with iSCSI network adapters need to be properly configure
 
 ## Assign IP Addresses for each network adapter connecting to the iSCSI network
 
-!!! note
-
-    If using Jumbo Frames, they must be enabled and configured on all devices in the data path, adapter ports, switches, and storage system.
-
 1. Open Network Connections Properties (ncpa.cpl)
 2. For each iSCSI network adapter, configure the following according to the planning worksheet:
       - IPv4 Address
       - Subnet Mask
       - Default Gateway if appropriate
 3. From the command prompt, ping each of the controller IPs to verify host connectivity to the storage system before proceeding.
+
+## (Optional) Enable Jumbo Frames on the iSCSI network adapters
+
+!!! note
+
+    If using Jumbo Frames, they must be enabled and configured on all devices in the data path.
+
+1. Open Network Connections Properties (ncpa.cpl)
+2. For each iSCSI network adapter, right-click > **Properties**
+3. Click **Configure**
+4. Click the **Advanced** tab
+5. Select **Jumbo Packet** from the Property list
+6. Select the appropriate MTU size from the Value list
+
+Setting the NIC properties are not enough as they will only allow you to receive Jumbo Frames. You need to tell Windows to use Jumbo frames as well.
+
+```cmd
+netsh interface ipv4 set subinterface “TheNameOfYourInterface” mtu=9014 store=persistent
+```
+
+!!! note
+
+    [I have read](https://superuser.com/a/1490402/1775885), but not confirmed, that the netsh way is not persistent despite the `store=persistent` flag. Modifying the registry with PowerShell apparently does the trick.
+
+    ```ps
+    Get-NetAdapterAdvancedProperty "iSCSI*" -DisplayName "Jumbo*" | Set-NetAdapterAdvancedProperty -RegistryValue "9014"
+    ```
 
 ## Configure iSCSI Initiator on the Windows host
 
