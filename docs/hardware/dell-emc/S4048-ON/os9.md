@@ -60,6 +60,14 @@
     !!! Example 
     
         `DellEMC# Hello world!`
+    
+    !!! info
+
+        Users entering the EXEC Privilege mode or any other configured privilege level can access configuration commands. To protect against unathorized access, use the `enable password` command to configure a password for the `enable` command at a specific privilege level. If no privilege level is specified, the defalt is level **15**.
+
+        ```shell
+        DellEMC(conf)# enable password <password> 
+        ```
 
 === "CONFIGURATION Mode"
 
@@ -72,11 +80,15 @@
     
         `DellEMC(conf)# Hello world!`
 
+---
+
+## `exit`, `end`, `do`, and `show`. 
+
 To exit a mode or its sub-mode and return to the previous mode, use the `exit` command.
 
-To return to the EXEC Privilege mode from any mode, use the `end` command.
+To return to the EXEC Privilege mode from *any* mode, use the `end` command.
 
-To run an EXEC Privilege mode command from the CONFIGURE mode, precede the command with the `do` command. This is useful for running `show` commands or saving the configuration without exiting the CONFIGURE mode.
+To run EXEC Privilege mode commands from the CONFIGURE mode, precede the command with `do`. This is useful for running `show` commands or saving the configuration without exiting the CONFIGURE mode.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/cli-modes?guid=guid-c2dacafb-b58b-43bb-a295-669a21dc2d18&lang=en-us)
 
@@ -87,10 +99,6 @@ To run an EXEC Privilege mode command from the CONFIGURE mode, precede the comma
 ## Support Assist
 
 When you access the CLI on a fresh system, you will be prompted to activate Support Assist. If you take what the prompt says at face value, you might be inclined to enter `support-assist activate` in EXEC PRIVILEGE mode which will fail on the word `activate`. Enter CONFIGURE mode to make changes to the support assist package.
-
-!!! abstract "ToDo"
-
-    Grab the initial support-assist CLI output for an example to show here...
 
 To enable Support Assist and run the configuration wizard, start by accepting the EULA:
 
@@ -171,12 +179,10 @@ Enable SSH:
 DellEMC(conf)# ip ssh server enable
 DellEMC(conf)# ip ssh server version 2
 ```
+!!! note
 
-Additionally, you can set a password for EXEC Privilege mode as it is unrestricted by default.
+    When connected via SSH, the lowest CLI mode you have access to is EXEC PRIVILEGE. The mode below that is EXEC which is only accesible via the console port.
 
-```shell
-DellEMC(conf)# enable password <password> 
-```
 !!! note 
 
     For more info on managing remote access to the terminal, see ["Managing Access to Terminal Lines"](../S4048-ON/os9-tty-access.md)
@@ -187,30 +193,31 @@ DellEMC(conf)# enable password <password>
 
 ## Configure time zone and NTP
 
+Set UTC to 0:
+```shell
+DellEMC(conf)# clock timezone UTC 0 
+```
+
+Set the time (`clock set <time> <month> <day> <year>`):
+
+```shell
+DellEMC# clock set 16:20:00 sep 9 2017
+```
+
 Show current clock:
 
 ```shell
 DellEMC(conf)# show clock
 ```
 
-Set the timezone:
-```shell
-DellEMC(conf)# clock timezone UTC -5
-```
-
 Set the NTP server:
+
+!!! note "A Windows DC will not work as an NTP server..."
 
 ```shell
 DellEMC(conf)# ntp server <ip>
 ```
-Manually set the time (`clock set <24hr time> <month> <day> <year>`):
 
-```shell
-DellEMC# clock set 16:20:00 september 9 2017
-```
-!!! note
-
-    Despite being whats listed in the Dell OS9 (9.14) docs, the `clock set` command didn't work in our brief testing for whatever reason. We need to find the correct command...maybe we have a different version.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/system-time-and-date?guid=guid-047210d7-7dae-4a6d-86df-37a79e8e8b9f&lang=en-us)
 
