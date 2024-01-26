@@ -173,7 +173,7 @@ Enable SSH:
 
 !!! info
 
-    Starting with OS9 release 9.2(0.0), SSH server ver 2 is [enabled by default](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.5-cli-pub/ip-ssh-server?guid=guid-be099a43-0f16-477e-9c53-6892ba7f699e&lang=en-us#:~:text=NOTE%20Starting%20with%20Dell%20EMC%20Networking%20OS%20Release%209.2(0.0)%2C%20SSH%20server%20is%20enabled%20by%20default.). Entering these commands are mostly redundant...
+    Starting with OS9 release 9.2(0.0), SSH server ver 2 is [enabled by default](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.5-cli-pub/ip-ssh-server?guid=guid-be099a43-0f16-477e-9c53-6892ba7f699e&lang=en-us#:~:text=NOTE%20Starting%20with%20Dell%20EMC%20Networking%20OS%20Release%209.2(0.0)%2C%20SSH%20server%20is%20enabled%20by%20default.). Entering these commands are mostly redundant...leaving for reference.
 
 ```shell
 DellEMC(conf)# ip ssh server enable
@@ -181,7 +181,7 @@ DellEMC(conf)# ip ssh server version 2
 ```
 !!! note
 
-    When connected via SSH, the lowest CLI mode you have access to is EXEC PRIVILEGE. The mode below that is EXEC which is only accesible via the console port.
+    When connected via SSH, the lowest CLI mode you have access to is EXEC Privilege. The mode below that is EXEC which is only accessible via the console port. Don't be like Matt who continously kicked himself out of the SSH session by entering `exit` while in EXEC Privilege mode. :face_with_hand_over_mouth:
 
 !!! note 
 
