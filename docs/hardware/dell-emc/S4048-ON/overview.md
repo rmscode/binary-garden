@@ -97,6 +97,11 @@ Download the [drivers](https://www.dell.com/support/home/en-us/drivers/driversde
 - 1 stop bits
 - No flow control
 
+!!! tip
+
+    You may need to press `ENTER` to display the CLI after connecting.
+
+
 [*Reference*](https://www.dell.com/support/manuals/en-us/force10-s4048-on/s4048_on_install_pub_test/micro-usb-b-console-port-access?guid=guid-e83dcac3-c738-45b7-8fd9-a0919e20d92a&lang=en-us)
 
 !!! note
