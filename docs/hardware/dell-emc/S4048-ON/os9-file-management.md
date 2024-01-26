@@ -93,7 +93,7 @@ To copy one file to another location, use the `copy` command with the following 
         Format to FAT-32. Delete all but a single primary partition. The USB flash drive must be un-mounted (`unmount usb`) prior to removal or the next USB device to be inserted may not be recognized.
 
     ```shell
-    DellEMC# copy running-config usbflash://
+    DellEMC# copy running-config usbflash://running-config-copy
     !
     4324 bytes successfully copied
     ```
@@ -119,6 +119,8 @@ To copy one file to another location, use the `copy` command with the following 
     !
     4324 bytes successfully copied
     ```
+
+---
 
 ## Rename files
 
