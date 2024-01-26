@@ -107,8 +107,8 @@ nav:
           - Logging: hardware/dell-emc/S4048-ON/os9-logging.md
           - Managing Access to Terminal Lines: hardware/dell-emc/S4048-ON/os9-tty-access.md
           - Uplink Failure Detection: hardware/dell-emc/S4048-ON/os9-ufd.md
-          - VLAN Configurations: hardware/dell-emc/S4048-ON/os9-vlan.md
           - Virtual Link Trunking (VLT): hardware/dell-emc/S4048-ON/os9-vlt.md
+          - VLAN Configurations: hardware/dell-emc/S4048-ON/os9-vlan.md
           - Other: hardware/dell-emc/S4048-ON/os9-other.md
         - OS10: hardware/dell-emc/S4048-ON/os10.md
       - PowerVault ME4 Storage:
@@ -152,10 +152,10 @@ nav:
   - SOP: 
     - sop/index.md
   - Troubleshooting:
-    - troubleshooting/msft-cluster-trouble.md
-    - troubleshooting/hyper-v-trouble.md
+    - Microsoft Failover Cluster: troubleshooting/msft-cluster-trouble.md
+    - Hyper-V: troubleshooting/hyper-v-trouble.md
   - Notes: 
     - notes/index.md
     - 2024: notes/2024.md
     - 2023: notes/2023.md
-    - Server Research 2023: notes/ServerResearch2023.md
+    # - Server Research 2023: notes/ServerResearch2023.md
