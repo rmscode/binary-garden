@@ -79,7 +79,7 @@ VLT-1(conf-if-po-128)# exit
 
 !!! warning
 
-    Do not add any VLANs to the VLT interconnect. The VLTi interface manages VLAN tagged/untagged traffic automatically between peers. Manually adding an VLAN configuration has been shown to disrupt traffic flow according to Dell.
+    Do not add any VLANs to the VLT interconnect. The VLTi interface manages VLAN tagged/untagged traffic automatically between peers. Manually adding a VLAN configuration has been shown to disrupt traffic flow according to Dell.
 
 *Repeat these steps on the other VLT peer.*
 
@@ -110,7 +110,7 @@ This establishes the VLT domain.
     VLT-2(conf)# vlt domain 1
     VLT-2(conf-vlt-1)# back-up destination 10.1.1.1    #(1)
     VLT-2(conf-vlt-1)# peer-link port-channel 128
-    VLT-2(conf-vlt-1)# primary-priority 8192
+    VLT-2(conf-vlt-1)# primary-priority 2
     VLT-2(conf-vlt-1)# exit
     ```
 
