@@ -108,6 +108,10 @@ Download the [drivers](https://www.dell.com/support/home/en-us/drivers/driversde
 
     To [use the RS-232 console port](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/accessing-the-console-port?guid=guid-894f99b1-5209-4246-b75c-116c3bb5568e&lang=en-us) on the back, you'll need a rollover cable (RJ45 with a DB-9 Adapter).
 
----
+<div class="grid cards" markdown>
 
-[OS9 CLI Configuration Docs](../../dell-emc/S4048-ON/os9.md){ .md-button } [OS10 CLI Configuration Docs](../../dell-emc/S4048-ON/os10.md){ .md-button }
+-   :material-numeric-9-box-multiple:{ .lg .middle } [__OS9 CLI Configuration Docs__ :octicons-arrow-right-24:](../../dell-emc/S4048-ON/os9.md)
+
+-   :material-numeric-10-box-multiple:{ .lg .middle } [__OS10 CLI Configuration Docs__ :octicons-arrow-right-24:](../../dell-emc/S4048-ON/os10.md)
+
+</div>
