@@ -4,7 +4,7 @@
 
 !!! info
 
-    When a port is in `switchport` mode (Layer 2), it passes mlutiple VLANs, or one untagged VLAN. It cannot accept both untagged and tagged traffic.
+    When a port is in `switchport` mode (Layer 2), it passes multiple VLANs, or one untagged VLAN. It cannot accept both untagged and tagged traffic.
 
 To configure `switchport`:
 
@@ -40,10 +40,12 @@ To add a VLAN to an interface untagged, input the following commands:
 ```shell
 DellEMC# configure
 DellEMC(conf)# Interface Vlan 414
-DellEMC(conf-if-vl-414)# untagged TenGigabitEthernet 0/5    #(1)
+DellEMC(conf-if-vl-414)# untagged TenGigabitEthernet 0/5
 ```
 
-1. You can also add VLANs to port-channels - eg. `untagged port-channel 10`.
+!!! note
+
+    You can also add VLANs to port-channels the same way - eg. `untagged port-channel 10`.
 
 To add a VLAN to an interface tagged (802.1Q), input the following commands:
 
