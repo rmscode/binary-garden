@@ -12,11 +12,11 @@
 
 !!! note "For brevity, when a configuration step is identical for both VLT peers, I will only show CLI examples for one of the peers."
 
-## 1. Enable STP globally on *each* VLT peer
+## 1. Enable rSTP globally on *each* VLT peer
 
 !!! info
 
-    Dell recommends, at least initially, to enable STP globally on each VLT peer. This is to prevent loops in the event of a misconfiguration.
+    Dell recommends, at least initially, to enable rSTP globally on each VLT peer. This is to prevent loops in the event of a misconfiguration.
 
 === "VLT Peer 1"
 
@@ -77,11 +77,17 @@ VLT-1(conf-if-po-128)# exit
 4. Selecting the interfaces that will be used to form the port-channel.
 5. This will default the port-channel and place it in Layer 2 Access mode if it isn't already. This is required for the VLTi.
 
+!!! warning
+
+    Do not add any VLANs to the VLT interconnect. The VLTi interface manages VLAN tagged/untagged traffic automatically between peers. Manually adding an VLAN configuration has been shown to disrupt traffic flow according to Dell.
+
 *Repeat these steps on the other VLT peer.*
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-a-vlt-interconnect?guid=guid-882304c2-cca8-4554-a96b-2f5b0c5b7a72&lang=en-us)
 
 ## 3. Configure the core VLT peering relationship across the port-channel that will become the VLTi
+
+This establishes the VLT domain.
 
 === "VLT Peer 1"
 
@@ -95,7 +101,7 @@ VLT-1(conf-if-po-128)# exit
 
     1. The VLT domain requires an ID number (1-1000). Configure the same ID on the peer switch to allow for common peering.
     2. This is the OOB management IP address of VLT peer 2. You can optionally specify the time `interval`. The range is from 1 to 5 seconds. The default is 3 seconds.
-    3. Configuring port-channel 128 as the peer link (VLTi).
+    3. Associate the VLTi to the VLT domain.
     4. (Optional) The system elects a primary and secondary VLT device, but you can configure the roles before the election process by setting the `primary-priority` (1-65535). The lowest value is elected as the primary. Fixing system parameters also avoids negotiations (for fast convergence).
 
 === "VLT Peer 2"
@@ -118,8 +124,7 @@ VLT-1(conf-if-po-128)# exit
 
     When you create a VLT domain, a VLT-system MAC address used for internal system operations is automatically created. However, you can explicitly configure the default MAC address for the VLT domain. Doing so can help minimize the time required for the VLT system to sync the default MAC address of the VLT domain on both peers when one peer reboots. 
     
-    The only comment from Dell that I could find on how to pick a MAC address was "Avoid picking some weird MAC addresses like reserved, multicast, etc. It could potentially cause trouble."
-    Thanks, Dell...
+    The only comment from Dell that I could find on how to pick a MAC address was "Avoid picking some weird MAC addresses like reserved, multicast, etc. It could potentially cause trouble." Thanks, Dell...
 
 ```shell
 VLT-1(conf)# vlt domain 1
@@ -132,8 +137,9 @@ VLT-2(conf-vlt-1)# system-mac mac-address de:11:de:11:de:11
 
 ## 5. Confirm the state of the VLT domain
 
+Verify the VLT domain status with `show vlt brief` in EXEC mode. The output will look something like this:
+
 ```shell
-VLT-1# show vlt brief
 VLT Domain Brief
 ------------------
 Domain ID : 1
@@ -156,11 +162,36 @@ Multicast peer-routing timeout : 150 seconds
 
 1. ICL stands for "[inter-chassis link](https://www.dell.com/support/kbdoc/en-us/000179606/powerstore-alerts-ethernet-switch-inter-chassis-link-peer-presence)". This is the VLTi.
 
-Make sure the VLTi is passing hellos: `show vlt statistics`
+Make sure the VLTi is passing hello messages and check for errors with `show vlt statistics`. The output will look something like this:
 
-Make sure the backup link communication is bi-directional (Heartbeats sent *and* received): `show vlt backup-link`
+```shell
+-----------------------------------------------------
+HeartBeat Messages Sent:                       95446
+HeartBeat Messages Received:                   95440
+ICL Hello's Sent:                              95420
+ICL Hello's Received:                          95414
+Domain Mismatch Errors:                            0
+Version Mismatch Errors:                           0
+Config Mismatch Errors:                            0
+```
 
-## Connecting a VLT Domain to a TOR switch
+Verify that the backup link communication is bi-directional (Heartbeats sent *and* received) with `show vlt backup-link`. The output will look something like this:
+
+```shell
+VLT Backup Link
+--------------------------------------------------
+Destination:                               10.1.1.2
+Peer HeartBeat status:                          Up
+HeartBeat Timer Interval:                        1
+HeartBeat Timeout:                               3
+UDP Port:                                    34998
+HeartBeat Messages Sent:                     95305
+HeartBeat Messages Received:                 95299
+```
+
+Verify matching configuration on both VLT peers with `show vlt mismatch`.
+
+## Create a LACP LAG Between VLT Domain and Connecting Deivce (TOR switch, server...) 
 
 To configure both VLT peers to agree on making two separate port-channels (LAG) a single Virtual Link Trunk (MLAG) toward an attached device, each peer must be configured with the same port-channel ID. 
 
@@ -188,7 +219,7 @@ VLT-1(conf-if-te-1/51-lacp)# port-channel 10 mode active    #(4)
 
 !!! note
 
-    Don't forget to create a LAG with LACP on the attached device as well.
+    You will need to add the VLT port channel interface to VLANs as needed for proper traffic flow. See "[VLAN Configuration](../S4048-ON/os9-vlan.md)" for more information. Also, don't forget to create a LAG with LACP on the attached device as well!
 
 !!! Warning "Potential to black-hole traffic"
 
@@ -215,4 +246,4 @@ What I *think* this means is that if you have something like a server connected 
 
 ---
 
-This [VLT Technical guide](https://i.dell.com/sites/content/business/large-business/merchandizing/en/Documents/Dell_Force10_S4810_VLT_Technical_Guide.pdf) contains some information for tuning various settings to achieve faster convergence. I haven't taken a good look through much of it yet, but I did spot a line that said "If the network is not tuned, some failures can lead to outages up to 30 seconds. The proposed heavy tuning reduces that to around 2-3 seconds (inter-VLAN routing) or 200-300 milliseconds (Layer2)." **200-300 MILLISECONDS**.
+This [VLT Technical guide](https://i.dell.com/sites/content/business/large-business/merchandizing/en/Documents/Dell_Force10_S4810_VLT_Technical_Guide.pdf) contains some information for tuning various settings to achieve faster convergence. I haven't taken a good look through much of it yet, but I did spot a line that said "If the network is not tuned, some failures can lead to outages up to 30 seconds. The proposed heavy tuning reduces that to around 2-3 seconds (inter-VLAN routing) or 200-300 milliseconds (Layer2)."
