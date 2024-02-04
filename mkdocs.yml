@@ -40,6 +40,10 @@ theme:
     text: Roboto
     code: Roboto Mono
 
+# Extra CSS
+extra_css:
+  - stylesheets/extra.css
+
 # Plugins
 plugins:
   - search
