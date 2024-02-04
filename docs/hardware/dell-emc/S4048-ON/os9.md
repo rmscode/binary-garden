@@ -80,8 +80,6 @@
     
         `DellEMC(conf)# Hello world!`
 
----
-
 ## `exit`, `end`, `do`, and `show`. 
 
 To exit a mode or its sub-mode and return to the previous mode, use the `exit` command.
