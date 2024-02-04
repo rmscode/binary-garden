@@ -180,8 +180,6 @@ DellEMC(conf)# ip ssh server version 2
 !!! note
 
     When connected via SSH, the lowest CLI mode you have access to is EXEC Privilege. The mode below that is EXEC which is only accessible via the console port. 
-    
-    Don't be like Matt who continously kicked himself out of the SSH session by entering `exit` while in EXEC Privilege mode. :face_with_hand_over_mouth:
 
 !!! note 
 
