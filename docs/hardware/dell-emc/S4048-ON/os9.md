@@ -181,7 +181,7 @@ DellEMC(conf)# ip ssh server version 2
 
     When connected via SSH, the lowest CLI mode you have access to is EXEC Privilege. The mode below that is EXEC which is only accessible via the console port. 
 
-!!! note 
+!!! info 
 
     For more info on managing remote access to the terminal, see ["Managing Access to Terminal Lines"](../S4048-ON/os9-tty-access.md)
 
