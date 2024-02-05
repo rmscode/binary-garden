@@ -219,7 +219,7 @@ DellEMC(conf)# ntp server <ip>
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/system-time-and-date?guid=guid-047210d7-7dae-4a6d-86df-37a79e8e8b9f&lang=en-us)
 
-## Saving the running configuration
+## Apply the Running Configuration to the Startup Configuration
 
 The running config contains the current system configuration. If you do not copy (save) the running config to the startup config, any changes that you made will be lost after a reboot.
 
@@ -229,13 +229,27 @@ Save the running config to the startup config on the internal flash:
 DellEMC# copy running-config startup-config
 ```
 
-Save the running config (or startup config) to an FTP server:
+## Back-up a Configuration File
+
+We prefer backing up to a USB flash drive.
+
+Insert a USB flash drive into the front port of the switch and then run the following command:
 
 ```shell
-DellEMC# copy running-config ftp:// username:password@<hostip>/filepath/ filename
+DellEMC# copy running-config usbflash://OS9_Switch-A.conf
 ```
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/save-the-running-configuration?guid=guid-30740b60-fdc7-4980-b20e-06e195bbaf13&lang=en-us)
+
+## Importing a Configuration File
+
+Insert a USB flash drive into the front port of the switch and then run the following command:
+
+!!! abstract "Dbl check with Matt...can't quite remember what he actually typed in."
+
+```shell
+DellEMC# copy usbflash://OS9_Switch-A.conf flash://running-config
+```
 
 ## Upgrading the Firmware
 
@@ -245,13 +259,13 @@ OS9 switches have two boot banks, A and B. It's good practice to upload new firm
 
 ```shell
 DellEMC> enable
-DellEMC# copy startup-config tftp://10.1.1.25/OS9_Switch-A.conf
+DellEMC# copy startup-config usbflash://OS9_Switch-A.conf
 ```
 
 2. Upload the new firmware to image B
 
 ```shell
-DellEMC# upgrade system tftp://10.1.1.25/FTOS-SK-9.14.bin b: 
+DellEMC# upgrade system usbflash://FTOS-SK-9.14.bin b: 
 ```
 
 3. Change active boot bank and reload
