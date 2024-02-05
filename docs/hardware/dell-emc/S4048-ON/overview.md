@@ -1,9 +1,5 @@
 # Overview
 
-> This page was last updated: *{{ git_revision_date_localized }}*
-
-[Configuration Guide for the S4048-ON System (9.14.2.4)](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/about-this-guide)
-
 !!! info
 
     S4048-ON is a networking switch for campus aggregation and core switching 10 Gbps servers and 40 Gbps optical uplinks to the 40 Gbps switching fabric in the core.
@@ -15,6 +11,8 @@
     - Serial RS 232 and Micro-USB console ports
     - One out-of-band (OOB) RJ45 management port
     - LED display for the switch, fan, and power status
+
+[Configuration Guide for the S4048-ON System (9.14.2.4)](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/about-this-guide)
 
 ---
 
