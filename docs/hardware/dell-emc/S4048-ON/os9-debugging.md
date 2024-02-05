@@ -1,5 +1,14 @@
 # Debugging and Diagnostics
 
+## View System Component Status
+
+From EXEC or `show environment [all | fan | pem | stack-unit unit-id | thermal-sensor ]`
+
+- `all`: View all components
+- `fan`: View only fan components. The output is chassis-dependent.
+- `pem`: View only power entry modules.
+- `thermal-sensor`: View only information on thermal sensors.
+
 ## Unplanned Reboots
 
 If the system restarts for some reason (automatically or manually), the `show system` command output includes the reason for the restart.
