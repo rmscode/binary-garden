@@ -108,7 +108,8 @@ nav:
       - PowerSwitch S4048-ON:
         - Overview: hardware/dell-emc/S4048-ON/overview.md
         - OS9:
-          - Getting Started: hardware/dell-emc/S4048-ON/os9.md
+          - Getting Started: hardware/dell-emc/S4048-ON/os9-getting-started.md
+          - CLI Fundamentals: hardware/dell-emc/S4048-ON/os9-cli-fundamentals.md
           - Debugging and Diagnostics: hardware/dell-emc/S4048-ON/os9-debugging.md
           - File Management: hardware/dell-emc/S4048-ON/os9-file-management.md
           - Logging: hardware/dell-emc/S4048-ON/os9-logging.md
