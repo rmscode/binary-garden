@@ -1,4 +1,4 @@
-# Getting Started with OS9
+# Getting Started with OS9 (Basic Config)
 
 [CLI Reference Guide for the S4048-ON System (9.14.2.4)](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.5-cli-pub/dell-command-line-reference-guide-for-the-s4048%E2%80%93on-system-9.14.2.5)
 
@@ -220,8 +220,33 @@ Set the NTP server:
 DellEMC(conf)# ntp server <ip>
 ```
 
-
 [*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/system-time-and-date?guid=guid-047210d7-7dae-4a6d-86df-37a79e8e8b9f&lang=en-us)
+
+## Configuring the Enable Password
+
+EXEC Privilege mode is unrestricted by default and can be accessed via the console port from EXEC mode with the `enable` command. Configure a password as a basic security measure.
+
+There are three types of passwords:
+
+- `enable password` is stored in the running/startup configuration using a DES encryption method.
+- `enable secret` is stored in the running/startup configuration using MD5 encryption method.
+- `enable sha256-password` is stored in the running/startup configuration using sha256-based encryption method (PBKDF2).
+
+Dell EMC Networking recommends using the enable sha256-password password.
+
+Create a password to access EXEC Privilege mode from CONFIGURATION mode.
+
+```txt
+enable [password | secret | sha256-password] [level <level>] [encryption-type] <password>
+```
+
+- `level` is the privilege level. The default is 15.
+- `encryption-type` specifies how you input the pasword, is 0 by default, and is not required.
+      - 0 is to input the password in clear text.
+      - 5 is to input a password that is already encrypted using MD5 encryption method. Obtain the encrypted password from the configuration file of another device.
+      - 7 is to input a password that is already encrypted using DES encryption method. Obtain the encrypted password from the configuration file of another device.
+      - 8 is to input a password that is already encrypted using sha256-based encryption method. Obtain the encrypted password from the configuration file of another device.
+
 
 ## Apply the Running Configuration to the Startup Configuration
 
