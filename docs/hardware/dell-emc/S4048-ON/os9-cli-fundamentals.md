@@ -4,7 +4,7 @@
 
 To exit a mode or its sub-mode and return to the previous mode, use the `exit` command.
 
-## Return to EXEC PRivilege Mode
+## Return to EXEC Privilege Mode
 
 To return to the EXEC Privilege mode from *any* mode, use the `end` command.
 
