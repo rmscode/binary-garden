@@ -1,5 +1,8 @@
 # VLAN Configuration
 
+!!! info "VLAN `shutdown` or `no shutdown`?"
+
+    When you run `show config` in INTERFACE VLAN mode you'll notice that VLANs are `shutdown` by default. A VLAN is active only if the VLAN contains interfaces and those interfaces are operationally up. In a VLAN, the shutdown command stops Layer 3 (routed) traffic only. Layer 2 traffic continues to pass through the VLAN. If the VLAN is not a routed VLAN (that is, configured with an IP address), the shutdown command has no affect on VLAN traffic. [Source](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/creating-a-port-based-vlan?guid=guid-d005bab1-b190-48cc-970e-4697f241121f&lang=en-us)
 
 ## Switchport (Layer 2) mode
 
@@ -86,12 +89,6 @@ To remove a VLAN from an interface use the `no tagged` and `no untagged` command
 ```shell
 DellEMC(conf-if-vl-414)# no tagged te0/5-10
 ```
-
-!!! info "VLAN `shutdown` or `no shutdown`?"
-
-    A VLAN is active only if the VLAN contains interfaces and those interfaces are operationally up. In a VLAN, the shutdown command stops Layer 3 (routed) traffic only. Layer 2 traffic continues to pass through the VLAN. If the VLAN is not a routed VLAN (that is, configured with an IP address), the shutdown command has no affect on VLAN traffic. [Source](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/creating-a-port-based-vlan?guid=guid-d005bab1-b190-48cc-970e-4697f241121f&lang=en-us)
-
-
 ## Useful `show` commands
 
 | Command                           | Description                                     |
