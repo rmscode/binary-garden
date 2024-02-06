@@ -82,7 +82,7 @@
 
 !!! tip
 
-    For more information on the OS9 CLI, see the [OS CLI Fundamentals](../S4048-ON/os9-cli-fundamentals.md) section.
+    For more information on the OS9 CLI, see the [OS9 CLI Fundamentals](../S4048-ON/os9-cli-fundamentals.md) section.
 
 ## `exit`, `end`, `do`, and `show`. 
 
