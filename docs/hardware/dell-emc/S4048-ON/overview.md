@@ -108,7 +108,7 @@ Download the [drivers](https://www.dell.com/support/home/en-us/drivers/driversde
 
 <div class="grid cards" markdown>
 
--   :material-numeric-9-box-multiple:{ .lg .middle } [__OS9 CLI Configuration Docs__ :octicons-arrow-right-24:](../../dell-emc/S4048-ON/os9.md)
+-   :material-numeric-9-box-multiple:{ .lg .middle } [__OS9 CLI Configuration Docs__ :octicons-arrow-right-24:](../../dell-emc/S4048-ON/os9-getting-started.md)
 
 -   :material-numeric-10-box-multiple:{ .lg .middle } [__OS10 CLI Configuration Docs__ :octicons-arrow-right-24:](../../dell-emc/S4048-ON/os10.md)
 
