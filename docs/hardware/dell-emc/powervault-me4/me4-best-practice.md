@@ -1,5 +1,15 @@
 # Best Practices
 
+## General Best Practices for Hyper-V
+
+### Guest Integration Services
+
+One common issue occurs when VMs are migrated from an older physical host or cluster to a newer one. The integration services do not get updated automatically, and degraded performance may be encountered as a result, that may erroneously point the administrator to suspect the storage array as the cause of the problem.
+
+Aside from performance problems, one of the key indications that integration services are outdated or not present on a Windows VM is the presence of unknown devices in Device Manager for the VM.
+
+For more information, see [Hyper-V: Guest Integration Services](../../../software/hyper-v.md#guest-integration-services).
+
 ## Configure E-Mail and SNMP Notifications
 
 The Notifications tab provides options for you to set up and test several types of system notifications. These include:
