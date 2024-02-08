@@ -10,13 +10,13 @@ Hyper-V Integration Services represent a software suite of services which, when 
 
 ### Check Status and Version
 
-```ps
-Get-VMIntegrationService -VMName "TestVM" #!(1)
-REG QUERY "HKLM\Software\Microsoft\Virtual Machine\Auto" /v IntegrationServicesVersion #!(2)
+```powershell
+Get-VMIntegrationService -VMName "TestVM" #(1)!
+REG QUERY "HKLM\Software\Microsoft\Virtual Machine\Auto" /v IntegrationServicesVersion #(2)!
 ```
 
 1. Check the status of integration services for a VM.
-2. Check the registry for the version of integration services.
+2. Query the registry for the version of integration services.
 
 Enable with `Enable-VMIntegrationService -VMName "TestVM" -Name "Guest Service Interface"`.
 
