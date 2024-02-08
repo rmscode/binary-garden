@@ -155,6 +155,7 @@ nav:
   - Software: 
     - software/index.md
     # - Teams: software/ms-teams.md
+    - Hyper-V: software/hyper-v.md
     - Outlook: software/outlook.md
     - PiSignage: software/pisignage.md
   - SOP: 
