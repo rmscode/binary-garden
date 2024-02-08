@@ -10,6 +10,22 @@ Aside from performance problems, one of the key indications that integration ser
 
 For more information, see [Hyper-V: Guest Integration Services](../../../software/hyper-v.md#guest-integration-services).
 
+### Hyper-V Server Clusters
+
+When mapping shared volumes (quorum disks, cluster disks,or cluster shared volumes) to multiple hosts, make sure that the volume is mapped to all nodes in the cluster using a consistent LUN number. Leverage host groups on the ME4 Series array to simplify the task of mapping a consistent LUN number to multiple hosts.
+
+As a best practice and a time-saving tip, configure the nodes in a cluster so that they are identical with regard to the number of disks and LUNs. In this way, when mapping new storage LUNs, the next available LUN ID will be the same on all hosts. By doing this, having to change LUN IDs later to make them consistent can be avoided.
+
+### MPIO Best Practices
+
+Windows and Hyper-V hosts default to the Round Robin with Subset policy with ME4 Series storage, unless a different default MPIO policy is set on the host by the administrator. Round Robin with Subset is typically the best MPIO policy for Hyper-V environments.
+
+!!! note "Note the following"
+
+    - The active/optimized paths are associated with the ME4 Series storage controller head that owns the volume. The active/unoptimized paths are associated with the other controller head.
+    - If each controller has four FE transport paths configured, each volume that is mapped should list eight total paths: four that are optimized, and four that are unoptimized.
+    - Changes to MPIO registry settings on the Windows or Hyper-V host (such as time-out values) should not be made unless directed by ME4 Series documentation (it doesn't, I've checked), or unless directed by Dell EMC support to solve a specific problem.
+
 ## Configure E-Mail and SNMP Notifications
 
 The Notifications tab provides options for you to set up and test several types of system notifications. These include:
