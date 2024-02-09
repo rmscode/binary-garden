@@ -48,7 +48,8 @@ extra_css:
 plugins:
   - search
   - offline
-  - blog
+  - blog:
+      authors: true
   #- encryptcontent
   - git-revision-date-localized:
       enable_creation_date: true
