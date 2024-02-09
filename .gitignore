@@ -1,4 +1,5 @@
 copy.ps1
 site/
+blog-site/
 .obsidian/
 docs/.scratch/*
