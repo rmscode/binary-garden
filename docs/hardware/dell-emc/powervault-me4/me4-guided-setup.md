@@ -55,9 +55,9 @@ With guided setup, you must first configure your system settings by accessing th
 
 1. From the *Welcome* panel, access the *System Settings* panel and complete all the required options (red asterisk).
 2. Save your settings and exit to the *Welcome* panel.
-3. Click *Storage Setup* and follow the prompts to begin provisioning your system by creating disk groups and pools.
+3. Click *Storage Setup* and follow the prompts to begin provisioning your system by configuring [disk groups](../powervault-me4/me4-disk-groups.md), [spares](../powervault-me4/me4-spares.md) and [pools](../powervault-me4/me4-pools.md).
 4. Save your settings and exit to the *Welcome* panel.
-5. Click *Host Setup* and follow the prompts to continue provisioning your system by attaching hosts.
+5. Click *Host Setup* and follow the prompts to continue provisioning your system by [attaching hosts](../powervault-me4/me4-host-setup.md).
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4024/me4_series_ag_pub/guided-setup?guid=guid-f2532697-d39f-4a6b-875d-8fe3a4688931&lang=en-us)
 

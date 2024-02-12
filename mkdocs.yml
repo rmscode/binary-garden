@@ -127,9 +127,12 @@ nav:
           - Deployment Brief: hardware/dell-emc/powervault-me4/me4-deployment-brief.md
           - System and Storage Setup: hardware/dell-emc/powervault-me4/me4-guided-setup.md
           - Host Setup (Windows): hardware/dell-emc/powervault-me4/me4-host-setup.md
+          - Security Certificate (Optional): hardware/dell-emc/powervault-me4/me4-install-certificate.md
+          - System Notifications (Optional): hardware/dell-emc/powervault-me4/me4-notifications.md
         - System Concepts:
-          - About Pools: hardware/dell-emc/powervault-me4/me4-pools.md
           - About Disk Groups: hardware/dell-emc/powervault-me4/me4-disk-groups.md
+          - About Pools: hardware/dell-emc/powervault-me4/me4-pools.md
+          - About Spares (Parity Disks): hardware/dell-emc/powervault-me4/me4-spares.md
           - About Virtual and Linear Storage: hardware/dell-emc/powervault-me4/me4-virtual-linear-storage.md
         - System Maintenance:
           - Firmware Updates: hardware/dell-emc/powervault-me4/me4-firmware-updates.md
