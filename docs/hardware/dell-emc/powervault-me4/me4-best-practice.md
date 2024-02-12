@@ -8,7 +8,7 @@ One common issue occurs when VMs are migrated from an older physical host or clu
 
 Aside from performance problems, one of the key indications that integration services are outdated or not present on a Windows VM is the presence of unknown devices in Device Manager for the VM.
 
-For more information, see [Hyper-V: Guest Integration Services](../../../software/hyper-v.md#guest-integration-services).
+!!! info "For more information, see [Hyper-V: Guest Integration Services](../../../software/hyper-v.md#guest-integration-services)."
 
 ### Hyper-V Server Clusters
 
