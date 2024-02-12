@@ -1,4 +1,4 @@
-# Installing a Security Certificate
+# Security Certificate (Optional)
 
 1. In the PowerVault Manager, prepare to use FTP/SFTP:
       1. Determine the network-port IP addresses of the system controllers.
