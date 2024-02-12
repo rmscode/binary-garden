@@ -72,7 +72,7 @@ You should enable at least one notification service to monitor the system. Email
 
 ## Physical port selection
 
-In a system cofigured to use either all FC or all iSCSI ports, use the ports in the following order:
+In a system configured to use either all FC or all iSCSI ports, use the ports in the following order:
 
 1. A0,B0
 2. A2,B2
