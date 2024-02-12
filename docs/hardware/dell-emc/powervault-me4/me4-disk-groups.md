@@ -74,3 +74,7 @@ You can expand the capacity of a linear disk group, or a virtual disk group with
 4. Select additional disks that you want to add to the disk group from the table in the bottom section.
 5. Click **Modify**. A confirmation panel appears.
 6. Click **Yes** to continue and then **OK**.
+
+## Removing a Disk Group from Quarantine
+
+Lots to carefully read [here](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/removing-a-disk-group-from-quarantine?guid=guid-8b404791-518b-4693-a92a-4f7c2abf9b82&lang=en-us). 
