@@ -55,13 +55,13 @@ Virtual storage provides the foundation for data-management features such as thi
 
 <https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/copy-a-virtual-volume-or-snapshot?guid=guid-6b622cfb-f44e-445a-a4f3-b8be08f66bff&lang=en-us>
 
-## Delete a Volume or Snapshot
-
-<https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/delete-volumes-and-snapshots?guid=guid-e334f829-6b6f-4e1b-9a6e-d1806e5f06a2&lang=en-us>
-
 ### Abort Copy
 
 <https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/abort-a-volume-copy?guid=guid-966588fe-6f53-4d09-b188-9e1875818651&lang=en-us>
+
+## Delete a Volume or Snapshot
+
+<https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/delete-volumes-and-snapshots?guid=guid-e334f829-6b6f-4e1b-9a6e-d1806e5f06a2&lang=en-us>
 
 ## Volume Groups
 
@@ -84,5 +84,3 @@ Virtual storage provides the foundation for data-management features such as thi
 ## Rolling Back a Virtual Volume
 
 <https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/roll-back-a-volume?guid=guid-43901d0a-3d59-4cca-af7f-a839692a8471&lang=en-us>
-
-
