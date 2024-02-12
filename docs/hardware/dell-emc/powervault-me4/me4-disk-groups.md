@@ -77,4 +77,4 @@ You can expand the capacity of a linear disk group, or a virtual disk group with
 
 ## Removing a Disk Group from Quarantine
 
-Lots to carefully read [here](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/removing-a-disk-group-from-quarantine?guid=guid-8b404791-518b-4693-a92a-4f7c2abf9b82&lang=en-us). 
+Lots to carefully read [here](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/removing-a-disk-group-from-quarantine?guid=guid-8b404791-518b-4693-a92a-4f7c2abf9b82&lang=en-us).
