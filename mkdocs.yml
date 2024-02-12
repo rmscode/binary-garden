@@ -124,7 +124,7 @@ nav:
         - Getting Started:
           - Deployment Brief: hardware/dell-emc/powervault-me4/me4-deployment-brief.md
           - System and Storage Setup: hardware/dell-emc/powervault-me4/me4-guided-setup.md
-          - Install a Security Certificate: hardware/dell-emc/powervault-me4/me4-install-cert.md
+          - Install a Security Certificate: hardware/dell-emc/powervault-me4/me4-install-certificate.md
           - Host Setup (Windows): hardware/dell-emc/powervault-me4/me4-host-setup.md
         - System Concepts:
           - About Pools: hardware/dell-emc/powervault-me4/me4-pools.md
