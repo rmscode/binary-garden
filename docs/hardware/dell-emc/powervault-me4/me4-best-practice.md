@@ -53,13 +53,13 @@ You should enable at least one notification service to monitor the system. Email
 
 ## Enable Jumbo Frames
 
-!!! note "The use of Jumbo frames can succeed only if jumbo-frame support is enabled on all network components in the data path (SAN switches, server NICs...)."
+!!! note "The use of Jumbo frames can succeed only if jumbo-frame support is enabled on all network components in the data path (SAN switches, server NICs...). The ME4 series storage array supports a max 8900-byte payload, allowing 100 bytes of overhead for the MTU of 9000."
 
 1. Perform one of the following steps to configure iSCSI ports:
     - In the home topic of the PowerVault manager, select Action > System Settings, then click Ports.
     - In the System topic of the PowerVault Manager, select Action > System Settings, then click Ports.
 2. In the Advanced Settings section of the panel, set the options that apply to all iSCSI ports:
-    - Enable Jumbo Frames: Enables or disables support for jumbo frames. Allowing for 100 bytes of overhead, a normal frame can contain a 1400-byte payload whereas a jumbo frame can contain a maximum 8900-byte payload for larger data transfers.
+    - Enable Jumbo Frames: Enables or disables support for jumbo frames.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/configure-iscsi-ports?guid=guid-9c7ddef3-9cae-4788-b553-dffdc99c4aa6&lang=en-us)
 
@@ -67,7 +67,7 @@ You should enable at least one notification service to monitor the system. Email
 !!! tip "Test Jumbo Frames in CommandPrompt/PowerShell"
 
     ```ps
-    ping -f -l 8000 <ip of storage array>
+    ping -f -l 9000 <ip of storage array>
     ```
 
 ## Physical port selection
