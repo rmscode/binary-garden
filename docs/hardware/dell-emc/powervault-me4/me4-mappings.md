@@ -23,7 +23,7 @@ The advantage of a default mapping is that all connected hosts can discover the 
 4. Once the list is correct, to apply changes, click **Apply** or **OK**.
 5. Click **Yes** when the confirmation panel appears.
 
-[**Reference**](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/map-initiators-and-volumes?guid=guid-8641fc58-8498-41c1-bf84-b14617d338f0&lang=en-us)
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/map-initiators-and-volumes?guid=guid-8641fc58-8498-41c1-bf84-b14617d338f0&lang=en-us)
 
 ## Remove Mappings
 
@@ -31,7 +31,7 @@ The advantage of a default mapping is that all connected hosts can discover the 
 2. Select **Action > Remove Mappings**. The Remove Mappings panel shows the selected mappings.
 3. Click **OK**.
 
-[**Reference**](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/remove-mappings?guid=guid-7e3ed3a7-f0c5-40df-9749-a92e34fd755a&lang=en-us)
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/remove-mappings?guid=guid-7e3ed3a7-f0c5-40df-9749-a92e34fd755a&lang=en-us)
 
 ## Remove ALL Mappings
 
@@ -39,4 +39,4 @@ The advantage of a default mapping is that all connected hosts can discover the 
 2. Select **Action > Remove All Mappings**. The Remove All Mappings panel opens.
 3. Click **OK**.
 
-[**Reference**](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/removing-all-mappings?guid=guid-be87ea15-3fc2-487a-b78e-92dcd75aa083&lang=en-us)
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/removing-all-mappings?guid=guid-be87ea15-3fc2-487a-b78e-92dcd75aa083&lang=en-us)
