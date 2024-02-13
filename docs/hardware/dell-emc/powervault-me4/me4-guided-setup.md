@@ -59,6 +59,10 @@ With guided setup, you must first configure your system settings by accessing th
 4. Save your settings and exit to the *Welcome* panel.
 5. Click *Host Setup* and follow the prompts to continue provisioning your system by [attaching hosts](../powervault-me4/me4-host-setup.md).
 
+!!! note
+
+    The Dell docs don't go into detail about how in depth the "guided setup" is...No idea if it walks you through volume/initiator mappins (LUNs) or not. Check out the "System Concepts" section on the left for more system configuration info.
+
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4024/me4_series_ag_pub/guided-setup?guid=guid-f2532697-d39f-4a6b-875d-8fe3a4688931&lang=en-us)
 
 ## Adding, modifying, and deleting users
