@@ -129,8 +129,11 @@ nav:
         - System Concepts:
           - About Disk Groups: hardware/dell-emc/powervault-me4/me4-disk-groups.md
           - About Pools: hardware/dell-emc/powervault-me4/me4-pools.md
+          - About Replication: hardware/dell-emc/powervault-me4/me4-replication.md
+          - About Snapshots: hardware/dell-emc/powervault-me4/me4-snapshots.md
           - About Spares (Parity Disks): hardware/dell-emc/powervault-me4/me4-spares.md
           - About Virtual and Linear Storage: hardware/dell-emc/powervault-me4/me4-virtual-linear-storage.md
+          - About Volumes and Volume Groups: hardware/dell-emc/powervault-me4/me4-volumes.md
         - System Maintenance:
           - Firmware Updates: hardware/dell-emc/powervault-me4/me4-firmware-updates.md
           - Shutting Down a Controller Module: hardware/dell-emc/powervault-me4/me4-shutdown-controller.md

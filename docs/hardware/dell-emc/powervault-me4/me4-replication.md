@@ -1,41 +1,17 @@
-# About Virtual and Linear Storage
+# About Replicating Virtual Volumes
 
-The ME4 series storage system uses two different storage technologies that share a common user interface. One uses the virtual method while the other one uses the linear method.
+Replication for virtual storage provides a remote copy of a volume, volume group, or snapshot — hereafter known as *volume* — on a remote system by periodically updating the remote copy to contain a point-in-time consistent image of a source volume. After an initial image has been replicated, subsequent replications only send changed data to the remote system. All replications, including the initial one, only replicate data that has been written as opposed to using all pages of data from the source. This feature can be used for disaster recovery, to preserve data, and to back data up to off-site locations. It can also be used to distribute data.
 
-Virtual storage is a method of mapping logical storage requests to physical storage (disks). It inserts a layer of virtualization such that logical host I/O requests are mapped onto pages of storage. Each page is then mapped onto physical storage. Within each page the mapping is linear, but there is no direct relationship between adjacent logical pages and their physical storage.
+A peer connection must be defined to create and use a replication set. A replication set can specify only one peer connection and pool. When creating a replication set, communication between the peer connection systems must be operational during the entire process.
 
-Some advantages of using virtual storage are:
+    If a volume group is part of a replication set, volumes cannot be added to or deleted from the volume group.
 
-- It allows performance to scale as the number of disks in the pool increases.
-- It virtualizes physical storage, allowing volumes to share available resources in a highly efficient way.
-- It allows a volume to be comprised of more than 16 disks.
+    If a replication set is deleted, the internal snapshots created by the system for replication are also deleted. After the replication set is deleted, the primary and secondary volumes can be used like any other base volumes or volume groups.
 
-Virtual storage provides the foundation for data-management features such as thin provisioning, automated tiered storage, SSD read cache, and the quick rebuild feature.
+## Prerequisites
 
-=== "Virtual Storage (Recommended)"
-
-    - Tiering
-    - Snapshots
-    - Replication
-    - Thin provisioning
-    - One pool per installed RAID controller and up to 16 disk groups per pool
-    - Maximum 1 PB usable capacity per pool with large pools feature enabled
-    - RAID levels 1, 5, 6, 10, and ADAPT
-    - Adding individual disks to increase RAID capacity is only supported for ADAPT disk groups
-    - Capacity can be increased by adding additional RAID disk groups
-    - Page size is static (4 MB)
-    - SSD read cache
-    - Global and/or dynamic hot spares
-
-=== "Linear Storage"
-
-    - Up to 32 pools per installed RAID controller and one disk group per pool
-    - RAID levels 0, 1, 3, 5, 6, 10, 50, ADAPT, and NRAID
-    - Adding individual disks to increase RAID capacity is supported for RAID 0, 3, 5, 6, 10, 50, and ADAPT disk groups
-    - Configurable chunk size per disk group
-    - Global, dedicated, and/or dynamic hot spares
-
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/about-virtual-and-linear-storage?guid=guid-5bbe5bbb-bf63-484b-87d4-94d20cf6b5aa&lang=en-us)
+- [Create a peer connection](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/creating-a-peer-connection?guid=guid-3a565d23-4c70-4f95-b24b-7a4851c419a8&lang=en-us) (to another storage array with FC or iSCSI ports).
+- Create a replication set.
 
 ## Replication Sets
 
@@ -74,3 +50,11 @@ Virtual storage provides the foundation for data-management features such as thi
 8. Click **OK**.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/manage-replication-schedules-from-the-volumes-topic?guid=guid-4813a011-40e9-46d0-8476-c8bd43e2e588&lang=en-us)
+
+### Delete a Replication Set
+
+1. In the Replications topic, select the replication set to be deleted in the Replication Sets table.
+2. Select **Action > Delete Replication Set**.
+3. Click **OK**.
+
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/delete-a-replication-set?guid=guid-c8f119d0-935a-429c-ae02-836a359ed57f&lang=en-us)
