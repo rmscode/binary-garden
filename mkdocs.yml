@@ -31,7 +31,6 @@ theme:
     - search.highlight
     - search.share
     - toc.follow
-    # - toc.integrate
   palette:
     scheme: slate
     primary: black
@@ -157,9 +156,10 @@ nav:
       - Failover Clustering: servers/windows-server/msft-cluster.md
   - Software: 
     - software/index.md
-    # - Teams: software/ms-teams.md
     - Hyper-V: software/hyper-v.md
-    - Outlook: software/outlook.md
+    - Microsoft Office:
+      - Outlook: software/outlook.md
+      - Teams: software/ms-teams.md
     - PiSignage: software/pisignage.md
   - SOP: 
     - sop/index.md
