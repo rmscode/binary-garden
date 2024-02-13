@@ -1,6 +1,6 @@
 # About Volumes and Volume groups
 
-A volume is a logical subdivision of a virtual or linear pool and can be mapped to host-based applications. A mapped volume provides addressable storage to a host (for example, a file system partition you create with your operating system or third-party tools). For more information about mapping, see About volume mapping.
+A volume is a logical subdivision of a virtual or linear pool and can be mapped to host-based applications. A mapped volume provides addressable storage to a host (for example, a file system partition you create with your operating system or third-party tools). For more information about mapping, see [About Mapping Initiators and Volumes](../powervault-me4/me4-mappings.md).
 
 ## Virtual Volumes
 
