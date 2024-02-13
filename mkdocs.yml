@@ -128,7 +128,7 @@ nav:
           - System Notifications (Optional): hardware/dell-emc/powervault-me4/me4-notifications.md
         - System Concepts:
           - About Disk Groups: hardware/dell-emc/powervault-me4/me4-disk-groups.md
-          - About Mappings: hardwawre/dell-emc/powervault-me4/me4-mappings.md
+          - About Mappings: hardware/dell-emc/powervault-me4/me4-mappings.md
           - About Pools: hardware/dell-emc/powervault-me4/me4-pools.md
           - About Replication: hardware/dell-emc/powervault-me4/me4-replication.md
           - About Snapshots: hardware/dell-emc/powervault-me4/me4-snapshots.md
