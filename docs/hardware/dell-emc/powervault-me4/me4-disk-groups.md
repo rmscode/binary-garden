@@ -19,9 +19,7 @@ If your disk group contains both 512n and 512e disks, a dialog box appears. Perf
 
 ??? question "What is the difference between a 512n and 512e disk?"
 
-    [The difference is sector size. 512n is 512 byte sector size. 512e is a 4K sector size.](https://community.spiceworks.com/topic/2108347-what-is-the-difference-between-512n-and-512e) 
-    
-    I'm pretty sure all of disks we purchased are exactly the same...
+    [The difference is sector size. 512n is 512 byte sector size. 512e is a 4K byte sector size.](https://community.spiceworks.com/topic/2108347-what-is-the-difference-between-512n-and-512e) 
 
 ## Modify a Disk Group
 
