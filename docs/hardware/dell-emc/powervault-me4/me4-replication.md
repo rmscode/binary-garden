@@ -1,12 +1,16 @@
 # About Replicating Virtual Volumes
 
+!!! note
+
+    It's unlikely we'll ever implement this IMO. I had already read and documented a decent chunk of this by the time I realized that a remote peer connection is required to use this feature. Keeping here for future possibilities...
+
 Replication for virtual storage provides a remote copy of a volume, volume group, or snapshot — hereafter known as *volume* — on a remote system by periodically updating the remote copy to contain a point-in-time consistent image of a source volume. After an initial image has been replicated, subsequent replications only send changed data to the remote system. All replications, including the initial one, only replicate data that has been written as opposed to using all pages of data from the source. This feature can be used for disaster recovery, to preserve data, and to back data up to off-site locations. It can also be used to distribute data.
 
 A peer connection must be defined to create and use a replication set. A replication set can specify only one peer connection and pool. When creating a replication set, communication between the peer connection systems must be operational during the entire process.
 
-    If a volume group is part of a replication set, volumes cannot be added to or deleted from the volume group.
+If a volume group is part of a replication set, volumes cannot be added to or deleted from the volume group.
 
-    If a replication set is deleted, the internal snapshots created by the system for replication are also deleted. After the replication set is deleted, the primary and secondary volumes can be used like any other base volumes or volume groups.
+If a replication set is deleted, the internal snapshots created by the system for replication are also deleted. After the replication set is deleted, the primary and secondary volumes can be used like any other base volumes or volume groups.
 
 ## Prerequisites
 
