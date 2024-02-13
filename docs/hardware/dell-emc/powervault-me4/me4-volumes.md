@@ -12,7 +12,7 @@ A maximum of 1024 virtual volumes can exist per system.
 
 ### Create Virtual Volume
 
-1. Perform on of the following:
+1. Perform one of the following:
       1. In the Pools topic, select a virtual pool in the pools table and select **Action > Create Volumes**.
       2. In the Volumes topic, select **Action > Create Virtual Volumes**.
 2. (Optional) Change the name, the volume size (MiB, GiB, TiB, MB, GB, TB), the number of volumes to create, and/or the volume affinity for tiering (default none).
