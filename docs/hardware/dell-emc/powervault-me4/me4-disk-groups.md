@@ -30,9 +30,8 @@ You can rename any virtual and read-cache disk group. For linear disk groups, yo
 1. In the Pools topic, select the pool in the pools table for the disk group that you are modifying.
 2. Select the disk group in the Related Disk Groups table.
 3. Select **Action > Modify Disk Group**.
-4. To change the disk group name, type a new name in the **New Name** field.
-      1. !!! note "A disk group name is case-sensitive and can have a maximum of 32 bytes. It cannot already exist in the system or include the following characters: `" , < \`."
-5. Click **Modify** and then **OK** when the disk group modification is complete.
+4. To change the disk group name, type a new name in the **New Name** field. A disk group name is case-sensitive and can have a maximum of 32 bytes. It cannot already exist in the system or include the following characters: `" , < \`.
+1. Click **Modify** and then **OK** when the disk group modification is complete.
 
 ### Modify the Drive Spin Down Feature
 
