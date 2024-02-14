@@ -2,6 +2,8 @@
 
 Attached Windows hosts with iSCSI network adapters need to be properly configured in order to use the iSCSI protocol with the ME4 storage system and MPIO enabled volumes.
 
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_dg_pub/configuring-a-windows-host-with-iscsi-network-adapters?guid=guid-da96d36d-7905-4a4a-bc5e-11fb102baa8e&lang=en-us)
+
 ## Prerequisites
 
 - Complete the PowerVault Manager guided setup process and storage setup process.
@@ -25,7 +27,7 @@ Attached Windows hosts with iSCSI network adapters need to be properly configure
 
 ## (Optional) Enable Jumbo Frames on the iSCSI network adapters
 
-!!! note
+!!! info
 
     If using Jumbo Frames, they must be enabled and configured on all devices in the data path.
 
@@ -36,18 +38,18 @@ Attached Windows hosts with iSCSI network adapters need to be properly configure
 5. Select **Jumbo Packet** from the Property list
 6. Select the appropriate MTU size from the Value list
 
-Setting the NIC properties are not enough as they will only allow you to receive Jumbo Frames. You need to tell Windows to use Jumbo frames as well.
-
-```cmd
-netsh interface ipv4 set subinterface “TheNameOfYourInterface” mtu=9014 store=persistent
-```
-
 !!! note
 
-    [I have read](https://superuser.com/a/1490402/1775885), but not confirmed, that the netsh way is not persistent despite the `store=persistent` flag. Modifying the registry with PowerShell apparently does the trick.
+    A [StackExchange](https://superuser.com/a/1490402/1775885) user suggests that setting the NIC properties are not enough as they will only allow Windows to receive Jumbo Frames. You need to tell Windows to use Jumbo frames as well. I'm not entirely sure if this would subsequently require devices beyond the SAN to also be configured for Jumbo Frames...
+
+    ```cmd
+    netsh interface ipv4 set subinterface “TheNameOfYourInterface” mtu=9000 store=persistent
+    ```
+
+    Another user in the same thread mentions that the `netsh` method isn't persistent despite the `store=persistent` flag. They recommend using PowerShell instead.
 
     ```ps
-    Get-NetAdapterAdvancedProperty "iSCSI*" -DisplayName "Jumbo*" | Set-NetAdapterAdvancedProperty -RegistryValue "9014"
+    Get-NetAdapterAdvancedProperty "iSCSI*" -DisplayName "Jumbo*" | Set-NetAdapterAdvancedProperty -RegistryValue "9000"
     ```
 
 ## Configure iSCSI Initiator on the Windows host
