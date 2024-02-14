@@ -1,4 +1,4 @@
-# About Disk Groups
+# Disk Groups
 
 A disk group is an aggregation of disks of the same type, using a specific RAID level that is incorporated as a component of a pool, for the purpose of storing volume data. Disk groups are used in both virtual and linear storage environments. You can add virtual, linear, or read-cache disk groups to a pool.
 

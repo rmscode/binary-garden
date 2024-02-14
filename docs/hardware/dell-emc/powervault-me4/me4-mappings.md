@@ -1,4 +1,4 @@
-# About Mapping Initiators and Volumes
+# Mapping
 
 Mappings between a volume and one or more initiators, hosts, or host groups enable hosts to view and access the volume. There are two types of maps that can be created: default maps and explicit maps. Default maps enable all hosts to see the volume using a specified LUN and access permissions. Default mapping applies to any host that has not been explicitly mapped using different settings.
 
