@@ -13,3 +13,5 @@
 6. Upload the certificate key:
       1. `put <key-file-name> cert-key-file`
 7. [Restart both Management Controllers](../powervault-me4/me4-shutdown-controller.md) to have the new security certificate take effect.
+
+[*Reference*](https://www.dell.com/support/manuals/it-it/powervault-me4012/me4_series_ag_pub/install-a-security-certificate?guid=guid-5693f5f5-014b-41bb-8772-c901b5032623&lang=en-us)

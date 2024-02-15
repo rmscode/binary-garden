@@ -1,4 +1,4 @@
-# About Replicating Virtual Volumes
+# Replication
 
 !!! note
 

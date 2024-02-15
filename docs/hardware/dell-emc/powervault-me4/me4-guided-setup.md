@@ -55,7 +55,7 @@ With guided setup, you must first configure your system settings by accessing th
 
 1. From the *Welcome* panel, access the *System Settings* panel and complete all the required options (red asterisk).
 2. Save your settings and exit to the *Welcome* panel.
-3. Click *Storage Setup* and follow the prompts to begin provisioning your system by configuring [disk groups](../powervault-me4/me4-disk-groups.md), [spares](../powervault-me4/me4-spares.md) and [pools](../powervault-me4/me4-pools.md).
+3. Click *Storage Setup* and follow the prompts to begin provisioning your system by configuring [disk groups](../powervault-me4/me4-pools.md#disk-groups), [spares](../powervault-me4/me4-spares.md) and [pools](../powervault-me4/me4-pools.md).
 4. Save your settings and exit to the *Welcome* panel.
 5. Click *Host Setup* and follow the prompts to continue provisioning your system by [attaching hosts](../powervault-me4/me4-host-setup.md).
 
