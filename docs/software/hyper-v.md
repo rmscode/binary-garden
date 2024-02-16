@@ -28,3 +28,26 @@ Enable with `Enable-VMIntegrationService -VMName "TestVM" -Name "Guest Service I
 4. Find the DVD drive which contains the Integration Services Setup Disk. Right-click on it and select Install Hyper-V Integration Services.
 5. Restart the system to complete the installation.
 6. After the reboot, verify that Integration Services are updated by looking at the VM summary in Hyper-V Manager.
+
+## Shared Nothing Live Migration (SNLM)
+
+SNLM allows you to live migrate a VM from one Hyper-V host to another without the need for shared storage.
+
+### Prerequisites
+
+- Source and target systems must be Hyper-V hosts in the same or trusting domains.
+- Source and target systems must have the same type or family of processors (Intel or AMD) if you're using the VM's processor compatibility feature.
+- Source and target systems must be connected by at least a 1 Gbps Ethernet connection.
+- The VM cannot be clustered.
+- Enable incoming and outgoing live migrations in **Hyper-V Settings** > **Live Migrations**
+
+### Steps
+
+1. Right-click the VM in Hyper-V Manager and select **Move** > **Live Migration**.
+2. Follow the wizard and select the target host.
+
+Powershell:
+
+```powershell
+Move-VM –Name VM01 –IncludeStorage –DestinationHost HVSRV02 –DestinationStoragePath D:\Hyper-V\
+```
