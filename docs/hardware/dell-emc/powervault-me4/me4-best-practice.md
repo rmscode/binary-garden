@@ -93,6 +93,12 @@ If you have 21 SSDs and utilize global spares;
 - Pool 2: 10 x SSDs
 - Assign 1 global spare
 
+If you have 24 SSDs and utilize global spares;
+
+- Pool 1: 10 x SSDs
+- Pool 2: 10 x SSDs
+- Assign 4 global spares
+
 ### Disk groups in a pool
 
 For better efficiency and performance, use similar disk groups in a pool.
