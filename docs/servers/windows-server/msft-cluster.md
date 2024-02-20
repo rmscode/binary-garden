@@ -55,3 +55,39 @@ With powershell:
 ```powershell
 Get-ClusterResource -Name "VM1" | Set-ClusterOwnerNode -Owners node1
 ```
+
+## Proper Shutdown
+
+### Shutting Down a Node
+
+1. Open Failover Cluster Manager (CluAdmin.msc)
+2. Click on "Nodes"
+3. Right-click on the node name and under **Pause** click on **Drain Roles**
+4. Under Status the node will appear as Paused.  At the bottom of the center pane click on the Roles tab. Once all roles have moved off this node, it is safe to shut down or reboot the node.
+
+PowerShell:
+
+```powershell
+Suspend-CllusterNode -Name "NodeName" -Drain
+Stop-Computer
+```
+### Shutting down a Cluster
+
+While you can shut down each node in the cluster individually, using the cluster UI will ensure the shutdown is done gracefully.
+
+1. Open Failover Cluster Manager (CluAdmin.msc)
+2. Right-click on the cluster name, select **More Actions**, then **Shut Down Cluster…**
+3. When prompted if you are sure you want to shut down the cluster, click Yes.
+
+To configure the shut down action for an individual VM (where "Virtual Machine" is the name of the VM):
+
+```powershell
+Get-ClusterResource "Virtual Machine" | Set-ClusterParameter OfflineAction 1
+```
+
+Value       | Effect
+----------- | ------
+0           | VM is turned off
+1 (Default) | VM state is saved
+2           | Guest OS is shutdown
+3           | Guest OS is shutdown forcibly
