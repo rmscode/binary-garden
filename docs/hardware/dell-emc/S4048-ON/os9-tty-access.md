@@ -46,25 +46,27 @@ You can assign line authentication on a per-VTY basis; it is a simple password a
 
 ## VTY Line IP Filtering
 
-IP access lists which permit or deny users are supported.
-
-To apply an IP ACL on a VTY line, use the `access-class <access-list-name>` command.
+To create an IP ACL which permits or denies access, use the `access-class <access-list-name>` command.
 
 !!! info
 
     If you already have configured generic IP ACL on a terminal line, then you cannot further apply IPv4 or IPv6 specific filtering on top of this configuration. You must first undo the existing configuration using the `no access-list-name` command.
 
-!!! abstract "ToDo"
-
-    Documentation needed for creating [`access-class` lists](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/access-control-lists-acls?guid=guid-75e6f5c0-7f87-4a39-990b-cc307dc63863&lang=en-us). 
-
 ```shell
-DellEMC(conf)# line vty 0 0    #(1)
-DellEMC(config-line-vty)# access-class testv6deny ipv6
-DellEMC(config-line-vty)# access-class testvpermit ipv4
+DellEMC(conf)# ip access-list standard ALLOW-NET192 #(1)
+DellEMC(config-std-nacl)# description Allow 192.168.1 IP addresses
+DellEMC(config-std-nacl)# seq 5 permit 192.168.1.0/24 #(2)
+DellEMC(config-std-nacl)# seq 20 deny any log #(3)
+DellEMC(config-std-nacl)# exit
+DellEMC(conf)# line vty 0 9 #(4)
+DellEMC(config-line-vty)# access-class ALLOW-NET192 ipv4 #(5)
 ```
 
-1. In Dell's docs, it appears that they are always selecting a range of VTY lines, even when they are configuring a single line. In this example, VTY line 0 is being configured.
+1. Creating a standard ACL named `ALLOW-NET192`
+2. ACL rules use a sequence number (`seq 5`) to determine the order in which they are applied. Lower sequence numbers have higher priority.
+3. Any other IP is then denied and logged.
+4. Entering to the VTY line configuration mode for lines 0 through 9.
+5. Applying the ALLOW-NET192 ACL to the VTY lines.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/denying-and-permitting-access-to-a-terminal-line?guid=guid-23bcb9fb-55b9-45fb-888e-61f483255e50&lang=en-us)
 
