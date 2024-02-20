@@ -132,7 +132,15 @@ Switch-A(conf)#
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-a-host-name?guid=guid-4fb6a556-a309-4d56-abfe-2fa6ccee1183&lang=en-us)
 
-## OOB Management Interface Configuration
+## Management Interface Configuration
+
+You can configure the OOB management port on the rear of the switch or use a data port on the front of the device. 
+
+The Out-of-Band (OOB) management network is a separate network that is solely for management traffic. The network uses the dedicated management port on the switch to connect to a management switch dedicated for management traffic. 
+
+With in-band management, devices are managed through the production network switches, avoiding the need of purchasing a dedicated management switch. This solution requires that you initially configure each managed switch locally through a serial port connection.
+
+### Out of Band Management (Recommended)
 
 Enter CONFIGURE INTERFACE mode for `ManagementEthernet 1/1` to turn off DHCP, set the IP and enable the port.
 
@@ -160,6 +168,32 @@ DellEMC(conf)# management route 0.0.0.0/0 10.1.1.254 #(1)
 
 [*Reference: Management Port IP*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configure-the-management-port-ip-address?guid=guid-d18626b7-74dd-4a2b-a4b7-bb8a852386e5&lang=en-us)</br>
 [*Reference: Management Route*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configure-a-management-route?guid=guid-e615d634-8863-4c93-92d1-5b269fd756ab&lang=en-us)
+
+### In-Band Management
+
+Select a data port and enter CONFIGURE INTERFACE mode to prepare it for management.
+
+```shell
+DellEMC# configure
+DellEMC(conf)# interface tengigabitethernet 1/48
+DellEMC(conf-if-te-1/48)# description upstream network
+DellEMC(conf-if-te-1/48)# portmode hybrid
+DellEMC(conf-if-te-1/48)# switchport
+DellEMC(conf-if-te-1/48)# no shutdown
+DellEMC(conf-if-te-1/48)# exit
+```
+
+Configure the VLAN and IP address for connections to the upstream port 1/48.
+
+```shell
+DellEMC(conf)# interface vlan 10
+DellEMC(conf-if-vl-10)# description Management VLAN
+DellEMC(conf-if-vl-10)# ip address 192.168.1.10/24
+DellEMC(conf-if-vl-10)# no shutdown
+DellEMC(conf-if-vl-10)# tagged tengigabitethernet 1/48
+```
+
+[*Reference: Management Networks for Dell EMC Switches - Section 5.2.1*](https://infohub.delltechnologies.com/section-assets/dell-emc-mgmt-networking-may-2019-1)
 
 ## Configure a user for remote SSH accesss
 
