@@ -159,6 +159,8 @@ nav:
       - Data Deduplication: servers/windows-server/dedup.md
       - Group Policy: servers/windows-server/group-policy.md
       - Failover Clustering: servers/windows-server/msft-cluster.md
+    - Linux Servers:
+      - NetBox: servers/linux-servers/netbox.md
   - Software: 
     - software/index.md
     - Hyper-V: software/hyper-v.md
