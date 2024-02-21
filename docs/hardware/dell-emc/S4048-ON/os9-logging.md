@@ -30,6 +30,8 @@ This command is available with or without RBAC (Role Based Access Control) enabl
     - Adding and deleting of users.
     - User access and configuration changes to the security and crypto parameters (not the key information but the crypto configuration).
 
+To view the audit logs, use the `show logging auditlog` command. Security logs are viewed using the `show logging` command.
+
 ## Configuring a syslog server
 
 !!! abstract "ToDo"
