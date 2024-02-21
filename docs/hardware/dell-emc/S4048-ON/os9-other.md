@@ -124,3 +124,13 @@ To obscure passwords and keys when the configuration is displayed, use the follo
 ```shell
 service obscure-passwords
 ```
+
+## Restore Factory Default Settings
+
+Restoring the factory-default settings deletes the existing NVRAM settings, startup configuration, and all configured settings such as, stacking or fanout.
+
+!!! warning "There is no undo for this command."
+
+```shell
+DellEMC# restore factory-defaults stack-unit 1 nvram
+```
