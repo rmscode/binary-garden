@@ -78,20 +78,6 @@ You can configure the switch to automtically lock configuration mode for other u
 configuration mode exclusive auto
 ```
 
-## Tracking login activity
-
-By default, this is off. To enable it, use the following command:
-
-```shell
-login statistics enable
-```
-
-Displaying the login activity:
-
-```shell
-show login statistics
-```
-
 ## Limit concurrent sessions
 
 ```shell
@@ -134,3 +120,15 @@ Restoring the factory-default settings deletes the existing NVRAM settings, star
 ```shell
 DellEMC# restore factory-defaults stack-unit 1 nvram
 ```
+
+## DHCP
+
+<https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/dynamic-host-configuration-protocol-dhcp?guid=guid-cdaee30b-f975-4f83-8c8b-60bedb2ede55&lang=en-us>
+
+## Resetting Interface to Factory Settings
+
+<https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/resetting-an-interface-to-its-factory-default-state?guid=guid-6b9ffa44-65a0-40d6-a773-fe0fd9392080&lang=en-us>
+
+## Shared LAG State Tracking
+
+<https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.8-config-pub/shared-lag-state-tracking?guid=guid-2a2ff54f-ce72-48dd-8496-356fc943ed4f&lang=en-us>
