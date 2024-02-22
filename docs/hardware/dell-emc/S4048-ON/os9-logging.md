@@ -32,6 +32,22 @@ This command is available with or without RBAC (Role Based Access Control) enabl
 
 To view the audit logs, use the `show logging auditlog` command. Security logs are viewed using the `show logging` command.
 
+Clear sudit logs with `clear logging auditlog`.
+
+## Tracking Login Activity
+
+By default, this is off. The system stores the login activity details for the last 30 days when eneabled. To enable it, use the following command:
+
+```shell
+login statistics enable
+```
+
+Displaying the login activity:
+
+```shell
+show login statistics
+```
+
 ## Configuring a syslog server
 
 !!! abstract "ToDo"
