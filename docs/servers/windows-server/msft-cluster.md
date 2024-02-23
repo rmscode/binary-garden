@@ -92,8 +92,6 @@ Value       | Effect
 2           | Guest OS is shutdown
 3           | Guest OS is shutdown forcibly
 
-# Configure the Host iSCSI Initiator(s)
-
 ## Connecting the iSCSI Initiator(s) to the iSCSI Target(s)
 1.	From the iSCSI Initiator host server run iscsicpl.exe and click yes to start the service with Windows. 
 2.	Discovery tab > Discover Portal > Enter the IP address or DNS name of the iSCSI Target server > OK.
