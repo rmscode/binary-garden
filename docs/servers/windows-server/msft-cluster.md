@@ -91,3 +91,21 @@ Value       | Effect
 1 (Default) | VM state is saved
 2           | Guest OS is shutdown
 3           | Guest OS is shutdown forcibly
+
+# Configure the Host iSCSI Initiator(s)
+
+## Connecting the iSCSI Initiator(s) to the iSCSI Target(s)
+1.	From the iSCSI Initiator host server run iscsicpl.exe and click yes to start the service with Windows. 
+2.	Discovery tab > Discover Portal > Enter the IP address or DNS name of the iSCSI Target server > OK.
+3.	Targets tab > Select the target from the list > Connect > Advanced > Configure the following settings: 
+	- Local adapter: Microsoft iSCSI Initiator
+	- Initiator IP: IP of the 1st NIC of the server
+	- Target portal IP: IP of the 1st NIC/Controller of the storage appliance. 
+4.	Click OK and confirm connection.
+> Note: For a multi-path setup, you are going to perform step 3 from above for EACH path making sure the “Enable multi-path” box is ticked. For example, for a second path you would select the IP of the 2nd NIC on the server and the IP of the 2nd NIC/controller on the storage appliance. 
+
+PowerShell:
+```ps
+Start-Service -Name MSiSCSI
+Set-Service -Name MSiSCSI -StartupType Automatic
+```
