@@ -28,19 +28,28 @@ the disabled link and automatically switches over to the backup link in order.
 5. (Optional) Disable upstream-link tracking without deleting the uplink-state group.
 
 ```shell
-DellEMC(conf)# uplink-state-group 1    #(1)
+DellEMC(conf)# uplink-state-group 1 #(1)
 DellEMC(conf-uplink-state-group-1)# upstream FortyGigabitEthernet 1/51
 DellEMC(conf-uplink-state-group-1)# downstream TenGigabitEthernet 1/1
-DellEMC(conf-uplink-state-group-1)# downstream disable links all
-DellEMC(conf-uplink-state-group-1)# downstream auto-recover
-DellEMC(conf-uplink-state-group-1)# no enable    #(2)
+DellEMC(conf-uplink-state-group-1)# downstream disable links all 
+DellEMC(conf-uplink-state-group-1)# downstream auto-recover #(1)
+DellEMC(conf-uplink-state-group-1)# no enable #(3)
 ```
 
 1. The uplink-state group ID can be any number from 1 to 16.
-2. This is useful for testing/troubleshooting. UFD can be turned on or off without removing the config. Turn tracking back on with `enable`.
+2. The `auto-recovery` setting is enable by default, but included here for reference. It enables the automatic bring up of disabled downstream ports when the upstream port comes back up.
+3. This is useful for testing/troubleshooting. UFD can be turned on or off without removing the config. Turn tracking back on with `enable`.
 
-!!! tip
+!!! info "UFD Limitations"
 
-    UFD can be configured in reverse as well. Just assign upstream ports as downstream interfaces in the uplink-state group and vice versa.
+    A port can not be a member of multiple uplink state groups. For example, if you thought it would be nifty to create one uplink state group to turn off port A when port B went down and then another to turn off port B when port A went down . . . you can't. The terminal will tell you that the ports are already a member of an uplink state group.
+
+    Also, keep in mind that port-channels *are* interfaces and *can* be assigned to an uplink state group. You couldn't add an interface that is a member of a port-channel if you wanted to anyway. You must monitor the port-channel if it includes the interface you want to monitor.
+
+    Finally, UFD is not supported on the following interfaces:
+
+!!! tip "UFD in reverse!"
+
+    UFD can be configured in reverse as well. Just assign upstream ports as downstream ports in the uplink-state group and vice versa.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-uplink-failure-detection?guid=guid-2aab7b9f-0b01-4061-b9dc-62ab3f302688&lang=en-us)
