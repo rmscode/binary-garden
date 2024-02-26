@@ -544,4 +544,4 @@ sudo uhubctl -l 1-1 -p 2 -a 0 #(1)!
 
     We need to come up with a method to power off the USB ports at the end of each boot sequence. Thankfully, thats pretty easy to script using cronjobs or DietPi's autostart scripts. 
 
-    In our envonriment, we use DietPi to launch chromium in kiosk mode. Adding `sudo uhubctl -l 1-1 -p 2 -a 0` the `/var/lib/dietpi/dietpi-software/installed/chromium-autostart.sh` is easy enough.
+    In our environment, we use DietPi to launch chromium in kiosk mode. Adding `sudo uhubctl -l 1-1 -p 2 -a 0` the `/var/lib/dietpi/dietpi-software/installed/chromium-autostart.sh` is easy enough.

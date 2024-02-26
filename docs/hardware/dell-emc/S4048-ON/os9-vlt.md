@@ -1,11 +1,5 @@
 # Virtual Link Trunking (VLT)
 
-!!! warning inline end "BE ADVISED..."
-
-    As of 10/30/23 we have been unable to test and confirm these steps in a GNS3 virtual lab. 
-    
-    We will need to do some testing on the S4048 switches themselves and update this section when/where necessary.
-
 !!! info "Feature Description"
 
     Virtual Link Trunking is Dell's implementation of MLAG (Multi-Chassis Link Aggregation). It allows you to create a port-channel (LAG) between two switches and have them act as one logical switch. This provides redundancy and load balancing. 
@@ -16,7 +10,7 @@
 
 !!! info
 
-    Dell recommends, at least initially, to enable rSTP globally on each VLT peer. This is to prevent loops in the event of a misconfiguration.
+    Dell recommends, at least initially, to enable rSTP globally on each VLT peer. This is to prevent loops in the event of a misconfiguration. More info [here](../S4048-ON/os9-other.md#rstp-and-vlt)...
 
 === "VLT Peer 1"
 
@@ -243,7 +237,7 @@ VLT-1(conf-if-te-1/51-lacp)# port-channel 10 mode active    #(4)
 
     If the source is connected to an orphan (non-spanned, non-VLT) port in a VLT peer, the receiver is connected to a VLT (spanned) port-channel, and the VLT port-channel link between the VLT peer connected to the source and ToR is down, traffic is duplicated due to route inconsistency between peers. To avoid this scenario, Dell EMC Networking recommends configuring both the source and the receiver on a spanned VLT VLAN.
 
-What I *think* this means is that if you have something like a server connected to a VLT domain via 2 independant NICs (No LAG), and something like an upstream TOR switch connected to the same VLT domain via a port-channel (LAG), and that port-channel link (one of them?) goes down, routing issues can arise. If that is the case, then its something we need to consider because that is how our network will be set up - No port-channels/LAGs between the servers and the VLT domain, but a port-channel/lag between the VLT domain and "access" switch on the wall (or top of rack..whever we put it).
+This *will* be our exact scenario! We cannot "span" the connections of the servers across the VLT peers using VLT port-channels. Each of our servers will be utilizing Switch Embedded Teams which *only* support switch-independent configuration. See [Uplink Failure Detection](../S4048-ON/os9-ufd.md)!
 
 [Specifying VLT Nodes in a PVLAN](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/specifying-vlt-nodes-in-a-pvlan?guid=guid-ab6e056d-e4c7-4910-b807-b09102f1083b)</br>
 [Configuring a VLT VLAN or LAG in a PVLAN](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-a-vlt-vlan-or-lag-in-a-pvlan?guid=guid-fad07f16-bf47-45b1-a36d-58f3a75a82f8)

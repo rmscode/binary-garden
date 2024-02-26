@@ -8,6 +8,10 @@
 
     :   The out-of-band management port is a dedicated port for management traffic. It is not associated with any VLANs and is not affected by any VLAN configuration. The OOB management port is used for management traffic only. It cannot be used for data traffic.
 
+    `Orphan Port`
+
+    : A non-spanned, non-VLT port. A device that connects to one or both VLT peers via an Orphan Port is sometimes referred to as an Orphan host/switch.
+
     `Port-Channel`
 
     :   Dell's implementation of a LAG (Link Aggregation Group). A port-channel is a logical interface that is composed of multiple physical interfaces. The physical interfaces can be on the same switch or on different switches. The port-channel is configured with a single IP address and MAC address. The port-channel is used to increase bandwidth and provide redundancy.
@@ -165,6 +169,8 @@ DellEMC(conf)# management route 0.0.0.0/0 10.1.1.254 #(1)
 ```
 
 1. This is the nexthop - typically your gateway.
+
+!!! tip "To remove the management route, you must use the `no` command followed by the full management route: `no management route 0.0.0.0/0 10.1.1.254`."
 
 [*Reference: Management Port IP*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configure-the-management-port-ip-address?guid=guid-d18626b7-74dd-4a2b-a4b7-bb8a852386e5&lang=en-us)</br>
 [*Reference: Management Route*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configure-a-management-route?guid=guid-e615d634-8863-4c93-92d1-5b269fd756ab&lang=en-us)
