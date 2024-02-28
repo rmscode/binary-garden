@@ -239,6 +239,10 @@ VLT-1(conf-if-te-1/51-lacp)# port-channel 10 mode active    #(4)
 
 This *will* be our exact scenario! We cannot "span" the connections of the servers across the VLT peers using VLT port-channels. Each of our servers will be utilizing Switch Embedded Teams which *only* support switch-independent configuration. See [Uplink Failure Detection](../S4048-ON/os9-ufd.md)!
 
+The `port-delay-restore` command may be another thing worth considering. It allows a delayed bring up of *all* interfaces during switch boot up. I have not tested this, but I would assume the action of a peer reloading would be the same as a switch rebooting...Pretty sure reboot/reload are used synonmously in Dell's documentation.
+
+---
+
 [Specifying VLT Nodes in a PVLAN](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/specifying-vlt-nodes-in-a-pvlan?guid=guid-ab6e056d-e4c7-4910-b807-b09102f1083b)</br>
 [Configuring a VLT VLAN or LAG in a PVLAN](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-a-vlt-vlan-or-lag-in-a-pvlan?guid=guid-fad07f16-bf47-45b1-a36d-58f3a75a82f8)
 
