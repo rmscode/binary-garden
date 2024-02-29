@@ -8,7 +8,7 @@
 
 !!! info
 
-    To add an interface to a VLAN, the interface must be in Layer 2 mode. After you place an interface in Layer 2 mode, the interface is automatically placed in the Default VLAN (1). When a port is in `switchport` mode (Layer 2), it passes multiple VLANs, or one untagged VLAN. It cannot accept both untagged and tagged traffic. To do that, you need to configure the port in `hybrid` mode (see below). [Source](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/vlans-and-port-tagging?guid=guid-397912b0-60b7-46bc-ab62-417d337e3cc2&lang=en-us)
+    To add an interface to a VLAN, the interface must be in Layer 2 mode. After you place an interface in Layer 2 mode, the interface is automatically placed in the Default VLAN (1). When a port is in `switchport` mode (Layer 2), it passes multiple VLANs, *OR* one untagged VLAN. It cannot accept both untagged and tagged traffic. To do that, you need to configure the port in `hybrid` mode (see below). [Source](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/vlans-and-port-tagging?guid=guid-397912b0-60b7-46bc-ab62-417d337e3cc2&lang=en-us)
 
 To configure `switchport`:
 
