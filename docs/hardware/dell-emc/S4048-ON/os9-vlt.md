@@ -49,8 +49,6 @@
 
     The VLTi may consist of any 10G or 40G ports, but a combination of 10G *and* 40G ports is not supported. Dell recommends forming the VLTi with at least 2 ports as best practice.
 
-    Furthermore, the system will automatically include needed VLANs to be tagged into the VLTi. You *do not* need to manually tag VLANs on the VLTi.
-
 ```shell
 VLT-1(conf)# interface range FortyGigabitEthernet 1/49-1/50 #(1)
 VLT-1(conf-if-range-fo-1/47,fo-1/48)# description "Member of port-channel 128 for the VLT Interconnect" #(2)
@@ -73,7 +71,7 @@ VLT-1(conf-if-po-128)# exit
 
 !!! warning
 
-    Do not add any VLANs to the VLT interconnect. The VLTi interface manages VLAN tagged/untagged traffic automatically between peers. Manually adding a VLAN configuration has been shown to disrupt traffic flow according to Dell.
+    Do not manually add any VLANs to the VLT interconnect. The VLTi interface manages VLAN tagged/untagged traffic automatically between peers. That is, if a VLAN is present on both switches, the VLTi will be added to that VLAN automatically. Manually adding a VLAN configuration has been shown to disrupt traffic flow according to Dell. 
 
 *Repeat these steps on the other VLT peer.*
 
