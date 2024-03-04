@@ -2,7 +2,7 @@
 
 ## Do not Disturb
 
-User may enable Do-Not-Disturb (DND) feature on the device to reject incoming calls (including call waiting). DND mode is indicated by a red circle with a white horizontal line in the upper right oif the display.
+Users may enable Do-Not-Disturb (DND) feature on the device to reject incoming calls (including call waiting). DND mode is indicated by a red circle with a white horizontal line in the upper right oif the display.
 
 Via phone interface:
 
