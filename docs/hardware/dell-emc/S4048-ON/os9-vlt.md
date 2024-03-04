@@ -71,7 +71,11 @@ VLT-1(conf-if-po-128)# exit
 
 !!! warning
 
-    Do not manually add any VLANs to the VLT interconnect. The VLTi interface manages VLAN tagged/untagged traffic automatically between peers. That is, if a VLAN is present in both peers, the VLTi will be added to that VLAN automatically. Manually adding a VLAN configuration has been shown to disrupt traffic flow according to Dell.
+    Do not manually add any VLANs to the VLT interconnect. The VLTi interface manages VLAN tagged/untagged traffic automatically between peers. That is, if a VLAN is present in both peers, the VLTi will be added to that VLAN automatically. Manually adding a VLAN configuration has been shown to disrupt traffic flow (according to Dell). If a VLAN configuration has been added to the VLTi, the recommended recovery process for both peers is as follows:
+
+    1. Remove the VLAN configuration from the interface.
+    2. Save the configuration.
+    3. Reload the VLT member.
 
 *Repeat these steps on the other VLT peer.*
 
