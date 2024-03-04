@@ -144,11 +144,11 @@ nav:
         - Logging: hardware/dell-emc/powervault-me4/me4-logging.md
         - Troubleshooting: hardware/dell-emc/powervault-me4/me4-troubleshooting.md
         - Best Practices: hardware/dell-emc/powervault-me4/me4-best-practice.md
-    - VOIP Phones: 
-      - Fanvil V64: hardware/voip-phones/fanvil.md
     - Microsoft:
       - Microsoft Surface: hardware/microsoft/surface-rt.md
     - Raspberry Pi: hardware/raspberrypi.md
+    - VOIP Phones: 
+      - Fanvil V64: hardware/voip-phones/fanvil.md
   - Networking: 
     - networking/index.md
     - Link Aggregation & LACP Basics: networking/link-aggregation.md
