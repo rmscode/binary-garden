@@ -44,7 +44,7 @@ To apply an IP ACL to a physical or port-channel interface, use the following co
 ```shell 
 DellEMC# configure
 DellEMC(conf)# interface TenGigabitEthernet 1/1
-DellEMC(conf-if-te-1/1)# ip access-group TestACL <`in` or `out`> #(1)
+DellEMC(conf-if-te-1/1)# ip access-group TestACL <in | out> #(1)
 ```
 
 1. Filter traffic entering (ingress) or exiting (egress) an interface with the `in` or `out` keyword, respectively.
