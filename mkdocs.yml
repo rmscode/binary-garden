@@ -109,6 +109,7 @@ nav:
         - OS9:
           - Getting Started: hardware/dell-emc/S4048-ON/os9-getting-started.md
           - CLI Fundamentals: hardware/dell-emc/S4048-ON/os9-cli-fundamentals.md
+          - Access Contgrol Lists: hardware/dell-emc/S4048-ON/os9-acls.md
           - Debugging and Diagnostics: hardware/dell-emc/S4048-ON/os9-debugging.md
           - File Management: hardware/dell-emc/S4048-ON/os9-file-management.md
           - Logging: hardware/dell-emc/S4048-ON/os9-logging.md
@@ -127,7 +128,6 @@ nav:
           - Security Certificate (Optional): hardware/dell-emc/powervault-me4/me4-install-certificate.md
           - System Notifications (Optional): hardware/dell-emc/powervault-me4/me4-notifications.md
         - System Concepts:
-          # - Disk Groups: hardware/dell-emc/powervault-me4/me4-disk-groups.md
           - Hosts and Initiators: hardware/dell-emc/powervault-me4/me4-hosts.md
           - Mappings: hardware/dell-emc/powervault-me4/me4-mappings.md
           - Pools and Disk Groups: hardware/dell-emc/powervault-me4/me4-pools.md
@@ -154,6 +154,7 @@ nav:
     - Link Aggregation & LACP Basics: networking/link-aggregation.md
     - Understanding Network Infrastructure: networking/network-infrastructure.md
     - Spanning Tree Protocol: networking/spanning-tree.md
+    - Subnetting: networking/subnetting.md
   - Servers:
     - Windows Server:
       - servers/windows-server/index.md
