@@ -71,3 +71,4 @@ For example, to filter one subnet from entering the VLTi on Switch-A and a secon
     DellEMC(conf-std-nacl)# deny 10.10.20.0 0.0.0.255 any
     ```
 
+`show ip accounting access-list`
