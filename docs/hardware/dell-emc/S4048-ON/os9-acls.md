@@ -60,7 +60,7 @@ The examples above are as basic as it gets. You can create much more complex ACL
 
 If you want to use ACLs to block specific traffic from entering the VLTi in a VLT domain, I would think that you need to configure the exact same ACL on both switches to prevent a vlt-mismatch.
 
-For example, to filter one subnet from entering the VLTi on Switch-A and a second from entering the VLTi on Switch-B, you must create an ACL that filters *both* subnets on *both* switches. It must be a single ACL that contains both filters btw . . . an interface can only have one ACL applied at a time. 
+For example, to filter one subnet from entering the VLTi on Switch-A and a second from entering the VLTi on Switch-B, you must create an ACL that filters *both* subnets on *both* switches. It must be a single ACL that contains both filters btw . . . an interface can only have one ACL applied at a time.
 
 !!! example
 
