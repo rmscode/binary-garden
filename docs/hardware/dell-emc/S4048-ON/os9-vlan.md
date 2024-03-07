@@ -89,6 +89,29 @@ To remove a VLAN from an interface use the `no tagged` and `no untagged` command
 ```shell
 DellEMC(conf-if-vl-414)# no tagged te0/5-10
 ```
+
+## Inter-VLAN Routing
+
+**WIP...**
+
+Dell EMC Networking OS supports inter-VLAN routing (Layer 3). To enable this, you must assign IP addresses to VLANs interfaces.
+
+A consideration for including VLANs in routing protocols is that you must configure the `no shutdown` command on the VLAN interface.
+
+Giving IP addresses to VLANs:
+
+```shell
+DellEMC# configure
+DellEMC(conf)# Interface Vlan 10
+DellEMC(conf-if-vl-10)# ip address 192.168.10.250/24 <secondary> #(1)
+DellEMC(conf-if-vl-10)# no shutdown
+DellEMC(conf-if-vl-10)# exit
+```
+
+1. Optionally, you can configure up to eight secondary IP addresses.
+
+!!! info "See IPv4 Routing to continue with inter-VLAN routing"
+
 ## Useful `show` commands
 
 | Command                           | Description                                     |
@@ -99,3 +122,47 @@ DellEMC(conf-if-vl-414)# no tagged te0/5-10
 | `show interface switchport te0/5` | Shows the tagged and untagged VLANs on a port   |
 
 [*Reference*](https://www.dell.com/support/kbdoc/en-us/000119270/dell-emc-networking-how-to-configure-vlans-and-associate-ports-to-vlans-on-os9-ftos)
+
+
+
+
+
+# (WIP) IPv4 Routing
+
+Configurations Tasks:
+
+- Assign an IP address to an interface
+- Configure a static route
+
+## Assigning IP Addresses to an Interface
+
+Assign primary and secondary IP addresses to physical or logical (VLAN or port channel) interfaces to enable IP communication between the system and hosts connected to that interface. 
+
+You can assign one primary IP address and up to 255 secondary IP addresses to each interface.
+
+```shell
+DellEMC# configure
+DellEMC(conf)# interface TenGigabitEthernet 1/5 #(1)
+DellEMC(conf-if-te-1/5)# no shutdown #(2)
+DellEMC(conf-if-te-1/5)# ip address 192.168.10.2/24 #(3)
+```
+
+1. Remember, this can be a VLAN or port channel interface as well.
+2. Enable the interface.
+3. To add a secondary IP address include the `secondary` keyword at the end of the command.
+
+## Configuring Static Routes
+
+Static routes are configured manually and not learned by the routing protocol. They are typically used as backup routes in case other dynamically learned routes are unreachable.
+
+Configure a static IP address:
+
+the ip route syntax is `{ip | ipv6} route [vrf vrf-name] ip-address mask {ip-address | interface [ip-address]} [distance] [name description] [permanent] [tag tag-value] [vrf vrf-name] [weight weight-value]`. {} = mandatory, [] = optional, | = or.
+
+```shell
+DellEMC# configure
+DellEMC(conf)# ip route 199.1.1.0 /24 vlan 100 name "Uplink To NewYork" #(1)
+
+```
+
+1. The syntax here is 
