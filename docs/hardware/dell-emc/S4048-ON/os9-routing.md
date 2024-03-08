@@ -28,12 +28,16 @@ Enable RIP globally:
 ```shell
 DellEMC# configure
 DellEMC(conf)# router rip
+DellEMC(conf-router_rip)# ver 2
 ```
 
-Assign an IP address as a RIP network to exchange routing info:
+Assign IP addresses as a RIP networks to exchange routing info:
 
 ```shell
-DellEMC(conf-router_rip)# network 10.0.0.0
+DellEMC(conf-router_rip)# network 10.200.10.0
+DellEMC(conf-router_rip)# network 10.300.10.0
+DellEMC(conf-router_rip)# network 10.11.10.0
+DellEMC(conf-router_rip)# network 10.11.20.0
 ```
 
 !!! note "After designating networks with which the system is to exchange RIP info, ensure that all devices on that network are configured to exchange RIP info."
