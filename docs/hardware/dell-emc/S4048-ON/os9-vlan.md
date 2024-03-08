@@ -92,7 +92,7 @@ DellEMC(conf-if-vl-414)# no tagged te0/5-10
 
 ## Inter-VLAN Routing
 
-!!! note "WIP...I was able to configure inter-vlan routing between two switches in OS10, but I need to look upo the commands for OS9. You can see my notes on inter-vlan routing and OS10 [here](../../../notes/2024.md#f-03082024)."
+!!! note "WIP...I was able to configure inter-vlan routing between two switches in OS10, but I need to look up the commands for OS9. You can see my notes on inter-vlan routing and OS10 [here](../../../notes/2024.md#f-03082024)."
 
 ## Useful `show` commands
 
