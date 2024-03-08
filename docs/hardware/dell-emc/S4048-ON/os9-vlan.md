@@ -92,9 +92,9 @@ DellEMC(conf-if-vl-414)# no tagged te0/5-10
 
 ## Inter-VLAN Routing
 
-**WIP...**
+!!! note "WIP..."
 
-Dell EMC Networking OS supports inter-VLAN routing (Layer 3). To enable this, you must assign IP addresses to VLANs interfaces.
+Dell EMC Networking OS supports inter-VLAN routing (Layer-3). To enable this, you must assign an IP address to the VLAN interfaces you'd like to route. Essentially, the VLAN interface becomes a virtual router and connected clients will use it as their default gateway. Hosts that are connected to ports where this VLAN is untagged will be able to communicate with other VLANs.
 
 A consideration for including VLANs in routing protocols is that you must configure the `no shutdown` command on the VLAN interface.
 
@@ -109,8 +109,6 @@ DellEMC(conf-if-vl-10)# exit
 ```
 
 1. Optionally, you can configure up to eight secondary IP addresses.
-
-!!! info "See IPv4 Routing to continue with inter-VLAN routing"
 
 ## Useful `show` commands
 
