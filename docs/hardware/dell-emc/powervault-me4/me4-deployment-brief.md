@@ -59,7 +59,7 @@ Use the cabling diagram below to connect host servers to a switch-attached stora
 
 !!! note
 
-    Take note of how the CNC ports are connected to the switches. The reason for doing so is that each pair of ports (A0,A1 or A2,A3) are connected to a dedicated CNC chip. If you are not using all four ports on a controller, it is best to use one port from each pair (A0,A2) to ensure better I/O balance on the front end.
+    Take note of how the CNC ports are connected to the switches. The reason for doing so is that each pair of ports (A0,A1 or A2,A3) are connected to a dedicated CNC chip. If you are not using all four ports on a controller, it is best to use one port from each pair (A0,A2) to ensure better I/O balance on the front end and to provide redundancy in case of a CNC chip failure.
 
 ## Connecting the power cords and powering on the system
 

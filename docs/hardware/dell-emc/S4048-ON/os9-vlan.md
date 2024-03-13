@@ -8,7 +8,7 @@
 
 !!! info
 
-    To add an interface to a VLAN, the interface must be in Layer 2 mode. After you place an interface in Layer 2 mode, the interface is automatically placed in the Default VLAN (1). When a port is in `switchport` mode (Layer 2), it passes multiple VLANs, or one untagged VLAN. It cannot accept both untagged and tagged traffic. To do that, you need to configure the port in `hybrid` mode (see below). [Source](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/vlans-and-port-tagging?guid=guid-397912b0-60b7-46bc-ab62-417d337e3cc2&lang=en-us)
+    To add an interface to a VLAN, the interface must be in Layer 2 mode (`switchport`). After you place an interface in Layer 2 mode, the interface is automatically designated untagged for the Default VLAN (1). When a port is in `switchport` mode (Layer 2), it passes multiple tagged VLANs, *OR* one untagged VLAN. It cannot accept both untagged and tagged traffic. To do that, you need to configure the port in `hybrid` mode.
 
 To configure `switchport`:
 
@@ -26,7 +26,7 @@ DellEMC(conf-if-te-0/5)# switchport
 
 !!! info
 
-    In hybrid `switchport` mode, the interface may pass both untagged and tagged VLANs.
+    You can assign hybrid ports to two VLANs if the port is untagged in one VLAN and tagged in all others.
 
 To configure hybrid `switchport`:
 
@@ -89,6 +89,11 @@ To remove a VLAN from an interface use the `no tagged` and `no untagged` command
 ```shell
 DellEMC(conf-if-vl-414)# no tagged te0/5-10
 ```
+
+## Inter-VLAN Routing
+
+!!! note "WIP...I was able to configure inter-vlan routing between two switches in OS10, but I need to look up the commands for OS9. You can see my notes on inter-vlan routing and OS10 [here](../../../notes/2024.md#f-03082024)."
+
 ## Useful `show` commands
 
 | Command                           | Description                                     |
