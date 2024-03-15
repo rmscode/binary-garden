@@ -1,6 +1,6 @@
 # Hide Images in a Document
 
-!!! info
+!!! info "What the frick Microsoft?"
 
     This is frustrating and hilarious at the same time. This months update (March 2024) ***removed*** the "Show Pictures Placeholders" option from Word...[Source](https://answers.microsoft.com/en-us/msoffice/forum/all/show-picture-placeholders-removed-from-wordno/e336ac69-b04d-4656-8a67-b92ef006559d).
 
