@@ -12,31 +12,31 @@ Sometimes, larges documents with lots of images can be difficult to work with be
 
 1. Select the **File** tab in the ribbon.
 
-![Figure.1](https://erinwrightwriting.com/wp-content/uploads/2022/03/Word-365-File-Tab_v4.jpg)
+    ![Figure.1](https://erinwrightwriting.com/wp-content/uploads/2022/03/Word-365-File-Tab_v4.jpg)
 
 2. Select the **Options** tab in the Backstage view.
 
-![Figure.2](https://erinwrightwriting.com/wp-content/uploads/2022/03/Word-365-Backstage-View-Options_v4.jpg)
+    ![Figure.2](https://erinwrightwriting.com/wp-content/uploads/2022/03/Word-365-Backstage-View-Options_v4.jpg)
 
 3. Select the **Advanced** tab in the Word Options dialog box.
 
-![Figure.3](https://erinwrightwriting.com/wp-content/uploads/2022/03/Word-365-Word-Options-Dialog-Box-Advanced-Tab_v2.jpg)
+    ![Figure.3](https://erinwrightwriting.com/wp-content/uploads/2022/03/Word-365-Word-Options-Dialog-Box-Advanced-Tab_v2.jpg)
 
 4. Scroll down to the **Show document content** section.
 
-![Figure.4](https://erinwrightwriting.com/wp-content/uploads/2022/03/Word-365-Word-Options-Dialog-Box-Show-Document-Content-Section-copy.jpg)
+    ![Figure.4](https://erinwrightwriting.com/wp-content/uploads/2022/03/Word-365-Word-Options-Dialog-Box-Show-Document-Content-Section-copy.jpg)
 
-1. Select the **Show picture placeholders** option.
+5. Select the **Show picture placeholders** option.
 
-![Figure.5](https://erinwrightwriting.com/wp-content/uploads/2022/03/Word-365-Word-Options-Dialog-Box-Advanced-Tab-Show-Picture-Placeholders-copy.jpg)
+    ![Figure.5](https://erinwrightwriting.com/wp-content/uploads/2022/03/Word-365-Word-Options-Dialog-Box-Advanced-Tab-Show-Picture-Placeholders-copy.jpg)
 
-1. Deselect (uncheck) the **Show drawings and text boxes on screen** option.
+6. Deselect (uncheck) the **Show drawings and text boxes on screen** option.
 
-![Figure.6](https://erinwrightwriting.com/wp-content/uploads/2022/03/Word-365-Word-Options-Dialog-Box-Advanced-Tab-Show-Drawings-and-Text-Boxes-on-Screen-copy.jpg)
+    ![Figure.6](https://erinwrightwriting.com/wp-content/uploads/2022/03/Word-365-Word-Options-Dialog-Box-Advanced-Tab-Show-Drawings-and-Text-Boxes-on-Screen-copy.jpg)
 
 7. Select the **OK** button.
 
-![Figure.7](https://erinwrightwriting.com/wp-content/uploads/2022/03/Word-365-Word-Options-Dialog-Box-Advanced-Tab-OK-Button-copy.jpg)
+    ![Figure.7](https://erinwrightwriting.com/wp-content/uploads/2022/03/Word-365-Word-Options-Dialog-Box-Advanced-Tab-OK-Button-copy.jpg)
 
 !!! note
 
