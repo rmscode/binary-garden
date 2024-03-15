@@ -4,6 +4,8 @@
 
     This is frustrating and hilarious at the same time. This month's update (March 2024) ***removed*** the "Show Pictures Placeholders" option from Word...[Source](https://answers.microsoft.com/en-us/msoffice/forum/all/show-picture-placeholders-removed-from-wordno/e336ac69-b04d-4656-8a67-b92ef006559d).
 
+    Update: A few hours later someone followed up on that post above . . . The loss of that option is being "investigated".
+
 Sometimes, larges documents with lots of images can be difficult to work with because it may slow the program down.
 
 *The images below are from Word for Microsoft 365 but apply to 2021, 2019, 2016 and 2013 as well.*
