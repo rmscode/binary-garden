@@ -168,8 +168,10 @@ nav:
     - software/index.md
     - Hyper-V: software/hyper-v.md
     - Microsoft Office:
-      - Outlook: software/outlook.md
-      - Teams: software/ms-teams.md
+      - Outlook: software/microsoft-office/outlook/outlook.md
+      - Teams: software/microsoft-office/teams/ms-teams.md
+      - Word:
+        - Hide Images: software/microsoft-office/word/hide-images.md
     - PiSignage: software/pisignage.md
   - SOP: 
     - sop/index.md
