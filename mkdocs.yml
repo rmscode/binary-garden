@@ -98,9 +98,10 @@ nav:
   - Home: index.md
   - General:
     - general/index.md
-    - Windows Susbsystem for Linux: general/wsl.md
     - Cheat Sheets:
       - Linux Cheat Sheet: general/linux-cheat-sheet.md
+    - ReFS vs NTFS: general/refs-vs-ntfs.md
+    - Windows Susbsystem for Linux: general/wsl.md
   - Hardware: 
     - hardware/index.md
     - Dell EMC: 
