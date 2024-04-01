@@ -72,9 +72,7 @@ DellEMC(conf-if-range-te-1/1,2,3,4)# flowcontrol rx on tx on
 
 # Spanning tree on edge ports
 
-On page 21 of the [Switch Configuration Guide for Dell PS Series SANs](https://downloads.dell.com/solutions/storage-solution-resources/PS-Series-Dell-EMC-Networking-S4048-ON-SCG-2018-(SCG1026).pdf), `spanning-tree port type edge` is recommended for ports connected to storage arrays.
-
-!!! note "The guide is for OS10, but I would imagine the same guidance applies to OS9."
+On page 21 of the [Switch Configuration Guide for Dell PS Series SANs](https://downloads.dell.com/solutions/storage-solution-resources/PS-Series-Dell-EMC-Networking-S4048-ON-SCG-2018-(SCG1026).pdf), `spanning-tree rstp type edge` is recommended for ports connected to storage arrays.
 
 ## Auto lock configuration mode
 
