@@ -98,8 +98,9 @@ nav:
   - Home: index.md
   - General:
     - general/index.md
-    - Cheat Sheets:
-      - Linux Cheat Sheet: general/linux-cheat-sheet.md
+    - Linux Cheat Sheets:
+      - Commands: general/linux-cheat-sheet.md
+      - Directory Structure Explained: general/linux-directory-structure.md
     - ReFS vs NTFS: general/refs-vs-ntfs.md
     - Windows Susbsystem for Linux: general/wsl.md
   - Hardware: 
