@@ -191,7 +191,7 @@ Verify matching configuration on both VLT peers with `show vlt mismatch`.
 
     If there are no mismatches between the switches, the output will be blank.
 
-## Create a LACP LAG Between VLT Domain and Connecting Deivce (TOR switch, server...) 
+## Create a LACP LAG Between VLT Domain and Connected Devices (TOR switch, server...) 
 
 To configure both VLT peers to agree on making two separate port-channels (LAG) a single Virtual Link Trunk (MLAG) toward an attached device, each peer must be configured with the same port-channel ID. 
 

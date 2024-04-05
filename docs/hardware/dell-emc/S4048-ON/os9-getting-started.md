@@ -325,23 +325,148 @@ DellEMC# copy usbflash://OS9_Switch-A.conf flash://running-config
 OS9 switches have two boot banks, A and B. It's good practice to upload new firmware into on boot bank and keep the old firmware in the other in case you need to roll back.
 
 1. Make a copy of the startup configuration
+        ```shell
+        DellEMC> enable
+        DellEMC# copy startup-config usbflash://OS9_Switch-A.conf
+        ```
+2. Upload the new firmware to partition A or B
+        ```shell
+        DellEMC# upgrade system usbflash://FTOS-SK-9.14.bin b: 
+        ```
+3. Verify that the firmware has been upgraded on the partition.
+        ```shell
+        show boot sys stack-unit all
+        ```
+4. Change active boot bank and reload
+        ```shell
+        DellEMC# configure
+        DellEMC(conf)# boot system stack-unit 1 primary system b:
+        DellEMC(conf)# exit
+        DellEMC# write memory
+        DellEMC# reload
+        ```
 
-```shell
-DellEMC> enable
-DellEMC# copy startup-config usbflash://OS9_Switch-A.conf
+### Upgrade procedure as outlined in release notes for 9.14(2.23) 3/20/24
+
+!!! info "9.14(2.23) Requirements"
+
+    - Boot Selector image ver 3.21.0.0-6 or higher ( Check with `show os-version`)
+    - CPLD revision 15.2, active CPLD revision 12 and agent CPLD revision 5 (Check with `show revision`)
+
+Dell recommends upgrading the subcomponents in the following order:
+
+1. Upgrade BIOS or Boot-loader using `upgrade boot bootselector-image stack-unit 1 booted` command.
+2. Upgrade the GRUB or Bootflash using the `upgrade boot bootflash-image stack-unit 1 booted` command.
+3. Upgrade the CPLD - using the `upgrade fpga-image stack-unit 1 booted` command.
+
+!!! note
+
+    There are no downloads listed for the subcomponents above. Additionally, the release notes state "The booted option is used to upgrade the Boot Selector image to the image version packed with the loaded Dell Networking OS image". This leads me to believe that they are packaged in the FTOS-SK-9.14.2.23.bin file.
+
+#### BIOS or Boot Selector
+
 ```
+DellEMC#upgrade boot bootselector-image stack-unit 1 booted
 
-2. Upload the new firmware to image B
+Current Boot information in the system:
+========================================================================
+ Card BootSelector Current Version New Version
+------------------------------------------------------------------------
+ Unit1 Boot Selector 3.21.0.4 3.21.0.0-6
 
-```shell
-DellEMC# upgrade system usbflash://FTOS-SK-9.14.bin b: 
-```
+ ***********************************************************************
+ * Warning - Upgrading boot selectors is inherently risky and should   *
+ * only be attempted when necessary. A failure at this upgrade may     *
+ * cause a board RMA. Proceed with caution !                           *
+ ***********************************************************************
 
-3. Change active boot bank and reload
+Proceed upgrade Boot Selector image for stack-unit 1 [yes/no]: y
 
-```shell
-DellEMC# configure
-DellEMC(conf)# boot system stack-unit 1 primary system b:
-DellEMC(conf)# exit
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Bootselector image upgrade for stack-unit 1 completed successfully.
 DellEMC# reload
 ```
+
+After the reload, verify the image with `show system stack-unit <id>`.
+
+#### GRUB or Boot Flash
+
+`upgrade boot bootflash-image stack-unit` `[<id> | all]` `[booted | flash: | ftp: | scp: | tftp: | usbflash:]`
+
+```
+DellEMC#upgrade boot bootflash-image stack-unit 1 booted
+
+Current Boot information in the system:
+======================================================================
+ Card BootFlash Current Version New Version
+----------------------------------------------------------------------
+ Unit1 Boot Flash 3.21.2.3 3.21.2.9
+
+ ***********************************************************************
+ * Warning - Upgrading boot flash is inherently risky and should only  *
+ * be attempted when necessary. A failure at this upgrade may cause    *
+ * a board RMA. Proceed with caution !                                 *
+ ***********************************************************************
+
+Proceed upgrade Boot Flash image for stack-unit 1 [yes/no]: y
+
+!!!!!
+Bootflash image upgrade for stack-unit 1 completed successfully.
+DellEMC#
+```
+
+#### CPLD
+
+The S4048-ON system with Dell Networking OS Version 9.14(2.23) requires System CPLD revision 15.2, active CPLD revision 12, 
+and agent CPLD revision 5. You can check the CPLD revisions using the `show revision` command.
+
+!!! note "Notes"
+
+    - If your CPLD revisions are higher than the ones shown with `show revision`, **DO NOT** make any changes. If you have questions regarding the CPLD revision, contact technical support.
+    - The `upgrade fpga-image stack-unit 1 booted` command is hidden when using the FPGA Upgrade feature in the CLI. However, it is a supported command and will be accepted when entered as documented.
+    - Ensure that the BIOS version is 3.21.0.0-6
+
+```
+DellEMC#upgrade fpga-image stack-unit 1 booted
+
+Current information for the system:
+========================================================================
+ Card Device Name Current Version New Version
+------------------------------------------------------------------------
+ Unit1 S4048-ON SYSTEM CPLD 11 15.2
+ Unit1 S4048-ON MASTER CPLD 9 12
+ Unit1 S4048-ON SLAVE CPLD 4 5
+
+ ***********************************************************************
+ * Warning - Upgrading FPGA is inherently risky and should             *
+ * only be attempted when necessary. A failure at this upgrade may     *
+ * cause a board RMA. Proceed with caution !                           *
+ ***********************************************************************
+
+Upgrade image for stack-unit 1 [yes/no]: yes
+
+FPGA upgrade in progress!!! Please do NOT power off the unit!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Upgrade result :
+================
+Unit 1 FPGA upgrade successful. Power cycle the Unit 1 to complete the upgrade.
+
+DellEMC#00:22:35: %S4048-ON:1 %DOWNLOAD-6-FPGA_UPGRADE: stack-unit 1 fpga upgrade 
+success.
+
+DellEMC#
+```
+
+Power cycle the system physically by unplugging the power cords from the rear PSUs and wait until the PSU Fan-rear status LED is completely off.
+
+Alternatively, use the `power-cycle stack-unit 1` command.
+
+#### Upgrading ONIE?
+
+Steps are in the release notes, but I don't think we need to update ONIE. From what I understand, its just the environment that Dell ON switches use to install open source network OS's which we're not doing. 
+
+#### Upgrade OS9
+
+[Up...](../S4048-ON/os9-getting-started.md#upgrading-the-firmware)

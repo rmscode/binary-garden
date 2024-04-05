@@ -100,9 +100,11 @@ nav:
   - Home: index.md
   - General:
     - general/index.md
+    - Linux Cheat Sheets:
+      - Commands: general/linux-cheat-sheet.md
+      - Directory Structure Explained: general/linux-directory-structure.md
+    - ReFS vs NTFS: general/refs-vs-ntfs.md
     - Windows Susbsystem for Linux: general/wsl.md
-    - Cheat Sheets:
-      - Linux Cheat Sheet: general/linux-cheat-sheet.md
   - Hardware: 
     - hardware/index.md
     - Dell EMC: 
@@ -170,8 +172,10 @@ nav:
     - software/index.md
     - Hyper-V: software/hyper-v.md
     - Microsoft Office:
-      - Outlook: software/outlook.md
-      - Teams: software/ms-teams.md
+      - Outlook: software/microsoft-office/outlook/outlook.md
+      - Teams: software/microsoft-office/teams/ms-teams.md
+      - Word:
+        - Hide Images: software/microsoft-office/word/hide-images.md
     - PiSignage: software/pisignage.md
   - SOP: 
     - sop/index.md
