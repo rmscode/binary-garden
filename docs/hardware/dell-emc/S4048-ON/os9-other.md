@@ -70,9 +70,9 @@ DellEMC(conf)# interface range Te1/1,2,3,4
 DellEMC(conf-if-range-te-1/1,2,3,4)# flowcontrol rx on tx on
 ```
 
-# Spanning tree on edge ports
+## Spanning tree on edge ports
 
-On page 21 of the [Switch Configuration Guide for Dell PS Series SANs](https://downloads.dell.com/solutions/storage-solution-resources/PS-Series-Dell-EMC-Networking-S4048-ON-SCG-2018-(SCG1026).pdf), `spanning-tree rstp type edge` is recommended for ports connected to storage arrays.
+On page 10 of the [Switch Configuration Guide for Dell PS Series SANs](https://downloads.dell.com/solutions/storage-solution-resources/PS-Series-Dell-EMC-Networking-S4048-ON-SCG-2018-(SCG1026).pdf), `spanning-tree rstp edge-port` is recommended for iSCSI ports.
 
 ## Auto lock configuration mode
 
