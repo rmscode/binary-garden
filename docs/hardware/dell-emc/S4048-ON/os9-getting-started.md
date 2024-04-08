@@ -350,12 +350,17 @@ OS9 switches have two boot banks, A and B. It's good practice to upload new firm
 
 !!! info "9.14(2.23) Info and Requirements"
 
+    Info
+
     - Fixes [CVE-2020-15778](https://nvd.nist.gov/vuln/detail/CVE-2020-15778) that has a score of 7.8. SCP in OpenSSH allows command injection.
     - Fixes switches configured in VLT rebooting unexpectedly.
     - No known issues with this update.
     - Dell does not gaurantee 25G SFP compatibility with non-certified products. Ports will be placed in err disabled state.
-    - Boot Selector image ver 3.21.0.0-6 or higher required ( Check with `show os-version`)
-    - CPLD revision 15.2, active CPLD revision 12 and agent CPLD revision 5 required (Check with `show revision`)
+
+    Requirements
+
+    - Boot Selector image ver 3.21.0.0-6 or higher( Check with `show os-version`)
+    - CPLD revision 15.2, active CPLD revision 12 and agent CPLD revision 5(Check with `show revision`)
 
 Dell recommends upgrading the subcomponents in the following order:
 
