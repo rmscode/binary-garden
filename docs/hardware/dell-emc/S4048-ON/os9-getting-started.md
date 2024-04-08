@@ -361,7 +361,7 @@ Dell recommends upgrading the subcomponents in the following order:
 
 !!! note
 
-    There are no downloads listed for the subcomponents above. Additionally, the release notes state "The booted option is used to upgrade the Boot Selector image to the image version packed with the loaded Dell Networking OS image". This leads me to believe that they are packaged in the FTOS-SK-9.14.2.23.bin file.
+    The subcomponent upgrades are packaged in the FTOS-SK-9.14.2.23.bin file.
 
 #### BIOS or Boot Selector
 
