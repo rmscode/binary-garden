@@ -2,11 +2,24 @@
 
 ## Load Balancing and Failover Teaming (LBFO)
 
-!!! abstract "ToDo"
+1. List all network adapters on the system:
+        ```powershell
+        Get-NetAdapter
+        ```
+2. Create a new NIC team:
+        ```powershell
+        New-NetLbfoTeam -Name "LBFOTeam" -TeamMembers "Ethernet 1", "Ethernet 2"
+        ```
+3. Create and attach a virtual switch to the team:
+        ```powershell
+        New-VMSwitch -Name "LBFOvSwitch" -NetAdapterName "LBFOTeam" -AllowNetLbfoTeams $true
+        ```
+
+    !!! note "The `-AllowNetLbfoTeams $true` parameter is required to attach the virtual switch since LBFO is technically deprecated."
 
 ## Switch Embedded Teaming (SET)
 
-!!! note "Unlike traditional LBFO teams which can be created and  managed via the Server Manager GUI, Switch Embedded Teams can only be created and managed using PowerShell."
+!!! note "Unlike legacy LBFO teams which can be created and  managed via the Server Manager GUI, Switch Embedded Teams can only be created and managed using PowerShell."
 
 1. List all network adapters on the system:
         ```powershell
