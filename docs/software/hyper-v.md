@@ -54,7 +54,9 @@ Move-VM –Name VM01 –IncludeStorage –DestinationHost HVSRV02 –Destination
 
 ## NIC Teaming
 
-### Load Balancing and Failover Teaming (LBFO)
+NIC Teaming is a feature in Windows Server that allows you to combine multiple physical network adapters (NICs) into a single logical network card. This virtual NIC is then presented to the operating system as a unified interface, streamlining network management and enhancing reliability, performance, and fault tolerance.
+
+### Load Balancing and Failover (LBFO)
 
 #### Create LBFO Team
 
