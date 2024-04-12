@@ -164,7 +164,6 @@ nav:
       - Data Deduplication: servers/windows-server/dedup.md
       - Failover Clustering: servers/windows-server/msft-cluster.md
       - Group Policy: servers/windows-server/group-policy.md
-      - NIC Teaming: servers/windows-server/nic-teaming.md
       - Rearm Trial: servers/windows-server/rearm-trial.md
     - Linux Servers:
       - NetBox: servers/linux-servers/netbox.md
