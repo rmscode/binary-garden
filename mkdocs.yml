@@ -105,7 +105,9 @@ nav:
     - Windows Susbsystem for Linux: general/wsl.md
   - Hardware: 
     - hardware/index.md
-    - Dell EMC: 
+    - Dell EMC:
+      - PowerEdge R640:
+        - Best PRactices: hardware/dell-emc/poweredge-r640/best-practices.md
       - PowerSwitch S4048-ON:
         - Overview: hardware/dell-emc/S4048-ON/overview.md
         - OS9:
