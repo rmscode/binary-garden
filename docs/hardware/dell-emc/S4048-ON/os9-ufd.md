@@ -46,8 +46,6 @@ DellEMC(conf-uplink-state-group-1)# no enable #(3)
 
     Also, keep in mind that port-channels *are* interfaces and *can* be assigned to an uplink state group. You couldn't add an interface that is a member of a port-channel if you wanted to anyway. You must monitor the port-channel if it includes the interface you want to monitor.
 
-    Finally, UFD is not supported on the following interfaces:
-
 !!! tip "UFD in reverse!"
 
     UFD can be configured in reverse as well. Just assign upstream ports as downstream ports in the uplink-state group and vice versa.
