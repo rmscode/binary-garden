@@ -44,6 +44,7 @@ DellEMC(conf-uplink-state-group-1)# no enable #(3)
 
     - You can assign an interface to only one uplink-state-group. Configure each interface assigned as eiter an upstream or downstream interface, but not both.
     - You can assign individual member ports of a port-channel *or* the port-channel itself, but not both.
+    - Downstream interfaces are put into a UFD-Disabled state only when ALL upstream interfaces are down.
     - To enable debug messages for UFD events, use the `debug uplink-state-group [group-id]` command.
 
 !!! tip "UFD in reverse!"
