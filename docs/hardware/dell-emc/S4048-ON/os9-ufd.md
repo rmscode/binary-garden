@@ -32,7 +32,7 @@ DellEMC(conf)# uplink-state-group 1 #(1)
 DellEMC(conf-uplink-state-group-1)# upstream FortyGigabitEthernet 1/51
 DellEMC(conf-uplink-state-group-1)# downstream TenGigabitEthernet 1/1
 DellEMC(conf-uplink-state-group-1)# downstream disable links all 
-DellEMC(conf-uplink-state-group-1)# downstream auto-recover #(1)
+DellEMC(conf-uplink-state-group-1)# downstream auto-recover #(2)
 DellEMC(conf-uplink-state-group-1)# no enable #(3)
 ```
 
