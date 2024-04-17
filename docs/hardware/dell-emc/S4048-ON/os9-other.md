@@ -1,5 +1,13 @@
 # Other...
 
+## Auto lock configuration mode
+
+You can configure the switch to automtically lock configuration mode for other users while you are making changes. This prevents other users from making changes while you are working. This is useful for preventing configuration conflicts.
+
+```shell
+configuration mode exclusive auto
+```
+
 ## Configuring MTU Size (Jumbo Frames)
 
 !!! info "Jumbo Frames + SAN"
@@ -61,6 +69,20 @@ DellEMC(conf-if-te-1/1)# no mtu
 *[Reference 1](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configure-the-mtu-size-on-an-interface?guid=guid-2c62872c-1387-4fd1-b49c-a990c7e7ddc4&lang=en-us)* </br>
 [*Reference 2 - Configuring Jumbo Frames*](https://www.dell.com/support/kbdoc/en-us/000146740/how-to-configure-the-optimal-switch-settings-for-an-ip-based-san)
 
+## DHCP
+
+<https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/dynamic-host-configuration-protocol-dhcp?guid=guid-cdaee30b-f975-4f83-8c8b-60bedb2ede55&lang=en-us>
+
+## Edgeport/Portfast
+
+Another thing we need to do is enable portfast on all iSCSI ports for the Dell switches. Side note, I previously took some notes on the two and I was a bit confused about the difference. There is no difference in the way they're configured and they both begin forwarding frames approximately 30 seconds sooner than they would with spanning-tree enabled. However, `edgeport` will lose its portfast status and transition to normal spanning tree operation when it receives a BPDU. Portfast skips listening and learning.
+
+```shell
+DELEMC# configure
+Dellemc(conf)# interface range TenGigabitEthernet 1/2,8,14,20,26,43-46
+Dellemc(conf-if-range)# spanning-tree rstp portfast
+```
+
 ## Flow control for iSCSI
 
 To avoid dropping packets during heavy utilization, enable flow control on the interfaces connected to iSCSI storage.
@@ -70,39 +92,10 @@ DellEMC(conf)# interface range Te1/1,2,3,4
 DellEMC(conf-if-range-te-1/1,2,3,4)# flowcontrol rx on tx on
 ```
 
-## Spanning tree on edge ports
-
-On page 10 of the [Switch Configuration Guide for Dell PS Series SANs](https://downloads.dell.com/solutions/storage-solution-resources/PS-Series-Dell-EMC-Networking-S4048-ON-SCG-2018-(SCG1026).pdf), `spanning-tree rstp edge-port` is recommended for iSCSI ports.
-
-## Auto lock configuration mode
-
-You can configure the switch to automtically lock configuration mode for other users while you are making changes. This prevents other users from making changes while you are working. This is useful for preventing configuration conflicts.
-
-```shell
-configuration mode exclusive auto
-```
-
 ## Limit concurrent sessions
 
 ```shell
 login concurrent-session limit 1
-```
-
-## Telnet to another network device
-
-In certain scenarios, this might be quicker than starting a another SSH session in Putty . . .
-
-```shell
-DellEMC# telnet <ip address>
-```
-
-## Port Monitoring
-
-Allows you to mirror traffic of one port to another. This is useful for analyzing traffic with a packet capture tool like Wireshark. You also have the ability to remotely monitor a port. In a remote port monitoring session, monitored traffic is tagged with a VLAN ID and switched on a user-defined, non-routable L2 VLAN. Allowing you to sniff from a distance.
-
-```shell
-DellEMC(conf)# monitor session 0
-DellEMC(conf-mon-sess-0)# $source te 1/1 dest te 1/2 dir rx
 ```
 
 ## Obscuring passwords and keys
@@ -115,6 +108,19 @@ To obscure passwords and keys when the configuration is displayed, use the follo
 service obscure-passwords
 ```
 
+## Port Monitoring
+
+Allows you to mirror traffic of one port to another. This is useful for analyzing traffic with a packet capture tool like Wireshark. You also have the ability to remotely monitor a port. In a remote port monitoring session, monitored traffic is tagged with a VLAN ID and switched on a user-defined, non-routable L2 VLAN. Allowing you to sniff from a distance.
+
+```shell
+DellEMC(conf)# monitor session 0
+DellEMC(conf-mon-sess-0)# $source te 1/1 dest te 1/2 dir rx
+```
+
+## Resetting Interface to Factory Settings
+
+<https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/resetting-an-interface-to-its-factory-default-state?guid=guid-6b9ffa44-65a0-40d6-a773-fe0fd9392080&lang=en-us>
+
 ## Restore Factory Default Settings
 
 Restoring the factory-default settings deletes the existing NVRAM settings, startup configuration, and all configured settings such as, stacking or fanout.
@@ -125,18 +131,6 @@ Restoring the factory-default settings deletes the existing NVRAM settings, star
 DellEMC# restore factory-defaults stack-unit 1 nvram
 ```
 
-## DHCP
-
-<https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/dynamic-host-configuration-protocol-dhcp?guid=guid-cdaee30b-f975-4f83-8c8b-60bedb2ede55&lang=en-us>
-
-## Resetting Interface to Factory Settings
-
-<https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/resetting-an-interface-to-its-factory-default-state?guid=guid-6b9ffa44-65a0-40d6-a773-fe0fd9392080&lang=en-us>
-
-## Shared LAG State Tracking
-
-<https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.8-config-pub/shared-lag-state-tracking?guid=guid-2a2ff54f-ce72-48dd-8496-356fc943ed4f&lang=en-us>
-
 ## RSTP and VLT
 
 Virtual link trunking (VLT) provides loop-free redundant topologies and does not require RSTP. RSTP can cause temporary port state blocking and may cause topology changes after link or node failures. Spanning tree topology changes are distributed to the entire Layer 2 network, which can cause a network-wide flush of learned media access control (MAC) and address resolution protocol (ARP) addresses, requiring these addresses to be re-learned. However, enabling RSTP can detect potential loops caused by non-system issues such as cabling errors or incorrect configurations. RSTP is useful for potential loop detection but to minimize possible topology changes after link or node failure, configure it using the following specifications. 
@@ -146,3 +140,19 @@ The following recommendations help you avoid these issues and the associated tra
 - Configure any ports at the edge of the spanning tree’s operating domain as edge ports, which are directly connected to end stations or server racks. Ports connected directly to Layer 3-only routers not running STP should have RSTP disabled or be configured as edge ports.
 - Ensure that the primary VLT node is the root bridge and the secondary VLT peer node has the second-best bridge ID in the network. If the primary VLT peer node fails, the secondary VLT peer node becomes the root bridge, avoiding problems with spanning tree port state changes that occur when a VLT node fails or recovers.
 - Even with this configuration, if the node has non-VLT ports using RSTP that are not configured as edge ports and are connected to other layer 2 switches, spanning tree topology changes can still be detected after VLT node recovery. To avoid this scenario, ensure that you configure any non-VLT ports as edge ports or have RSTP disabled.
+
+## Shared LAG State Tracking
+
+<https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.8-config-pub/shared-lag-state-tracking?guid=guid-2a2ff54f-ce72-48dd-8496-356fc943ed4f&lang=en-us>
+
+## Spanning tree on edge ports
+
+On page 10 of the [Switch Configuration Guide for Dell PS Series SANs](https://downloads.dell.com/solutions/storage-solution-resources/PS-Series-Dell-EMC-Networking-S4048-ON-SCG-2018-(SCG1026).pdf), `spanning-tree rstp edge-port` is recommended for iSCSI ports.
+
+## Telnet to another network device
+
+In certain scenarios, this might be quicker than starting a another SSH session in Putty . . .
+
+```shell
+DellEMC# telnet <ip address>
+```
