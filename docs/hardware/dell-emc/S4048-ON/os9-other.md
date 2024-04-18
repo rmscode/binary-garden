@@ -75,7 +75,7 @@ DellEMC(conf-if-te-1/1)# no mtu
 
 ## Edgeport/Portfast
 
-Another thing we need to do is enable portfast on all iSCSI ports for the Dell switches. Side note, I [previously took some notes](../notes/2024.md#m-03252024) on the two and I was a bit confused about the difference. There is no difference in the way they're configured and they both begin forwarding frames approximately 30 seconds sooner than they would with spanning-tree enabled. However, `edgeport` will lose its portfast status and transition to normal spanning tree operation when it receives a BPDU. Portfast skips listening and learning which makes sense for an iSCSI port...No need for that.
+Another thing we need to do is enable portfast on all iSCSI ports for the Dell switches. Side note, I [previously took some notes](../../../notes/2024.md#m-03252024) on the two and I was a bit confused about the difference. There is no difference in the way they're configured and they both begin forwarding frames approximately 30 seconds sooner than they would with spanning-tree enabled. However, `edgeport` will lose its portfast status and transition to normal spanning tree operation when it receives a BPDU. Portfast skips listening and learning which makes sense for an iSCSI port...No need for that.
 
 ```shell
 DELEMC# configure
@@ -85,7 +85,7 @@ Dellemc(conf-if-range)# spanning-tree rstp portfast
 
 ...*OR* maybe we configure edge-port? This crap is confusing...I've got an [older post](https://www.dell.com/community/en/conversations/networking-general/best-to-disable-spanning-tree-on-iscsi-ports/647f2336f4ccf8a8de725c72) that recommends portfast and then this [Dell doc](https://downloads.dell.com/solutions/storage-solution-resources/PS-Series-Dell-EMC-Networking-S4048-ON-SCG-2018-(SCG1026).pdf) that recommends edge-port on page 10. However, the latter specifically recommends that for PS Series SANs which we do not have. Oh, and it also gives a configuration example that is different from what I've seen before: `spanning-tree port type edge`.
 
-!!! note "While plummeting down this rabbit hole, I remembered [this](../hardware/dell-emc/S4048-ON/os9-other.md#rstp-and-vlt). We should either disable spanning tree all together on non-VLT ports and iSCSI ports or place them in edgeport mode. To be completely honest...I'm all for disabling spanning tree on all ports except the VLT portchannel towards the Zyxel switch."
+!!! note "While plummeting down this rabbit hole, I remembered [this](../S4048-ON/os9-other.md#rstp-and-vlt). We should either disable spanning tree all together on non-VLT ports and iSCSI ports or place them in edgeport mode. To be completely honest...I'm all for disabling spanning tree on all ports except the VLT portchannel towards the Zyxel switch."
 
 ## Flow control for iSCSI
 
@@ -121,9 +121,16 @@ DellEMC(conf)# monitor session 0
 DellEMC(conf-mon-sess-0)# $source te 1/1 dest te 1/2 dir rx
 ```
 
+[Reference](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/port-monitoring?guid=guid-b6c51807-b1c6-4fea-ab82-6e7b744bb9fb&lang=en-us)
+
 ## Resetting Interface to Factory Settings
 
-<https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/resetting-an-interface-to-its-factory-default-state?guid=guid-6b9ffa44-65a0-40d6-a773-fe0fd9392080&lang=en-us>
+```shell
+DellEMC# configure
+DellEMC(conf)# default interface tengigabitethernet 1/1
+```
+
+[Reference](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/resetting-an-interface-to-its-factory-default-state?guid=guid-6b9ffa44-65a0-40d6-a773-fe0fd9392080&lang=en-us)
 
 ## Restore Factory Default Settings
 
@@ -147,7 +154,19 @@ The following recommendations help you avoid these issues and the associated tra
 
 ## Shared LAG State Tracking
 
-<https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.8-config-pub/shared-lag-state-tracking?guid=guid-2a2ff54f-ce72-48dd-8496-356fc943ed4f&lang=en-us>
+Shared LAG state tracking allows you to redirect traffic by bringing down a port channel based on the operational state of another. This is useful for avoiding over-scubscribed links that ultimately lead to dropped packets. 
+
+![Shared LAG State Tracking](https://dl.dell.com/topics/s4048-on-9.14.2.8-config-pub/images/GUID-CBA2A11E-AFF3-4DB9-BD2B-BFCF9860E52A-low.jpg)
+
+```shell
+DellEMC# configure
+DellEMC(conf)# port-channel failover-group
+DellEMC(conf-po-failover-grp)# group 1 port-channel 1 port-channel 2
+```
+
+!!! tip "To view the failover group configuration, use the `show running-configuration po-failover-group` command."
+
+[Reference](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.8-config-pub/shared-lag-state-tracking?guid=guid-2a2ff54f-ce72-48dd-8496-356fc943ed4f&lang=en-us)
 
 ## Spanning tree on edge ports
 
