@@ -2,11 +2,13 @@
 
 ## Auto lock configuration mode
 
-You can configure the switch to automtically lock configuration mode for other users while you are making changes. This prevents other users from making changes while you are working. This is useful for preventing configuration conflicts.
+Dell OS9 allows multiple users to make configuration changes at the same time. You can lock configuration mode so that only one user can be in configuration mode at any time.
 
 ```shell
 configuration mode exclusive auto
 ```
+
+[Reference](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.8-config-pub/lock-configuration-mode?guid=guid-f9f1cc49-2114-4ef0-b9b9-c190125978dc&lang=en-us)
 
 ## Configuring MTU Size (Jumbo Frames)
 
@@ -71,7 +73,11 @@ DellEMC(conf-if-te-1/1)# no mtu
 
 ## DHCP
 
-<https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/dynamic-host-configuration-protocol-dhcp?guid=guid-cdaee30b-f975-4f83-8c8b-60bedb2ede55&lang=en-us>
+[Reference](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/dynamic-host-configuration-protocol-dhcp?guid=guid-cdaee30b-f975-4f83-8c8b-60bedb2ede55&lang=en-us)
+
+### Server
+
+### Relay
 
 ## Edgeport/Portfast
 
@@ -96,11 +102,14 @@ DellEMC(conf)# interface range Te1/1,2,3,4
 DellEMC(conf-if-range-te-1/1,2,3,4)# flowcontrol rx on tx on
 ```
 
+[Reference](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/using-ethernet-pause-frames-for-flow-control?guid=guid-3f29e829-1674-4a4b-8a5a-2605b26678b9&lang=en-us)
+
 ## Limit concurrent sessions
 
 ```shell
 login concurrent-session limit 1
 ```
+[Reference](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/limit-concurrent-login-sessions?guid=guid-703ffc14-70d5-48dd-892a-1d139474548a&lang=en-us)
 
 ## Obscuring passwords and keys
 
@@ -111,6 +120,8 @@ To obscure passwords and keys when the configuration is displayed, use the follo
 ```shell
 service obscure-passwords
 ```
+
+[Reference](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/obscuring-passwords-and-keys?guid=guid-c1339ca6-18fb-4d70-ade8-4babcadf4b30&lang=en-us)
 
 ## Port Monitoring
 
@@ -142,6 +153,8 @@ Restoring the factory-default settings deletes the existing NVRAM settings, star
 DellEMC# restore factory-defaults stack-unit 1 nvram
 ```
 
+[Reference](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/restoring-the-factory-default-settings?guid=guid-7026c4b6-93ce-4ad9-afde-a48761718bf5&lang=en-us)
+
 ## RSTP and VLT
 
 Virtual link trunking (VLT) provides loop-free redundant topologies and does not require RSTP. RSTP can cause temporary port state blocking and may cause topology changes after link or node failures. Spanning tree topology changes are distributed to the entire Layer 2 network, which can cause a network-wide flush of learned media access control (MAC) and address resolution protocol (ARP) addresses, requiring these addresses to be re-learned. However, enabling RSTP can detect potential loops caused by non-system issues such as cabling errors or incorrect configurations. RSTP is useful for potential loop detection but to minimize possible topology changes after link or node failure, configure it using the following specifications. 
@@ -168,10 +181,6 @@ DellEMC(conf-po-failover-grp)# group 1 port-channel 1 port-channel 2
 
 [Reference](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.8-config-pub/shared-lag-state-tracking?guid=guid-2a2ff54f-ce72-48dd-8496-356fc943ed4f&lang=en-us)
 
-## Spanning tree on edge ports
-
-On page 10 of the [Switch Configuration Guide for Dell PS Series SANs](https://downloads.dell.com/solutions/storage-solution-resources/PS-Series-Dell-EMC-Networking-S4048-ON-SCG-2018-(SCG1026).pdf), `spanning-tree rstp edge-port` is recommended for iSCSI ports.
-
 ## Telnet to another network device
 
 In certain scenarios, this might be quicker than starting a another SSH session in Putty . . .
@@ -179,3 +188,4 @@ In certain scenarios, this might be quicker than starting a another SSH session 
 ```shell
 DellEMC# telnet <ip address>
 ```
+[Reference](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/using-telnet-to-get-to-another-network-device?guid=guid-8cbdee13-5b35-4b5c-9ed9-b052be26834b&lang=en-us)
