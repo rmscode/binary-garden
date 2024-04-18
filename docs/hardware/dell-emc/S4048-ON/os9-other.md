@@ -75,13 +75,17 @@ DellEMC(conf-if-te-1/1)# no mtu
 
 ## Edgeport/Portfast
 
-Another thing we need to do is enable portfast on all iSCSI ports for the Dell switches. Side note, I previously took some notes on the two and I was a bit confused about the difference. There is no difference in the way they're configured and they both begin forwarding frames approximately 30 seconds sooner than they would with spanning-tree enabled. However, `edgeport` will lose its portfast status and transition to normal spanning tree operation when it receives a BPDU. Portfast skips listening and learning.
+Another thing we need to do is enable portfast on all iSCSI ports for the Dell switches. Side note, I [previously took some notes](../notes/2024.md#m-03252024) on the two and I was a bit confused about the difference. There is no difference in the way they're configured and they both begin forwarding frames approximately 30 seconds sooner than they would with spanning-tree enabled. However, `edgeport` will lose its portfast status and transition to normal spanning tree operation when it receives a BPDU. Portfast skips listening and learning which makes sense for an iSCSI port...No need for that.
 
 ```shell
 DELEMC# configure
 Dellemc(conf)# interface range TenGigabitEthernet 1/2,8,14,20,26,43-46
 Dellemc(conf-if-range)# spanning-tree rstp portfast
 ```
+
+...*OR* maybe we configure edge-port? This crap is confusing...I've got an [older post](https://www.dell.com/community/en/conversations/networking-general/best-to-disable-spanning-tree-on-iscsi-ports/647f2336f4ccf8a8de725c72) that recommends portfast and then this [Dell doc](https://downloads.dell.com/solutions/storage-solution-resources/PS-Series-Dell-EMC-Networking-S4048-ON-SCG-2018-(SCG1026).pdf) that recommends edge-port on page 10. However, the latter specifically recommends that for PS Series SANs which we do not have. Oh, and it also gives a configuration example that is different from what I've seen before: `spanning-tree port type edge`.
+
+!!! note "While plummeting down this rabbit hole, I remembered [this](../hardware/dell-emc/S4048-ON/os9-other.md#rstp-and-vlt). We should either disable spanning tree all together on non-VLT ports and iSCSI ports or place them in edgeport mode. To be completely honest...I'm all for disabling spanning tree on all ports except the VLT portchannel towards the Zyxel switch."
 
 ## Flow control for iSCSI
 
