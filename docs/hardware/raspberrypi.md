@@ -124,7 +124,7 @@ sudo systemctl status watchdog
 
     DietPi is a highly optimised & minimal Debian-based Linux distribution. DietPi is extremely lightweight at its core, and also extremely easy to install and use. We primarily use it to display content on TVs via chromium's kiosk mode.
 
-!!! question "Should I move this section to software?"
+!!! note "There are additional steps to get 4K working on the RPi 5."
 
 ### Installation and Intial Setup
 
@@ -505,6 +505,28 @@ If the display resolution wasn't properly detected, you can manually set it in `
 1. `sudo dietpi-config`
 2. Display Options > Display Resolution > 1080P : 1920 x 1080
 3. Exit DietPi-Config and reboot.
+
+### Raspberry Pi 5 and 4K
+
+As of writing this (4/23/24), I ran into issues trying to get a Pi 5 to display 4K. The `/var/log/Xorg.0.log` log file spit out this error when attempting to launch Chromium:
+
+```
+[    13.217] (EE) Fatal server error:
+[    13.217] (EE) Cannot run in framebuffer mode. Please specify busIDs for all framebuffer devices
+```
+
+The solution was to creating `99-vc4.conf` in `/etc/X11/xorg.conf.d/` with the following contents:
+
+```
+Section "OutputClass"
+  Identifier "vc4"
+  MatchDriver "vc4"
+  Driver "modesetting"
+  Option "PrimaryGPU" "true"
+EndSection
+```
+
+<https://forums.raspberrypi.com/viewtopic.php?t=361902>
 
 ### Disable Boot Messages
 
