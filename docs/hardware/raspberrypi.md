@@ -124,7 +124,7 @@ sudo systemctl status watchdog
 
     DietPi is a highly optimised & minimal Debian-based Linux distribution. DietPi is extremely lightweight at its core, and also extremely easy to install and use. We primarily use it to display content on TVs via chromium's kiosk mode.
 
-!!! note "There are additional steps to get 4K working on the RPi 5."
+!!! note "There are [additional steps](../hardware/raspberrypi.md#raspberry-pi-5-and-4k) to get 4K working on the RPi 5."
 
 ### Installation and Intial Setup
 
