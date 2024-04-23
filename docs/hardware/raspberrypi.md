@@ -508,7 +508,7 @@ If the display resolution wasn't properly detected, you can manually set it in `
 
 ### Raspberry Pi 5 and 4K
 
-As of writing this (4/23/24), I ran into issues trying to get a Pi 5 to display 4K. The `/var/log/Xorg.0.log` log file spit out this error when attempting to launch Chromium:
+As of writing this (4/23/24), I ran into issues trying to get a Pi 5 to display 4K (adding `enable_hdmi_4kp60=1` to /boot/config.txt). The `/var/log/Xorg.0.log` log file spit out this error when attempting to launch Chromium:
 
 ```
 [    13.217] (EE) Fatal server error:
