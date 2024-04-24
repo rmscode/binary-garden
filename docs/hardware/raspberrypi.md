@@ -507,16 +507,20 @@ As of this writing (4/23/24), I ran into issues trying to get a Pi 5 to display 
 [    13.217] (EE) Cannot run in framebuffer mode. Please specify busIDs for all framebuffer devices
 ```
 
-The solution was to creating `99-vc4.conf` in `/etc/X11/xorg.conf.d/` with the following contents:
+This is a result of Debian moving away from X in favor of Wayland in the latest release (Bookworm). DietPi's underlying scripts for controlling GUI elements are still using X.
 
-```
-Section "OutputClass"
-  Identifier "vc4"
-  MatchDriver "vc4"
-  Driver "modesetting"
-  Option "PrimaryGPU" "true"
-EndSection
-```
+The solution is to create a configuration file that tells X to use the vc4 display driver:
+
+1. `touch /etc/X11/xorg.conf.d/99-vc4.conf`
+2. `nano /etc/X11/xorg.conf.d/99-vc4.conf` and add the following content:
+    ```
+    Section "OutputClass"
+      Identifier "vc4"
+      MatchDriver "vc4"
+      Driver "modesetting"
+      Option "PrimaryGPU" "true"
+    EndSection
+    ```
 
 <https://forums.raspberrypi.com/viewtopic.php?t=361902>
 
