@@ -147,25 +147,25 @@ The automatized setup is based on the configuration file `/boot/dietpi.txt`. It 
 1. After flashing, leave the SD card in your computer, navigate to the FAT32 boot partition in Windows Explorer and open the `dietpi.txt` file in a text editor of your choice.
 2. Make the following changes to `dietpi.txt` or copy/paste from below and adjust as needed.
       1. Replace the following:
-            - `AUTO_SETUP_LOCALE=C.UTF-8` &rarr; `AUTO_SETUP_LOCALE=en_US.UTF-8`
-            - `AUTO_SETUP_KEYBOARD_LAYOUT=gb` &rarr; `AUTO_SETUP_KEYBOARD_LAYOUT=us`
-            - `AUTO_SETUP_TIMEZONE=Europe/London` &rarr; `AUTO_SETUP_TIMEZONE=America/New_York`
-            - `AUTO_SETUP_BROWSER_INDEX=-1` &rarr; `AUTO_SETUP_BROWSER_INDEX=-2`
-            - `AUTO_SETUP_AUTOSTART_TARGET_INDEX=0` &rarr; `AUTO_SETUP_AUTOSTART_TARGET_INDEX=11`
-            - `AUTO_SETUP_AUTOSTART_LOGIN_USER=root` &rarr; `AUTO_SETUP_AUTOSTART_LOGIN_USER=dietpi`
-            - `AUTO_SETUP_AUTOMATED=0` &rarr; `AUTO_SETUP_AUTOMATED=1`
-            - `AUTO_SETUP_GLOBAL_PASSWORD=dietpi` &rarr; `AUTO_SETUP_GLOBAL_PASSWORD=CHANGE_ME`
-            - `SURVEY_OPTED_IN=-1` &rarr; `SURVEY_OPTED_IN=-0`
-            - `CONFIG_SERIAL_CONSOLE_ENABLE=1` &rarr; `CONFIG_SERIAL_CONSOLE_ENABLE=0`
-            - `SOFTWARE_VNCSERVER_WIDTH=1280` &rarr; `SOFTWARE_VNCSERVER_WIDTH=1920`
-            - `SOFTWARE_VNCSERVER_HEIGHT=720` &rarr; `SOFTWARE_VNCSERVER_HEIGHT=1080`
-            - `SOFTWARE_CHROMIUM_RES_X=1280` &rarr; `SOFTWARE_CHROMIUM_RES_X=3840`
-            - `SOFTWARE_CHROMIUM_RES_Y=720` &rarr; `SOFTWARE_CHROMIUM_RES_Y=2160`
-            - `SOFTWARE_CHROMIUM_AUTOSTART_URL=https://dietpi.com/` &rarr; `SOFTWARE_CHROMIUM_AUTOSTART_URL=https://portal.northeastprecast.com/device?key=ChangeMe`
+          - `AUTO_SETUP_LOCALE=C.UTF-8` &rarr; `AUTO_SETUP_LOCALE=en_US.UTF-8`
+          - `AUTO_SETUP_KEYBOARD_LAYOUT=gb` &rarr; `AUTO_SETUP_KEYBOARD_LAYOUT=us`
+          - `AUTO_SETUP_TIMEZONE=Europe/London` &rarr; `AUTO_SETUP_TIMEZONE=America/New_York`
+          - `AUTO_SETUP_BROWSER_INDEX=-1` &rarr; `AUTO_SETUP_BROWSER_INDEX=-2`
+          - `AUTO_SETUP_AUTOSTART_TARGET_INDEX=0` &rarr; `AUTO_SETUP_AUTOSTART_TARGET_INDEX=11`
+          - `AUTO_SETUP_AUTOSTART_LOGIN_USER=root` &rarr; `AUTO_SETUP_AUTOSTART_LOGIN_USER=dietpi`
+          - `AUTO_SETUP_AUTOMATED=0` &rarr; `AUTO_SETUP_AUTOMATED=1`
+          - `AUTO_SETUP_GLOBAL_PASSWORD=dietpi` &rarr; `AUTO_SETUP_GLOBAL_PASSWORD=CHANGE_ME`
+          - `SURVEY_OPTED_IN=-1` &rarr; `SURVEY_OPTED_IN=-0`
+          - `CONFIG_SERIAL_CONSOLE_ENABLE=1` &rarr; `CONFIG_SERIAL_CONSOLE_ENABLE=0`
+          - `SOFTWARE_VNCSERVER_WIDTH=1280` &rarr; `SOFTWARE_VNCSERVER_WIDTH=1920`
+          - `SOFTWARE_VNCSERVER_HEIGHT=720` &rarr; `SOFTWARE_VNCSERVER_HEIGHT=1080`
+          - `SOFTWARE_CHROMIUM_RES_X=1280` &rarr; `SOFTWARE_CHROMIUM_RES_X=3840`
+          - `SOFTWARE_CHROMIUM_RES_Y=720` &rarr; `SOFTWARE_CHROMIUM_RES_Y=2160`
+          - `SOFTWARE_CHROMIUM_AUTOSTART_URL=https://dietpi.com/` &rarr; `SOFTWARE_CHROMIUM_AUTOSTART_URL=https://portal.northeastprecast.com/device?key=ChangeMe`
       2. Add the following (Under `# Software to automatically install`):
-            - `AUTO_SETUP_INSTALL_SOFTWARE_ID=23`
-            - `AUTO_SETUP_INSTALL_SOFTWARE_ID=113`
-            - `AUTO_SETUP_INSTALL_SOFTWARE_ID=28`
+          - `AUTO_SETUP_INSTALL_SOFTWARE_ID=23`
+          - `AUTO_SETUP_INSTALL_SOFTWARE_ID=113`
+          - `AUTO_SETUP_INSTALL_SOFTWARE_ID=28`
 
 !!! tip "[Here](https://github.com/MichaIng/DietPi/wiki/DietPi-Software-list) is a list of dietpi-software IDs."
 
