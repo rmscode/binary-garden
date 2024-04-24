@@ -498,7 +498,7 @@ If the display resolution wasn't properly detected, you can manually set it in `
 2. Display Options > Display Resolution > 1080P : 1920 x 1080
 3. Exit DietPi-Config and reboot.
 
-### Raspberry Pi 5 and 4K
+### Raspberry Pi 5 (Bookworm) and Xorg Issues
 
 As of this writing (4/23/24), I ran into issues trying to get a Pi 5 to display 4K (adding `enable_hdmi_4kp60=1` to /boot/config.txt). The `/var/log/Xorg.0.log` log file spit out this error when attempting to launch Chromium:
 
