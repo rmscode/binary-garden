@@ -147,8 +147,6 @@ The automatized setup is based on the configuration file `/boot/dietpi.txt`. It 
 1. After flashing, leave the SD card in your computer, navigate to the FAT32 boot partition in Windows Explorer and open the `dietpi.txt` file in a text editor of your choice.
 2. Copy/Paste the config below and adjust as needed.
 
-!!! tip "[Here](https://github.com/MichaIng/DietPi/wiki/DietPi-Software-list) is a list of dietpi-software IDs."
-
 ??? abstract "dietpi.txt - Autostart Chromium in kiosk mode"
 
     ```txt
@@ -484,6 +482,8 @@ The automatized setup is based on the configuration file `/boot/dietpi.txt`. It 
     ##### Settings, automatically added by dietpi-update #####
     #------------------------------------------------------------------------------------------------------
     ```
+
+!!! tip "A list of dietpi-software IDs can be found at <https://github.com/MichaIng/DietPi/wiki/DietPi-Software-list>."
 
 DietPi will now go through a one time setup process based on the options in the `dietpi.txt` file. This may take several minutes depending on the speed of the SD card and software chosen to install in `dietpi.txt`. Once complete, make sure the Pi reboots and launches Chromium in kiosk mode.
 
