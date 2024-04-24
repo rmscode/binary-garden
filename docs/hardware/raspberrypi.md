@@ -167,7 +167,7 @@ The automatized setup is based on the configuration file `/boot/dietpi.txt`. It 
             - `AUTO_SETUP_INSTALL_SOFTWARE_ID=113`
             - `AUTO_SETUP_INSTALL_SOFTWARE_ID=28`
 
-!!! tip "[Here](https://github.com/MichaIng/DietPi/wiki/DietPi-Software-list) is a list of dietpi-software IDs.
+!!! tip "[Here](https://github.com/MichaIng/DietPi/wiki/DietPi-Software-list) is a list of dietpi-software IDs."
 
 ??? abstract "dietpi.txt - Autostart Chromium in kiosk mode"
 
