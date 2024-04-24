@@ -145,7 +145,7 @@ The automatized setup is based on the configuration file `/boot/dietpi.txt`. It 
     For the Raspberry Pi, the file is located on a FAT32 partition which can be accessed on a Windows PC. In this case, `dietpi.txt` can be found in its root.
 
 1. After flashing, leave the SD card in your computer, navigate to the FAT32 boot partition in Windows Explorer and open the `dietpi.txt` file in a text editor of your choice.
-2. Copy the config below and adjust as needed.
+2. Copy/Paste the config below and adjust as needed.
 
 !!! tip "[Here](https://github.com/MichaIng/DietPi/wiki/DietPi-Software-list) is a list of dietpi-software IDs."
 
@@ -487,12 +487,10 @@ The automatized setup is based on the configuration file `/boot/dietpi.txt`. It 
 
 DietPi will now go through a one time setup process based on the options in the `dietpi.txt` file. This may take several minutes depending on the speed of the SD card and software chosen to install in `dietpi.txt`. Once complete, make sure the Pi reboots and launches Chromium in kiosk mode.
 
-You'll notice that the cursor is still visible. To hide it, we'll have to edit the autostart file:
+To hide the cursor in Chrome, use this one-liner to add `-- -nocursor` to the end of the autostart script's last line:
 
-1. Close Chromium by pressing `Alt+F4` to reveal the terminal and run the following command:
-    - `sudo nano /var/lib/dietpi/dietpi-software/installed/chromium-autostart.sh`
-2. Add `-- -nocursor` to the end of the last line so it looks likes this:
-    - `exec "$STARTX" "$FP_CHROMIUM" $CHROMIUM_OPTS "${URL:-https://dietpi.com/}" -- -nocursor`
+1. Close Chromium and return to the terminal with `ALT+F4`.
+2. Copy/Paste `sudo sed -i '$ s/$/ -- -nocursor/' /var/lib/dietpi/dietpi-software/installed/chromium-autostart.sh` into the terminal.
 
 If the display resolution wasn't properly detected, you can manually set it in `DietPi-Config`:
 
@@ -502,7 +500,7 @@ If the display resolution wasn't properly detected, you can manually set it in `
 
 ### Raspberry Pi 5 and 4K
 
-As of writing this (4/23/24), I ran into issues trying to get a Pi 5 to display 4K (adding `enable_hdmi_4kp60=1` to /boot/config.txt). The `/var/log/Xorg.0.log` log file spit out this error when attempting to launch Chromium:
+As of this writing (4/23/24), I ran into issues trying to get a Pi 5 to display 4K (adding `enable_hdmi_4kp60=1` to /boot/config.txt). The `/var/log/Xorg.0.log` log file spit out this error when attempting to launch Chromium:
 
 ```
 [    13.217] (EE) Fatal server error:
