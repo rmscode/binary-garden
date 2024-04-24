@@ -138,47 +138,34 @@ DietPi is minimal by design, allowing you to choose what software you want ot in
 
 ### Automatic Base Installation
 
-DietPi offers the option for an automatic first boot installation which can overcome the manual interaction required during normal setup. The automatized setup is based on the configuration file `/boot/dietpi.txt`. It can be edited prior to the first boot and will be evaluated during the first boot procedure. On subsequent boot procedures, the options in the file are no longer evaluated. The main benefit to this method is the ability to create a "desired state" using `dietpi.txt` as a declarative model.
+The automatized setup is based on the configuration file `/boot/dietpi.txt`. It can be edited prior to the first system start and will be evaluated during the first boot procedure. On subsequent boot procedures, the options in the file are no longer evaluated. The main benefit to this method is the ability to create a "desired state" using `dietpi.txt` as a declarative model.
 
-??? info "Editing the contents of `/boot/dietpi.txt`"
+!!! info "Editing the contents of `/boot/dietpi.txt`"
 
     For the Raspberry Pi, the file is located on a FAT32 partition which can be accessed on a Windows PC. In this case, `dietpi.txt` can be found in its root.
 
 1. After flashing, leave the SD card in your computer, navigate to the FAT32 boot partition in Windows Explorer and open the `dietpi.txt` file in a text editor of your choice.
-2. Make the following changes to `dietpi.txt`, adjust the following options, and save.
-    - `AUTO_SETUP_GLOBAL_PASSWORD` 
-      - Affects "root" and "dietpi" users and is used by dietpi-software for installs which require a password (e.g. web dashboard). During first run setup, the password is removed from this file and instead encrypted and saved to root filesystem.
-    - `SOFTWARE_CHROMIUM_AUTOSTART_URL`
-      - The URL you want Chromium to open on start. You'll need to grab a device key from the portal and paste it in the URL here.
-    - `AUTO_SETUP_NET_HOSTNAME` 
-      - Sets the host name
-    - `AUTO_SETUP_INSTALL_SOFTWARE_ID`
-      - Use this option for the software packages you want installed during setup (each on a new line). List of software IDs [here](https://github.com/MichaIng/DietPi/wiki/DietPi-Software-list).
-
-Replace the following:
-
-- `AUTO_SETUP_LOCALE=C.UTF-8` &rarr; `AUTO_SETUP_LOCALE=en_US.UTF-8`
-- `AUTO_SETUP_KEYBOARD_LAYOUT=gb` &rarr; `AUTO_SETUP_KEYBOARD_LAYOUT=us`
-- `AUTO_SETUP_TIMEZONE=Europe/London` &rarr; `AUTO_SETUP_TIMEZONE=America/New_York`
-- `AUTO_SETUP_BROWSER_INDEX=-1` &rarr; `AUTO_SETUP_BROWSER_INDEX=-2`
-- `AUTO_SETUP_AUTOSTART_TARGET_INDEX=0` &rarr; `AUTO_SETUP_AUTOSTART_TARGET_INDEX=11`
-- `AUTO_SETUP_AUTOSTART_LOGIN_USER=root` &rarr; `AUTO_SETUP_AUTOSTART_LOGIN_USER=dietpi`
-- `AUTO_SETUP_AUTOMATED=0` &rarr; `AUTO_SETUP_AUTOMATED=1`
-- `AUTO_SETUP_GLOBAL_PASSWORD=dietpi` &rarr; `AUTO_SETUP_GLOBAL_PASSWORD=CHANGE_ME`
-- `SURVEY_OPTED_IN=-1` &rarr; `SURVEY_OPTED_IN=-0`
-- `CONFIG_SERIAL_CONSOLE_ENABLE=1` &rarr; `CONFIG_SERIAL_CONSOLE_ENABLE=0`
-- `SOFTWARE_VNCSERVER_WIDTH=1280` &rarr; `SOFTWARE_VNCSERVER_WIDTH=1920`
-- `SOFTWARE_VNCSERVER_HEIGHT=720` &rarr; `SOFTWARE_VNCSERVER_HEIGHT=1080`
-- `SOFTWARE_CHROMIUM_RES_X=1280` &rarr; `SOFTWARE_CHROMIUM_RES_X=3840`
-- `SOFTWARE_CHROMIUM_RES_Y=720` &rarr; `SOFTWARE_CHROMIUM_RES_Y=2160`
-- `SOFTWARE_CHROMIUM_AUTOSTART_URL=https://dietpi.com/` &rarr; `SOFTWARE_CHROMIUM_AUTOSTART_URL=https://portal.northeastprecast.com/device?key=ChangeMe`
-
-Add the following:
-
-- Add under `# Software to automatically install`
-    - `AUTO_SETUP_INSTALL_SOFTWARE_ID=23`
-    - `AUTO_SETUP_INSTALL_SOFTWARE_ID=113`
-    - `AUTO_SETUP_INSTALL_SOFTWARE_ID=28`
+2. Make the following changes to `dietpi.txt` or copy/paste from below and adjust as needed.
+      1. Replace the following:
+            - `AUTO_SETUP_LOCALE=C.UTF-8` &rarr; `AUTO_SETUP_LOCALE=en_US.UTF-8`
+            - `AUTO_SETUP_KEYBOARD_LAYOUT=gb` &rarr; `AUTO_SETUP_KEYBOARD_LAYOUT=us`
+            - `AUTO_SETUP_TIMEZONE=Europe/London` &rarr; `AUTO_SETUP_TIMEZONE=America/New_York`
+            - `AUTO_SETUP_BROWSER_INDEX=-1` &rarr; `AUTO_SETUP_BROWSER_INDEX=-2`
+            - `AUTO_SETUP_AUTOSTART_TARGET_INDEX=0` &rarr; `AUTO_SETUP_AUTOSTART_TARGET_INDEX=11`
+            - `AUTO_SETUP_AUTOSTART_LOGIN_USER=root` &rarr; `AUTO_SETUP_AUTOSTART_LOGIN_USER=dietpi`
+            - `AUTO_SETUP_AUTOMATED=0` &rarr; `AUTO_SETUP_AUTOMATED=1`
+            - `AUTO_SETUP_GLOBAL_PASSWORD=dietpi` &rarr; `AUTO_SETUP_GLOBAL_PASSWORD=CHANGE_ME`
+            - `SURVEY_OPTED_IN=-1` &rarr; `SURVEY_OPTED_IN=-0`
+            - `CONFIG_SERIAL_CONSOLE_ENABLE=1` &rarr; `CONFIG_SERIAL_CONSOLE_ENABLE=0`
+            - `SOFTWARE_VNCSERVER_WIDTH=1280` &rarr; `SOFTWARE_VNCSERVER_WIDTH=1920`
+            - `SOFTWARE_VNCSERVER_HEIGHT=720` &rarr; `SOFTWARE_VNCSERVER_HEIGHT=1080`
+            - `SOFTWARE_CHROMIUM_RES_X=1280` &rarr; `SOFTWARE_CHROMIUM_RES_X=3840`
+            - `SOFTWARE_CHROMIUM_RES_Y=720` &rarr; `SOFTWARE_CHROMIUM_RES_Y=2160`
+            - `SOFTWARE_CHROMIUM_AUTOSTART_URL=https://dietpi.com/` &rarr; `SOFTWARE_CHROMIUM_AUTOSTART_URL=https://portal.northeastprecast.com/device?key=ChangeMe`
+      2. Add the following (Under `# Software to automatically install`):
+            - `AUTO_SETUP_INSTALL_SOFTWARE_ID=23`
+            - `AUTO_SETUP_INSTALL_SOFTWARE_ID=113`
+            - `AUTO_SETUP_INSTALL_SOFTWARE_ID=28`
 
 !!! tip "[Here](https://github.com/MichaIng/DietPi/wiki/DietPi-Software-list) is a list of dietpi-software IDs.
 
