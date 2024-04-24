@@ -507,7 +507,7 @@ As of this writing (4/23/24), I ran into issues trying to get a Pi 5 to display 
 [    13.217] (EE) Cannot run in framebuffer mode. Please specify busIDs for all framebuffer devices
 ```
 
-This is a result of Debian moving away from X in favor of Wayland in the latest release (Bookworm). DietPi's underlying scripts for controlling GUI elements are still using X.
+This is a result of Debian moving away from X in favor of Wayland in the latest release (Bookworm). DietPi's underlying scripts for controlling windows/GUI elements are still using X.
 
 The solution is to create a configuration file that tells X to use the vc4 display driver:
 
