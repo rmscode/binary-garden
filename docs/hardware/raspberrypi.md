@@ -507,9 +507,9 @@ As of this writing (4/23/24), I ran into issues trying to get a Pi 5 to display 
 [    13.217] (EE) Cannot run in framebuffer mode. Please specify busIDs for all framebuffer devices
 ```
 
-This is a result of Debian moving away from X in favor of Wayland in the latest release (Bookworm). DietPi's underlying scripts for controlling window/GUI elements are still using X.
+This is a result of Debian moving away from X in favor of Wayland in the latest release (Bookworm). The kernel creates two devices, `/dev/dri/card0` and `/dev/dri/card1`. One is for vc4 (display) and the other is for v3d (3d hardware). They are allocated randomly. X is dumb, it just uses `/dev/dri/card0` which ends up working/failing half of the time. The generic Debian packages don't know that Pi has a display driver called vc4, so you need a config file to describe that. The Raspberry Pi devs don't care about X working in their lite versions because they are intended to be used without a desktop, so they didn't bother to address this issue. I assume that DietPi is based on the lite images of Raspberry Pi OS, so it must have inherited the same problem.
 
-The solution is to create a configuration file that tells X to use the vc4 display driver:
+The solution is to create a configuration file that tells X to use the vc4 card for display:
 
 1. `touch /etc/X11/xorg.conf.d/99-vc4.conf`
 2. `nano /etc/X11/xorg.conf.d/99-vc4.conf` and add the following content:
