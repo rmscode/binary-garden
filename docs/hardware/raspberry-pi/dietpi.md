@@ -6,6 +6,8 @@
 
 !!! note "There are [additional steps](../raspberry-pi/dietpi.md#raspberry-pi-5-bookworm-and-xorg-issues) to get X and 4K working on the RPi 5."
 
+---
+
 ## Installation and Intial Setup
 
 1. Download [DietPi](https://dietpi.com/#download) and extract the `img` file from the `xz` archive with [7zip](https://www.7-zip.org/).
@@ -14,9 +16,24 @@
 4. Follow the prompts on the screen to be guided through the initial setup.
       - Alternatively, you can follow the [section below](#automatic-base-installation) for an automated first-boot experience.
 
-DietPi is minimal by design, allowing you to choose what software you want ot install and use. Just run `dietpi-software` and install whichever DietPi optimized software you'd like. To make further changes to your configuration, you can run `dietpi-launcher`.
+!!! info
 
-## Automatic Base Installation
+    DietPi is minimal by design, allowing you to choose what software you want to install and use. Just run `dietpi-software` and install whichever DietPi optimized software you'd like. To make further changes to your configuration, you can run `dietpi-launcher`.
+
+## Preparing DietPi for Digital Signage/Kiosk Mode
+
+1. Launch `dietpi-software` and install the following:
+    - `Chromium` (for browsing the web)
+    - `Xorg` (for the graphical environment)
+    - `LXDE` (for the desktop environment)
+2. Launch `dietpi-config` and set the following:
+
+
+## Automated Installation and Configuration
+
+!!! note
+
+    The process outlined below is specifically for automating, as much as possible, the initial setup of a Raspberry Pi for use as a digital signage player. The process is simple enough to understand and modify for other purposes.
 
 The automatized setup is based on the configuration file `/boot/dietpi.txt`. It can be edited prior to the first system start and will be evaluated during the first boot procedure. On subsequent boot procedures, the options in the file are no longer evaluated. The main benefit to this method is the ability to create a "desired state" using `dietpi.txt` as a declarative model.
 
