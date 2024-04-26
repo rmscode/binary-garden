@@ -1,136 +1,12 @@
-# Raspberry Pi
-
-!!! note
-
-    For information about displaying content from a Raspberry Pi, see [PiSignage](../software/pisignage.md). 
-    
-    As of 12/22/23, we are using [DietPi](../hardware/raspberrypi.md#diet-pi) and Chromium in kiosk mode for digital signage purposes. This allows us to update the OS and Chromium on a more regular basis. Something we had to wait on the PiSignage developers for. This was a problem because we moved from a .NET MAUI app to Blazor WASM (for easier development) and it wouldn't work with the PiSignage build we had.
-
-!!! tip "For a list of common Linux commands, see the [Linux Cheat Sheet](../general/linux-cheat-sheet.md)."
-
----
-
-## VNC
-
-The default Pi app for VNC was RealVnc. At some point that product was made free for personal use only. As of 12/11/23, RealVnc has not be removed from the Pi but it can be with the following code:
-
-```bash
-sudo apt remove realvnc-vnc-server
-sudo apt remove realvnc-vnc-viewer
-```
-
-To set up a new VNC client, use the following code. Other VNC solutions give a desktop per user. They don't let you sign into the running session.
-
-Install the extension:
-
-```bash
-sudo apt install tigervnc-xorg-extension
-```
-
-!!! note
-
-    Tiger VNC can be easily installed in DietPi by running the `dietpi-software` commmand. It's automatically configured to be installed in the [DietPi](#diet-pi) section below.
-
-Create an xorg config file to load the extension:
-
-```bash
-sudo mkdir /etc/X11/xorg.conf.d
-sudo nano /etc/X11/xorg.conf.d/10.vnc.conf
-```
-
-Add the following to the config file:
-
-```text
-Section "Module"
-  Load "vnc"
-EndSection
-
-Section "Screen"
-  Identifier "Screen0"
-  Option "Desktop" "<INSERT DEVICE NAME>"
-  Option "SecurityTypes" "TLSPlain"
-  Option "PlainUsers" "<INSERT USER NAME>"
-EndSection
-```
-
-Restart the display manager:
-
-```bash
-sudo systemctl restart lightdm
-```
-
-To connect to the Pi, download and run [vncviewer64](https://github.com/TigerVNC/tigervnc/releases) from TigerVNC. Input the Pi's IP address and use the default user/password.
-
-[*Reference*](https://the-eg.github.io/2022/01/22/tigervnc-server-rpi.html)
-
-## Hardware Watchdog
-
-The Raspberry Pi features a hardware watchdog that can automatically restart the system when the kernel panics (crashes).
-
-Install watchdog system service:
-
-```bash
-sudo apt-get update
-sudo apt-get install -y watchdog
-```
-
-### Enable the hardware watchdog timer
-
-```bash
-sudo su #(1)!
-echo 'dtparam=watchdog=on' >> /boot/config.txt #(2)!
-reboot
-```
-
-1. The `su` (short for substitute or switch user) utility allows you to run commands with another user’s privileges, by default the root user.
-2. FYI: `echo '<string>' >> <path_to_file>` appends the given string to the given file on a new line.
-
-### Configure the timeouts and watchdog refresh intervals
-
-```bash
-sudo su
-echo 'watchdog-device = /dev/watchdog' >> /etc/watchdog.conf #(1)!
-echo 'watchdog-timeout = 15' >> /etc/watchdog.conf #(2)!
-echo 'max-load-1 = 6' >> /etc/watchdog.conf #(3)!
-echo 'RuntimeWatchdogSec=10' >> /etc/systemd/system.conf #(4)!
-echo 'ShutdownWatchdogSec=10min' >> /etc/systemd/system.conf #(5)!
-```
-
-1. Specifies the device file for the hardware watchdog.
-2. Specifies the period of inactivity after which the watchdog timer will expire and the system will be rebooted. This is essentially the max amount of time that can pass without the watchdog daemon "kicking" or resetting the watchdog timer before the system is considered unresponsive.
-3. Specifies the max average system load over the last 1 minute, above which the watchdog reboots the system. 
-4. Refreshes the watchdog every 10 seconds and if the refresh fails, power cycle the system.
-5. On shutdown, if the system takes longer than 10 minutes to reboot, power cycle the system.
-
-!!! note "Important note on `max-load-1`"
-
-    The system load is a measure of the amount of computational work that a system performs. The value is a floating point number. For example, if set to `4` on a 4-core system, the watchdog will trigger a reboot if the 1-min load average exceeds 4, which essentially means all cores were fully utilized for the last minute. However, you typically want to set `max-load-1` to the maximum possible value, because the system might occasionally reach full utilization under normal operation. Instead, you might want to set the `max-load-1` to a value that indicates the system is overloaded. 
-    
-    For example, on a 4-core Raspberry Pi, you might set `max-load-1` to 5.0 or 6.0. These values indicate that the system is overloaded, because the system load is higher than the number of cores.
-
-### Enable and check the service
-
-```bash
-sudo systemctl enable watchdog
-sudo systemctl start watchdog
-sudo systemctl status watchdog
-```
-
-!!! tip "If you want to test the watchdog, you can "fork bomb" the system to make the kernel panic."
-
-    ```bash
-    sudo bash -c ':(){ :|:& };:'
-    ```
-
-## Diet Pi
+# DietPi OS
 
 !!! info
 
-    DietPi is a highly optimised & minimal Debian-based Linux distribution. DietPi is extremely lightweight at its core, and also extremely easy to install and use. We primarily use it to display content on TVs via chromium's kiosk mode.
+    DietPi is a highly optimised & minimal Debian-based Linux distribution. DietPi is extremely lightweight at its core, and also extremely easy to install and use. We primarily use it to display content on TVs via DietPi's autostart feature to launch chromium kiosk mode.
 
-!!! note "There are [additional steps](../hardware/raspberrypi.md#raspberry-pi-5-and-4k) to get 4K working on the RPi 5."
+!!! note "There are [additional steps](../raspberry-pi/dietpi.md#raspberry-pi-5-bookworm-and-xorg-issues) to get X and 4K working on the RPi 5."
 
-### Installation and Intial Setup
+## Installation and Intial Setup
 
 1. Download [DietPi](https://dietpi.com/#download) and extract the `img` file from the `xz` archive with [7zip](https://www.7-zip.org/).
 2. Flash the image to an SD card. I used the [Raspberry Pi Imager](https://www.raspberrypi.org/software/), but something else like [Balena Etcher](https://www.balena.io/etcher/) will work as well.
@@ -140,7 +16,7 @@ sudo systemctl status watchdog
 
 DietPi is minimal by design, allowing you to choose what software you want ot install and use. Just run `dietpi-software` and install whichever DietPi optimized software you'd like. To make further changes to your configuration, you can run `dietpi-launcher`.
 
-### Automatic Base Installation
+## Automatic Base Installation
 
 The automatized setup is based on the configuration file `/boot/dietpi.txt`. It can be edited prior to the first system start and will be evaluated during the first boot procedure. On subsequent boot procedures, the options in the file are no longer evaluated. The main benefit to this method is the ability to create a "desired state" using `dietpi.txt` as a declarative model.
 
@@ -502,7 +378,7 @@ If the display resolution wasn't properly detected, you can manually set it in `
 2. Display Options > Display Resolution > 1080P : 1920 x 1080
 3. Exit DietPi-Config and reboot.
 
-### Raspberry Pi 5 (Bookworm) and Xorg Issues
+## Raspberry Pi 5 (Bookworm) and Xorg Issues
 
 As of this writing (4/23/24), I ran into issues trying to get a Pi 5 to display 4K (adding `enable_hdmi_4kp60=1` to /boot/config.txt). The `/var/log/Xorg.0.log` log file spit out this error when attempting to launch Chromium:
 
@@ -528,7 +404,7 @@ The solution is to create a configuration file that tells X to use the vc4 card 
 
 <https://forums.raspberrypi.com/viewtopic.php?t=361902>
 
-### Disable Boot Messages
+## Disable Boot Messages
 
 If you prefer to not see the boot messages when the Pi is starting up, you can disable them by editing the `cmdline.txt` file. This file is located in the same FAT32 boot partition as `dietpi.txt`. You will edit this file the same way you did `dietpi.txt` - by opening it in a text editor on your computer.
 
@@ -539,50 +415,3 @@ root=PARTUUID=127c511a-02 rootfstype=ext4 rootwait net.ifnames=0 logo.nologo con
 ```
 
 Change the `console=tty1` to `console=tty3` and add `vt.global_cursor_default=0 quiet loglevel=0 splash` to the end of the line.
-
-## Hardening
-
-In an attempt to "harden" a raspberry Pi deployed in the wild that may be easily accessed, like behind a lobby TV, there are few things you can do. Keep in mind that any of the methods listed below are NOT bullet proof. A highly motivated bad actor will still do whatever they can to gain access to your systems.
-
-### Disable USB Ports
-
-Cutting power from the USB ports will prevent a bad actor from being able to attach USB devices like a keyboard/mouse.
-
-Install [uhubctl](https://github.com/mvp/uhubctl):
-
-```bash
-sudo apt install -y uhubctl
-```
-
-USB control:
-
-=== "Raspberry Pi B+,2B,3B"
-
-    ```
-    uhubctl -l 1-1 -p 2 -a 0
-    ```
-
-=== "Raspberry Pi 3B+"
-
-    ```
-    uhubctl -l 1-1 -p 2 -a 0
-    ```
-
-=== "Raspberry Pi 4B"
-
-    ```
-    uhubctl -l 1-1 -a 0
-    ```
-
-=== "Raspberry Pi 5"
-
-    ```
-    uhubctl -l 1 -a 0
-    uhubctl -l 3 -a 0
-    ```
-
-!!! tip "Turning the USB ports back on is as simple as changing the `0` at the end of the command to a `1`."
-
-!!! note "Note: Power *will* be restored after a reboot."
-
-    You can easily automate this process by adding the command to .bashrc file in the home directory of the user that is automatically logged in when the Pi boots up.
