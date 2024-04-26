@@ -1,6 +1,10 @@
 # Raspberry Pi
 
-!!! note "For information about displaying content from a Raspberry Pi, see [PiSignage](../software/pisignage.md). As of 12/22/23, we are using [DietPi](../hardware/raspberrypi.md#diet-pi) and Chromium in kiosk mode. This allows us to update the OS and Chromium. Something we had to wait on the PiSignage developers for. This was a problem because we moved from a .NET MAUI app to Blazor WASM (for easier development) and it wouldn't work with the PiSignage build we had."
+!!! note
+
+    For information about displaying content from a Raspberry Pi, see [PiSignage](../software/pisignage.md). 
+    
+    As of 12/22/23, we are using [DietPi](../hardware/raspberrypi.md#diet-pi) and Chromium in kiosk mode for digital signage purposes. This allows us to update the OS and Chromium on a more regular basis. Something we had to wait on the PiSignage developers for. This was a problem because we moved from a .NET MAUI app to Blazor WASM (for easier development) and it wouldn't work with the PiSignage build we had.
 
 !!! tip "For a list of common Linux commands, see the [Linux Cheat Sheet](../general/linux-cheat-sheet.md)."
 
@@ -67,7 +71,7 @@ Install watchdog system service:
 
 ```bash
 sudo apt-get update
-sudo apt-get install watchdog
+sudo apt-get install -y watchdog
 ```
 
 ### Enable the hardware watchdog timer
@@ -100,7 +104,7 @@ echo 'ShutdownWatchdogSec=10min' >> /etc/systemd/system.conf #(5)!
 
 !!! note "Important note on `max-load-1`"
 
-    The system load is a measure of the amount of computational work that a system performs. The value is a floating point number. For example, if set to `4` on a 4-core system, the watchdog will trigger a reboot if the 1-min load average exceeds 4, which essentially means all cores are fully utilized for the last minute. However, you typically want to set `max-load-1` to the maximum possible value, because the system might occasionally reach full utilization under normal operation. Instead, you might want to set the `max-load-1` to a value that indicates the system is overloaded. 
+    The system load is a measure of the amount of computational work that a system performs. The value is a floating point number. For example, if set to `4` on a 4-core system, the watchdog will trigger a reboot if the 1-min load average exceeds 4, which essentially means all cores were fully utilized for the last minute. However, you typically want to set `max-load-1` to the maximum possible value, because the system might occasionally reach full utilization under normal operation. Instead, you might want to set the `max-load-1` to a value that indicates the system is overloaded. 
     
     For example, on a 4-core Raspberry Pi, you might set `max-load-1` to 5.0 or 6.0. These values indicate that the system is overloaded, because the system load is higher than the number of cores.
 
@@ -550,16 +554,35 @@ Install [uhubctl](https://github.com/mvp/uhubctl):
 sudo apt install -y uhubctl
 ```
 
-Power off all USB ports:
+USB control:
 
-```bash
-sudo uhubctl -l 1-1 -p 2 -a 0 #(1)!
-```
+=== "Raspberry Pi B+,2B,3B"
 
-1. If you need to power the USB ports back on for any reason, you can change `-a 0` to `-a 1`.
+    ```
+    uhubctl -l 1-1 -p 2 -a 0
+    ```
+
+=== "Raspberry Pi 3B+"
+
+    ```
+    uhubctl -l 1-1 -p 2 -a 0
+    ```
+
+=== "Raspberry Pi 4B"
+
+    ```
+    uhubctl -l 1-1 -a 0
+    ```
+
+=== "Raspberry Pi 5"
+
+    ```
+    uhubctl -l 1 -a 0
+    uhubctl -l 3 -a 0
+    ```
+
+!!! tip "Turning the USB ports back on is as simple as changing the `0` at the end of the command to a `1`."
 
 !!! note "Note: Power *will* be restored after a reboot."
 
-    We need to come up with a method to power off the USB ports at the end of each boot sequence. Thankfully, thats pretty easy to script using cronjobs or DietPi's autostart scripts. 
-
-    In our environment, we use DietPi to launch chromium in kiosk mode. Adding `sudo uhubctl -l 1-1 -p 2 -a 0` the `/var/lib/dietpi/dietpi-software/installed/chromium-autostart.sh` is easy enough.
+    You can easily automate this process by adding the command to .bashrc file in the home directory of the user that is automatically logged in when the Pi boots up.
