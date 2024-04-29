@@ -419,6 +419,10 @@ The solution is to create a configuration file that tells X to use the vc4 card 
     EndSection
     ```
 
+!!! note
+
+    The simplest way to do this would be by installing the `gldriver-test` package, which will automatically create the necessary configuration file. However, this package is not available in the DietPi repositories. I've mentioned this to the devs, so hopefully it will be added in the future.
+
 <https://forums.raspberrypi.com/viewtopic.php?t=361902>
 
 ## Disable Boot Messages
