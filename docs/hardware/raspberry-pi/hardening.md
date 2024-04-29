@@ -12,7 +12,7 @@ Install [uhubctl](https://github.com/mvp/uhubctl):
 sudo apt install -y uhubctl
 ```
 
-USB control:
+USB control (prefix with `sudo`):
 
 === "Raspberry Pi B+,2B,3B"
 
