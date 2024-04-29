@@ -35,8 +35,7 @@ USB control (prefix with `sudo`):
 === "Raspberry Pi 5"
 
     ```
-    uhubctl -l 1 -a 0
-    uhubctl -l 3 -a 0
+    uhubctl -l 1 -a 0 && uhubctl -l 3 -a 0
     ```
 
 !!! tip "Turning the USB ports back on is as simple as changing the `0` at the end of the command to a `1`."
