@@ -167,12 +167,16 @@ nav:
     - Spanning Tree Protocol: networking/spanning-tree.md
     - Subnetting: networking/subnetting.md
   - Servers:
+    - servers/index.md
     - Windows Server:
-      - servers/windows-server/index.md
-      - Active Directory & Domain Services: servers/windows-server/active-directory.md
-      - Data Deduplication: servers/windows-server/dedup.md
-      - Failover Clustering: servers/windows-server/msft-cluster.md
-      - Group Policy: servers/windows-server/group-policy.md
+      #- servers/windows-server/index.md
+      - Active Directory & Domain Servcies:
+        - Overview: servers/windows-server/active-directory.md
+      #- Data Deduplication: servers/windows-server/dedup.md
+      - Failover Clustering:
+        - Overview: servers/windows-server/msft-cluster.md
+      - Group Policy:
+        - Overview: servers/windows-server/group-policy.md
       - Rearm Trial: servers/windows-server/rearm-trial.md
     - Linux Servers:
       - NetBox: servers/linux-servers/netbox.md

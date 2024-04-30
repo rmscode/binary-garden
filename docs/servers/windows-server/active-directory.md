@@ -47,9 +47,6 @@ If you are operating an Active Directory consisting of multiple sites, make sure
 
 ## Active Directory Groups Explained
 
-!!! note
-      Microsoft's naming of these groups is confusing in my opinion. When I began learning about AD, I was left scratching my head trying to figure out when to use one group over another. With this document, I aim to clear up any confusion about the different use cases of groups in AD.
-
 ### Group Type
 
 There are two different group types that you can create in AD - Distribution Groups and Security Groups.
@@ -75,59 +72,56 @@ This group type provides a way to assign access to resources on your network. Yo
 
 ### Group Scope
 
-!!! note inline end
-      Remember when I said that Microsoft's naming of these groups is confusing? This is specifically what I was talking about. At first glance, for me anyway, its hard to tell exactly what objectives the "universal", "global" or "domain local" scopes achieve. I think its easier to to think of Domain Local Groups as *Resource Groups* and Global Groups as *Account Groups*. I'll get into that a bit more in the following sections.
 
-Each group has a scope that identifies the extent to which the group is applied in the domain tree or forest. The scope defines where in the network permissions can  be granted for the group. The three group scopes are Universal, Global and Domain Local.
+
+Each group has a scope that identifies the extent to which the group is applied in the domain tree or forest. The scope defines where in the network permissions can be granted for the group. The three group scopes are Universal, Global and Domain Local.
 
 !!! info
       In addition to these three scopes, the default groups in the Builtin container have a group scope of Builtin Local. This group scope and group type can't be changed.
 
-#### The Universal Scope
+=== "Universal Scope"
 
-| Can Grant Permissions                                | Possible Members                                    | Possible Member of...                                            |
-|------------------------------------------------------|-----------------------------------------------------|------------------------------------------------------------------|
-| On any domain in the same forest or trusting forests | Accounts from any domain in the same forest         | Other Universal Groups in the same forest                        |
-|                                                      | Global Groups from any domain in the same forest    | Domain Local Groups in the same forest or trusting forests       |
-|                                                      | Universal groups from any domain in the same forest | Local Groups on computers in the same forest or trusting forests |
+      | Can Grant Permissions                                | Possible Members                                    | Possible Member of...                                            |
+      |------------------------------------------------------|-----------------------------------------------------|------------------------------------------------------------------|
+      | On any domain in the same forest or trusting forests | Accounts from any domain in the same forest         | Other Universal Groups in the same forest                        |
+      |                                                      | Global Groups from any domain in the same forest    | Domain Local Groups in the same forest or trusting forests       |
+      |                                                      | Universal groups from any domain in the same forest | Local Groups on computers in the same forest or trusting forests |
 
-!!! note
-      As you've just read, groups can be nested. A group can be a member of another group.
+      **Use case scnarios**: As of writing this, I can't quite think of a good use case scenario nor could I find one. However, what I do know is that in multi-domain forests, Universal Groups may be used to gather Global Groups from many domains into a single group that can be added to the appropriate Domain Local Group. In practice, many single-domain organizations don't bother with Universal Groups anyway.
 
-**Use case scnarios**: As of writing this, I can't quite think of a good use case scenario nor could I find one. However, what I do know is that in multi-domain forests, Universal Groups may be used to gather Global Groups from many domains into a single group that can be added to the appropriate Domain Local Group. In practice, many single-domain organizations don't bother with Universal Groups anyway.
+=== "Global Scope"
 
-#### The Global Scope
+      | Can Grant Permissions                                           | Possible Members                   | Possible Member of...                                  |
+      |-----------------------------------------------------------------|------------------------------------|--------------------------------------------------------|
+      | On any domain in the same forest or trusting domains or forests | Accounts from the same domain      | Universal groups from any domain in the same forest    |
+      |                                                                 | Global groups from the same domain | Global groups from the same domain                     |
+      |                                                                 |                                    | Domain Local groups from any domain in the same forest |
 
-| Can Grant Permissions                                           | Possible Members                   | Possible Member of...                                  |
-|-----------------------------------------------------------------|------------------------------------|--------------------------------------------------------|
-| On any domain in the same forest or trusting domains or forests | Accounts from the same domain      | Universal groups from any domain in the same forest    |
-|                                                                 | Global groups from the same domain | Global groups from the same domain                     |
-|                                                                 |                                    | Domain Local groups from any domain in the same forest |
+      !!! note "I like to think of groups with the Global scope as *Account Groups* - A collection of domain users into a single group."
 
-!!! note
-      Like I mentioned before, I like to think of groups with the Global scope as *Account Groups* - A collection of domain users into a single group.
+      **Use case scenario**: The IT department has grown at your organization and its no longer just you (the sysadmin) and your manager. You now have a couple of entry level techs that will handle general Help Desk tasks. Your manager wants you to come up with a way to grant basic access/permissions to these Help Desk users.
 
-**Use case scenario**: The IT department has grown at your organization and its no longer just you (the sysadmin) and your manager. You now have a couple of entry level techs that will handle general Help Desk tasks. Your manager wants you to come up with a way to grant basic access/permissions to these Help Desk users.
+      The solution here would be to create a global security group in AD and name it something like IT_HelpDesk. Then add all of the Help Desk Agents as members of this group. This group would act as a container for all of your HelpDesk users. You can then make the IT_HelpDesk group a member of one or more Domain Local groups. This will allow you to start delegating access/premissions to those specific users in the group. We'll touch on that in the next section.
 
-The solution here would be to create a global security group in AD and name it something like IT_HelpDesk. Then add all of the Help Desk Agents as members of this group. This group would act as a container for all of your HelpDesk users. You can then make the IT_HelpDesk group a member of one or more Domain Local groups. This will allow you to start delegating access/premissions to those specific users in the group. We'll touch on that in the next section.
+=== "Domain Local Scope"
 
-#### The Domain Local Scope
+      | Can Grant Permissions  | Possible Members                                                                           | Possible Member of...                                                     |
+      |------------------------|--------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+      | Within the same domain | Accounts from any domain or any trusted domain                                             | Other Domain Local groups from any domain in the same forest              |
+      |                        | Global groups from any domain or any trusted domain                                        | Other Global groups from the same domain                                  |
+      |                        | Universal groups from any domain in the same forest                                        | Domain Local groups from any domain in the same forest or trusting domain |
+      |                        | Other Domain Local groups from the same domain                                             |                                                                           |
+      |                        | Accounts, Global groups, and Universal groups from other forests and from external domains |                                                                           |
 
-| Can Grant Permissions  | Possible Members                                                                           | Possible Member of...                                                     |
-|------------------------|--------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
-| Within the same domain | Accounts from any domain or any trusted domain                                             | Other Domain Local groups from any domain in the same forest              |
-|                        | Global groups from any domain or any trusted domain                                        | Other Global groups from the same domain                                  |
-|                        | Universal groups from any domain in the same forest                                        | Domain Local groups from any domain in the same forest or trusting domain |
-|                        | Other Domain Local groups from the same domain                                             |                                                                           |
-|                        | Accounts, Global groups, and Universal groups from other forests and from external domains |                                                                           |
+      !!! note
+      
+            After having a look at the above table, you'll notice that you can place almost any account or group from almost any location into a Domain Local group. This scope also only grants permissions within the same domain that it is created in. This is why I like to think of this scope as a "Resource Group". You can grant a wide range of accounts and groups access to resources that exist only inside of its domain.
 
-> After having a look at the above table, you'll notice that you can place almost any account or group from almost any location into a Domain Local group. This scope also only grants permissions within the same domain that it is created in. This is why I like to think of this scope as a "Resource Group". You can grant a wide range of accounts and groups access to resources that exist only inside of its domain.
+      **Use case scenario**: Now that you've created a Global security group specifically for your Help Desk, you can work on delegating the different types of access and permissions your manager wants to allow for these users. One of these is resetting user passwords.
 
-**Use case scenario**: Now that you've created a Global security group specifically for your Help Desk, you can work on delegating the different types of access and permissions your manager wants to allow for these users. One of these is resetting user passwords.
+      Assuming that you already have a well designed OU structure in your AD, you can create a Domain Local security group and delegate control over the "NEP_Users" OU where all of your user account objects live. This delegation of control would only allow the resetting of user passwords. You could name this Domain Local group something like "IT_HelpDesk_Allow_Password_Reset". Its a long name, I know, but it helps if your group names are specific. You would then add the "IT_HelpDesk" group as a member. In turn, all the users of "IT_HelpDesk" would be granted the ability to reset user passwords.
 
-Assuming that you already have a well designed OU structure in your AD, you can create a Domain Local security group and delegate control over the "NEP_Users" OU where all of your user account objects live. This delegation of control would only allow the resetting of user passwords. You could name this Domain Local group something like "IT_HelpDesk_Allow_Password_Reset". Its a long name, I know, but it helps if your group names are specific. You would then add the "IT_HelpDesk" group as a member. In turn, all the users of "IT_HelpDesk" would be granted the ability to reset user passwords.
-
-> By the way . . . The reason why we nest groups in this fashion is to make managing users and groups easier. If you or your manager decide that the Help Desk should no longer be able to reset passwords, just remove the "IT_HelpDesk" group from the "IT_HelpDesk_Desk_Allow_Password_Reset" group. You can add and remove that *Account Group* from as many or little *Resource Groups* as you want.
+      By the way . . . The reason why we nest groups in this fashion is to make managing users and groups easier. If you or your manager decide that the Help Desk should no longer be able to reset passwords, just remove the "IT_HelpDesk" group from the "IT_HelpDesk_Desk_Allow_Password_Reset" group. You can add and remove that *Account Group* from as many or little *Resource Groups* as you want.
 
 ### Wrapping Up
 
