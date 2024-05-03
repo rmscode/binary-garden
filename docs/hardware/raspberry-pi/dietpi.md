@@ -397,6 +397,10 @@ If the display resolution wasn't properly detected, you can manually set it in `
 
 ## Raspberry Pi 5 (Bookworm) and Xorg Issues
 
+!!! note
+
+    As of 5/3/2024, the DietPi devs have created a [pull request](https://github.com/MichaIng/DietPi/pull/7056) to fix this issue (again). It should be available int he 9.4 release. I'll probably remove this section after I get a chance to test it.
+
 !!! note "I later learned that the RPi5 supports dual-4Kp60 displays with the idle-clock settings so `hdmi_enable_4kp60` is redundant."
 
 As of this writing (4/23/24), I ran into issues trying to get a Pi 5 to display 4K (adding `hdmi_enable_4kp60=1` to /boot/config.txt & adjusting chromium resolutions). The `/var/log/Xorg.0.log` log file spit out this error when attempting to launch Chromium:
