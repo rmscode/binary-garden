@@ -397,7 +397,9 @@ If the display resolution wasn't properly detected, you can manually set it in `
 
 ## Raspberry Pi 5 (Bookworm) and Xorg Issues
 
-As of this writing (4/23/24), I ran into issues trying to get a Pi 5 to display 4K (adding `enable_hdmi_4kp60=1` to /boot/config.txt). The `/var/log/Xorg.0.log` log file spit out this error when attempting to launch Chromium:
+!!! note "I later learned that the RPi5 supports dual-4Kp60 displays with the idle-clock settings so `hdmi_enable_4kp60` is redundant."
+
+As of this writing (4/23/24), I ran into issues trying to get a Pi 5 to display 4K (adding `hdmi_enable_4kp60=1` to /boot/config.txt & adjusting chromium resolutions). The `/var/log/Xorg.0.log` log file spit out this error when attempting to launch Chromium:
 
 ```
 [    13.217] (EE) Fatal server error:
