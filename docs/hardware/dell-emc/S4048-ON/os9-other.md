@@ -157,7 +157,7 @@ DellEMC# restore factory-defaults stack-unit 1 nvram
 
 ## RSTP and VLT
 
-Virtual link trunking (VLT) provides loop-free redundant topologies and does not require RSTP. RSTP can cause temporary port state blocking and may cause topology changes after link or node failures. Spanning tree topology changes are distributed to the entire Layer 2 network, which can cause a network-wide flush of learned media access control (MAC) and address resolution protocol (ARP) addresses, requiring these addresses to be re-learned. However, enabling RSTP can detect potential loops caused by non-system issues such as cabling errors or incorrect configurations. RSTP is useful for potential loop detection but to minimize possible topology changes after link or node failure, configure it using the following specifications. 
+Virtual link trunking (VLT) provides loop-free redundant topologies and does not require RSTP. RSTP can cause temporary port state blocking and may cause topology changes after link or node failures. Spanning tree topology changes are distributed to the entire Layer 2 network, which can cause a network-wide flush of learned MAC addresses and ARP addresses, requiring these addresses to be re-learned. However, enabling RSTP can detect potential loops caused by non-system issues such as cabling errors or incorrect configurations. RSTP is useful for potential loop detection but to minimize possible topology changes after link or node failure. 
 
 The following recommendations help you avoid these issues and the associated traffic loss caused by using RSTP when you enable VLT on both VLT peers:
 
@@ -167,7 +167,7 @@ The following recommendations help you avoid these issues and the associated tra
 
 ## Shared LAG State Tracking
 
-Shared LAG state tracking allows you to redirect traffic by bringing down a port channel based on the operational state of another. This is useful for avoiding over-scubscribed links that ultimately lead to dropped packets. 
+Shared LAG state tracking allows you to redirect traffic by bringing down a port channel based on the operational state of another. This is useful for avoiding over-subscribed links that ultimately lead to dropped packets. 
 
 ![Shared LAG State Tracking](https://dl.dell.com/topics/s4048-on-9.14.2.8-config-pub/images/GUID-CBA2A11E-AFF3-4DB9-BD2B-BFCF9860E52A-low.jpg)
 
