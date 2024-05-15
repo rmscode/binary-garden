@@ -188,6 +188,7 @@ nav:
       - Teams: software/microsoft-office/teams/ms-teams.md
       - Word:
         - Hide Images: software/microsoft-office/word/hide-images.md
+    - Remote Desktop: software/remote-desktop.md
   - SOP: 
     - sop/index.md
   - Troubleshooting:
