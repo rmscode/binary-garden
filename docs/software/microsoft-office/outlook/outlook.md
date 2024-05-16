@@ -1,5 +1,13 @@
 # Outlook
 
+## Prevent Meeting Requests From Being Deleted After Responding
+
+By default, Outlook will automatically delete meeting requests from your inbox after responding. To prevent this, follow these steps:
+
+1. Open Outlook & click on the **File** > **Options**
+2. In the Outlook Options dialog box, click **Mail** in the left pane, and then uncheck the option "*Delete meeting requests and notifications from Inbox after responding*" in the **Send Messages** section.
+3. Click **OK**.
+
 ## Issues 
 
 ### Mailbox Disconnected
