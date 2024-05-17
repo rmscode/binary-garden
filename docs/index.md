@@ -12,8 +12,9 @@ This static site was generated using [MkDocs](https://www.mkdocs.org). The theme
 
 ## Recent Additions and Revisions
 
-!!! note "Borrowed this idea from Matt's doc :-)"
+!!! note "Borrowed this idea from Matt's docs :-)"
 
+- **05.17.2024**: Added sections for MkDocs ([install](./software/mkdocs/creating-site.md), [create](./software/mkdocs/creating-site.md), [publish](./software/mkdocs/publishing.md)).
 - **05.16.2024**: Added how to "[Prevent Meeting Requests From Being Deleted After Responding](./software/microsoft-office/outlook/outlook.md#prevent-meeting-requests-from-being-deleted-after-responding)" to [Outlook](./software/microsoft-office/outlook/outlook.md).
 - **05.15.2024**: Created [Remote Desktop](./software/remote-desktop.md) section with steps to troubleshoot the "[Black Screen of Death](./software/remote-desktop.md#black-screen-of-death)".
 - **05.11.2024**: Merged some general notes I had previously taken on site HA and failover. They aren't included in the navigation, but can be found [here](./notes/HA-notes.md).

@@ -1,3 +1,7 @@
+---
+status: new
+---
+
 # Outlook
 
 ## Prevent Meeting Requests From Being Deleted After Responding
