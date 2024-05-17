@@ -80,3 +80,9 @@ This will create a new directory called `site` and if you take a peak inside you
 !!! tip 
 
     If you're using source control such as `git`, you probably don't want to check your site builds into the repository. Add `site/` to your `.gitignore` file.
+
+<div class="grid cards" markdown>
+
+-   [__Next: Publishing your site__ :octicons-arrow-right-24:](publishing.md)
+
+</div>
