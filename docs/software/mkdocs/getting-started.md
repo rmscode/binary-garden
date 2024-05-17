@@ -114,3 +114,9 @@ I use [Material](https://squidfunk.github.io/mkdocs-material) for MkDocs, so tha
     PS> mkdocs --version
     mkdocs, version 1.5.3 from C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\site-packages\mkdocs (Python 3.12)
     ```
+
+<div class="grid cards" markdown>
+
+-   [__Next: Creating your site__ :octicons-arrow-right-24:](creating-site.md)
+
+</div>
