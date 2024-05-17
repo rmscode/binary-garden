@@ -57,6 +57,12 @@ plugins:
         - index.md
         - notes/*
 
+# Additional configuration
+extra:
+  status:
+    new: Recently added
+    deprecated: Deprecated
+
 # Extensions
 markdown_extensions:
   - toc:
@@ -188,6 +194,10 @@ nav:
       - Teams: software/microsoft-office/teams/ms-teams.md
       - Word:
         - Hide Images: software/microsoft-office/word/hide-images.md
+    - MkDocs:
+      - Getting Started: software/mkdocs/getting-started.md
+      - Creating Your Site: software/mkdocs/creating-site.md
+      - Publishing Your Site: software/mkdocs/publishing.md 
     - Remote Desktop: software/remote-desktop.md
   - SOP: 
     - sop/index.md
