@@ -56,6 +56,10 @@ plugins:
       exclude:
         - index.md
         - notes/*
+  - git-latest-changes:
+      limit_to_docs_dir: True
+      repo_vendor: github
+      enabled_on_serve: True
 
 # Additional configuration
 extra:
