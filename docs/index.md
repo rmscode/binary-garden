@@ -22,4 +22,6 @@ This static site was generated using [MkDocs](https://www.mkdocs.org). The theme
 
 ### Test
 
+!!! note "This is janky and kind of broken..."
+
 {{ latest_changes }}
