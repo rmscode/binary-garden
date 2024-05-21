@@ -32,7 +32,7 @@ DellEMC(conf)# uplink-state-group 1 #(1)
 DellEMC(conf-uplink-state-group-1)# upstream FortyGigabitEthernet 1/51
 DellEMC(conf-uplink-state-group-1)# downstream TenGigabitEthernet 1/1
 DellEMC(conf-uplink-state-group-1)# downstream disable links all 
-DellEMC(conf-uplink-state-group-1)# downstream auto-recover #(1)
+DellEMC(conf-uplink-state-group-1)# downstream auto-recover #(2)
 DellEMC(conf-uplink-state-group-1)# no enable #(3)
 ```
 
@@ -40,13 +40,12 @@ DellEMC(conf-uplink-state-group-1)# no enable #(3)
 2. The `auto-recovery` setting is enable by default, but included here for reference. It enables the automatic bring up of disabled downstream ports when the upstream port comes back up.
 3. This is useful for testing/troubleshooting. UFD can be turned on or off without removing the config. Turn tracking back on with `enable`.
 
-!!! info "UFD Limitations"
+!!! info "Points to Remember"
 
-    A port can not be a member of multiple uplink state groups. For example, if you thought it would be nifty to create one uplink state group to turn off port A when port B went down and then another to turn off port B when port A went down . . . you can't. The terminal will tell you that the ports are already a member of an uplink state group.
-
-    Also, keep in mind that port-channels *are* interfaces and *can* be assigned to an uplink state group. You couldn't add an interface that is a member of a port-channel if you wanted to anyway. You must monitor the port-channel if it includes the interface you want to monitor.
-
-    Finally, UFD is not supported on the following interfaces:
+    - You can assign an interface to only one uplink-state-group. Configure each interface assigned as eiter an upstream or downstream interface, but not both.
+    - You can assign individual member ports of a port-channel *or* the port-channel itself, but not both.
+    - Downstream interfaces are put into a UFD-Disabled state only when ALL upstream interfaces are down.
+    - To enable debug messages for UFD events, use the `debug uplink-state-group [group-id]` command.
 
 !!! tip "UFD in reverse!"
 

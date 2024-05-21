@@ -16,3 +16,9 @@ Resolve missing "New Items > Teams Meeting" in Outlook. This appears to happen a
       - Note: If the box was already checked: uncheck it, click Ok, open add-ins again, check the box, and click Ok.
 8. "Teams Meeting" should now be listed under the "New Items" menu.
 Note: It takes a 5-10 seconds for the meeting code to be generated.
+
+## Tips and Tricks
+
+### Quickly edit last message
+
+If you need to edit a message you recently sent on Teams and not one has replied to it yet, you can press the up arrow key to edit your last message!

@@ -18,6 +18,7 @@ theme:
   name: material
   features:
     - content.code.annotate
+    - content.code.copy
     - content.action.edit
     - content.action.view
     - navigation.tracking
@@ -57,6 +58,16 @@ plugins:
       exclude:
         - index.md
         - notes/*
+  - git-latest-changes:
+      limit_to_docs_dir: True
+      repo_vendor: github
+      enabled_on_serve: True
+
+# Additional configuration
+extra:
+  status:
+    new: Recently added
+    deprecated: Deprecated
 
 # Extensions
 markdown_extensions:
@@ -107,7 +118,9 @@ nav:
     - Windows Susbsystem for Linux: general/wsl.md
   - Hardware: 
     - hardware/index.md
-    - Dell EMC: 
+    - Dell EMC:
+      - PowerEdge R640:
+        - Best PRactices: hardware/dell-emc/poweredge-r640/best-practices.md
       - PowerSwitch S4048-ON:
         - Overview: hardware/dell-emc/S4048-ON/overview.md
         - OS9:
@@ -150,7 +163,13 @@ nav:
         - Best Practices: hardware/dell-emc/powervault-me4/me4-best-practice.md
     - Microsoft:
       - Microsoft Surface: hardware/microsoft/surface-rt.md
-    - Raspberry Pi: hardware/raspberrypi.md
+    - Raspberry Pi:
+      - Overview: hardware/raspberry-pi/overview.md
+      - DietPi: hardware/raspberry-pi/dietpi.md
+      - Hardening: hardware/raspberry-pi/hardening.md
+      - Hardware Watchdog: hardware/raspberry-pi/hardware-watchdog.md
+      - PiSignage: hardware/raspberry-pi/pisignage.md
+      - VNC: hardware/raspberry-pi/vnc.md
     - VOIP Phones: 
       - Fanvil V64: hardware/voip-phones/fanvil.md
   - Networking: 
@@ -160,12 +179,17 @@ nav:
     - Spanning Tree Protocol: networking/spanning-tree.md
     - Subnetting: networking/subnetting.md
   - Servers:
+    - servers/index.md
     - Windows Server:
-      - servers/windows-server/index.md
-      - Active Directory & Domain Services: servers/windows-server/active-directory.md
-      - Data Deduplication: servers/windows-server/dedup.md
-      - Group Policy: servers/windows-server/group-policy.md
-      - Failover Clustering: servers/windows-server/msft-cluster.md
+      #- servers/windows-server/index.md
+      - Active Directory & Domain Servcies:
+        - Overview: servers/windows-server/active-directory.md
+      #- Data Deduplication: servers/windows-server/dedup.md
+      - Failover Clustering:
+        - Overview: servers/windows-server/msft-cluster.md
+      - Group Policy:
+        - Overview: servers/windows-server/group-policy.md
+      - Rearm Trial: servers/windows-server/rearm-trial.md
     - Linux Servers:
       - NetBox: servers/linux-servers/netbox.md
   - Software: 
@@ -176,7 +200,11 @@ nav:
       - Teams: software/microsoft-office/teams/ms-teams.md
       - Word:
         - Hide Images: software/microsoft-office/word/hide-images.md
-    - PiSignage: software/pisignage.md
+    - MkDocs:
+      - Getting Started: software/mkdocs/getting-started.md
+      - Creating Your Site: software/mkdocs/creating-site.md
+      - Publishing Your Site: software/mkdocs/publishing.md 
+    - Remote Desktop: software/remote-desktop.md
   - SOP: 
     - sop/index.md
   - Troubleshooting:
@@ -187,5 +215,4 @@ nav:
     - 2024: notes/2024.md
     - 2023: notes/2023.md
     # - Server Research 2023: notes/ServerResearch2023.md
-  - Blog:
-    - blog/index.md
+  - Archives: archives/archives.md

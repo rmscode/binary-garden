@@ -93,6 +93,7 @@ Value       | Effect
 3           | Guest OS is shutdown forcibly
 
 ## Connecting the iSCSI Initiator(s) to the iSCSI Target(s)
+
 1.	From the iSCSI Initiator host server run iscsicpl.exe and click yes to start the service with Windows. 
 2.	Discovery tab > Discover Portal > Enter the IP address or DNS name of the iSCSI Target server > OK.
 3.	Targets tab > Select the target from the list > Connect > Advanced > Configure the following settings: 
@@ -106,4 +107,54 @@ PowerShell:
 ```ps
 Start-Service -Name MSiSCSI
 Set-Service -Name MSiSCSI -StartupType Automatic
+```
+
+## Failed to create Planned Virtual Machine at migration destination: The object already exists.
+
+1. Navigate to the following path on the node(s) where the VM is *not* running:
+            `C:\ProgramData\Microsoft\Windows\Hyper-V\Virtual Machines\Virtual Machines Cache\`
+2. Delete, rename, or move the files/folders matching the VM that won't migrate. You may need to temporarily stop the Hyper-V service and be quick about deleting the cache files.
+
+## Confirm MPIO
+
+**Open command prompt and enter the following command**:
+
+```cmd
+mpclaim -s -d
+```
+
+The output should look something like this:
+
+```cmd
+MPIO Disk    System Disk  LB Policy    DSM Name
+-----------------------------------------------------
+MPIO Disk1   Disk 2       RR           Microsoft DSM
+MPIO Disk0   Disk 1       RR           Microsoft DSM
+```
+
+> The multipathing load balancing policy is show under "LB policy". In the example above, RR stands for **R**ound **R**obin. 
+
+**To view the number of paths to a volume, indicate the MPIO Disk #**:
+
+```cmd
+mpclaim -s -d 2
+```
+
+The output should look something like this:
+
+```cmd
+MPIO Disk1: 02 Paths, Round Robin, Symmetric Access
+ Controlling DSM: Microsoft DSM
+ SN: 6002AE000000013B006E3B
+
+Supported Load Balance Policies: FOO RR RRWS LQD WP LB
+
+Path ID          State              SCSI Address      Weight
+ ----------------------------------------------------------
+0000000087060001 Active/Optimized   005|000|001|001   0
+ * TPG_State : Active/Optimized  , TPG_Id: 256, : 24
+
+0000000087060000 Active/Optimized   005|000|000|001   0
+ * TPG_State : Active/Optimized  , TPG_Id: 256, : 22
+
 ```

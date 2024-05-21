@@ -29,7 +29,7 @@ DellEMC(conf-std-nacl)# deny <source ip [mask]> any #(2)
 
     You can remain in CONFIG-STD-NACL and continue to add multiple filters to the ACL. They will be processed in the order they are created. That is, they will be given a sequence number in the order they are added. Sequence numbers start at 0 and increment by 5.
 
-    You can deny or permit entire subnets by using [wildcard masks](../../../networking/subnetting.md#wilcard-mask). For example, `deny ip 10.10.10.0 0.0.0.255 any`. 
+    You can deny or permit entire subnets by using [wildcard masks](../../../networking/subnetting.md#wilcard-mask "A wildcard mask is a mask of bits that indicates which parts of an IP address are available for examination and can be thought of as an inverted subnet mask."). For example, `deny ip 10.10.10.0 0.0.0.255 any`. 
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-a-standard-ip-acl-filter?guid=guid-c121caa8-f5b2-413b-9cf3-4fc078373231&lang=en-us)
 

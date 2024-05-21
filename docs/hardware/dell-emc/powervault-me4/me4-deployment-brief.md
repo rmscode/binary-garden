@@ -44,6 +44,8 @@ A host identifies an external port to which the storage system is attached. The 
     - Use the PowerVault Manager to set the host interface protocol for CNC ports using qualified SFP+ transceivers. ME4 Series modules ship with CNC ports configured for FC, so you must configure these ports for iSCSI when connecting to iSCSI hosts.
     - If you are using switches with mixed traffic (LAN/iSCSI), then a VLAN should be created to isolate iSCSI traffic from the rest of the switch traffic.
 
+!!! info "The Dell Me4 Series [Support Matrix doc](https://dl.dell.com/topicspdf/me4-series-sm_en-us.pdf) states that if the iSCSI initiators are connected to ME4 Series storage systems through network switches, [flow control must be enabled on all switch ports](../S4048-ON/os9-other.md#flow-control-for-iscsi) and [server NIC ports](https://learn.microsoft.com/en-us/powershell/module/dcbqos/enable-netqosflowcontrol?view=windowsserver2022-ps)."
+
 To connect controller modules supporting 10 GbE iSCSI host interface ports to a server HBA/NIC or switch, using the controller CNC ports, select a qualified 10 GbE SFP+ transceiver.
 
 Use the cabling diagram below to connect host servers to a switch-attached storage system.

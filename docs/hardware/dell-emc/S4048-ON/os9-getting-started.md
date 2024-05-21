@@ -348,10 +348,19 @@ OS9 switches have two boot banks, A and B. It's good practice to upload new firm
 
 ### Upgrade procedure as outlined in release notes for 9.14(2.23) 3/20/24
 
-!!! info "9.14(2.23) Requirements"
+!!! info "9.14(2.23) Info and Requirements"
 
-    - Boot Selector image ver 3.21.0.0-6 or higher ( Check with `show os-version`)
-    - CPLD revision 15.2, active CPLD revision 12 and agent CPLD revision 5 (Check with `show revision`)
+    Info
+
+    - Fixes [CVE-2020-15778](https://nvd.nist.gov/vuln/detail/CVE-2020-15778) that has a score of 7.8. SCP in OpenSSH allows command injection.
+    - Fixes switches configured in VLT rebooting unexpectedly.
+    - No known issues with this update.
+    - Dell does not gaurantee 25G SFP compatibility with non-certified products. Ports will be placed in err disabled state.
+
+    Requirements
+
+    - Boot Selector image ver 3.21.0.0-6 or higher( Check with `show os-version`)
+    - CPLD revision 15.2, active CPLD revision 12 and agent CPLD revision 5(Check with `show revision`)
 
 Dell recommends upgrading the subcomponents in the following order:
 
@@ -361,7 +370,7 @@ Dell recommends upgrading the subcomponents in the following order:
 
 !!! note
 
-    There are no downloads listed for the subcomponents above. Additionally, the release notes state "The booted option is used to upgrade the Boot Selector image to the image version packed with the loaded Dell Networking OS image". This leads me to believe that they are packaged in the FTOS-SK-9.14.2.23.bin file.
+    The subcomponent upgrades are packaged in the FTOS-SK-9.14.2.23.bin file.
 
 #### BIOS or Boot Selector
 

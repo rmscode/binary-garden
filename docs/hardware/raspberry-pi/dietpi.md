@@ -1,132 +1,14 @@
-# Raspberry Pi
-
-!!! note "For information about displaying content from a Raspberry Pi, see [PiSignage](../software/pisignage.md). As of 12/22/23, we are using [DietPi](../hardware/raspberrypi.md#diet-pi) and Chromium in kiosk mode. This allows us to update the OS and Chromium. Something we had to wait on the PiSignage developers for. This was a problem because we moved from a .NET MAUI app to Blazor WASM (for easier development) and it wouldn't work with the PiSignage build we had."
-
-!!! tip "For a list of common Linux commands, see the [Linux Cheat Sheet](../general/linux-cheat-sheet.md)."
-
----
-
-## VNC
-
-The default Pi app for VNC was RealVnc. At some point that product was made free for personal use only. As of 12/11/23, RealVnc has not be removed from the Pi but it can be with the following code:
-
-```bash
-sudo apt remove realvnc-vnc-server
-sudo apt remove realvnc-vnc-viewer
-```
-
-To set up a new VNC client, use the following code. Other VNC solutions give a desktop per user. They don't let you sign into the running session.
-
-Install the extension:
-
-```bash
-sudo apt install tigervnc-xorg-extension
-```
-
-!!! note
-
-    Tiger VNC can be easily installed in DietPi by running the `dietpi-software` commmand. It's automatically configured to be installed in the [DietPi](#diet-pi) section below.
-
-Create an xorg config file to load the extension:
-
-```bash
-sudo mkdir /etc/X11/xorg.conf.d
-sudo nano /etc/X11/xorg.conf.d/10.vnc.conf
-```
-
-Add the following to the config file:
-
-```text
-Section "Module"
-  Load "vnc"
-EndSection
-
-Section "Screen"
-  Identifier "Screen0"
-  Option "Desktop" "<INSERT DEVICE NAME>"
-  Option "SecurityTypes" "TLSPlain"
-  Option "PlainUsers" "<INSERT USER NAME>"
-EndSection
-```
-
-Restart the display manager:
-
-```bash
-sudo systemctl restart lightdm
-```
-
-To connect to the Pi, download and run [vncviewer64](https://github.com/TigerVNC/tigervnc/releases) from TigerVNC. Input the Pi's IP address and use the default user/password.
-
-[*Reference*](https://the-eg.github.io/2022/01/22/tigervnc-server-rpi.html)
-
-## Hardware Watchdog
-
-The Raspberry Pi features a hardware watchdog that can automatically restart the system when the kernel panics (crashes).
-
-Install watchdog system service:
-
-```bash
-sudo apt-get update
-sudo apt-get install watchdog
-```
-
-### Enable the hardware watchdog timer
-
-```bash
-sudo su #(1)!
-echo 'dtparam=watchdog=on' >> /boot/config.txt #(2)!
-reboot
-```
-
-1. The `su` (short for substitute or switch user) utility allows you to run commands with another user’s privileges, by default the root user.
-2. FYI: `echo '<string>' >> <path_to_file>` appends the given string to the given file on a new line.
-
-### Configure the timeouts and watchdog refresh intervals
-
-```bash
-sudo su
-echo 'watchdog-device = /dev/watchdog' >> /etc/watchdog.conf #(1)!
-echo 'watchdog-timeout = 15' >> /etc/watchdog.conf #(2)!
-echo 'max-load-1 = 6' >> /etc/watchdog.conf #(3)!
-echo 'RuntimeWatchdogSec=10' >> /etc/systemd/system.conf #(4)!
-echo 'ShutdownWatchdogSec=10min' >> /etc/systemd/system.conf #(5)!
-```
-
-1. Specifies the device file for the hardware watchdog.
-2. Specifies the period of inactivity after which the watchdog timer will expire and the system will be rebooted. This is essentially the max amount of time that can pass without the watchdog daemon "kicking" or resetting the watchdog timer before the system is considered unresponsive.
-3. Specifies the max average system load over the last 1 minute, above which the watchdog reboots the system. 
-4. Refreshes the watchdog every 10 seconds and if the refresh fails, power cycle the system.
-5. On shutdown, if the system takes longer than 10 minutes to reboot, power cycle the system.
-
-!!! note "Important note on `max-load-1`"
-
-    The system load is a measure of the amount of computational work that a system performs. The value is a floating point number. For example, if set to `4` on a 4-core system, the watchdog will trigger a reboot if the 1-min load average exceeds 4, which essentially means all cores are fully utilized for the last minute. However, you typically want to set `max-load-1` to the maximum possible value, because the system might occasionally reach full utilization under normal operation. Instead, you might want to set the `max-load-1` to a value that indicates the system is overloaded. 
-    
-    For example, on a 4-core Raspberry Pi, you might set `max-load-1` to 5.0 or 6.0. These values indicate that the system is overloaded, because the system load is higher than the number of cores.
-
-### Enable and check the service
-
-```bash
-sudo systemctl enable watchdog
-sudo systemctl start watchdog
-sudo systemctl status watchdog
-```
-
-!!! tip "If you want to test the watchdog, you can "fork bomb" the system to make the kernel panic."
-
-    ```bash
-    sudo bash -c ':(){ :|:& };:'
-    ```
-
-## Diet Pi
+# DietPi OS
 
 !!! info
 
-    DietPi is a highly optimised & minimal Debian-based Linux distribution. DietPi is extremely lightweight at its core, and also extremely easy to install and use. We primarily use it to display content on TVs via chromium's kiosk mode.
+    DietPi is a highly optimised & minimal Debian-based Linux distribution. DietPi is extremely lightweight at its core, and also extremely easy to install and use. We primarily use it to display content on TVs via DietPi's autostart feature to launch chromium kiosk mode.
 
-!!! question "Should I move this section to software?"
+!!! note "There are [additional steps](../raspberry-pi/dietpi.md#raspberry-pi-5-bookworm-and-xorg-issues) to get X and 4K working on the RPi 5."
 
-### Installation and Intial Setup
+---
+
+## Installation and Intial Setup
 
 1. Download [DietPi](https://dietpi.com/#download) and extract the `img` file from the `xz` archive with [7zip](https://www.7-zip.org/).
 2. Flash the image to an SD card. I used the [Raspberry Pi Imager](https://www.raspberrypi.org/software/), but something else like [Balena Etcher](https://www.balena.io/etcher/) will work as well.
@@ -134,26 +16,33 @@ sudo systemctl status watchdog
 4. Follow the prompts on the screen to be guided through the initial setup.
       - Alternatively, you can follow the [section below](#automatic-base-installation) for an automated first-boot experience.
 
-DietPi is minimal by design, allowing you to choose what software you want ot install and use. Just run `dietpi-software` and install whichever DietPi optimized software you'd like. To make further changes to your configuration, you can run `dietpi-launcher`.
+!!! info
 
-### Automatic Base Installation
+    DietPi is minimal by design, allowing you to choose what software you want to install and use. Just run `dietpi-software` and install whichever DietPi optimized software you'd like. To make further changes to your configuration, you can run `dietpi-launcher`.
 
-DietPi offers the option for an automatic first boot installation which can overcome the manual interaction required during normal setup. The automatized setup is based on the configuration file `/boot/dietpi.txt`. It can be edited prior to the first boot and will be evaluated during the first boot procedure. On subsequent boot procedures, the options in the file are no longer evaluated. The main benefit to this method is the ability to create a "desired state" using `dietpi.txt` as a declarative model.
+## Preparing DietPi for Digital Signage/Kiosk Mode
 
-??? info "Editing the contents of `/boot/dietpi.txt`"
+1. Launch `dietpi-software` and install the following:
+    - `Chromium` (for browsing the web)
+    - `Xorg` (for the graphical environment)
+    - `LXDE` (for the desktop environment)
+2. Launch `dietpi-config` and set the following:
+
+
+## Automated Installation and Configuration
+
+!!! note
+
+    The process outlined below is specifically for automating, as much as possible, the initial setup of a Raspberry Pi for use as a digital signage player. The process is simple enough to understand and modify for other purposes.
+
+The automatized setup is based on the configuration file `/boot/dietpi.txt`. It can be edited prior to the first system start and will be evaluated during the first boot procedure. On subsequent boot procedures, the options in the file are no longer evaluated. The main benefit to this method is the ability to create a "desired state" using `dietpi.txt` as a declarative model.
+
+!!! info "Editing the contents of `/boot/dietpi.txt`"
 
     For the Raspberry Pi, the file is located on a FAT32 partition which can be accessed on a Windows PC. In this case, `dietpi.txt` can be found in its root.
 
 1. After flashing, leave the SD card in your computer, navigate to the FAT32 boot partition in Windows Explorer and open the `dietpi.txt` file in a text editor of your choice.
-2. Copy and paste the contents from below into `dietpi.txt`, adjust the following options, and save.
-    - `AUTO_SETUP_GLOBAL_PASSWORD` 
-      - Affects "root" and "dietpi" users and is used by dietpi-software for installs which require a password (e.g. web dashboard). During first run setup, the password is removed from this file and instead encrypted and saved to root filesystem.
-    - `SOFTWARE_CHROMIUM_AUTOSTART_URL`
-      - The URL you want Chromium to open on start. You'll need to grab a device key from the portal and paste it in the URL here.
-    - `AUTO_SETUP_NET_HOSTNAME` 
-      - Sets the host name
-    - `AUTO_SETUP_INSTALL_SOFTWARE_ID`
-      - Use this option for the software packages you want installed during setup (each on a new line). List of software IDs [here](https://github.com/MichaIng/DietPi/wiki/DietPi-Software-list).
+2. Copy/Paste the config below and adjust as needed.
 
 ??? abstract "dietpi.txt - Autostart Chromium in kiosk mode"
 
@@ -491,14 +380,14 @@ DietPi offers the option for an automatic first boot installation which can over
     #------------------------------------------------------------------------------------------------------
     ```
 
+!!! tip "A list of dietpi-software IDs can be found at <https://github.com/MichaIng/DietPi/wiki/DietPi-Software-list>."
+
 DietPi will now go through a one time setup process based on the options in the `dietpi.txt` file. This may take several minutes depending on the speed of the SD card and software chosen to install in `dietpi.txt`. Once complete, make sure the Pi reboots and launches Chromium in kiosk mode.
 
-You'll notice that the cursor is still visible. To hide it, we'll have to edit the autostart file:
+To hide the cursor in Chrome, use this one-liner to add `-- -nocursor` to the end of the autostart script's last line:
 
-1. Close Chromium by pressing `Alt+F4` to reveal the terminal and run the following command:
-    - `sudo nano /var/lib/dietpi/dietpi-software/installed/chromium-autostart.sh`
-2. Add `-- -nocursor` to the end of the last line so it looks likes this:
-    - `exec "$STARTX" "$FP_CHROMIUM" $CHROMIUM_OPTS "${URL:-https://dietpi.com/}" -- -nocursor`
+1. Close Chromium and return to the terminal with `ALT+F4`.
+2. Copy/Paste `sudo sed -i '$ s/$/ -- -nocursor/' /var/lib/dietpi/dietpi-software/installed/chromium-autostart.sh` into the terminal.
 
 If the display resolution wasn't properly detected, you can manually set it in `DietPi-Config`:
 
@@ -506,7 +395,43 @@ If the display resolution wasn't properly detected, you can manually set it in `
 2. Display Options > Display Resolution > 1080P : 1920 x 1080
 3. Exit DietPi-Config and reboot.
 
-### Disable Boot Messages
+## Raspberry Pi 5 (Bookworm) and Xorg Issues
+
+!!! note
+
+    As of 5/3/2024, the DietPi devs have created a [pull request](https://github.com/MichaIng/DietPi/pull/7056) to fix this issue (again). It should be available in the 9.4 release. I'll probably remove this section after I get a chance to test it.
+
+!!! note "I later learned that the RPi5 supports dual-4Kp60 displays with the idle-clock settings so `hdmi_enable_4kp60` is redundant."
+
+As of this writing (4/23/24), I ran into issues trying to get a Pi 5 to display 4K (adding `hdmi_enable_4kp60=1` to /boot/config.txt & adjusting chromium resolutions). The `/var/log/Xorg.0.log` log file spit out this error when attempting to launch Chromium:
+
+```
+[    13.217] (EE) Fatal server error:
+[    13.217] (EE) Cannot run in framebuffer mode. Please specify busIDs for all framebuffer devices
+```
+
+This is a result of Debian moving away from X in favor of Wayland in the latest release (Bookworm). The kernel creates two devices, `/dev/dri/card0` and `/dev/dri/card1`. One is for vc4 (display) and the other is for v3d (3d hardware). They are allocated randomly. X is dumb, it just uses `/dev/dri/card0` which ends up working/failing half of the time. The generic Debian packages don't know that Pi has a display driver called vc4, so you need a config file to describe that. The Raspberry Pi devs don't care about X working in their lite versions because they are intended to be used without a desktop, so they didn't bother to address this issue. I assume that DietPi is based on the lite images of Raspberry Pi OS, so it must have inherited the same problem.
+
+The solution is to create a configuration file that tells X to use the vc4 card for display:
+
+1. `touch /etc/X11/xorg.conf.d/99-vc4.conf`
+2. `nano /etc/X11/xorg.conf.d/99-vc4.conf` and add the following content:
+    ```
+    Section "OutputClass"
+      Identifier "vc4"
+      MatchDriver "vc4"
+      Driver "modesetting"
+      Option "PrimaryGPU" "true"
+    EndSection
+    ```
+
+!!! note
+
+    The simplest way to do this would be by installing the `gldriver-test` package, which will automatically create the necessary configuration file. However, this package is not available in the DietPi repositories. I've mentioned this to the devs, so hopefully it will be added in the future.
+
+<https://forums.raspberrypi.com/viewtopic.php?t=361902>
+
+## Disable Boot Messages
 
 If you prefer to not see the boot messages when the Pi is starting up, you can disable them by editing the `cmdline.txt` file. This file is located in the same FAT32 boot partition as `dietpi.txt`. You will edit this file the same way you did `dietpi.txt` - by opening it in a text editor on your computer.
 
@@ -517,31 +442,3 @@ root=PARTUUID=127c511a-02 rootfstype=ext4 rootwait net.ifnames=0 logo.nologo con
 ```
 
 Change the `console=tty1` to `console=tty3` and add `vt.global_cursor_default=0 quiet loglevel=0 splash` to the end of the line.
-
-## Hardening
-
-In an attempt to "harden" a raspberry Pi deployed in the wild that may be easily accessed, like behind a lobby TV, there are few things you can do. Keep in mind that any of the methods listed below are NOT bullet proof. A highly motivated bad actor will still do whatever they can to gain access to your systems.
-
-### Disable USB Ports
-
-Cutting power from the USB ports will prevent a bad actor from being able to attach USB devices like a keyboard/mouse.
-
-Install [uhubctl](https://github.com/mvp/uhubctl):
-
-```bash
-sudo apt install -y uhubctl
-```
-
-Power off all USB ports:
-
-```bash
-sudo uhubctl -l 1-1 -p 2 -a 0 #(1)!
-```
-
-1. If you need to power the USB ports back on for any reason, you can change `-a 0` to `-a 1`.
-
-!!! note "Note: Power *will* be restored after a reboot."
-
-    We need to come up with a method to power off the USB ports at the end of each boot sequence. Thankfully, thats pretty easy to script using cronjobs or DietPi's autostart scripts. 
-
-    In our environment, we use DietPi to launch chromium in kiosk mode. Adding `sudo uhubctl -l 1-1 -p 2 -a 0` the `/var/lib/dietpi/dietpi-software/installed/chromium-autostart.sh` is easy enough.

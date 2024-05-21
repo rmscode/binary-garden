@@ -4,7 +4,9 @@
 
     [PiSignage](https://github.com/colloqi/pisignage) is a Digital Signage Player software primarily for Raspberry Pi boards and also supports other Debian based hardware systems as well.
 
-!!! note "The following content is directly related to PiSignage. For content more broadly related to the [Raspberry Pi](../hardware/raspberrypi.md), see that section."
+!!! note
+
+    As of 12/22/23 we have moved away from PiSignage in favor of DietPi for digital signage purposes. This allows us to update the OS and Chromium on a more regular basis. Something we had to wait on the PiSignage developers for. This was a problem because we moved from a .NET MAUI app to Blazor WASM (for easier development) and it wouldn't work with the PiSignage build we had.
 
 ## Configuration (Standalone Player)
 
