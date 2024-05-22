@@ -12,6 +12,10 @@ By default, Outlook will automatically delete meeting requests from your inbox a
 2. In the Outlook Options dialog box, click **Mail** in the left pane, and then uncheck the option "*Delete meeting requests and notifications from Inbox after responding*" in the **Send Messages** section.
 3. Click **OK**.
 
+## Safe Mode
+
+To launch Outlook in safe mode, hold the **Ctrl** key while clicking the Outlook shortcut. This will launch Outlook in safe mode.
+
 ## Issues 
 
 ### Mailbox Disconnected
