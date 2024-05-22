@@ -28,4 +28,5 @@ jobs:
       - run: pip install mkdocs-encryptcontent-plugin
       - run: pip install mkdocs-git-revision-date-localized-plugin
       - run: pip install mkdocs-git-latest-changes-plugin
+      - run: pip install mkdocs-spellcheck[all]
       - run: mkdocs gh-deploy --force
