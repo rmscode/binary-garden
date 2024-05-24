@@ -16,6 +16,29 @@ When mapping shared volumes (quorum disks, cluster disks,or cluster shared volum
 
 As a best practice and a time-saving tip, configure the nodes in a cluster so that they are identical with regard to the number of disks and LUNs. In this way, when mapping new storage LUNs, the next available LUN ID will be the same on all hosts. By doing this, having to change LUN IDs later to make them consistent can be avoided.
 
+!!! example
+
+    Imagine you have a cluster with four nodes: Node A, Node B, Node C, and Node D. You want to map a new shared volume to these nodes.
+
+    1. **Consistent LUN Assignment:**
+   
+        - If you map the shared volume to Node A using LUN ID 5, you should also map the same volume to Node B and Node C using LUN ID 5.
+        - This ensures that all nodes refer to the shared volume by the same LUN ID, preventing any discrepancies in accessing the storage.
+
+    2. **Leverage Host Groups:**
+
+        - Instead of mapping the volume individually to Node A, Node B, and Node C, you can create a host group that includes all three nodes.
+        - When you map the shared volume to this host group with LUN ID 5, the ME4 Series array will automatically ensure that LUN ID 5 is used for this volume on all nodes in the group.
+
+    3. **Identical Configuration:**
+
+        - Before mapping the new storage LUN, ensure that all three nodes have the same number of disks and LUNs configured. For example, if Node A, Node B, and Node C each have LUNs 0-4 already in use, the next available LUN ID for all three nodes will be 5.
+        - By having this identical configuration, when you map the new volume to LUN ID 5 on the host group, it will automatically align with the next available LUN ID on all nodes.
+
+!!! note
+
+    The Dell docs do not specifically state how many shared volumes to configure per node. However, Microsoft does state that you should create at least one CSV per node.
+
 ### MPIO Best Practices
 
 Windows and Hyper-V hosts default to the Round Robin with Subset policy with ME4 Series storage, unless a different default MPIO policy is set on the host by the administrator. Round Robin with Subset is typically the best MPIO policy for Hyper-V environments.
