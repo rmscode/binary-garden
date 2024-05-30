@@ -106,6 +106,22 @@ The reason for doing so is that each pair of ports (A0,A1 or A2,A3) are connecte
 
 ## Performance
 
+!!! note
+
+    What you will likely take away from what is said below, is that you should create a total of two pools. This setup is optimal, but it is not the only way to configure your storage. From my research and various online posts, I learned that a two-pool setup (one per controller) provides an active/active configuration, allowing the array to process I/O requests from both controllers simultaneously. However, most online sources recommend creating a single ADAPT pool on one controller in an active/passive configuration.
+    
+    The reasoning:
+
+    - You are far are more likely to reach the max performance of the drives before the host ports.
+    - Management is much easier with one pool.
+    - Expansion is much easier with one pool.
+    - You still benefit from failover/ALUA in the event of a controller/path failure.
+
+    References:
+
+    (Dell Employee suggests one pool)[https://www.dell.com/community/en/conversations/powervault/me5024-one-pool-or-two/663ceb6449d3ee2f2acf81b3?commentId=663d2ee2f8f6be1eb2b65a33]</br>
+    (Reddit user explains that two pools is only necessary when at risk of overloading one controller)[https://www.reddit.com/r/storage/comments/1d3fcq8/adapt_dell_me4024_10gb_iscsi_with_24_192_sas_ssds/l680ifp/]
+
 ### Power-of-2 Method
 
 You can configure a max of "2" pools in dual controller systems where each controller owns a pool. You need to balance disks between the two pools. In other words, divide your disk quantity by 2 for load balancing in each controller.
