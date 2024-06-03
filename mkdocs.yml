@@ -60,6 +60,7 @@ plugins:
       limit_to_docs_dir: True
       repo_vendor: github
       enabled_on_serve: True
+      show_x_days: 14
 
 # Additional configuration
 extra:
