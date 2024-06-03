@@ -1,7 +1,3 @@
----
-status: new
----
-
 # MkDocs: Publishing Your Site
 
 The site that MkDocs builds only uses static files so you can host it from pretty much anywhere. Simply upload the contents of the entire `site` directory to wherever you're hosting your website and you're done. Alternatively, you can deploy your site to [GitHub Pages](https://pages.github.com/). Thats the great thing about hosting project documentation in a `git` repository -- the ability to deploy the latest version automatically when new changes are pushed.

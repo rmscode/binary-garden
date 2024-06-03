@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Remote Desktop
 
 ## Issues

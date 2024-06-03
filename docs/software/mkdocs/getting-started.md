@@ -1,7 +1,3 @@
----
-status: new
----
-
 # MkDocs: Getting started
 
 !!! info
