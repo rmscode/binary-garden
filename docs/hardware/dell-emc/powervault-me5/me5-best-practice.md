@@ -2,7 +2,7 @@
 
 !!! note
 
-    This is a copy/paste from the ME4 docs. It' mostly the same for the ME5, but you can have a look [here](https://www.delltechnologies.com/asset/en-us/products/storage/technical-support/h19551-dell-powervault-me5-series-storage-system-best-practices-wp.pdf). 
+    This is a copy/paste from the ME4 docs. It's mostly the same for the ME5, but you can have a look [here](https://www.delltechnologies.com/asset/en-us/products/storage/technical-support/h19551-dell-powervault-me5-series-storage-system-best-practices-wp.pdf). 
 
 ## General Best Practices for Hyper-V
 
@@ -72,7 +72,7 @@ You should enable at least one notification service to monitor the system. Email
       -  In the System topic, select Action -> System Settings, then click Notifications.
       -  In the footer, click the events panel and select Set Up Notifications.
       -  In the Welcome panel, select System Settings, and then click the Notifications tab.
-2. Select the Email tab and ensure that the SMTP Server and SMTP Domain options are set, as described in To configure SMTP settings in the [Administrator’s Guide](https://www.dell.com/support/manuals/us/en/19/powervault-me4012/me4_series_ag_pub/configure-smtp-settings?guid=guid-a34ac6dc-8231-456e-ae0a-a157ef02393d&lang=en-us).
+2. Select the Email tab and ensure that the SMTP Server and SMTP Domain options are set. For details about panel options, see the on-screen tool tips.
 3. Set the email notification.
 4. Select the minimum severity for which the system should send email notifications.
 5. Enter an email address to which the system should send notifications.
@@ -107,24 +107,6 @@ In a system configured to use either all FC or all iSCSI ports, use the ports in
 4. A3,B3
 
 The reason for doing so is that each pair of ports (A0,A1 or A2,A3) are connected to a dedicated CNC chip. If you are not using all four ports on a controller, it is best to use one port from each pair (A0,A2) to ensure better I/O balance on the front end.
-
-## Performance
-
-!!! note
-
-    What you will likely take away from what is said below, is that you should create a total of two pools. This setup is optimal, but it is not the only way to configure your storage. From my research and various online posts, I learned that a two-pool setup (one per controller) provides an active/active configuration, allowing the array to process I/O requests from both controllers simultaneously. However, most online sources recommend creating a single ADAPT pool on one controller in an active/passive configuration.
-    
-    The reasoning:
-
-    - You are far are more likely to reach the max performance of the drives before the host ports.
-    - Management is much easier with one pool.
-    - Expansion is much easier with one pool.
-    - You still benefit from failover/ALUA in the event of a controller/path failure.
-
-    References:
-
-    (Dell Employee suggests one pool)[https://www.dell.com/community/en/conversations/powervault/me5024-one-pool-or-two/663ceb6449d3ee2f2acf81b3?commentId=663d2ee2f8f6be1eb2b65a33]</br>
-    (Reddit user explains that two pools is only necessary when at risk of overloading one controller)[https://www.reddit.com/r/storage/comments/1d3fcq8/adapt_dell_me4024_10gb_iscsi_with_24_192_sas_ssds/l680ifp/]
 
 ### Power-of-2 Method
 
