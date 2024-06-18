@@ -1,13 +1,13 @@
 # Accessing the CLI
 
-Embedded within the controller modules is a command-line interface (CLI) that enables you to manage and monitor the storage system. The CLI can be accessed in two ways:
-
-- Use SSH or Telnet on a management host that is remotely connected to a controller module network port through a LAN.
-- Use a serial cable to establish a serial connection from a computer to the CLI port on a controller module. Refer back to the [controller module rear panel diagram](#controller-module-4-port-fciscsi) for the location of the CLI ports.
-
 !!! note
 
-    If the default IP addresses (10.0.0.2 - Controller A, 10.0.0.3 - Controller B) are not compatible with your network, you must set IP addresses for each network port using the CLI. The sections below cover doing so via [DHCP](../powervault-me4/me4-cli.md#set-the-network-port-ip-addresses-via-dhcp) or [statically](../powervault-me4/me4-cli.md#set-the-network-port-ip-addresses-statically).
+    This is a copy/paste from the ME4 docs. Almost *all* of this is missing from the official ME5 docs, but I assume it still applies. I cross referenced the CLI commands and they are all the same.
+
+Embedded within the controller modules is a command-line interface (CLI) that enables you to manage and monitor the storage system. The CLI can be accessed in two ways:
+
+- Use SSH or HTTPS on a management host that is remotely connected to a controller module network port through a LAN. HTTP and Telnet are supported, but not recommended.
+- Use a serial cable to establish a connection from a terminal emulator to the CLI port on a controller module. Refer back to the [controller module rear panel diagram](#controller-module-4-port-fciscsi) for the location of the CLI ports.
 
 1. Connect a 3.5mm/DB9 serial cable from a host computer with a serial port to the 3.5mm stereo plug CLI port on controller A. Alternatively, connect a generic mini-USB cable from a host computer to the USB CLI port on controller A.
 2. Start a terminal emulator configured to use the following display and connection settings:
@@ -64,9 +64,3 @@ From another host, ping the controllers . . .
 !!! note
 
     If you can't access your storage system for at least three minutes after changing the IP address, restart the controllers using the CLI command `restart mc both`.
-
-!!! warning "Caution"
-
-    When configuring an iSCSI storage system or a storage system that uses a combination of Fibre Channel and iSCSI SFPs, do not restart the Management Controller or exit the terminal emulator session until the CNC ports are configured as described [here](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_dg_pub/changing-host-port-settings?guid=guid-4b22aaaa-ca95-4d45-82cd-a3499bb1890c&lang=en-us).
-
-    I couldn't find an explanation for this precaution btw . . .

@@ -1,5 +1,9 @@
 # Best Practices
 
+!!! note
+
+    This is a copy/paste from the ME4 docs. It' mostly the same for the ME5, but you can have a look [here](https://www.delltechnologies.com/asset/en-us/products/storage/technical-support/h19551-dell-powervault-me5-series-storage-system-best-practices-wp.pdf). 
+
 ## General Best Practices for Hyper-V
 
 ### Guest Integration Services
