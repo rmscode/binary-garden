@@ -188,7 +188,13 @@ nav:
       - Failover Clustering:
         - Overview: servers/windows-server/msft-cluster.md
       - Group Policy:
-        - Overview: servers/windows-server/group-policy.md
+        - Overview: servers/windows-server/group-policy/overview.md
+        - Processing Order and Precedence: servers/windows-server/group-policy/processing-and-precedence.md
+        - Managing GPOs: servers/windows-server/group-policy/managing.md
+        - Preferences: servers/windows-server/group-policy/preferences.md
+        - Security Filtering: servers/windows-server/group-policy/security-filtering.md
+        - Troubleshooting: servers/windows-server/group-policy/troubleshooting.md
+        - Best Practices: servers/windows-server/group-policy/best-practices.md
       - Rearm Trial: servers/windows-server/rearm-trial.md
     - Linux Servers:
       - NetBox: servers/linux-servers/netbox.md
