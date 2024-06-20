@@ -1,3 +1,7 @@
+---
+status: new
+---
+
 # Overview
 
 !!! info
@@ -26,13 +30,17 @@
 
     :   An option that automatically updates the firmware on the second controller module to match that on the first controller module.
 
-    `Converged Network Controller (CNC)`
+    `Controller Module (CM)`
+
+    :   A FRU that contains the following subsystems and devices: a Storage Controller processor; a Management Controller processor; a SAS expander and Expander Controller processor; management interfaces; cache protected by a super capacitorpack and non-volatile memory; host, expansion, network, and service ports; and midplane connectivity.
+
+    `Storage Controller (SC)`
 
     :   This technology allows you to select the host interface protocols to use on the storage system. The ME5 Series iSCSI modules use SFP38 connectors in the CNC ports.
 
-    `Storage Bridge Bay (SSB)`
+    `Management Controller (MC)`
 
-    :   Storage Bridge Bay modules actively manage the enclosure. Each module has a SAS expander with its own storage enclosure processor (SEP).
+    :   A processor (located in a controller module) that is responsible for human-computer interfaces, such as a WBI, and computer-computer interfaces, such as SNMP, and interacts with the Storage Controller.
 
     `Data Drive in Carriers (DDICs)`
 
@@ -41,6 +49,10 @@
     `Input/Output Module (IOM)`
 
     :   An IOM is a module that provides connectivity to the enclosure. More specifically, they are referenced in Dell documentation as expansion enclosures.
+
+    `Canister`
+
+    :   Synonym for IOM.
 
     `Power Cooling Module (PCM)`
 

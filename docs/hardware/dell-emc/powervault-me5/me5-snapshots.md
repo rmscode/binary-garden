@@ -1,3 +1,7 @@
+---
+status: new
+---
+
 # Snapshots
 
 The system can create snapshots of virtual volumes up to the maximum number supported by your system. Snapshots provide data protection by enabling you to create and save source volume data states at the point in time when the snapshot was created. Snapshots can be created manually or you can schedule snapshot creation. After a snapshot has been created, the source volume cannot be expanded.
@@ -6,26 +10,17 @@ When you reach the maximum number of snapshots for your system, before you can c
 
 The system treats a snapshot like any other volume. The snapshot can be mapped to hosts with read-only access, read-write access, or no access, depending on the purpose of the snapshot.
 
-The set snapshot-space CLI command enables you to set the percent of the pool that can be used for snapshots (the snapshot space).
+The `set snapshot-space` CLI command enables you to set the percent of the pool that can be used for snapshots (the snapshot space).
 
 ## Creating Snapshots
 
-!!! info 
+Navigate to **Provisioning > Volumes >** *slide-over* > **Snapshots** and then follow the on-screen instructions to complete the action.
 
-    If the large pools feature is enabled, through use of the `large-pools` parameter of the set `advanced-settings` CLI command, the maximum number of volumes in a snapshot tree is limited to 9, base volume plus 8 snapshots. The maximum number of volumes per snapshot will decrease to fewer than 9 if more than 3 replication sets are defined for volumes in the snapshot tree. If creating a snapshot will exceed the limit, you will be unable to create the snapshot unless you delete a snapshot first.
+!!! note
 
-1. In the Volumes topic, select from 1 to 16 virtual volumes or snapshots.
-      - !!! note "You can also select a combination of virtual volumes and snapshots." 
-2. Select **Action > Create Snapshot**.
-3. Set the snapshot name.
-4. (Optional) Schedule the snapshot by ticking the **Scheduled** box.
-      1. Change the default prefix to indentify the snapshots created by this task.
-      2. Select the number of snapshots to retain (1-8 if `large-pools` enabled or 1-32 if not).
-      3. Specify a date (`yyyy-mm-dd`) and time (`hh:mm AM/PM`) at least 5 minutes in the future.
-      4. Tick the **Repeat** box if you want to run more than once.
-5. Click **OK**.
+      When creating local snapshots, you will be prompted to set a schedule. This is the only time where you can set a snapshot schedule in the Powervault Manager. IF you do not set a schedule when prompted, you will need to create a a schedule using the ` create schedule` CLI command.
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/creating-snapshots?guid=guid-ef9f7a11-49db-46a0-a8b9-65837c61c791&lang=en-us)
+[*Reference*](hhttps://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_ag/creating-snapshots?guid=guid-c5df9d61-df54-4545-9aae-d35134c006bf&lang=en-us)
 
 ### Resetting Snapshots
 
@@ -37,33 +32,35 @@ The set snapshot-space CLI command enables you to set the percent of the pool th
 
 !!! warning "To avoid data corruption, unmount a snapshot from hosts before resetting the snapshot."
 
-1. Unmount the snapshot from hosts.
-2. In the Volumes topic, select a snapshot.
-3. Select **Action > Reset Snapshot**.
-4. (Optional) Schedule a reset task by ticking the **Scheduled** box.
-      1. Specify a date (`yyyy-mm-dd`) and time (`hh:mm AM/PM`) at least 5 minutes in the future.
-      2. Tick the **Repeat** box if you want to run more than once.
-5. Click **OK**.
+Navigate to **Provisioning > Volumes >** *slide-over* > **Snapshots**. Select the volume and choose **Reset Snapshot** from the drop down list. Follow the on-screen directions to complete the action.
 
-!!! note "You can remount the snapshot after it is reset. Also, remember to unmout the snapshot before the scheduled task runs."
-
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/resetting-a-snapshot?guid=guid-6f2fea7a-9495-4bed-99ce-53543af80d50&lang=en-us)
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_ag/resetting-snapshots?guid=guid-95a30101-30e7-4dc9-bc90-3faf6323aede&lang=en-us)
 
 ### Copy a Snapshot
 
-1. In the Volumes topic, select a snapshot.
-2. Select **Action > Copy Volume**.
-3. (Optional) In the **New Volume** field, change the name for the new volume.
-4. In the **Residing on Pool** field, select the pool in which to create the copy. Selecting **Auto** copies the destination volume to the same pool as the source volume.
-5. Click **OK**.
+The volume copy feature enables you to copy a base volume or snapshot to a new volume. It creates a complete "physical" copy of a base snapshot.
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/copy-a-virtual-volume-or-snapshot?guid=guid-6b622cfb-f44e-445a-a4f3-b8be08f66bff&lang=en-us)
+Navigate to the snapshots panel (**Provisioning > Volumes >** slide-over **> Snapshots**). Select the volume and choose **Copy** from the drop down list. Follow the on-screen directions to complete the action.
+
+!!! note "notes"
+
+      - You must detach the source before copying it.
+      - The volume/snapshot will not be available for read/write access until the copy is complete.
+
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_ag/copying-volumes-or-snapshots?guid=guid-a3ebc461-2187-4657-bbca-8e30c7076d2e&lang=en-us)
 
 ### Delete a Snapshot
 
-1. Verify that hosts are not accessing the snapshots that you want to delete.
-2. In the Volumes topic, select 1 through 100 items (volumes, snapshots, or both) to delete.
-3. Select **Action > Delete Volumes**. The Delete Volumes panel opens with a list of the items to be deleted.
-4. Click **Delete**. The items are deleted and the volumes table is updated.
+Navigate to the snapshots panel (**Provisioning > Volumes >** *slide-over* **> Snapshots**) and select a snapshot, then choose **Delete** from the drop down list. Follow the on-screen directions to complete the action.
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/delete-volumes-and-snapshots?guid=guid-e334f829-6b6f-4e1b-9a6e-d1806e5f06a2&lang=en-us)
+!!! warning
+
+      Deleting a volume or snapshot removes its host attachments and schedules and deletes its data.
+
+!!! note "Notes"
+
+      - From the slide-over you can only delete the selected volume (the volume for which the slide-over is opened) and its children. Clicking the slide-over for the base volume enables deleting the entire tree.
+      - You can select from 1 to 100 items (volumes, snapshots, or both) to delete.
+      - Ensure that hosts are not accessing the snapshots to be deleted.
+
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_ag/deleting-volumes-and-snapshots?guid=guid-a0c7cec6-865e-4c92-af86-bc70feff43c3&lang=en-us)

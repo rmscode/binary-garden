@@ -1,3 +1,7 @@
+---
+status: new
+---
+
 # System Notifications (Optional)
 
 Optional, but considered best practice.

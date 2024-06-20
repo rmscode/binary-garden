@@ -1,3 +1,7 @@
+---
+status: new
+---
+
 # Troubleshooting
 
 !!! note "WIP . . . isn't necessarily complete or ordered correctly."

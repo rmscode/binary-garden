@@ -1,8 +1,12 @@
+---
+status: new
+---
+
 # Host Setup (Windows)
 
-Attached Windows hosts with iSCSI network adapters need to be properly configured in order to use the iSCSI protocol with the ME4 storage system and MPIO enabled volumes.
+Attached Windows hosts with iSCSI network adapters need to be properly configured in order to use the iSCSI protocol with the ME5 storage system and MPIO enabled volumes.
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_dg_pub/configuring-a-windows-host-with-iscsi-network-adapters?guid=guid-da96d36d-7905-4a4a-bc5e-11fb102baa8e&lang=en-us)
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/configuring-a-windows-host-with-iscsi-network-adapters?guid=guid-a547de78-e810-4190-acbe-ecac2e595938&lang=en-us)
 
 ## Prerequisites
 
@@ -13,7 +17,7 @@ Attached Windows hosts with iSCSI network adapters need to be properly configure
 ## Attach Windows host to the storage system
 
 1. Ensure that all network adapters have the latest supported firmware and drivers.
-2. Use the [iSCSI cabling diagrams](../powervault-me4/me4-deployment-brief.md#cable-the-controller-host-ports-iscsi) to connect the hosts to the storage system ether by using switches or connecting the hosts directly to the storage system.
+2. Use the [iSCSI cabling diagrams](../powervault-me5/me5-deployment-brief.md#cable-the-controller-host-ports-iscsi) to connect the hosts to the storage system ether by using switches or connecting the hosts directly to the storage system.
 3. Install MPIO on the iSCSI hosts (Document this if not in Matt's docs).
 
 ## Assign IP Addresses for each network adapter connecting to the iSCSI network
@@ -40,7 +44,7 @@ Attached Windows hosts with iSCSI network adapters need to be properly configure
 
 !!! note
 
-    A [StackExchange](https://superuser.com/a/1490402/1775885) user suggests that setting the NIC properties are not enough as they will only allow Windows to receive Jumbo Frames. You need to tell Windows to use Jumbo frames as well. I'm not entirely sure if this would subsequently require devices beyond the SAN to also be configured for Jumbo Frames...
+    A [StackExchange](https://superuser.com/a/1490402/1775885) user suggests that setting the NIC properties are not enough as they will only allow Windows to receive Jumbo Frames. You need to tell Windows to use Jumbo frames as well.
 
     ```cmd
     netsh interface ipv4 set subinterface “TheNameOfYourInterface” mtu=9000 store=persistent
@@ -98,10 +102,10 @@ If the host is successfully configured, a **Success** dialog box is displayed.
 1. Open Server Manager.
 2. Select **Tools** > **MPIO**.
 3. Click the **Discover Multi-Paths** tab.
-4. Select **DellEMC ME4** in the **Device Hardware Id** list.
-      - If **DellEMC ME4** is not listed in the **Device Hardware Id** list:
+4. Select **DellEMC ME5* in the **Device Hardware Id** list.
+      - If **DellEMC ME5** is not listed in the **Device Hardware Id** list:
         1. Ensure that there is more than one connection to a volume for multipathing.
-        2. Ensure that **Dell EMC ME4** is not already listed in the **Devices** list on the **MPIO Devices** tab.
+        2. Ensure that **Dell EMC ME5** is not already listed in the **Devices** list on the **MPIO Devices** tab.
 5. Click **Add** and click **Yes** to reboot the Windows server.
 
 ## Update the iSCSI initiator on the Windows host

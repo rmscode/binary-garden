@@ -1,3 +1,7 @@
+---
+status: new
+---
+
 # Logging
 
 ## Show events (CLI)

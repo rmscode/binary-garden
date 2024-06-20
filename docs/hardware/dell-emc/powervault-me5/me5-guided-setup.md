@@ -1,3 +1,7 @@
+---
+status: new
+---
+
 # System and Storage Setup
 
 !!! tip "System Information Worksheet"

@@ -1,6 +1,10 @@
+---
+status: new
+---
+
 # Virtual and Linear Storage
 
-The ME4 series storage system uses two different storage technologies that share a common user interface. One uses the virtual method while the other one uses the linear method.
+The ME5 series storage system uses two different storage technologies that share a common user interface. One uses the virtual method while the other one uses the linear method.
 
 Virtual storage is a method of mapping logical storage requests to physical storage (disks). It inserts a layer of virtualization such that logical host I/O requests are mapped onto pages of storage. Each page is then mapped onto physical storage. Within each page the mapping is linear, but there is no direct relationship between adjacent logical pages and their physical storage.
 
