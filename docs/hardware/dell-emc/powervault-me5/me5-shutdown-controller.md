@@ -32,6 +32,6 @@ Shutting down the controller module in an enclosure ensures that a proper failov
 1. Log in to the CLI.
 2. In your dual-controller system, verify that the partner controller is online by running the command: `show controllers`
 3. Shut down the failed controller A or B by running the command: `shutdown a` or `shutdown b`
-      - The blue OK to Remove LED ([back of enclosure](me5-overview.md#controller-module-leds)) illuminates to indicate that the controller module can be safely removed.
+      - The blue OK to Remove LED [back of enclosure](me5-overview.md#controller-module-leds) illuminates to indicate that the controller module can be safely removed.
 4.  Illuminate the white Identify LED of the enclosure that contains the controller module to remove by running the command: `set led enclosure 0 on`
       - The Display LED on the Ops panel located on the enclosure left ear will be blinking green when the above command is invoked.

@@ -6,19 +6,14 @@ status: new
 
 Attached Windows hosts with iSCSI network adapters need to be properly configured in order to use the iSCSI protocol with the ME5 storage system and MPIO enabled volumes.
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/configuring-a-windows-host-with-iscsi-network-adapters?guid=guid-a547de78-e810-4190-acbe-ecac2e595938&lang=en-us)
-
 ## Prerequisites
 
-- Complete the PowerVault Manager guided setup process and storage setup process.
-- Refer to the cabling diagrams within this guide before attaching a host to the storage system.
+- Ensure that all HBAs (NICs) are installed and have the latest supported firmware and drivers as described on Dell.com/support.
+    - For a list of supported HBAs, see the Dell ME5 Series Storage System Support Matrix on the Dell support site.
+- Cable the host servers as described in the [deployment brief](me5-deployment-brief.md#cable-the-controller-host-ports-iscsi).
 - Complete a [planning worksheet](../../../assets/me4-system-information-worksheet.pdf) with the iSCSI network IP addresses to be used.
 
-## Attach Windows host to the storage system
-
-1. Ensure that all network adapters have the latest supported firmware and drivers.
-2. Use the [iSCSI cabling diagrams](../powervault-me5/me5-deployment-brief.md#cable-the-controller-host-ports-iscsi) to connect the hosts to the storage system ether by using switches or connecting the hosts directly to the storage system.
-3. Install MPIO on the iSCSI hosts (Document this if not in Matt's docs).
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/prerequisites?guid=guid-fabca474-bc6c-41df-a12d-e53bf891a0ad&lang=en-us)
 
 ## Assign IP Addresses for each network adapter connecting to the iSCSI network
 
@@ -29,32 +24,17 @@ Attached Windows hosts with iSCSI network adapters need to be properly configure
       - Default Gateway if appropriate
 3. From the command prompt, ping each of the controller IPs to verify host connectivity to the storage system before proceeding.
 
-## (Optional) Enable Jumbo Frames on the iSCSI network adapters
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/assign-ip-addresses-for-each-network-adapter-connecting-to-the-iscsi-network?guid=guid-2258ee8a-e287-42da-8ed9-099e355c46f4&lang=en-us)
 
-!!! info
+## Install MPIO on the Hosts
 
-    If using Jumbo Frames, they must be enabled and configured on all devices in the data path.
+1. Open PowerShell and type the following:
 
-1. Open Network Connections Properties (ncpa.cpl)
-2. For each iSCSI network adapter, right-click > **Properties**
-3. Click **Configure**
-4. Click the **Advanced** tab
-5. Select **Jumbo Packet** from the Property list
-6. Select the appropriate MTU size from the Value list
+      ```ps
+      Install-WindowsFeature -Name Multipath-IO
+      ```
 
-!!! note
-
-    A [StackExchange](https://superuser.com/a/1490402/1775885) user suggests that setting the NIC properties are not enough as they will only allow Windows to receive Jumbo Frames. You need to tell Windows to use Jumbo frames as well.
-
-    ```cmd
-    netsh interface ipv4 set subinterface “TheNameOfYourInterface” mtu=9000 store=persistent
-    ```
-
-    Another user in the same thread mentions that the `netsh` method isn't persistent despite the `store=persistent` flag. They recommend using PowerShell instead.
-
-    ```ps
-    Get-NetAdapterAdvancedProperty "iSCSI*" -DisplayName "Jumbo*" | Set-NetAdapterAdvancedProperty -RegistryValue "9000"
-    ```
+2. Reboot the server.
 
 ## Configure iSCSI Initiator on the Windows host
 
@@ -71,50 +51,53 @@ Attached Windows hosts with iSCSI network adapters need to be properly configure
       3. Select the first IP listed in the same subnet from the **Target portal IP** drop-down menu.
       4. Click **OK** twice to return to the **iSCSI Initiator Properties** dialog box.
 8. Repeat steps 6-7 for the NIC to establish a connection to each port on the subnet.
-9.  Repeat steps 3-8 for NIC 2, connecting it to the targets on the second subnet.
-      - !!! tip "After all connections are made, you can click the **Favorite Targets** tab to see each path. If you click **Details**, you can view specific information the selected path."    
+9. Repeat steps 3-8 for NIC 2, connecting it to the targets on the second subnet.
+
+      !!! tip "After all connections are made, you can click the **Favorite Targets** tab to see each path. If you click **Details**, you can view specific information the selected path."
+
 10. Click the **Configuration tab** and record the initiator name in the **Initiator Name** field. The initiator name is needed to map volumes to the host.
-      - !!! note "This is required for multi-path configurations."  
+
+      !!! info "This is required for multi-path configurations." 
+
 11. Click **OK** to close the **iSCSI Initiator Properties** dialog box.
+
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/configure-the-iscsi-initiator-on-the-windows-host?guid=guid-ff968348-ff63-401e-99ff-be474bb55d01&lang=en-us)
 
 ## Register the Windows host and create volumes
 
-1. Log in to the PowerVault Manager.
-2. Access the Host Setup wizard:
-      1. From the Welcome screen, click **Host Setup**.
-      2. From the Home topic, select **Action** > **Host Setup**.
-3. Confirm that you have met the listed prerequisites, then click **Next**.
-4. Type a host name in the **Host Name** field.
-5. Using the information from step 10 of the Configure the iSCSI Initiator (above), select the iSCSI initiators for the host you are configuring, then click **Next**.
-6. Group hosts together with other hosts in a cluster.
-      - For cluster configurations, group hosts together so that all hosts within the group share the same storage.
-         - If this host is the first host in the cluster, select **Create a new host group**, type a name for the host group, and click **Next**.
-         - If this host is being added to a host group that exists, select **Add to existing host group**, select the group from the drop-down list, and click **Next**.
-         - !!! note "The host must be mapped with the same access, port, and LUN settings to the same volumes or volume groups as every other initiator in the host group."
-7. On the Attach Volumes page, specify the name, size, and pool for each volume, and click **Next**. To add a volume, click **Add Row**. To remove a volume, click **Remove**.
-      - !!! note "Dell recommends that you update the volume name with the hostname to better identify the volumes."
-8. On the Summary page, review the host configuration settings, and click **Configure Host**.
-If the host is successfully configured, a **Success** dialog box is displayed.
-9. Click **Yes** to return to the Introduction page of the wizard, or click **No** to close the wizard.
+If you did not setup host during the guided setup, or if you want to add new hosts, use the PowerVault Manager to create hosts and attach volumes.
+
+1. Log in to the PowerVault Manager and go to **Provisioning > Hosts**. The Hosts and Host Groups table will open.
+2. Click **Create Host**.
+3. In the Create Host panel, select the **Create a New Host** radio button and enter a Host name.
+4. Select the initiator to assign to this host and click **Add Initiators To Host**.
+5. Click **Continue**.
+6. If you want to attach volumes now, select **Attach host or host groups to volumes**. You can skip this step and set up volumes later if you prefer.
+7. If you are attaching volumes now, select whether to create new volumes or select existing volumes to attach to the host.
+8. Click **Continue**.
+9. If you are creating new volumes:
+   - Select the pool for the new volume and enter a **Volume Name**. Use a name that indicates how the volume is used, such as {host name}_Host1_Vol1.
+   - Enter the **Volume Size** and select the units of measure. Optionally, you can choose to use the remaining space for the volume.
+   - Click **Add Volume**.
+10. If you are using an existing volume, select the volume or volumes to attach to the host.
+11. Click **Continue** to proceed.
+12. Review the provisioning configuration and click **Continue** to proceed, or **Back** to return to make changes to the provisioning.
+13. Click **OK** at the Success prompt and return to the PowerVault Manager Dashboard.
+
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/create-a-host-and-attach-volumes-in-powervault-manager?guid=guid-81eb960d-aad9-488f-a3d5-89f31ad0e8a2&lang=en-us)
 
 ## Enable MPIO for the volumes on the Windows host
 
 1. Open Server Manager.
 2. Select **Tools** > **MPIO**.
 3. Click the **Discover Multi-Paths** tab.
-4. Select **DellEMC ME5* in the **Device Hardware Id** list.
+4. Select **DellEMC ME5** in the **Device Hardware Id** list.
       - If **DellEMC ME5** is not listed in the **Device Hardware Id** list:
         1. Ensure that there is more than one connection to a volume for multipathing.
         2. Ensure that **Dell EMC ME5** is not already listed in the **Devices** list on the **MPIO Devices** tab.
 5. Click **Add** and click **Yes** to reboot the Windows server.
 
-## Update the iSCSI initiator on the Windows host
-
-1. Open Server Manager.
-2. Click **Tools** > **iSCSI initiator**.
-3. Click the **Volumes and Devices** tab.
-4. Click **Auto Configure**.
-5. Click **OK** to close the **iSCSI Initiator Properties** window.
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/enable-mpio-for-the-volumes-on-the-windows-host?guid=guid-48d1a55c-f905-4959-bc6f-f4692a70218d&lang=en-us)
 
 ## Format volumes on the Windows host
 
@@ -125,3 +108,5 @@ If the host is successfully configured, a **Success** dialog box is displayed.
 5. Right-click on the new disk again select **Initialize Disk**. The **Initialize Disk** dialog box opens.
 6. Select the partition style for the disk and click **OK**.
 7. Right-click on the unallocated space, select the type of volume to create, and follow the steps in the wizard to create the volume.
+
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/format-volumes-on-a-windows-host?guid=guid-29883fd1-4d98-492b-977e-106cbd6f1b73&lang=en-us)

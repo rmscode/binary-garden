@@ -4,16 +4,12 @@ status: new
 
 # Accessing the CLI
 
-!!! note
-
-    This is a copy/paste from the ME4 docs. Almost *all* of this is missing from the official ME5 docs, but I assume it still applies. I cross referenced the CLI commands and they are all the same.
-
 Embedded within the controller modules is a command-line interface (CLI) that enables you to manage and monitor the storage system. The CLI can be accessed in two ways:
 
 - Use SSH or HTTPS on a management host that is remotely connected to a controller module network port through a LAN. HTTP and Telnet are supported, but not recommended.
-- Use a serial cable to establish a connection from a terminal emulator to the CLI port on a controller module. Refer back to the [controller module rear panel diagram](#controller-module-4-port-fciscsi) for the location of the CLI ports.
+- Use a micro-USB cable to establish a connection from a terminal emulator to the CLI port on a controller module. Refer back to the [controller module rear panel diagram](me5-overview.md#controller-module-4-port-sas-shown) for the location of the CLI ports.
 
-1. Connect a 3.5mm/DB9 serial cable from a host computer with a serial port to the 3.5mm stereo plug CLI port on controller A. Alternatively, connect a generic mini-USB cable from a host computer to the USB CLI port on controller A.
+1. Connect a micro-USB cable from a host computer to the USB CLI port on controller A.
 2. Start a terminal emulator configured to use the following display and connection settings:
     1. Display Settings:
           - **Terminal emulation mode** - VT-100 or ANSI (for color support)
@@ -28,8 +24,13 @@ Embedded within the controller modules is a command-line interface (CLI) that en
           - **Stop bits** - 1
           - **Flow control** - None
 3. Press `Enter` to display the CLI prompt if necessary.
-4. If you are connecting to a storage system with G275 firmware that has not been deployed, the default user/pass is `manage`/`!manage`. If your system has been deployed, login with a user that has the *manage* role.
-5. If you are connecting to a storage system with G280 firmware that has not been deployed, type `setup` at the login prompt and press `Enter`. Do not type anything at the password prompt and press `Enter`. If your system has been deployed, login with a user that has the *manage* role.
+4. If you are connecting to a storage system that has not been deployed:
+      1. Type `setup` at the login prompt and press Enter.
+      2. Do not type anything at the Password prompt and press Enter.
+      3. Type Y at the prompt to continue.
+      -  Otherwise, login with a user that has the *manage* role.
+
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/set-a-network-port-ip-address-using-the-micro-usb-port?guid=guid-f6c01f88-2207-4dab-bb8e-8c407a002c81&lang=en-us)
 
 ## Set the network port IP addresses via DHCP
 
@@ -41,7 +42,9 @@ To obtain an IP address via DHCP, use the `set network-parameters dhcp` command.
 
 ## Set the network port IP addresses statically
 
-To use a custom static IP address, use the `set network-parameters ip <address> netmask <netmask> gateway <gateway> controller <a|b>` command. Run the command for controller module A first, and then for controller module B.
+To use a custom static IP address, use the following command. Run the command for controller module A first, and then for controller module B:
+
+`set network-parameters ip <address> netmask <netmask> gateway <gateway> controller <a|b>`
 
 Where:
 

@@ -36,7 +36,7 @@ status: new
 
     `Storage Controller (SC)`
 
-    :   This technology allows you to select the host interface protocols to use on the storage system. The ME5 Series iSCSI modules use SFP38 connectors in the CNC ports.
+    :   Storage Controller. A processor (located in a controller module) that is responsible for RAID controller functions. The SC is also referred to as the RAID controller. See also EC, MC.
 
     `Management Controller (MC)`
 

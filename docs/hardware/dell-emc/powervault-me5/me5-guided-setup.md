@@ -4,24 +4,29 @@ status: new
 
 # System and Storage Setup
 
-!!! tip "System Information Worksheet"
-
-    Use the [System Information Worksheet](../../../assets/me4-system-information-worksheet.pdf) found on page 100 of the [deployment guide](https://dl.dell.com/content/manual65252048-dell-powervault-me4-series-storage-system-deployment-guide.pdf?language=en-us) to record the information that you need to install the ME4 Series storage system.
-
 Upon completing the hardware installation, use PowerVault Manager to configure, provision, monitor and manage the storage system. When first accessing the PowerVault Manager, perform a firmware update before configuring your system. After the firmware update is complete, use the guided setup to verify the web browser requirements and then access the PowerVault Manager.
 
-!!! note
+!!! tip "System Information Worksheet"
 
-    The PowerVault web interface requires Firefox 57 or later, Chrome 57 or later, MS Internet Explorer 10 or 11, or Safari 10.1 or later. Dell says you cannot view Help content if you are using the Microsoft Edge browser that ships with Windows 10 . . . I'm thinking that this was pre Chromium Edge. 
+    Use the [System Information Worksheet](../../../assets/me5-system-information-worksheet.pdf) to record the information that you need to install the ME5 Series storage system.
+
+## Prerequisites
+
+- Hosts are configured and connected to the storage system
+- Initiators are available/identified
+- Switch zoning is complete (for Fibre channel protocol)
+- System and network information is recorded
+- A business account is set up on dell.com and validated
+- [Access key and PIN are available](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/generating-an-access-key-and-pin?guid=guid-bc58d9cd-50db-4283-b920-e9c51a9f21a1&lang=en-us) (if using SupportAssist)
 
 ## Accessing the PowerVault Manager
 
 !!! info
 
-    The [ME4 Series Administrators Guide](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub) is the primary reference for using the PowerVault Manager.
+    The [ME5 Series Administrators Guide](https://www.dell.com/support/manuals/en-us/powervault-me5084/me5_series_ag/) is the primary reference for using the PowerVault Manager.
 
 1. Temporarily set the management host NIC to a 10.0.0.x address or to the same IPv6 subnet to enable communication with the storage system.
-      - !!! note "If the default IP addresses (10.0.0.2 - Controller A, 10.0.0.3 - Controller B) are not compatible with your network, refer to ["Accessing the CLI"](../powervault-me4/me4-cli.md) to learn how to set the network port IP addresses."
+      - !!! note "If the default IP addresses (10.0.0.2 - Controller A, 10.0.0.3 - Controller B) are not compatible with your network, refer to ["Accessing the CLI"](../powervault-me5/me5-cli.md) to learn how to set the network port IP addresses."
 2. In a supported web browser, type `https://10.0.0.2` to access controller module A on an IPv4 network.
 3. If the storage system is running G275 firmware:
       1. Sign in to the PowerVault Manager using the following user name and password:
@@ -43,15 +48,15 @@ Upon completing the hardware installation, use PowerVault Manager to configure, 
 
 When the update completes, the system restarts.
 
-!!! tip "See also, [Firmware Updates](../powervault-me4/me4-firmware-updates.md)."
+!!! tip "See also, [Firmware Updates](../powervault-me5/me5-firmware-updates.md)."
 
 ## Guided setup
 
 !!! info
 
-    When you first access the Welcome panel wizard, you are prompted to select the type of storage to use for your environment. Dell recommends using virtual storage. See the [About virtual and linear storage](../powervault-me4/me4-virtual-linear-storage.md) section for more information.
+    When you first access the Welcome panel wizard, you are prompted to select the type of storage to use for your environment. Dell recommends using virtual storage. See the [About virtual and linear storage](../powervault-me5/me5-virtual-linear-storage.md) section for more information.
 
-    See also, [Best Practices: Performance](me4-best-practice.md#performance)
+    See also, [Best Practices: Performance](me5-best-practice.md#performance)
 
 The *Welcome* panel provides options for you to quickly set up your system by guiding you through the configuration and provisioning process.
 
@@ -59,9 +64,9 @@ With guided setup, you must first configure your system settings by accessing th
 
 1. From the *Welcome* panel, access the *System Settings* panel and complete all the required options (red asterisk).
 2. Save your settings and exit to the *Welcome* panel.
-3. Click *Storage Setup* and follow the prompts to begin provisioning your system by configuring [disk groups](../powervault-me4/me4-pools.md#disk-groups), [spares](../powervault-me4/me4-spares.md) and [pools](../powervault-me4/me4-pools.md).
+3. Click *Storage Setup* and follow the prompts to begin provisioning your system by configuring [disk groups](../powervault-me5/me5-pools.md#disk-groups), [spares](../powervault-me5/me5-spares.md) and [pools](../powervault-me5/me5-pools.md).
 4. Save your settings and exit to the *Welcome* panel.
-5. Click *Host Setup* and follow the prompts to continue provisioning your system by [attaching hosts](../powervault-me4/me4-host-setup.md).
+5. Click *Host Setup* and follow the prompts to continue provisioning your system by [attaching hosts](../powervault-me5/me5-host-setup.md).
 
 !!! note
 

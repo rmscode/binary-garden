@@ -59,7 +59,7 @@ Syntax: `show events [a|b|both|error]`
 4. Show a range of events logged by controller A
 5. Show detailed output for a specific event
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4024/me4_series_cli_pub/show-events?guid=guid-9179f911-1376-4d04-bb13-4ff02101d79b&lang=en-us)
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_cli/show-events?guid=guid-41a6afb6-fbf9-443c-aefa-70ef52b9384f&lang=en-us)
 
 ## Download system logs
 
@@ -68,24 +68,21 @@ Syntax: `show events [a|b|both|error]`
       2. Verify that the FTP/SFTP service is enabled on the system. (Action > System Settings System Services tab)
       3. Verify that the user you plan to use has manage role permissions and FTP/SFTP interface permissions.
 2. Open a Command Prompt (Windows) or a terminal window (UNIX) and go to the destination directory for the log file.
-      - `ftp <controller-network-address>`
-3. Log in as a user that has permission to use the FTP/SFTP interface.
-4. Get the logs:
-      - `get logs <filename.zip>` where *`<filename>`* is the file that contains the logs. 
-5. Wait for `Operation Complete` to appear.
-6. Quit FTP session. 
+3. Using the FTP/SFTP port specified in the system services settings, enter:
+        `sftp -P <port> <controller-network-address>` or `ftp <controller-network-address>`
+4. Log in as a user that has permission to use the FTP/SFTP interface.
+5. Make sure the client is in binary transfer mode by entering `binary`.
+6. Get the logs:
+        `get logs <filename>.zip` where *`<filename>`* is the file that contains the logs. 
+7. Wait for `Operation Complete` to appear.
+8. Quit FTP session. 
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/download-system-logs?guid=guid-35296596-b4c6-4e7e-9249-d178538b402d&lang=en-us)
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5084/me5_series_ag/download-system-logs?guid=guid-a07cbc51-b7ef-4f1b-9ce3-1c4be111ac34&lang=en-us)
 
 ## Configure remote syslog notifications
 
-1. In either the Home topic of System topic, select **Action** > **System Settings**, then click **Notifications**.
-2. Select the **Syslog** tab.
-3. Configure teh Syslog options.
-4. Save your settings by clicking **Apply**.
-5. Click **OK** on the confirmation panel that appears.
-6. Click **Test Syslog**. A test event is sent to the syslog server.
-7. Verify that the test notification reach the syslog server.
-8. Click **OK**.
+!!! note
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/configure-remote-syslog-notifications?guid=guid-6d66c817-8556-46fa-8bce-e9c38d1b5108&lang=en-us)
+    Needs better documentation. Dell's docs are pretty lean...All they say is "use the Syslog panel to set remote syslog notifications".
+
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/set-up-syslog-notifications?guid=guid-3aeab203-531b-41f0-bc8c-40c9375a3df0&lang=en-us)
