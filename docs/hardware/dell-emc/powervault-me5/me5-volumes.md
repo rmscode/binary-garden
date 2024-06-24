@@ -4,9 +4,9 @@ status: new
 
 # Volumes and Volume groups
 
-A volume is a logical subdivision of a virtual or linear pool and can be mapped to host-based applications. A mapped volume provides addressable storage to a host (for example, a file system partition you create with your operating system or third-party tools). For more information, see [Mapping](../powervault-me4/me4-mappings.md).
+A volume is a logical subdivision of a virtual or linear pool and can be mapped to host-based applications. An attached volume provides addressable storage to a host (for example, a file system partition you create with your operating system or third-party tools). For more information, see [Attaching volumes to hosts](https://www.dell.com/support/manuals/en-us/powervault-me5084/me5_series_ag/attaching-volumes-to-hosts?guid=guid-337fb819-979a-485c-afcd-3105aa78e3bd&lang=en-us).
 
-## Virtual Volumes
+## Virtual & Linear Volumes
 
 Virtual volumes make use of a method of storing user data in virtualized pages. These pages may be spread throughout the underlying physical storage in a random fashion and allocated on demand. Virtualized storage therefore has a dynamic mapping between logical and physical blocks.
 
@@ -14,79 +14,75 @@ Because volumes and snapshots share the same underlying structure, it is possibl
 
 A maximum of 1024 virtual volumes can exist per system.
 
-### Create Virtual Volume
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5084/me5_series_ag/virtual-volumes?guid=guid-f29fe66b-1d08-414e-97c9-27d8bfb6924f&lang=en-us)
 
-1. Perform one of the following:
-      1. In the Pools topic, select a virtual pool in the pools table and select **Action > Create Volumes**.
-      2. In the Volumes topic, select **Action > Create Virtual Volumes**.
-2. (Optional) Change the name, the volume size (MiB, GiB, TiB, MB, GB, TB), the number of volumes to create, and/or the volume affinity for tiering (default none).
-3. Click **OK**.
+Linear volumes make use of a method of storing user data in sequential fully allocated physical blocks. Mapping between the logical data presented to hosts and the physical location where it is stored is fixed, or static. These blocks have a fixed (static) mapping between the logical data presented to hosts and the physical location where it is stored.
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/create-virtual-volumes?guid=guid-b0eccb14-2cc7-4be3-b685-542255789576&lang=en-us)
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5084/me5_series_ag/linear-volumes?guid=guid-100e0262-bf79-4819-b470-a7760717fd49&lang=en-us)
 
-### Copy a Virtual Volume
+### Creating Volumes
 
-1. In the Volumes topic, select a virtual volume.
-2. Select **Action > Copy Volume**.
-3. (Optional) In the **New Volume** field, change the name for the new volume.
-4. In the **Residing on Pool** field, select the pool in which to create the copy. Selecting **Auto** copies the destination volume to the same pool as the source volume.
-5. Click **OK**.
+You can add volumes to virtual pools and linear disk groups. Click **Create Volumes** (**Provisioning > Volumes**) to open the Create Volumes wizard to add volumes to a pool (virtual) or a volume to a disk group (linear).
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/copy-a-virtual-volume-or-snapshot?guid=guid-6b622cfb-f44e-445a-a4f3-b8be08f66bff&lang=en-us)
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5084/me5_series_ag/creating-volumes?guid=guid-f111dd41-655c-47d7-bc46-e481a3abdc7f&lang=en-us)
+
+### Copying Volumes
+
+You can copy a volume or snapshot to a new volume by accessing one of the following:
+
+- Volumes table (**Provisioning > Volumes**)
+- Volumes table (**Provisioning > Volumes > Data Protection**)
+- Overview panel (**Provisioning > Volumes** > *slide-over* > **Overview** )
+
+Select the volume and choose **Copy Volume** from the drop-down list. Follow the on-screen directions to complete the action.
+
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5084/me5_series_ag/copying-volumes-or-snapshots?guid=guid-a3ebc461-2187-4657-bbca-8e30c7076d2e&lang=en-us)
 
 ### Abort a Virtual Volume Copy
 
-1. In the Volumes topic, select a volume that is currently being copied.
-2. Select **Menu > Abort Volume Copy**.
-3. Click **Yes** to abort the operation.
+You can abort a volume copy operation (**Provisioning > Volumes**) by selecting the slide-over of the volume being copied.
 
-When the operation is complete, the destination volume is deleted.
+In the Overview panel, click the blue X next to the progress indicator. Follow the prompts to abort the operation.
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/abort-a-volume-copy?guid=guid-966588fe-6f53-4d09-b188-9e1875818651&lang=en-us)
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5084/me5_series_ag/aborting-a-volume-copy?guid=guid-7a3e4a4d-0792-40ae-9d85-63263f69011d&lang=en-us)
 
 ### Rolling Back a Virtual Volume
 
-1. Unmount the volume from hosts.
-2. In the Volumes topic, select the volume to roll back.
-3. Select **Action > Rollback Volume**. The Rollback Volume panel opens and lists snapshots of the volume.
-4. Select the snapshot to roll back to.
-5. Click **OK**.
+!!! warning
 
-You can remount the volume after the rollback completes.
+      When you perform a rollback, the data that existed on the volume is replaced by the data on the snapshot. All data on the volume written since the snapshot was created is lost. As a precaution, create a snapshot of the volume before starting a rollback.
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/roll-back-a-volume?guid=guid-43901d0a-3d59-4cca-af7f-a839692a8471&lang=en-us)
+You can replace the data of a source volume or virtual snapshot with the data of a snapshot that was created from it using one of the methods described below.
 
-## Linear Volumes
+- Volumes table (**Provisioning > Volumes**)
+- Data Protection table (**Provisioning > Volumes > Data Protection**)
+- Snapshots panel (**Provisioning > Volumes >** *slide-over* > **Snapshots**)
 
-Linear volumes make use of a method of storing user data in sequential, fully allocated physical blocks. Mapping between the logical data presented to hosts and the physical location where it is stored is fixed, or static.
+Select the volume or snapshot, then choose Rollback Volumes from the drop-down list. Follow the on-screen directions to complete the action.
 
-### Create Linear Volume
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5084/me5_series_ag/rolling-back-virtual-volumes?guid=guid-ed7d8572-bf86-40df-ad13-60cfeba5935a&lang=en-us)
 
-1. Perform on of the following:
-      1. In the Pools topic, select a linear pool in the pools table and select **Action > Create Volumes**.
-      2. In the Volumes topic, select **Action > Create Linear Volumes**. 
-2. (Optional) Change the number of copies to create, the volume name, and/or the volume size (MiB, GiB, TiB, MB, GB, TB).
-3. Clikc **OK**.
+### Modifying Volumes
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/create-linear-volumes?guid=guid-c026834e-de8c-4609-b001-4fb2c2afeeb0&lang=en-us)
+!!! warning
 
-## Modifying Volumes
+      Only change the volume cache settings if you fully understand how the host operating system, application, and host adapter move data so that you can adjust the settings accordingly.
 
-1. In the Volumes topic, select a volume in the volumes table.
-2. Select **Action > Modify Volume**.
-3. Make desired modifications.
-4. Click **OK**.
+Change the volume settings from the Volumes table (**Provisioning > Volumes**) by selecting the volume slide-over to access the Overview panel. Here you can expand volumes, copy volumes, modify the volume name, and select cache setting options and tier affinity settings. If the volume is not a snapshot or a secondary volume involved in replication, you can expand the volume size.
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/modify-a-volume?guid=guid-13c04acd-bb88-4c92-be83-b1f9822f5677&lang=en-us)
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5084/me5_series_ag/modifying-volumes?guid=guid-1ba959db-663a-4dd0-8df9-85f9dab2e26d&lang=en-us)
 
-## Delete a Volume
+### Delete a Volume
 
-1. Verify that hosts are not accessing the volumes that you want to delete.
-2. In the Volumes topic, select 1 through 100 items (volumes, snapshots, or both) to delete.
-3. Select **Action > Delete Volumes**. The Delete Volumes panel opens with a list of the items to be deleted.
-4. Click **Delete**. The items are deleted and the volumes table is updated.
+You can delete volumes and snapshots from the Volumes table:
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/delete-volumes-and-snapshots?guid=guid-e334f829-6b6f-4e1b-9a6e-d1806e5f06a2&lang=en-us)
+- Volumes table (**Provisioning > Volumes**)
+- Volumes table (**Provisioning > Volumes > Data Protection**)
+- Overview panel (**Provisioning > Volumes** > *slide-over* > **Snapshots** )
+
+From the slide-over you can only delete the selected volume (the volume for which the slide-over is opened) and its children. Clicking the slide-over for the base volume enables deleting the entire tree. Select a volume or snapshot, then choose **Delete** Volumes from the drop-down list. Follow the on-screen directions to complete the action.
+
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5084/me5_series_ag/deleting-volumes-and-snapshots?guid=guid-a0c7cec6-865e-4c92-af86-bc70feff43c3&lang=en-us)
 
 ## Volume Groups
 
@@ -94,57 +90,64 @@ You can group a maximum of 1024 volumes (standard volumes, snapshots, or both) i
 
 A volume can be a member of only one group. All volumes in a group must be in the same virtual pool. A volume group cannot have the same name as another volume group, but can have the same name as any volume. A maximum of 256 volume groups can exist per system. If a volume group is being replicated, the maximum number of volumes that can exist in the group is 16.
 
-!!! info "Volume groups apply only to virtual volumes. You cannot add linear volumes to a volume group."
+!!! note "Unlike the ME4, volume groups for the ME5 can not be created in the PowerVault Manager. They are only supported through the CLI."
 
-### Adding Volumes to a Group
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5084/me5_series_ag/volume-groups?guid=guid-0f601606-1ed8-4719-910f-7adcf8d8e011&lang=en-us)
 
-1. In the Volumes topic, select up to 20 volumes to add to a volume group.
-2. Select **Action > Add to Volume Group**.
-3. Perform one of the following:
-      - To use an existing volume group, select it from the **Volume Groups** field.
-      - To create a volume group, type a name for the volume group in the **Volume Groups** field. A volume group name is case-sensitive and can have a maximum of 32 bytes. It cannot include the following: `" , < \`
-4. Click **OK**.
+=== "Create Volume Groups"
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/add-volumes-to-a-volume-group?guid=guid-618d3bd8-a38f-44d5-a9dd-bab08105e1c5&lang=en-us)
+      Syntax: `create volume-group volumes <volume-IDs> <volume-group>`
+      
+      !!! example "Create a volume group named `VG1` that includes volumes `VOL1` and `VOL2`"
 
-### Removing Volumes from a Group
+            `# create volume-group volumes VOL1,VOL2 VG1`
 
-1. In the Volumes topic, select the volumes to remove from a volume group.
-2. Select **Action > Remove from Volume Group**. The Remove from Volume Group panel opens and lists the volumes to be removed.
-3. Click **OK**. For the selected volumes, the Group value changes to `--`.
+      [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_cli/create-volume-group?guid=guid-f2a73c07-acb9-43fb-a9b8-d6eae8fa5520&lang=en-us)
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/remove-volumes-from-a-volume-group?guid=guid-acf462eb-a931-4c05-a673-7ab2f7aa0224&lang=en-us)
+=== "Add Volumes to a Group"
 
-### Renaming a Volume Group
+      Sytax: `add volume-group-members volumes <volume-IDs> <volume-group>`
 
-1. In the Volumes topic, select a volume that belongs to the volume group that you want to rename.
-1. Select **Action > Rename Volume Group**. The Rename Volume Group panel opens.
-3. In the **New Group Name** field, enter a new name for the volume group. A volume group name is case sensitive and can have a maximum of 32 bytes. It cannot include the following: `" , < \`
-4. Click OK. The volumes table is updated.
+      !!! example "Add volume `VOL3` to volume group `VG1`"
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/rename-a-volume-group?guid=guid-0f374c44-1801-4f00-87db-6a6a9611bbdd&lang=en-us)
+            `# add volume-group-members volumes VOL3 VG1`
 
-### Remove Volume Group
+      [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_cli/add-volume-group-members?guid=guid-d945cc96-bd7a-4e37-b0a5-3a62b85e2141&lang=en-us)
 
-!!! info 
+=== "Remove Volumes from a Group"
 
-    You can remove volume groups. When you remove a volume group, you can optionally delete its volumes. Otherwise, removing a volume group will ungroup its volumes but will not delete them.
+      Syntax: `remove volume-group-members volumes <volume-IDs> <volume-group>`
 
-!!! warning "Deleting a volume removes its mappings and schedules and deletes its data."
+      !!! example "Remove volumes `VOL1` and `VOL2` from volume group `VG1`"
 
-#### Remove Volume Groups Only
+            `# remove volume-group-members volumes VOL1,VOL2 VG1`
 
-1. In the Volumes topic, select a volume that belongs to each volume group that you want to remove. You can remove 1 through 100 volume groups at a time.
-2. Select **Action > Remove Volume Group**. The Remove Volume Group panel opens and lists the volume groups to be removed.
-3. Click **OK**. For volumes that were in the selected volume groups, the Volume Groups value changes to `--`.
+      [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_cli/remove-volume-group-members?guid=guid-3cca5697-8219-42f9-83bc-4c7ba33eb6cb&lang=en-us)
 
-#### Remove Volume Groups and Their Volumes
+=== "Rename Volume Groups"
 
-1. Verify that hosts are not accessing the volumes that you want to delete.
-2. In the Volumes topic, select a volume that belongs to each volume group that you want to remove. You can remove 1 through 100 volume groups at a time.
-3. Select **Action > Remove Volume Group**. The Remove Volume Group panel opens and lists the volume groups to be removed.
-4. Tick the Delete Volumes box.
-5. Click **OK**.
-6. Click **Yes**.
+      Syntax: `set volume-group name <new-name> <volume-group>`
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me4012/me4_series_ag_pub/remove-volume-groups?guid=guid-3fc5ed3a-00a3-4146-9ae2-ab0ded10d8ea&lang=en-us)
+      !!! example "Rename volume group `VG1` to `MyVG1`"
+
+            `# set volume-group name MyVG1 VG1`
+
+      [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_cli/set-volume-group?guid=guid-7fd74a36-f922-4cf1-98a7-dadf72d1d980&lang=en-us)
+
+=== "Delete Volume Groups"
+
+      Syntax: `delete volume-groups <volume-group>|all [delete-volumes]`
+
+      !!! example "Delete volume groups `VG1` and `VG2`, but not the volumes in those groups"
+
+            `# delete volume-groups VG1,VG2`
+
+      !!! example "Delete volume group `VG1` and all volumes in that group"
+
+            `# delete volume-groups VG1 delete-volumes`
+
+      !!! example "Delete all volume groups and the volumes in those groups"
+
+            `# delete volume-groups delete-volumes all`
+
+      [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_cli/delete-volume-groups?guid=guid-546b4e73-8b85-4411-83d1-3db484383f1b&lang=en-us)
