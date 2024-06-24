@@ -162,6 +162,31 @@ nav:
         - Logging: hardware/dell-emc/powervault-me4/me4-logging.md
         - Troubleshooting: hardware/dell-emc/powervault-me4/me4-troubleshooting.md
         - Best Practices: hardware/dell-emc/powervault-me4/me4-best-practice.md
+      - PowerVault ME5 Storage:
+        - Overview: hardware/dell-emc/powervault-me5/me5-overview.md
+        - Getting Started:
+          - Deployment Brief: hardware/dell-emc/powervault-me5/me5-deployment-brief.md
+          - System and Storage Setup: hardware/dell-emc/powervault-me5/me5-guided-setup.md
+          - Host Setup (Windows): hardware/dell-emc/powervault-me5/me5-host-setup.md
+          - Security Certificate (Optional): hardware/dell-emc/powervault-me5/me5-install-certificate.md
+          - System Notifications (Optional): hardware/dell-emc/powervault-me5/me5-notifications.md
+        - System Concepts:
+          - Hosts and Initiators: hardware/dell-emc/powervault-me5/me5-hosts.md
+          - Mappings: hardware/dell-emc/powervault-me5/me5-mappings.md
+          - Pools and Disk Groups: hardware/dell-emc/powervault-me5/me5-pools.md
+          - Replication: hardware/dell-emc/powervault-me5/me5-replication.md
+          - Snapshots: hardware/dell-emc/powervault-me5/me5-snapshots.md
+          - Spares (Parity Disks): hardware/dell-emc/powervault-me5/me5-spares.md
+          - Virtual and Linear Storage: hardware/dell-emc/powervault-me5/me5-virtual-linear-storage.md
+          - Volumes and Volume Groups: hardware/dell-emc/powervault-me5/me5-volumes.md
+        - System Maintenance:
+          - Firmware Updates: hardware/dell-emc/powervault-me5/me5-firmware-updates.md
+          - Shutting Down a Controller Module: hardware/dell-emc/powervault-me5/me5-shutdown-controller.md
+          - Module Removal & Replacement: hardware/dell-emc/powervault-me5/me5-module-removal.md
+        - Accessing the CLI: hardware/dell-emc/powervault-me5/me5-cli.md
+        - Logging: hardware/dell-emc/powervault-me5/me5-logging.md
+        - Troubleshooting: hardware/dell-emc/powervault-me5/me5-troubleshooting.md
+        - Best Practices: hardware/dell-emc/powervault-me5/me5-best-practice.md
     - Microsoft:
       - Microsoft Surface: hardware/microsoft/surface-rt.md
     - Raspberry Pi:
