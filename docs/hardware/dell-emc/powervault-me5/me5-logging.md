@@ -64,9 +64,9 @@ Syntax: `show events [a|b|both|error]`
 ## Download system logs
 
 1. In the PowerVault Manager, prepare to use FTP:
-      1. Determine the network-port IP addresses of the system controllers. (Defaults: A-10.0.0.2/B-10.0.0.3, or whatever you configured)
-      2. Verify that the FTP/SFTP service is enabled on the system. (Action > System Settings System Services tab)
-      3. Verify that the user you plan to use has manage role permissions and FTP/SFTP interface permissions.
+    1. Determine the network-port IP addresses of the system controllers. (Defaults: A-10.0.0.2/B-10.0.0.3, or whatever you configured)
+    2. Verify that the FTP/SFTP service is enabled on the system. (Action > System Settings System Services tab)
+    3. Verify that the user you plan to use has manage role permissions and FTP/SFTP interface permissions.
 2. Open a Command Prompt (Windows) or a terminal window (UNIX) and go to the destination directory for the log file.
 3. Using the FTP/SFTP port specified in the system services settings, enter:
         `sftp -P <port> <controller-network-address>` or `ftp <controller-network-address>`

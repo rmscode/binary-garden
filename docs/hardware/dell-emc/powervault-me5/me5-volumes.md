@@ -50,7 +50,7 @@ In the Overview panel, click the blue X next to the progress indicator. Follow t
 
 !!! warning
 
-      When you perform a rollback, the data that existed on the volume is replaced by the data on the snapshot. All data on the volume written since the snapshot was created is lost. As a precaution, create a snapshot of the volume before starting a rollback.
+    When you perform a rollback, the data that existed on the volume is replaced by the data on the snapshot. All data on the volume written since the snapshot was created is lost. As a precaution, create a snapshot of the volume before starting a rollback.
 
 You can replace the data of a source volume or virtual snapshot with the data of a snapshot that was created from it using one of the methods described below.
 
@@ -66,7 +66,7 @@ Select the volume or snapshot, then choose Rollback Volumes from the drop-down l
 
 !!! warning
 
-      Only change the volume cache settings if you fully understand how the host operating system, application, and host adapter move data so that you can adjust the settings accordingly.
+    Only change the volume cache settings if you fully understand how the host operating system, application, and host adapter move data so that you can adjust the settings accordingly.
 
 Change the volume settings from the Volumes table (**Provisioning > Volumes**) by selecting the volume slide-over to access the Overview panel. Here you can expand volumes, copy volumes, modify the volume name, and select cache setting options and tier affinity settings. If the volume is not a snapshot or a secondary volume involved in replication, you can expand the volume size.
 
@@ -96,58 +96,58 @@ A volume can be a member of only one group. All volumes in a group must be in th
 
 === "Create Volume Groups"
 
-      Syntax: `create volume-group volumes <volume-IDs> <volume-group>`
-      
-      !!! example "Create a volume group named `VG1` that includes volumes `VOL1` and `VOL2`"
+    Syntax: `create volume-group volumes <volume-IDs> <volume-group>`
+    
+    !!! example "Create a volume group named `VG1` that includes volumes `VOL1` and `VOL2`"
 
-            `# create volume-group volumes VOL1,VOL2 VG1`
+        `# create volume-group volumes VOL1,VOL2 VG1`
 
-      [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_cli/create-volume-group?guid=guid-f2a73c07-acb9-43fb-a9b8-d6eae8fa5520&lang=en-us)
+    [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_cli/create-volume-group?guid=guid-f2a73c07-acb9-43fb-a9b8-d6eae8fa5520&lang=en-us)
 
 === "Add Volumes to a Group"
 
-      Sytax: `add volume-group-members volumes <volume-IDs> <volume-group>`
+    Syntax: `add volume-group-members volumes <volume-IDs> <volume-group>`
 
-      !!! example "Add volume `VOL3` to volume group `VG1`"
+    !!! example "Add volume `VOL3` to volume group `VG1`"
 
-            `# add volume-group-members volumes VOL3 VG1`
+        `# add volume-group-members volumes VOL3 VG1`
 
-      [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_cli/add-volume-group-members?guid=guid-d945cc96-bd7a-4e37-b0a5-3a62b85e2141&lang=en-us)
+    [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_cli/add-volume-group-members?guid=guid-d945cc96-bd7a-4e37-b0a5-3a62b85e2141&lang=en-us)
 
 === "Remove Volumes from a Group"
 
-      Syntax: `remove volume-group-members volumes <volume-IDs> <volume-group>`
+    Syntax: `remove volume-group-members volumes <volume-IDs> <volume-group>`
 
-      !!! example "Remove volumes `VOL1` and `VOL2` from volume group `VG1`"
+    !!! example "Remove volumes `VOL1` and `VOL2` from volume group `VG1`"
 
-            `# remove volume-group-members volumes VOL1,VOL2 VG1`
+        `# remove volume-group-members volumes VOL1,VOL2 VG1`
 
-      [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_cli/remove-volume-group-members?guid=guid-3cca5697-8219-42f9-83bc-4c7ba33eb6cb&lang=en-us)
+    [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_cli/remove-volume-group-members?guid=guid-3cca5697-8219-42f9-83bc-4c7ba33eb6cb&lang=en-us)
 
 === "Rename Volume Groups"
 
-      Syntax: `set volume-group name <new-name> <volume-group>`
+    Syntax: `set volume-group name <new-name> <volume-group>`
 
-      !!! example "Rename volume group `VG1` to `MyVG1`"
+    !!! example "Rename volume group `VG1` to `MyVG1`"
 
-            `# set volume-group name MyVG1 VG1`
+        `# set volume-group name MyVG1 VG1`
 
-      [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_cli/set-volume-group?guid=guid-7fd74a36-f922-4cf1-98a7-dadf72d1d980&lang=en-us)
+    [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_cli/set-volume-group?guid=guid-7fd74a36-f922-4cf1-98a7-dadf72d1d980&lang=en-us)
 
 === "Delete Volume Groups"
 
-      Syntax: `delete volume-groups <volume-group>|all [delete-volumes]`
+    Syntax: `delete volume-groups <volume-group>|all [delete-volumes]`
 
-      !!! example "Delete volume groups `VG1` and `VG2`, but not the volumes in those groups"
+    !!! example "Delete volume groups `VG1` and `VG2`, but not the volumes in those groups"
 
-            `# delete volume-groups VG1,VG2`
+        `# delete volume-groups VG1,VG2`
 
-      !!! example "Delete volume group `VG1` and all volumes in that group"
+    !!! example "Delete volume group `VG1` and all volumes in that group"
 
-            `# delete volume-groups VG1 delete-volumes`
+        `# delete volume-groups VG1 delete-volumes`
 
-      !!! example "Delete all volume groups and the volumes in those groups"
+    !!! example "Delete all volume groups and the volumes in those groups"
 
-            `# delete volume-groups delete-volumes all`
+        `# delete volume-groups delete-volumes all`
 
-      [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_cli/delete-volume-groups?guid=guid-546b4e73-8b85-4411-83d1-3db484383f1b&lang=en-us)
+    [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_cli/delete-volume-groups?guid=guid-546b4e73-8b85-4411-83d1-3db484383f1b&lang=en-us)

@@ -29,7 +29,7 @@ As a best practice and a time-saving tip, configure the nodes in a cluster so th
     Imagine you have a cluster with four nodes: Node A, Node B, Node C, and Node D. You want to map a new shared volume to these nodes.
 
     1. **Consistent LUN Assignment:**
-   
+
         - If you map the shared volume to Node A using LUN ID 5, you should also map the same volume to Node B and Node C using LUN ID 5.
         - This ensures that all nodes refer to the shared volume by the same LUN ID, preventing any discrepancies in accessing the storage.
 
@@ -72,10 +72,10 @@ You should enable at least one notification service to monitor the system. Email
 ### Send E-Mail notifications
 
 1. Perform one of the following to access the options in the Notifications tab:
-      -  In the Home topic, select Action -> System Settings, then click Notifications.
-      -  In the System topic, select Action -> System Settings, then click Notifications.
-      -  In the footer, click the events panel and select Set Up Notifications.
-      -  In the Welcome panel, select System Settings, and then click the Notifications tab.
+    -  In the Home topic, select Action -> System Settings, then click Notifications.
+    -  In the System topic, select Action -> System Settings, then click Notifications.
+    -  In the footer, click the events panel and select Set Up Notifications.
+    -  In the Welcome panel, select System Settings, and then click the Notifications tab.
 2. Select the Email tab and ensure that the SMTP Server and SMTP Domain options are set. For details about panel options, see the on-screen tool tips.
 3. Set the email notification.
 4. Select the minimum severity for which the system should send email notifications.

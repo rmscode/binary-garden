@@ -18,7 +18,7 @@ Navigate to **Provisioning > Volumes >** *slide-over* > **Snapshots** and then f
 
 !!! note
 
-      When creating local snapshots, you will be prompted to set a schedule. This is the only time where you can set a snapshot schedule in the Powervault Manager. IF you do not set a schedule when prompted, you will need to create a a schedule using the ` create schedule` CLI command.
+    When creating local snapshots, you will be prompted to set a schedule. This is the only time where you can set a snapshot schedule in the Powervault Manager. IF you do not set a schedule when prompted, you will need to create a a schedule using the ` create schedule` CLI command.
 
 [*Reference*](hhttps://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_ag/creating-snapshots?guid=guid-c5df9d61-df54-4545-9aae-d35134c006bf&lang=en-us)
 
@@ -44,8 +44,8 @@ Navigate to the snapshots panel (**Provisioning > Volumes >** slide-over **> Sna
 
 !!! note "notes"
 
-      - You must detach the source before copying it.
-      - The volume/snapshot will not be available for read/write access until the copy is complete.
+    - You must detach the source before copying it.
+    - The volume/snapshot will not be available for read/write access until the copy is complete.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_ag/copying-volumes-or-snapshots?guid=guid-a3ebc461-2187-4657-bbca-8e30c7076d2e&lang=en-us)
 
@@ -55,12 +55,12 @@ Navigate to the snapshots panel (**Provisioning > Volumes >** *slide-over* **> S
 
 !!! warning
 
-      Deleting a volume or snapshot removes its host attachments and schedules and deletes its data.
+    Deleting a volume or snapshot removes its host attachments and schedules and deletes its data.
 
 !!! note "Notes"
 
-      - From the slide-over you can only delete the selected volume (the volume for which the slide-over is opened) and its children. Clicking the slide-over for the base volume enables deleting the entire tree.
-      - You can select from 1 to 100 items (volumes, snapshots, or both) to delete.
-      - Ensure that hosts are not accessing the snapshots to be deleted.
+    - From the slide-over you can only delete the selected volume (the volume for which the slide-over is opened) and its children. Clicking the slide-over for the base volume enables deleting the entire tree.
+    - You can select from 1 to 100 items (volumes, snapshots, or both) to delete.
+    - Ensure that hosts are not accessing the snapshots to be deleted.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_ag/deleting-volumes-and-snapshots?guid=guid-a0c7cec6-865e-4c92-af86-bc70feff43c3&lang=en-us)

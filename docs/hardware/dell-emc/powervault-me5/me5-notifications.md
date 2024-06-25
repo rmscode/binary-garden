@@ -8,7 +8,7 @@ Optional, but considered best practice.
 
 !!! abstract "Needs better documentation"
 
-      The Dell docs don't offer step by step instructions for setting up notifications for the ME5. These settings are presumably located in **System Settings > Notifications**.
+    The Dell docs don't offer step by step instructions for setting up notifications for the ME5. These settings are presumably located in **System Settings > Notifications**.
 
 ## Email Notifications
 

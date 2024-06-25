@@ -37,7 +37,7 @@ The guided setup includes the following tasks:
 Start the initial configuration by logging in to the PowerVault Manager, changing the password, and verifying the firmware version.
 
 1. Temporarily set the management host NIC to a 10.0.0.x address or to the same IPv6 subnet to enable communication with the storage system.
-      - !!! note "If the default IP addresses (10.0.0.2 - Controller A, 10.0.0.3 - Controller B) are not compatible with your network, refer to ["Accessing the CLI"](../powervault-me5/me5-cli.md#) to learn how to set the network port IP addresses."
+    - !!! note "If the default IP addresses (10.0.0.2 - Controller A, 10.0.0.3 - Controller B) are not compatible with your network, refer to ["Accessing the CLI"](../powervault-me5/me5-cli.md#) to learn how to set the network port IP addresses."
 2. In a supported web browser, type `https://10.0.0.2` to access controller module A on an IPv4 network.
 3. To read the license agreement click **EULA**, review the EULA and click **Close**.
 4. Click **Get Started**.
@@ -64,8 +64,8 @@ Click **Start** to begin the system configuration setup.
 The date and time settings can be changed if needed after initial setup using the **Settings > System > Date and Time** panel in the PowerVault Manager or by clicking on the date and time displayed in the banner.
 
 1. Select either **Network Time Protocol (NTP)** or **Manual**.
-      - For Manual setting, enter the current (local) date and time.
-      - For NTP setting, enter the NTP server address and the NTP time zone offset .
+    - For Manual setting, enter the current (local) date and time.
+    - For NTP setting, enter the NTP server address and the NTP time zone offset .
 2. Click **Apply And Continue**.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/set-the-date-and-time?guid=guid-4e86a793-555b-4a9c-a9cb-20528c27af8a&lang=en-us)
@@ -75,9 +75,9 @@ The date and time settings can be changed if needed after initial setup using th
 The user settings can be changed and new users can be added after initial setup using the **Settings > Users** panel in the PowerVault Manager.
 
 1. Select the type of user to set up:
-      - **Local**
-      - **SNMPv3**
-      -  **Skip this Step**
+    - **Local**
+    - **SNMPv3**
+    -  **Skip this Step**
 2. Click **Continue**.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/set-up-users?guid=guid-701cc698-80f3-46e9-b445-ad9fec198032&lang=en-us)
@@ -105,10 +105,10 @@ The user settings can be changed and new users can be added after initial setup 
 The notification settings can be changed if needed after initial setup using the **Settings > Notifications** panel in the PowerVault Manager.
 
 1. Select the type of notification to set up:
-      - **Email**
-      - **SNMP**
-      - **Syslog**
-      - **Skip this Step**
+    - **Email**
+    - **SNMP**
+    - **Syslog**
+    - **Skip this Step**
 2. Click **Continue**.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/notifications?guid=guid-250b90ec-9beb-4747-a544-2814a168e2b2&lang=en-us)
@@ -118,14 +118,14 @@ The notification settings can be changed if needed after initial setup using the
 The iSCSI settings can be changed or set after initial setup using the **Settings > iSCSI** panel in the PowerVault Manager.
 
 1. On the **iSCSI Settings** panel, configure the following settings:
-      - IP Version
-      - Jumbo Frames
-      - CHAP Authentication
-      - ISNS
+    - IP Version
+    - Jumbo Frames
+    - CHAP Authentication
+    - ISNS
 2. Click **Continue**.
 3. On the **Host port addresses** panel, set the IP address, netmask, and gateway for each port on both controllers.
 4. Click **Continue**.
-      - If you selected CHAP, the configuration panel opens.
+    - If you selected CHAP, the configuration panel opens.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/configure-iscsi-ports?guid=guid-c64e4dba-c02a-4657-a2f9-ee8ccb6aacee&lang=en-us)
 
@@ -146,9 +146,9 @@ The iSCSI settings can be changed or set after initial setup using the **Setting
 
 1. On the **System Configuration Main Page**, click **Start** under **Storage Configuration**.
 2. In the Select Storage Type panel, review the option descriptions for Virtual and Linear storage. You can also choose to skip this step and configure storage later using **Maintenance > Settings > Storage** in the PowerVault Manager.
-      - **Virtual**
-      - **Linear**
-      - **Skip this Step**
+    - **Virtual**
+    - **Linear**
+    - **Skip this Step**
 3. Click **Continue**.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/storage-configuration?guid=guid-f300ef96-49ae-4e7f-9835-b112f117e32f&lang=en-us)
@@ -156,16 +156,16 @@ The iSCSI settings can be changed or set after initial setup using the **Setting
 #### Set up Virtual Storage
 
 1. To automatically set up storage, click **Auto Storage Setup**.
-      1. Verify that the Disk Scan results indicate that the system is Healthy.
-      2. Review the pool configuration and if it meets your needs, click Apply Configuration, otherwise click Cancel and set up storage manually. After applying the configuration, the system configures the pools and spares and displays a success message when complete.
-      3. Click **OK**.
+    1. Verify that the Disk Scan results indicate that the system is Healthy.
+    2. Review the pool configuration and if it meets your needs, click Apply Configuration, otherwise click Cancel and set up storage manually. After applying the configuration, the system configures the pools and spares and displays a success message when complete.
+    3. Click **OK**.
 2. To manually set up storage, expand **Pool A** and click **Add Disk Group**. The Add Disk Group panel opens.
-      1. In the **Configuration** section, choose the **Protection Level** (RAID) from the drop down box.
-      2. In the **Available Disks** section, select the disks to include in the pool.
-      3. Review the **Summary**, and click **Add Disk Group**.
-      4. Click **OK**.
-      5. Repeat these steps for **Pool B**.
-      6. In the **Storage Type > Pools** panel click **Continue**.
+    1. In the **Configuration** section, choose the **Protection Level** (RAID) from the drop down box.
+    2. In the **Available Disks** section, select the disks to include in the pool.
+    3. Review the **Summary**, and click **Add Disk Group**.
+    4. Click **OK**.
+    5. Repeat these steps for **Pool B**.
+    6. In the **Storage Type > Pools** panel click **Continue**.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/set-up-virtual-storage?guid=guid-677253c5-1189-4e78-b5c7-011a8c9f47e4&lang=en-us)
 
@@ -198,9 +198,9 @@ You can also add or edit volumes after initial setup using the **Provisioning > 
 5. Enter the **Volume Size** and select the units of measure. Optionally, you can choose to use the remaining space for the volume.
 6. Click **Add Volume**.
 7. Review the volume parameters. From this panel you can:
-      - Delete the volume (Trash can icon)
-      - **Add New Volume**
-      - Click Continue to proceed
+    - Delete the volume (Trash can icon)
+    - **Add New Volume**
+    - Click Continue to proceed
 8. Review the provision summary and click **Continue** to proceed, or **Back** to return to make changes.
 9. Click **OK** at the Success prompt.
 

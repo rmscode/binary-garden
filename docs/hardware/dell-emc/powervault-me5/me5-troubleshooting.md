@@ -12,7 +12,7 @@ The PowerVault Manager uses health icons to show OK, Degraded, Fault, or Unknown
 
 !!! tip
 
-      Alternatively, you can check the health of the system with the CLI command `show system`.
+    Alternatively, you can check the health of the system with the CLI command `show system`.
 
 ## Monitor event notifications
 
@@ -115,38 +115,38 @@ Recommended actions...
 
 === "SYMPTOM"
 
-      If the ambient air temp is below 77ºF, and teh fans are observed to increase in speed, then some restriction of airflow may be causing internal temps to rise. !!! note "This is not a fault condition."
+    If the ambient air temp is below 77ºF, and teh fans are observed to increase in speed, then some restriction of airflow may be causing internal temps to rise. !!! note "This is not a fault condition."
 
 === " CAUSE"
 
-      The first stage in the thermal control process is for the fans to automatically increase in speed when a thermal threshold is reached. This may be caused by higher ambient temperatures in the local environment, and may be perfectly normal.
+    The first stage in the thermal control process is for the fans to automatically increase in speed when a thermal threshold is reached. This may be caused by higher ambient temperatures in the local environment, and may be perfectly normal.
 
 === "RECOMMENDED ACTION"
 
-      1. Check the installation for any airflow restrictions at either the front or back of the enclosure. A minimum gap of 25 mm (1") at the front and 50 mm (2") at the rear is recommended.
-      2. Check for restrictions due to dust build-up. Clean as appropriate.
-      3. Check for excessive re-circulation of heated air from rear to front. Use of the enclosure in a fully enclosed rack is not recommended.
-      4. Verify that all blank modules are in place.
-      5. Reduce the ambient temperature.
+    1. Check the installation for any airflow restrictions at either the front or back of the enclosure. A minimum gap of 25 mm (1") at the front and 50 mm (2") at the rear is recommended.
+    2. Check for restrictions due to dust build-up. Clean as appropriate.
+    3. Check for excessive re-circulation of heated air from rear to front. Use of the enclosure in a fully enclosed rack is not recommended.
+    4. Verify that all blank modules are in place.
+    5. Reduce the ambient temperature.
 
 ## Thermal Alarm
 
 === "SYMPTOM"
 
-      1. Ops panel Module Fault LED is amber.
-      2. Fan Fail LED is illuminated on one or more PCMs.
+    1. Ops panel Module Fault LED is amber.
+    2. Fan Fail LED is illuminated on one or more PCMs.
 
 === "CAUSE"
 
-      Internal temperature exceeds a preset threshold for the enclosure.
+    Internal temperature exceeds a preset threshold for the enclosure.
 
 === "RECOMMENDED ACTION"
 
-      1. Verify that the local ambient environment temperature is within the acceptable range. (41ºF to 95ºF)
-      2. Check the installation for any airflow restrictions at either the front or back of the enclosure. A minimum gap of 25 mm (1") at the front and 50 mm (2") at the rear is recommended.
-      3. Check for restrictions due to dust build-up. Clean as appropriate.
-      4. Check for excessive re-circulation of heated air from rear to front. Use of the enclosure in a fully enclosed rack is not recommended.
-      5. If possible, shut down the enclosure and investigate the problem before continuing.
+    1. Verify that the local ambient environment temperature is within the acceptable range. (41ºF to 95ºF)
+    2. Check the installation for any airflow restrictions at either the front or back of the enclosure. A minimum gap of 25 mm (1") at the front and 50 mm (2") at the rear is recommended.
+    3. Check for restrictions due to dust build-up. Clean as appropriate.
+    4. Check for excessive re-circulation of heated air from rear to front. Use of the enclosure in a fully enclosed rack is not recommended.
+    5. If possible, shut down the enclosure and investigate the problem before continuing.
 
 ## Host-side connection troubleshooting featuring CNC ports
 
@@ -161,28 +161,28 @@ The following procedure applies to controller enclosures with small form factor 
 1. Stop all I/O to the storage system. See “[Shutting Down a Controller Module](me5-shutdown-controller.md)” for more information. 
 2. Check the host link status/link activity LED. If there is activity, stop all applications that access the storage system.
 3. Check the Cache Status LED to verify that the controller cached data is flushed to the disk drives.
-      - Solid – Cache contains data yet to be written to the disk.
-      - Blinking – Cache data is being written to CompactFlash in the controller module.
-      - Flashing at 1/10 second on and 9/10 second off – Cache is being refreshed by the supercapacitor.
-      - Off – Cache is clean (no unwritten data).
+    - Solid – Cache contains data yet to be written to the disk.
+    - Blinking – Cache data is being written to CompactFlash in the controller module.
+    - Flashing at 1/10 second on and 9/10 second off – Cache is being refreshed by the supercapacitor.
+    - Off – Cache is clean (no unwritten data).
 4. Remove the SFP+ transceiver and host cable and inspect for damage.
 5. Reseat the SFP+ transceiver and host cable. Is the host link status/link activity LED on?
-      - Yes – Monitor the status to ensure that there is no intermittent error present. If the fault occurs again, clean the connections to ensure that a dirty connector is not interfering with the data path.
-      - No – Proceed to the next step.
+    - Yes – Monitor the status to ensure that there is no intermittent error present. If the fault occurs again, clean the connections to ensure that a dirty connector is not interfering with the data path.
+    - No – Proceed to the next step.
 6. Move the SFP+ transceiver and host cable to a port with a known good link status. This step isolates the problem to the external data path (SFP+ transceiver, host cable, and host-side devices) or to the controller module port. Is the host link status/link activity LED on?
-      - Yes – You now know that the SFP+ transceiver, host cable, and host-side devices are functioning properly. Return the cable to the original port. If the link status LED remains off, you have isolated the fault to the controller module port. Replace the controller module.
-      - No – Proceed to the next step.
+    - Yes – You now know that the SFP+ transceiver, host cable, and host-side devices are functioning properly. Return the cable to the original port. If the link status LED remains off, you have isolated the fault to the controller module port. Replace the controller module.
+    - No – Proceed to the next step.
 7. Swap the SFP+ transceiver with the known good one. Is the host link status/link activity LED on?
-      - Yes – You have isolated the fault to the SFP+ transceiver. Replace the SFP+ transceiver.
-      - No – Proceed to the next step.
+    - Yes – You have isolated the fault to the SFP+ transceiver. Replace the SFP+ transceiver.
+    - No – Proceed to the next step.
 8. Reinsert the original SFP+ transceiver and swap the cable with a known good one. Is the host link status/link activity LED on?
-      - Yes – You have isolated the fault to the cable. Replace the cable.
-      - No – Proceed to the next step.
+    - Yes – You have isolated the fault to the cable. Replace the cable.
+    - No – Proceed to the next step.
 9. Verify that the switch, if any, is operating properly. If possible, test with another port.
 10. Verify that the HBA is fully seated, and that the PCI slot is powered on and operational.
 11. Replace the HBA with a known good HBA, or move the host side cable and SFP+ transceiver to a known good HBA. Is the host link status/link activity LED on?
-      - Yes – You have isolated the fault to the HBA. Replace the HBA.
-      - No – It is likely that the controller module needs to be replaced.
+    - Yes – You have isolated the fault to the HBA. Replace the HBA.
+    - No – It is likely that the controller module needs to be replaced.
 12. Move the cable and SFP+ transceiver back to its original port. Is the host link status/link activity LED on?
-      - Yes – Monitor the connection for a period of time. It may be an intermittent problem, which can occur with damaged SFP+ transceivers, cables, and HBAs.
-      - No – The controller module port has failed. Replace the controller module. 
+    - Yes – Monitor the connection for a period of time. It may be an intermittent problem, which can occur with damaged SFP+ transceivers, cables, and HBAs.
+    - No – The controller module port has failed. Replace the controller module. 

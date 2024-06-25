@@ -18,8 +18,8 @@ status: new
 7. [Connect the power cords and power on the system](#connecting-the-power-cords-and-powering-on-the-system).
 8. [Perform system and storage setup](me5-guided-setup.md#).
 9. [Perform host setup](me5-host-setup.md).
-      1. Attach host servers.
-      2. Install required host software.
+    1. Attach host servers.
+    2. Install required host software.
 10. Perform the initial configuration tasks.
 
 !!! Warning "Operational Safety"

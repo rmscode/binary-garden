@@ -12,23 +12,23 @@ Embedded within the controller modules is a command-line interface (CLI) that en
 1. Connect a micro-USB cable from a host computer to the USB CLI port on controller A.
 2. Start a terminal emulator configured to use the following display and connection settings:
     1. Display Settings:
-          - **Terminal emulation mode** - VT-100 or ANSI (for color support)
-          - **Font** - Terminal
-          - **Translations** - None
-          - **Columns** - 80
+        - **Terminal emulation mode** - VT-100 or ANSI (for color support)
+        - **Font** - Terminal
+        - **Translations** - None
+        - **Columns** - 80
     2. Connection Settings:
-          - **Connector** - COM3
-          - **Baud rate** - 115,200
-          - **Data bits** - 8
-          - **Parity** - None
-          - **Stop bits** - 1
-          - **Flow control** - None
+        - **Connector** - COM3
+        - **Baud rate** - 115,200
+        - **Data bits** - 8
+        - **Parity** - None
+        - **Stop bits** - 1
+        - **Flow control** - None
 3. Press `Enter` to display the CLI prompt if necessary.
 4. If you are connecting to a storage system that has not been deployed:
-      1. Type `setup` at the login prompt and press Enter.
-      2. Do not type anything at the Password prompt and press Enter.
-      3. Type Y at the prompt to continue.
-      -  Otherwise, login with a user that has the *manage* role.
+    1. Type `setup` at the login prompt and press Enter.
+    2. Do not type anything at the Password prompt and press Enter.
+    3. Type Y at the prompt to continue.
+    -  Otherwise, login with a user that has the *manage* role.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/set-a-network-port-ip-address-using-the-micro-usb-port?guid=guid-f6c01f88-2207-4dab-bb8e-8c407a002c81&lang=en-us)
 
