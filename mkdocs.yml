@@ -58,7 +58,7 @@ plugins:
         - notes/*
   - git-latest-changes:
       limit_to_docs_dir: True
-      repo_vendor: https://github.com/rmscode/MyDocs
+      repo_vendor: github
       enabled_on_serve: True
       show_x_days: 7
 
