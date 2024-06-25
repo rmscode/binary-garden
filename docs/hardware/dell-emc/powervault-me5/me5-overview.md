@@ -146,34 +146,34 @@ The top slot for holding controller modules is designated slot A and the bottom 
 
 ![ME5024 Controller Module LEDs](../../../assets/GUID-0EE22A27-4394-414C-9A77-34131C0EA853-low.png)
 
-=== "![Hardware Normal](GUID-5168D9A2-9803-4376-9FDA-BCED2A162DEA-low.png) Hardware Normal"
+=== "![Hardware Normal](../../../assets/GUID-5168D9A2-9803-4376-9FDA-BCED2A162DEA-low.png) Hardware Normal"
 
     - **Green**: Controller operating normally.
     - **Blinking green**: Booting.
     - **Off**: Controlller module power is off, offline, or has a fault condition.
 
-=== "![Hardware Fault](GUID-DEDC233C-E08C-438D-B3F9-E28DC1059DD7-low.png) Hardware Fault"
+=== "![Hardware Fault](../../../assets/GUID-DEDC233C-E08C-438D-B3F9-E28DC1059DD7-low.png) Hardware Fault"
 
     - **Off**: Controller operating normally.
     - **Amber**: Fault detected or service action required.
 
-=== "![OK to Remove](GUID-43EF8C75-E76D-41F3-8AE8-AEB370DBC756-low.png) OK to remove"
+=== "![OK to Remove](../../../assets/GUID-43EF8C75-E76D-41F3-8AE8-AEB370DBC756-low.png) OK to remove"
 
     - **Off**: Not prepared for removal, cache still contains data.
     - **White**: Controller module is prepared for removal, cache is clear.
 
-=== "![ID](GUID-DC433108-0060-4293-AF08-E0543914806A-low.png) Identity"
+=== "![ID](../../../assets/GUID-DC433108-0060-4293-AF08-E0543914806A-low.png) Identity"
 
     - **Blue**: Controller is being identified.
 
-=== "![Cache Status](GUID-6E04116B-8FEE-4652-BFEA-86555547268E-low.png) Cache Status"
+=== "![Cache Status](../../../assets/GUID-6E04116B-8FEE-4652-BFEA-86555547268E-low.png) Cache Status"
 
     - **Green**: Cache is dirty (contains unwritten data) and operation is normal.
     - **Slow flashing green**: Cache self-refresh in progress after flush
     - **Fast flashing green**: Cache is active, cache flush in progress.
     - **Off**: In a working controller, cache is clean (contains no unwritten data). This is an occasional condition that occurs while the system is booting.
 
-=== "![Mgmt Status](GUID-4B8014FA-DADF-40D8-8AFF-A026DF4C4AB8-low.jpg) Management Port Link Active Status"
+=== "![Mgmt Status](../../../assets/GUID-4B8014FA-DADF-40D8-8AFF-A026DF4C4AB8-low.jpg) Management Port Link Active Status"
 
     - **Off**: Not connected or the link is down.
     - **Amber**: The Ethernet link is up
@@ -183,7 +183,7 @@ The top slot for holding controller modules is designated slot A and the bottom 
     - **Off**: The link is down.
     - **Green**: The link is up.
 
-=== "![SAS Status](GUID-4B8014FA-DADF-40D8-8AFF-A026DF4C4AB8-low.jpg) SAS Expansion Port Status"
+=== "![SAS Status](../../../assets/GUID-4B8014FA-DADF-40D8-8AFF-A026DF4C4AB8-low.jpg) SAS Expansion Port Status"
 
     - **Off**: Not connected or link is down.
     - **Amber**: Connected, partial link is up.

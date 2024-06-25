@@ -158,7 +158,7 @@ The following procedure applies to controller enclosures with small form factor 
 
     When experiencing difficulty diagnosing performance problems, consider swapping out one SFP+ transceiver at a time to see if performance improves.
 
-1. Stop all I/O to the storage system. See “[Shutting Down a Controller Module](me4-shutdown-controller.md)” for more information. 
+1. Stop all I/O to the storage system. See “[Shutting Down a Controller Module](me5-shutdown-controller.md)” for more information. 
 2. Check the host link status/link activity LED. If there is activity, stop all applications that access the storage system.
 3. Check the Cache Status LED to verify that the controller cached data is flushed to the disk drives.
       - Solid – Cache contains data yet to be written to the disk.

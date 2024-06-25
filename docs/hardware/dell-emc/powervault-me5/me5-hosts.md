@@ -18,7 +18,7 @@ You can add hosts to a new or existing host group from the Hosts table (**Provis
 
 !!! info
 
-    The host must be [mapped](../powervault-me5/me5-mappings.md#map-initiators-and-volumes) with the same access, port, and LUN settings to the same volumes or volume groups as every other initiator in the host group.
+    The host must be attached with the same access, port, and LUN settings to the same volumes or volume groups as every other initiator in the host group.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_ag/adding-hosts-to-a-host-group?guid=guid-a3b967d1-24ff-455f-8693-d03e9df3e3d8&lang=en-us)
 

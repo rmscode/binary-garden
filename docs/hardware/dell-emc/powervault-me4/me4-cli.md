@@ -3,7 +3,7 @@
 Embedded within the controller modules is a command-line interface (CLI) that enables you to manage and monitor the storage system. The CLI can be accessed in two ways:
 
 - Use SSH or Telnet on a management host that is remotely connected to a controller module network port through a LAN.
-- Use a serial cable to establish a serial connection from a computer to the CLI port on a controller module. Refer back to the [controller module rear panel diagram](#controller-module-4-port-fciscsi) for the location of the CLI ports.
+- Use a serial cable to establish a serial connection from a computer to the CLI port on a controller module. Refer back to the [controller module rear panel diagram](me4-overview.md#controller-module-4-port-fciscsi) for the location of the CLI ports.
 
 !!! note
 

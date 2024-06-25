@@ -14,7 +14,7 @@
 2. Flash the image to an SD card. I used the [Raspberry Pi Imager](https://www.raspberrypi.org/software/), but something else like [Balena Etcher](https://www.balena.io/etcher/) will work as well.
 3. Place the SD card in the Pi and power it on.
 4. Follow the prompts on the screen to be guided through the initial setup.
-      - Alternatively, you can follow the [section below](#automatic-base-installation) for an automated first-boot experience.
+      - Alternatively, you can follow the [section below](#automated-installation-and-configuration) for an automated first-boot experience.
 
 !!! info
 
