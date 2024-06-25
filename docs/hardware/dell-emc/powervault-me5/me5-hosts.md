@@ -86,7 +86,7 @@ You can add existing initiators to an existing host from the Hosts table (**Prov
 
 !!! info 
 
-    To add an initiator to a host, the initiator must be [mapped](../powervault-me5/me5-mappings.md#map-initiators-and-volumes) with the same access, port, and LUN settings to the same volumes or volume groups as every other initiator in the host.
+    To add an initiator to a host, the initiator must be attached with the same access, port, and LUN settings to the same volumes or volume groups as every other initiator in the host.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_ag/add-initiators-to-a-host?guid=guid-ce896a49-b488-4e0f-b21b-92773aa824f2&lang=en-us)
 
