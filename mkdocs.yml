@@ -2,7 +2,7 @@
 site_name: My Docs
 site_url: https://rmscode.github.io/MyDocs/
 site_author: Ricky Saull
-site_description: >-
+site_description: >_
   My personal documentation and note keeping site related to my work in IT.
 
 # Repository
@@ -225,6 +225,8 @@ nav:
   - Software: 
     - software/index.md
     - Hyper-V: software/hyper-v.md
+    - LibreOffice:
+      - Impress: software/libre-office/impress.md
     - Microsoft Office:
       - Outlook: software/microsoft-office/outlook/outlook.md
       - Teams: software/microsoft-office/teams/ms-teams.md
