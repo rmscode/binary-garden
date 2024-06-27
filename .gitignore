@@ -7,3 +7,4 @@ blog-site/
 archive/
 /.vscode
 /.vscode/*
+venv/

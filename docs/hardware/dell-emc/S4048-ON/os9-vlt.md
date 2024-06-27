@@ -229,6 +229,37 @@ VLT-1(conf-if-te-1/51-lacp)# port-channel 10 mode active    #(4)
 
     [This](os10.md#unexpected-behavior-while-testing-failure-scenarios) is also probably worth reading.
 
+### Dampening
+
+Syntax:
+
+`dampening [[[[half-life] [reuse-threshold]] [suppress-threshold]] [max-suppress-time]]`
+
+`half-life`
+
+:   The accumulated penalty decays exponentially based on the half-life period. The accumulated penalty decreases half after each half-life period. The range of half-life is from 1 to 30 seconds. The default is 5 seconds.
+
+`reuse-threshold`
+
+:   After exponential decay, the penalty reaches the default or configured reuse threshold. The interface is unsuppressed and the state changes to “up”. The range of reuse threshold is from 1 to 20000. The default is 750.
+
+`suppress-threshold`
+
+:   The suppress threshold is a value that triggers a flapping interface to dampen. The system adds penalty when the interface state goes up and down. When the accumulated penalty reaches the default or configured suppress threshold, the interface state changes to Error-Disabled state. The range of suppress threshold is from 1 to 20000. The default is 2500.
+
+`max-suppress-time`
+
+:   The maximum amount of time during which the interface remain suppressed. The range is from 1 to 86400. The default is 20 seconds or four times the default half-life period (5 seconds).
+
+Configuration example:
+
+```shell
+DellEMC(config)# interface port-channel 1 #(1)
+DellEMC(conf-if-range-fo-1/47,fo-1/48)# dampening 10 100 1000 60
+```
+
+1. In our environment, we would apply dampening to the port-channel interface comprised of the links towards the VLT domain.
+
 [*Reference: Connecting a VLT domain to an attached access switch or device*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/connecting-a-vlt-domain-to-an-attached-access-device-switch-or-server?guid=guid-99a5a114-5dbc-4286-b64f-c5e43c4edf26&lang=en-us) </br>
 [*Reference: Layer 2 topology configurations*](https://infohub.delltechnologies.com/l/dell-emc-networking-with-isilon-front-end-deployment-and-best-practices-1/layer-2-topology-configurations-7/)</br>
 [*Reference: VLT Technical Guide*](https://i.dell.com/sites/content/business/large-business/merchandizing/en/Documents/Dell_Force10_S4810_VLT_Technical_Guide.pdf)

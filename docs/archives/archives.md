@@ -54,8 +54,3 @@ The solution is to create a configuration file that tells X to use the vc4 card 
 # Software
 
 # SOP
-
-# Troubleshotting
-
-# Notes
-

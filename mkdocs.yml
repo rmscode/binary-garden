@@ -66,6 +66,7 @@ plugins:
       limit_to_docs_dir: True
       repo_vendor: github
       enabled_on_serve: True
+      show_x_days: 7
 
 # Additional configuration
 extra:
@@ -115,22 +116,22 @@ nav:
   - Home: index.md
   - General:
     - general/index.md
+    - Git Cheat Sheet: general/git-cheat-sheet.md
     - Linux Cheat Sheets:
       - Commands: general/linux-cheat-sheet.md
       - Directory Structure Explained: general/linux-directory-structure.md
+    - RAID: general/raid.md
     - ReFS vs NTFS: general/refs-vs-ntfs.md
     - Windows Susbsystem for Linux: general/wsl.md
   - Hardware: 
     - hardware/index.md
     - Dell EMC:
-      - PowerEdge R640:
-        - Best PRactices: hardware/dell-emc/poweredge-r640/best-practices.md
       - PowerSwitch S4048-ON:
         - Overview: hardware/dell-emc/S4048-ON/overview.md
         - OS9:
           - Getting Started: hardware/dell-emc/S4048-ON/os9-getting-started.md
           - CLI Fundamentals: hardware/dell-emc/S4048-ON/os9-cli-fundamentals.md
-          - Access Contgrol Lists: hardware/dell-emc/S4048-ON/os9-acls.md
+          - Access Control Lists: hardware/dell-emc/S4048-ON/os9-acls.md
           - Debugging and Diagnostics: hardware/dell-emc/S4048-ON/os9-debugging.md
           - File Management: hardware/dell-emc/S4048-ON/os9-file-management.md
           - Logging: hardware/dell-emc/S4048-ON/os9-logging.md
@@ -165,6 +166,30 @@ nav:
         - Logging: hardware/dell-emc/powervault-me4/me4-logging.md
         - Troubleshooting: hardware/dell-emc/powervault-me4/me4-troubleshooting.md
         - Best Practices: hardware/dell-emc/powervault-me4/me4-best-practice.md
+      - PowerVault ME5 Storage:
+        - Overview: hardware/dell-emc/powervault-me5/me5-overview.md
+        - Getting Started:
+          - Deployment Brief: hardware/dell-emc/powervault-me5/me5-deployment-brief.md
+          - System and Storage Setup: hardware/dell-emc/powervault-me5/me5-guided-setup.md
+          - Host Setup (Windows): hardware/dell-emc/powervault-me5/me5-host-setup.md
+          - Security Certificate (Optional): hardware/dell-emc/powervault-me5/me5-install-certificate.md
+          - System Notifications (Optional): hardware/dell-emc/powervault-me5/me5-notifications.md
+        - System Concepts:
+          - Hosts and Initiators: hardware/dell-emc/powervault-me5/me5-hosts.md
+          - Pools and Disk Groups: hardware/dell-emc/powervault-me5/me5-pools.md
+          - Replication: hardware/dell-emc/powervault-me5/me5-replication.md
+          - Snapshots: hardware/dell-emc/powervault-me5/me5-snapshots.md
+          - Spares (Parity Disks): hardware/dell-emc/powervault-me5/me5-spares.md
+          - Virtual and Linear Storage: hardware/dell-emc/powervault-me5/me5-virtual-linear-storage.md
+          - Volumes and Volume Groups: hardware/dell-emc/powervault-me5/me5-volumes.md
+        - System Maintenance:
+          - Firmware Updates: hardware/dell-emc/powervault-me5/me5-firmware-updates.md
+          - Shutting Down a Controller Module: hardware/dell-emc/powervault-me5/me5-shutdown-controller.md
+          - Module Removal & Replacement: hardware/dell-emc/powervault-me5/me5-module-removal.md
+        - Accessing the CLI: hardware/dell-emc/powervault-me5/me5-cli.md
+        - Logging: hardware/dell-emc/powervault-me5/me5-logging.md
+        - Troubleshooting: hardware/dell-emc/powervault-me5/me5-troubleshooting.md
+        - Best Practices: hardware/dell-emc/powervault-me5/me5-best-practice.md
     - Microsoft:
       - Microsoft Surface: hardware/microsoft/surface-rt.md
     - Raspberry Pi:
@@ -192,13 +217,21 @@ nav:
       - Failover Clustering:
         - Overview: servers/windows-server/msft-cluster.md
       - Group Policy:
-        - Overview: servers/windows-server/group-policy.md
+        - Overview: servers/windows-server/group-policy/overview.md
+        - Processing Order and Precedence: servers/windows-server/group-policy/processing-and-precedence.md
+        - Managing GPOs: servers/windows-server/group-policy/managing.md
+        - Preferences: servers/windows-server/group-policy/preferences.md
+        - Security Filtering: servers/windows-server/group-policy/security-filtering.md
+        - Troubleshooting: servers/windows-server/group-policy/troubleshooting.md
+        - Best Practices: servers/windows-server/group-policy/best-practices.md
       - Rearm Trial: servers/windows-server/rearm-trial.md
     - Linux Servers:
       - NetBox: servers/linux-servers/netbox.md
   - Software: 
     - software/index.md
     - Hyper-V: software/hyper-v.md
+    - LibreOffice:
+      - Impress: software/libre-office/impress.md
     - Microsoft Office:
       - Outlook: software/microsoft-office/outlook/outlook.md
       - Teams: software/microsoft-office/teams/ms-teams.md
@@ -211,12 +244,9 @@ nav:
     - Remote Desktop: software/remote-desktop.md
   - SOP: 
     - sop/index.md
-  - Troubleshooting:
-    - Microsoft Failover Cluster: troubleshooting/msft-cluster-trouble.md
-    - Hyper-V: troubleshooting/hyper-v-trouble.md
-  - Notes: 
+  - Notes:
     - notes/index.md
-    - 2024: notes/2024.md
-    - 2023: notes/2023.md
-    # - Server Research 2023: notes/ServerResearch2023.md
+    - Daily Work Log: notes/2024.md
+    - Work Log Archive: 
+      - 2023: notes/2023.md
   - Archives: archives/archives.md

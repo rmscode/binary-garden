@@ -1,7 +1,3 @@
----
-status: new
----
-
 # MkDocs: Creating your site
 
 Now that you have [installed](./getting-started.md) MkDocs, you can bootstrap your documentation site using the `mkdocs` executable. Navigate to the directory where you would like to create your site and run:
