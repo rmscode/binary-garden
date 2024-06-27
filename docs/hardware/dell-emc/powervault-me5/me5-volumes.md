@@ -151,3 +151,22 @@ A volume can be a member of only one group. All volumes in a group must be in th
         `# delete volume-groups delete-volumes all`
 
     [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_cli/delete-volume-groups?guid=guid-546b4e73-8b85-4411-83d1-3db484383f1b&lang=en-us)
+
+## Attaching Volumes to Hosts
+
+!!! note "This concept was referred to as "mapping" with the ME4 series storage array."
+
+A volume must be attached to one or more hosts (or hosts groups) to enable them to access the volume. When an attachment is created, the system automatically assigns a unique LUN to the volume, sets the default permission access to read-write, and sets port access to all ports. After an attachment is created, you can change the LUN, port access, and access permissions.
+
+You can perform the following attachment actions:
+
+- View information about hosts attached to a volume (**Provisioning > Volumes**)
+- Attach Volumes to hosts or host groups (**Provisioning > Volumes > Attach to Hosts**)
+- Detach volumes from hosts or host grops  (**Provisioning > Volumes > Detach from Hosts**)
+- View information about volumes attached to a host (**Provisioning > Hosts**)
+- Attach hosts to volumes (**Provisioning > Hosts > Attach to Volumes**)
+- Detach hosts from volumes (**Provisioning > Hosts > Detach from Volumes**)
+
+Navigate to any one of these panels and follow the on-screen instructions.
+
+[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5084/me5_series_ag/attaching-volumes-to-hosts?guid=guid-337fb819-979a-485c-afcd-3105aa78e3bd&lang=en-us)
