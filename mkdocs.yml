@@ -239,9 +239,10 @@ nav:
     - Remote Desktop: software/remote-desktop.md
   - SOP: 
     - sop/index.md
-  - Notes: 
+  - Notes:
     - notes/index.md
-    - 2024: notes/2024.md
-    - 2023: notes/2023.md
+    - Daily Work Log: notes/2024.md
+    - Archive: 
+      - 2024: notes/archive/2024.md
     # - Server Research 2023: notes/ServerResearch2023.md
   - Archives: archives/archives.md
