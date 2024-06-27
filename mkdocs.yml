@@ -239,9 +239,6 @@ nav:
     - Remote Desktop: software/remote-desktop.md
   - SOP: 
     - sop/index.md
-  - Troubleshooting:
-    - Microsoft Failover Cluster: troubleshooting/msft-cluster-trouble.md
-    - Hyper-V: troubleshooting/hyper-v-trouble.md
   - Notes: 
     - notes/index.md
     - 2024: notes/2024.md
