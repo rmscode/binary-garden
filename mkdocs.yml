@@ -125,7 +125,7 @@ nav:
         - OS9:
           - Getting Started: hardware/dell-emc/S4048-ON/os9-getting-started.md
           - CLI Fundamentals: hardware/dell-emc/S4048-ON/os9-cli-fundamentals.md
-          - Access Contgrol Lists: hardware/dell-emc/S4048-ON/os9-acls.md
+          - Access Control Lists: hardware/dell-emc/S4048-ON/os9-acls.md
           - Debugging and Diagnostics: hardware/dell-emc/S4048-ON/os9-debugging.md
           - File Management: hardware/dell-emc/S4048-ON/os9-file-management.md
           - Logging: hardware/dell-emc/S4048-ON/os9-logging.md
@@ -170,7 +170,6 @@ nav:
           - System Notifications (Optional): hardware/dell-emc/powervault-me5/me5-notifications.md
         - System Concepts:
           - Hosts and Initiators: hardware/dell-emc/powervault-me5/me5-hosts.md
-          - Mappings: hardware/dell-emc/powervault-me5/me5-mappings.md
           - Pools and Disk Groups: hardware/dell-emc/powervault-me5/me5-pools.md
           - Replication: hardware/dell-emc/powervault-me5/me5-replication.md
           - Snapshots: hardware/dell-emc/powervault-me5/me5-snapshots.md
