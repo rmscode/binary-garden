@@ -242,7 +242,6 @@ nav:
   - Notes:
     - notes/index.md
     - Daily Work Log: notes/2024.md
-    - Archive: 
-      - 2024: notes/archive/2024.md
-    # - Server Research 2023: notes/ServerResearch2023.md
+    - Work Log Archive: 
+      - 2023: notes/2023.md
   - Archives: archives/archives.md
