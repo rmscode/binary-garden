@@ -116,6 +116,7 @@ nav:
       - Directory Structure Explained: general/linux-directory-structure.md
     - RAID: general/raid.md
     - ReFS vs NTFS: general/refs-vs-ntfs.md
+    - Storage Snapshot: general/storage-snapshot.md
     - Windows Susbsystem for Linux: general/wsl.md
   - Hardware: 
     - hardware/index.md
