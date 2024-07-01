@@ -94,6 +94,7 @@ Storage snapshots are a versatile and powerful tool for data protection, recover
 
 ## References
 
+<https://en.wikipedia.org/wiki/Copy-on-write></br>
 <https://www.techtarget.com/searchdatabackup/tip/Using-different-types-of-storage-snapshot-technologies-for-data-protection></br>
 <https://www.youtube.com/watch?v=ZfpCtGOibgc&t=144s></br>
 <https://learn.microsoft.com/en-us/windows-server/storage/file-server/volume-shadow-copy-service></br>
