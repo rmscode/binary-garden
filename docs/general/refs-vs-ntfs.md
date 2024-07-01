@@ -34,7 +34,7 @@ ReFS also has a number of features that improve performance, especially with vir
 
 ## ReFS Caveats
 
-Microsofts official docs go on and on about the ebenfits of ReFS's integrity and resiliency, but what happens when ReFS *can't* correct a problem?
+Microsofts official docs go on and on about the benfits of ReFS's integrity and resiliency, but what happens when ReFS *can't* correct a problem?
 
 ReFS will delete files that is deems unfixable. There are two scenarios where this can happen:
 
@@ -43,7 +43,7 @@ ReFS will delete files that is deems unfixable. There are two scenarios where th
 
 It will not ask, nor will it give you any opportunity to try to salvage what you can. If ReFS isn’t backed by Storage Spaces’s redundancy, then it has no way to perform a repair.
 
-This Altaro article says that while you shouldn't overlook the severity of the above, it's not a reason to avoid ReFS. You can simply disable integrity streams. Something that I noticed has already done when reading through Matt's documentation. No surprise there as he is a very thorough and well researched admin. 
+This Altaro article says that while you shouldn't overlook the severity of the above, it's not a reason to avoid ReFS. You can simply disable integrity streams. Something that I noticed has already done when reading through Matt's documentation. 
 
 <https://learn.microsoft.com/en-us/windows-server/storage/refs/refs-overview>
 <https://www.altaro.com/hyper-v/ntfs-vs-refs/>
