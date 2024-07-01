@@ -21,13 +21,6 @@ For example, lets say I create a snapshot of a volume that contains 100GB of fil
     - Potential performance impact due to write operations.
     - Increased storage requirements as more changes occur.
 
-- **Supported Filesystems:**
-    - btrfs
-    - xfs
-    - zfs
-    - refs
-    - applefs
-
 ### 2. Redirect on Write (RoW)
 
 Redirect on Write (RoW) snapshots are similar to CoW snapshots but differ in how they handle data changes. In RoW snapshots, new writes to the original volume are redirected to the storage provisioned for snapshots. This method reduces the performance impact on write operations by reducing the number of writes from two to one. So instead of writing one copy of the original data to the storage space plus a copy of the changed data required with CoW, RoW writes only the changed data. It's the changed data that ends up residing on the snapshot storage.
@@ -41,13 +34,6 @@ Redirect on Write (RoW) snapshots are similar to CoW snapshots but differ in how
     - Additional complexity when a snapshot is deleted because the changed data has to be copied back into the original volume.
     - Complexity goes up exponentially as more snapshots are created and deleted leading to potential fragmnetation over time.
 
-- **Supported Filesystems:**
-    - btrfs
-    - xfs
-    - zfs
-    - refs
-    - applefs
-
 ### 3. Clone or split-mirror Snapshots
 
 Clone snapshots, also known as split-mirrors or full copy snapshots, reference all the data on a set of mirrored drives. This method involves duplicating the entire dataset, not only new or updated data, which can be used independently from the original. The clone or split-mirror can be of a storage volume, file system or a logical unit number (LUN). 
@@ -60,13 +46,6 @@ Clone snapshots, also known as split-mirrors or full copy snapshots, reference a
 - **Disadvantages:**
     - Requires additional storage capacity.
     - Longer snapshot creation time compared to CoW and RoW because all of the data has to be copied.
-
-- **Supported Filesystems:**
-    - btrfs
-    - xfs
-    - zfs
-    - refs
-    - applefs
 
 ## Benefits of Storage Snapshots
 
