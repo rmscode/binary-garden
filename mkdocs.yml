@@ -60,7 +60,7 @@ plugins:
       limit_to_docs_dir: True
       repo_vendor: github
       enabled_on_serve: True
-      show_x_days: 7
+      history_limit: 10
 
 # Additional configuration
 extra:
