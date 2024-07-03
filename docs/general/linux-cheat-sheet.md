@@ -1,6 +1,6 @@
 # Linux Cheat Sheet
 
-A collection of commonly used commands in various Linuz operating systems. If the Linux ditro is not specifically mentioned, its safe to assume the command is universal.
+A collection of commonly used commands in various Linux operating systems. If the Linux ditro is not specifically mentioned, its safe to assume the command is universal.
 
 ## File System Navigation
 
