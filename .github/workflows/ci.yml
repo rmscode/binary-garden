@@ -10,13 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - uses: actions/setup-python@v4
         with:
-          fetch-depth: 0
           python-version: 3.x
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
       - uses: actions/cache@v3
@@ -28,5 +29,5 @@ jobs:
       - run: pip install mkdocs-material 
       - run: pip install mkdocs-encryptcontent-plugin
       - run: pip install mkdocs-git-revision-date-localized-plugin
-      - run: pip install mkdocs-git-latest-changes-plugin
+      - run: pip install git+https://github.com/tombreit/mkdocs-git-latest-changes-plugin.git@319c36c4ad28cc0f734e377f9397a46d4c13e305
       - run: mkdocs gh-deploy --force

@@ -1,6 +1,6 @@
 # Link Aggregation and LACP Basics
 
-According to **IEEE 802.1AX-2008** (formerly **IEEE 802.3ad**), Link Aggregation is a standard for bundling multiple physical network connections in parallel to create a single logical link. This logical link compared to a conventional connection via a single cable has the advantages of higher availability and higher possible transmission speed. 
+According to **IEEE 802.1AX-2008** (formerly **IEEE 802.3ad**), Link Aggregation is a standard for bundling multiple physical network connections in parallel to create a single logical link, such that a MAC client can treat the Link Aggregation Group as if it were a single link. This logical link compared to a conventional connection via a single cable has the advantages of higher availability and higher possible transmission speed. 
 
 The two primary types of LAGs are static (also known as manual) and dynamic. Dynamic LAGs use the Link Aggregation Control Protocol (LACP) to auto-negotiate settings between two connected devices.
 
@@ -11,7 +11,11 @@ All aggregated links must:
 - be in full duplex mode
 - use the same data transmission rates (at least 1 Gbit/s)
 - use parallel point-to-point connections
-- connect to precisely one endpoint on a switch or server. Link aggregation using multiple switches to one link-aggregated endpoint is not possible. Virtual switches consisting of multiple physical switches (such as Dell's VLT) are the only exception.
+- connect to precisely one endpoint on a switch or server. Link aggregation using multiple switches to one link-aggregated endpoint is not possible.
+
+    !!! note "What about Multi-Chassis Link Aggregation (MLAG)?!"
+    
+        Note that MLAG implementations are vendor-specific (eg. Dell's [VLT](../hardware/dell-emc/S4048-ON/os9-vlt.md)), but cooperating chassis remain externally compliant to the IEEE 802.1AX-2008 standard. 
 
 ## Properties
 
@@ -39,6 +43,6 @@ In constrast to static link aggregation, dynamic link aggregation (LACP) offers 
 - Even if one physical links fails, it will detect if the point-to-point connection is using a media converter, so that the link status at the switching port remains up. Because LACPDUs do not form a component of this connection, the link will be removed from the link aggregate. This ensures that packets will not be lost due to the failed link.
 - Both of the devices can mutually confirm the LAG configuration. With static link aggregation, errors in the configuration or wiring will often not be detected as quickly.
 
-!!! quote "A nice analogy I found . . ."
+!!! quote "A nice analogy . . ."
 
-    It's important to understand that while the bandwidth of a 2-port LACP link is 2Gbps, an individual flow will max out at 1Gbps. It's a highway with a 100MPH speed limit. We can add another lane and 2 cars can go 100MPH, but a single car can never go 200MPH. We're increasing the amount of traffic that can be carried, but not the max speed.
+    It's important to understand that while the bandwidth of a 2-port LACP link is 2Gbps, an individual flow will max out at 1Gbps. It's like a highway with a 100MPH speed limit. We can add another lane and 2 cars can go 100MPH, but a single car can never go 200MPH. We're increasing the amount of traffic that can be carried, but not the max speed.
