@@ -25,8 +25,8 @@ You can also join a [test meeting](https://zoom.us/test) to familiarize yourself
     - If you want to join a meeting by signing in:
         1. Sign in to the Zoom desktop client.
         2. Click the **Home** tab.
-        3. Click **Join**.   
-        ![Join icon](https://assets.zoom.us/images/en-us/desktop/generic/home/join-button.png)
+        3. Click **Join**.</br> 
+        ![Join icon](https://assets.zoom.us/images/en-us/desktop/generic/home/join-button.png){width=48}
 3. Enter the meeting ID and your display name.
     - If you're signewd in, change your name if you don't want your default name to appear.
     - If you're not sign in, enter a display name.
@@ -50,8 +50,8 @@ Alternatively, you can join the meeting without downloading or opening the Zoom 
 1. Open the Zoom mobile app. (Download from Google Play or Apple App app store)
 2. Join a meeting using one of these methods:
     - Tap **Join a Meeting** if you want to join without signing in.
-    - Sign in to Zoom then tap **Join**.
-    ![Mobile join icon](https://assets.zoom.us/images/en-us/mobile/generic/meet-and-chat/join-button.png)
+    - Sign in to Zoom then tap **Join**.</br>
+    ![Mobile join icon](https://assets.zoom.us/images/en-us/mobile/generic/meet-and-chat/join-button.png){width=48}
 3. Enter the meeting ID number and your display name.
     - If you're signed in, change your name if you don't want your default name to appear.
     - If you're not signed in, enter a display name.
@@ -113,7 +113,7 @@ Zoom offers a number of methods for creating hosting a meeting. As a host, you h
 
 #### Instant meeting
 
-!!! info Prerequisites:
+!!! info "Prerequisites:"
 
     - Zoom desktop client
     - Zoom mobile app
@@ -150,7 +150,7 @@ From the web:
 From the desktop client:
 
 1. Sign in to the Zoom desktop client.
-2. On the **Meetings** ![Meetings](https://assets.zoom.us/generic-images/common-buttons-and-icons/outline/video-on-button.png) tab, click **Schedule** ![Schedule](https://assets.zoom.us/generic-images/desktop-client/home-tab/schedule-button.png).</br>
+2. On the **Meetings** ![Meetings](https://assets.zoom.us/generic-images/common-buttons-and-icons/outline/video-on-button.png) tab, click **Schedule** ![Schedule](https://assets.zoom.us/generic-images/desktop-client/home-tab/schedule-button.png){width=24 height=24}.</br>
 This will open the scheduler window.
 3. Select your meeting settings. Note that some of these options might not be available if they were disabled and locked to the off position at the account or group level.
 4. Click **Save** to finish, and open the selected calendar service to add the meeting.
@@ -158,6 +158,6 @@ This will open the scheduler window.
 From the mobile app:
 
 1. Sign in to the Zoom desktop client.
-2. On the **Meetings** ![Meetings](https://assets.zoom.us/generic-images/common-buttons-and-icons/outline/video-on-button.png) tab, tap **Schedule** ![Schedule](https://assets.zoom.us/generic-images/desktop-client/home-tab/schedule-button.png).
+2. On the **Meetings** ![Meetings](https://assets.zoom.us/generic-images/common-buttons-and-icons/outline/video-on-button.png) tab, tap **Schedule** ![Schedule](https://assets.zoom.us/generic-images/desktop-client/home-tab/schedule-button.png){width=24 height=24}.
 3. Select your meeting settings. Note that some of these options might not be available if they were disabled and locked to the off position at the account or group level.
 4. Tap **Done** to finish scheduling.
