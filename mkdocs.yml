@@ -237,6 +237,7 @@ nav:
       - Creating Your Site: software/mkdocs/creating-site.md
       - Publishing Your Site: software/mkdocs/publishing.md 
     - Remote Desktop: software/remote-desktop.md
+    - Zoom: software/zoom.md
   - SOP: 
     - sop/index.md
   - Notes:
