@@ -11,13 +11,13 @@ Zoom is a video conferencing software that allows you to host and join video cal
 
 ## Join a meeting
 
-You can join an online meeting through an email invite, an instant messaging invite, from the [browser](#join-a-meeting-from-a-web-browser), from the [Zoom desktop](#join-a-meeting-on-the-zoom-desktop-client) and [mobile application](#join-a-meeting-on-your-mobile-device-androidios), from a landline or mobile phone.
+You can join an online meeting through an email invite, an instant messaging invite, from the [browser](#join-from-a-web-browser), from the [Zoom desktop](#join-from-the-zoom-desktop-client) and [mobile application](#join-on-a-mobile-device-androidios), from a landline or mobile phone.
 
-Before joining a Zoom meeting on a computer or mobile device, you can download Zoom from the [Download Center](https://zoom.us/download). Otherwise, you will be prompted to download and install Zoom when you click a join link. Either way, this is optional and you can join a meeting from the [web client](#join-a-meeting-with-the-zoom-web-client).
+Before joining a Zoom meeting on a computer or mobile device, you can download Zoom from the [Download Center](https://zoom.us/download). Otherwise, you will be prompted to download and install Zoom when you click a join link. Either way, this is optional and you can join a meeting from the [web client](#join-with-the-zoom-web-client).
 
 You can also join a [test meeting](https://zoom.us/test) to familiarize yourself with using Zoom, or [join a meeting without an account](#join-a-meeting-without-an-account).
 
-### Join a meeting on the Zoom desktop client
+### Join from the Zoom desktop client
 
 1. Open the Zoom Desktop Client.
 2. Join a meeting using one of these methods:
@@ -33,7 +33,7 @@ You can also join a [test meeting](https://zoom.us/test) to familiarize yourself
 4. Select if you would like to connect audio and/or video.
 5. Click **Join**.
 
-### Join a meeting from a web browser
+### Join from a web browser
 
 1. Open the Chrome browser.
 2. Go to <https://join.zoom.us>.
@@ -43,9 +43,9 @@ You can also join a [test meeting](https://zoom.us/test) to familiarize yourself
     - (Optional) Select the **Always open these types of links in the associated app** check box to skip this step in the future.
     - In the pop-up window, click **Open Zoom Meetings** (PC) or **Open zoom.us** (Mac).
 
-Alternatively, you can join the meeting without downloading or opening the Zoom app, by [opening the meeting with the web client](#join-a-meeting-with-the-zoom-web-client).
+Alternatively, you can join the meeting without downloading or opening the Zoom app, by [opening the meeting with the web client](#join-with-the-zoom-web-client).
 
-### Join a meeting on your mobile device (Android/iOS)
+### Join on a mobile device (Android/iOS)
 
 1. Open the Zoom mobile app. (Download from Google Play or Apple App app store)
 2. Join a meeting using one of these methods:
@@ -57,7 +57,7 @@ Alternatively, you can join the meeting without downloading or opening the Zoom 
     - If you're not signed in, enter a display name.
 4. Select if you would like to connect audio and/or video and tap **Join Meeting**.
 
-### Join a meeting with the Zoom web client
+### Join with the Zoom web client
 
 The Zoom web client allows users to join a meeting from a web browser without downloading any plugins or software.
 
@@ -109,16 +109,14 @@ You will join the meeting as a guest.
 
 Zoom offers a number of methods for creating hosting a meeting. As a host, you have control over the options for your scheduled meetings, except for settings that an administrator has locked for all users in the account or for all members of a specific group. 
 
-### Create a meeting from the web
-
-#### Instant meeting
+### Create an Instant Meeting
 
 !!! info "Prerequisites:"
 
     - Zoom desktop client
     - Zoom mobile app
 
-From the desktop client:
+#### From the desktop client:
 
 1. Sign in to the Zoom desktop app.
 2. In the navigation menu, click the **Home** tab ![Home tab](https://assets.zoom.us/generic-images/common-buttons-and-icons/outline/home-button.png)
@@ -128,7 +126,7 @@ From the desktop client:
 4. Click **New Meeting** to start an instant meeting.</br>
 **Note**: By default, no one is invited to the meeting, so be sure to invite others to join. 
 
-From the mobile app:
+#### From the mobile app:
 
 1. Sign in to the Zoom mobile app.
 2. Tap the **Meetings** tab ![Cam icon](https://assets.zoom.us/generic-images/common-buttons-and-icons/outline/video-on-button.png), then select **New Meeting**. 
@@ -138,16 +136,16 @@ From the mobile app:
 4. Once you’re done with the adjustments, select Start a meeting to host your instant meeting.</br>
 **Note**: By default, no one is invited to the meeting, so be sure to invite others to join.
 
-#### Schedule a meeting
+### Schedule a meeting
 
-From the web:
+#### From the web:
 
 1. Sign in to your Zoom web portal.
 2. Click [Meetings](https://zoom.us/meeting), and click **Schedule a Meeting**.
 3. Select the meeting options.  Note that some of these options might not be available if they were disabled and locked to the off position at the account or group level.
 4. **Save** to finish.
 
-From the desktop client:
+#### From the desktop client:
 
 1. Sign in to the Zoom desktop client.
 2. On the **Meetings** ![Meetings](https://assets.zoom.us/generic-images/common-buttons-and-icons/outline/video-on-button.png) tab, click **Schedule** ![Schedule](https://assets.zoom.us/generic-images/desktop-client/home-tab/schedule-button.png){width=24 height=24}.</br>
@@ -155,7 +153,7 @@ This will open the scheduler window.
 3. Select your meeting settings. Note that some of these options might not be available if they were disabled and locked to the off position at the account or group level.
 4. Click **Save** to finish, and open the selected calendar service to add the meeting.
 
-From the mobile app:
+#### From the mobile app:
 
 1. Sign in to the Zoom desktop client.
 2. On the **Meetings** ![Meetings](https://assets.zoom.us/generic-images/common-buttons-and-icons/outline/video-on-button.png) tab, tap **Schedule** ![Schedule](https://assets.zoom.us/generic-images/desktop-client/home-tab/schedule-button.png){width=24 height=24}.
