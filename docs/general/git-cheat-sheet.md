@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Git Cheat Sheet
 
 ## Setup

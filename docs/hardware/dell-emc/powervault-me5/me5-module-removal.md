@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Module Removal and Replacement
 
 !!! warning " ESD Precautions"

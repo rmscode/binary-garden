@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Troubleshooting
 
 ## Fault Isolation Methodology

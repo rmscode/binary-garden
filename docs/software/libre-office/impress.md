@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Libre Office Impress
 
 Impress is free and open source software (FOSS) similar to Microsoft PowerPoint. It is part of the Libre Office suite of programs.

@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Pools and Disk Groups
 
 A pool is an aggregation of one or more disk groups that serves as a container for volumes. Virtual and linear storage systems both use pools. 

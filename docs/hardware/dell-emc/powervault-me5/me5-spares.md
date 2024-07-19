@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Spares
 
 Types of spares include:

@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Security Certificate (Optional)
 
 1. In the PowerVault Manager, prepare to use FTP/SFTP:

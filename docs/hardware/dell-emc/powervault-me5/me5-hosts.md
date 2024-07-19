@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Hosts and Initiators
 
 ## Hosts

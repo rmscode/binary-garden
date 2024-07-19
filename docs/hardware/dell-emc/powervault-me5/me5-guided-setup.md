@@ -1,7 +1,3 @@
----
-status: new
----
-
 # System and Storage Setup (Guided)
 
 Upon completing the hardware installation, use PowerVault Manager to configure, provision, monitor and manage the storage system. After you log in to PowerVault Manager, the setup wizard guides you through process of configuring your system.
