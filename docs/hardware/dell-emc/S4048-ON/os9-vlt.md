@@ -50,14 +50,14 @@
     The VLTi may consist of any 10G or 40G ports, but a combination of 10G *and* 40G ports is not supported. Dell recommends forming the VLTi with at least 2 ports as best practice.
 
 ```shell
-VLT-1(conf)# interface range FortyGigabitEthernet 1/49-1/50 #(1)
+VLT-1(conf)# interface range FortyGigabitEthernet 1/47-1/48 #(1)
 VLT-1(conf-if-range-fo-1/47,fo-1/48)# description "Member of port-channel 128 for the VLT Interconnect" #(2)
 VLT-1(conf-if-range-fo-1/47,fo-1/48)# no shutdown
 VLT-1(conf-if-range-fo-1/47,fo-1/48)# exit
 VLT-1(conf)# interface port-channel 128 #(3)
 VLT-1(conf-if-po-128)# description "VLT Interconnect"
-VLT-1(conf-if-po-128)# channel-member FortyGigabitEthernet 1/49 #(4)
-VLT-1(conf-if-po-128)# channel-member FortyGigabitEthernet 1/50
+VLT-1(conf-if-po-128)# channel-member FortyGigabitEthernet 1/47 #(4)
+VLT-1(conf-if-po-128)# channel-member FortyGigabitEthernet 1/48
 VLT-1(conf-if-po-128)# no switchport #(5)
 VLT-1(conf-if-po-128)# no shutdown
 VLT-1(conf-if-po-128)# exit
@@ -67,7 +67,7 @@ VLT-1(conf-if-po-128)# exit
 2. The `description` command is useful for labeling interfaces and port-channels, among other things. When using the the `show` command, the description will be displayed first. Its not required, but it's good practice.
 3. Configuring a port-channel (LAG) for the VLTi. In OS9, the ID # can be anything from 1-128.
 4. Selecting the interfaces that will be used to form the port-channel.
-5. This will default the port-channel and place it in Layer 2 Access mode if it isn't already. This is required for the VLTi.
+5. To become the VLTi, the port-channel must be in default mode (no switchport, no VLAN assigned).
 
 !!! warning
 
