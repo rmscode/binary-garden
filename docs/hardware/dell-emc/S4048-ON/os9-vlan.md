@@ -8,33 +8,33 @@
 
 !!! info
 
-    To add an interface to a VLAN, the interface must be in Layer 2 mode (`switchport`). After you place an interface in Layer 2 mode, the interface is automatically designated untagged for the Default VLAN (1). When a port is in `switchport` mode (Layer 2), it passes multiple tagged VLANs, *OR* one untagged VLAN. It cannot accept both untagged and tagged traffic. To do that, you need to configure the port in `hybrid` mode.
+    To add an interface to a VLAN, the interface must be in Layer-2 mode (`switchport`). After you place an interface in Layer-2 mode, the interface is automatically designated untagged for the Default VLAN (1). When a port is in Layer-2 mode, it passes multiple tagged VLANs, *OR* one untagged VLAN. It cannot accept both untagged and tagged traffic. To do that, you need to configure the port in [hybrid switchport mode](#hybrid-switchport-mode).
 
 To configure `switchport`:
 
 ```shell
 DellEMC# configure
-DellEMC(conf)# Interface TenGigabitEthernet 0/5
-DellEMC(conf-if-te-0/5)# switchport
+DellEMC(conf)# Interface TenGigabitEthernet 1/5
+DellEMC(conf-if-te-1/5)# switchport
 ```
 
 !!! note
 
-    To configure switchport mode, make sure any existing configuration on the interface is removed. For instance, the system does not allow you to configure switchport on an interface that is assigned an IP address, as the interface is already in Layer 3 mode (`no switchport`).
+    To configure `switchport` mode, make sure any existing configuration on the interface is removed. For instance, the system does not allow you to configure `switchport` on an interface that is assigned an IP address, as the interface is already in Layer 3 mode (`no switchport`).
 
 ## Hybrid switchport mode
 
 !!! info
 
-    You can assign hybrid ports to two VLANs if the port is untagged in one VLAN and tagged in all others.
+    This allows a port to accept both untagged *and* tagged traffic. A hybrid switchport may have one untagged VLAN and multiple tagged VLANs.
 
 To configure hybrid `switchport`:
 
 ```shell
 DellEMC# configure
 DellEMC(conf)# Interface TenGigabitEthernet 0/5
-DellEMC(conf-if-te-0/5)# portmode hybrid
-DellEMC(conf-if-te-0/5)# switchport
+DellEMC(conf-if-te-1/5)# portmode hybrid
+DellEMC(conf-if-te-1/5)# switchport
 ```
 
 ## Creating VLANs and Adding Interfaces
@@ -51,28 +51,12 @@ DellEMC(conf)# Interface Vlan 414 #(1)
 Next, add the interfaces (`tagged` or `untagged`):
 
 ```shell
-DellEMC(conf-if-vl-414)# untagged TenGigabitEthernet 0/5
+DellEMC(conf-if-vl-414)# untagged TenGigabitEthernet 1/5
 ```
 
 !!! note
 
-    You can also add VLANs to port-channels the same way - eg. `untagged port-channel 414`.
-
-Apply multiple VLANs to an interface:
-
-```shell
-DellEMC# configure
-DellEMC(conf)# interface range Vlan 414 – 515
-% Warning: interface-range ignores Non-existing ports (not configured).    #(1)
-```
-
-1. This warning message is stating that within the range of 414 to 515, only the VLANs we have already created are configured. This is useful for creating a link to a Trunk Cisco port. 
-
-Apply a VLAN to a range of interfaces:
-
-```shell
-DellEMC(conf-if-vl-414)# tagged te0/5-10
-```
+    To add a port-channel - `untagged port-channel 414`.
 
 ## Simulate a Trunk Port
 
@@ -87,7 +71,7 @@ To remove a VLAN from an interface use the `no tagged` and `no untagged` command
     The `no tagged` and `no untagged` commands remove tagged or untagged interfaces from a port-based VLAN and places it in the default VLAN (1). You cannot use these commands in the Default VLAN. The only way to remove an interface from the default VLAN is to place the interface in default mode by using the `no switchport` command in INTERFACE mode. 
 
 ```shell
-DellEMC(conf-if-vl-414)# no tagged te0/5-10
+DellEMC(conf-if-vl-414)# no tagged te1/5-10
 ```
 
 ## Inter-VLAN Routing
