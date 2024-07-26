@@ -18,9 +18,11 @@ DellEMC(conf)# Interface TenGigabitEthernet 1/5
 DellEMC(conf-if-te-1/5)# switchport
 ```
 
-!!! note
+!!! note "Resetting an interface to factory defaults"
 
     To configure `switchport` mode, make sure any existing configuration on the interface is removed. For instance, the system does not allow you to configure `switchport` on an interface that is assigned an IP address, as the interface is already in Layer 3 mode (`no switchport`).
+
+    To reset an interface to its factory defaults, use the default `interface command` eg. `default interface TenGigabitEthernet 1/5`.
 
 ## Hybrid switchport mode
 
