@@ -1,6 +1,6 @@
 # Subnetting
 
-## Wilcard Mask
+## wildcard Mask
 
 A wildcard mask is a mask of bits that indicates which parts of an IP address are available for examination and can be thought of as an inverted subnet mask. 
 

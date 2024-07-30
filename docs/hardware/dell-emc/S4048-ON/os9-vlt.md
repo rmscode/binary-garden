@@ -272,7 +272,7 @@ DellEMC(conf-if-range-fo-1/47,fo-1/48)# dampening 10 100 1000 60
 
 This *will* be our exact scenario! We cannot "span" the connections of the servers across the VLT peers using VLT port-channels. Each of our servers will be utilizing Switch Embedded Teams which *only* support switch-independent configuration. See [Uplink Failure Detection](../S4048-ON/os9-ufd.md)!
 
-The `port-delay-restore` command may be another thing worth considering. It allows a delayed bring up of *all* interfaces during switch boot up. I have not tested this, but I would assume the action of a peer reloading would be the same as a switch rebooting...Pretty sure reboot/reload are used synonmously in Dell's documentation.
+The `port-delay-restore` command may be another thing worth considering. It allows a delayed bring up of *all* interfaces during switch boot up. I have not tested this, but I would assume the action of a peer reloading would be the same as a switch rebooting...Pretty sure reboot/reload are used synonymously in Dell's documentation.
 
 ---
 
@@ -283,5 +283,5 @@ This [VLT Technical guide](https://i.dell.com/sites/content/business/large-busin
 - When a VLAN is created on VLTi peers, the VLTi port-channel is added automatically to the VLAN, whether the vlan have members or not. A VLAN creation or deletion message from the VLT peer is the trigger for adding or removing VLTi port-channels to or from a VLAN. You can manually add or remove a VLTi port-channel to a VLAN. In case a VLTi port-channel is manually removed from a VLAN, it is added back to the VLAN after reload of the VLTi peers.
 - In a scenario where one hundred hosts are connected to a Peer1 on a non-VLT domain and traffic flows through Peer1 to Peer2; when you move these hosts from a non-VLT domain to a VLT domain and send ARP requests to Peer1, only half of these ARP requests reach Peer1, while the remaining half reach Peer2 (because of LAG hashing). The reason for this behavior is that Peer1 ignores the ARP requests that it receives on VLTi (ICL) and updates only the ARP requests that it receives on the local VLT. As a result, the remaining ARP requests still points to the Non-VLT links and traffic does not reach half of the hosts. To mitigate this issue, ensure that you configure the following settings on both the Peers (Peer1 and Peer2): arp learn-enable and mac-address-table station-move refresh-arp.
 - The VLT interconnect is used for data traffic only when there is a link failure that requires using VLTi in order for data packets to reach their final destination.
-- If you replace a VLT peer node, preconfigure the switch with the VLT system MAC address, unit-id, and other VLT parameters before connecting it to the existing VLT peer switch using the VLTi connection.
+- If you replace a VLT peer node, pre-configure the switch with the VLT system MAC address, unit-id, and other VLT parameters before connecting it to the existing VLT peer switch using the VLTi connection.
 - On a link failover, when a VLT port channel fails, the traffic destined for that VLT port channel is redirected to the VLTi to avoid flooding.
