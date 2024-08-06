@@ -1,4 +1,4 @@
-# Getting Started with OS9 (Basic Config)
+# Getting Started: Initial Configuration (OS9)
 
 [CLI Reference Guide for the S4048-ON System (9.14.2.4)](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.5-cli-pub/dell-command-line-reference-guide-for-the-s4048%E2%80%93on-system-9.14.2.5)
 
@@ -44,7 +44,30 @@
 
     :   Virtual Teletype or "VTY", is a virtual port used to get Telnet or SSH access to a device. VTY is solely used for inbound connections. These connections are all virtual with no hardware associated with them.
 
-## CLI Modes
+## 1. Accessing the CLI
+
+The S4048-ON does not listen to any network out of the box, so you'll need to access the CLI via a console port for initial configuration. The easiest way is to use the micro-usb port on the front of the device.
+
+Download the [drivers](https://www.dell.com/support/home/en-us/drivers/driversdetails/?driverid=r5k9d) onto the device you'll be using for access and then connect to the switch using the following settings:
+
+- Baud rate: 115200
+- No parity
+- 8 data bits
+- 1 stop bits
+- No flow control
+
+!!! tip
+
+    You may need to press `ENTER` to display the CLI after connecting.
+
+
+[*Reference*](https://www.dell.com/support/manuals/en-us/force10-s4048-on/s4048_on_install_pub_test/micro-usb-b-console-port-access?guid=guid-e83dcac3-c738-45b7-8fd9-a0919e20d92a&lang=en-us)
+
+!!! note
+
+    To [use the RS-232 console port](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/accessing-the-console-port?guid=guid-894f99b1-5209-4246-b75c-116c3bb5568e&lang=en-us) on the back, you'll need a rollover cable (RJ45 with a DB-9 Adapter).
+
+### CLI Modes
 
 === "EXEC Mode"
 
@@ -88,7 +111,7 @@
 
     For more information on the OS9 CLI, see the [OS9 CLI Fundamentals](../S4048-ON/os9-cli-fundamentals.md) section.
 
-## `exit`, `end`, `do`, and `show`. 
+### `exit`, `end`, `do`, and `show`. 
 
 To exit a mode or its sub-mode and return to the previous mode, use the `exit` command.
 
@@ -102,7 +125,7 @@ To run EXEC Privilege mode commands from the CONFIGURE mode, precede the command
 
     Enter `?` after a command prompt to list all of the available keywords. Entering `?` after a partial keyword lists all of the keywords that begin with the specified letters. Entering a [space] and then `?` after a keyword lists all of the keywords that can follow the specified keyword.
 
-## Support Assist
+## 2. Support Assist
 
 When you access the CLI on a fresh system, you will be prompted to activate Support Assist. If you take what the prompt says at face value, you might be inclined to enter `support-assist activate` in EXEC PRIVILEGE mode which will fail on the word `activate`. Enter CONFIGURE mode to make changes to the support assist package.
 
@@ -123,7 +146,7 @@ DellEMC(conf)# eula-consent support-assist reject
 
 [*Reference*](https://www.dell.com/support/kbdoc/en-us/000122405/how-to-enable-supportassist-on-dell-networking-and-legacy-force10-s-series-switches)
 
-## Setting the hostname
+## 3. Setting the hostname
 
 Enter CONFIGURE mode and use the `hostname` command.
 
@@ -136,7 +159,61 @@ Switch-A(conf)#
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-a-host-name?guid=guid-4fb6a556-a309-4d56-abfe-2fa6ccee1183&lang=en-us)
 
-## Management Interface Configuration
+## 4. Configure time zone and NTP
+
+Set UTC to 0:
+```shell
+DellEMC(conf)# clock timezone UTC 0 
+```
+
+Set the time (`clock set <time> <month> <day> <year>`):
+
+```shell
+DellEMC# clock set 16:20:00 sep 9 2017
+```
+
+Show current clock:
+
+```shell
+DellEMC(conf)# show clock
+```
+
+Set the NTP server:
+
+!!! note "A Windows DC will not work as an NTP server..."
+
+```shell
+DellEMC(conf)# ntp server <ip>
+```
+
+[*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/system-time-and-date?guid=guid-047210d7-7dae-4a6d-86df-37a79e8e8b9f&lang=en-us)
+
+## 5. Configuring the Enable Password
+
+EXEC Privilege mode is unrestricted by default and can be accessed via the console port from EXEC mode with the `enable` command. Configure a password as a basic security measure.
+
+There are three types of passwords:
+
+- `enable password` is stored in the running/startup configuration using a DES encryption method.
+- `enable secret` is stored in the running/startup configuration using MD5 encryption method.
+- `enable sha256-password` is stored in the running/startup configuration using sha256-based encryption method (PBKDF2).
+
+Dell EMC Networking recommends using the enable sha256-password password.
+
+Create a password to access EXEC Privilege mode from CONFIGURATION mode.
+
+```txt
+enable [password | secret | sha256-password] [level <level>] [encryption-type] <password>
+```
+
+- `level` is the privilege level. The default is 15.
+- `encryption-type` specifies how you input the pasword, is 0 by default, and is not required.
+      - 0 is to input the password in clear text.
+      - 5 is to input a password that is already encrypted using MD5 encryption method. Obtain the encrypted password from the configuration file of another device.
+      - 7 is to input a password that is already encrypted using DES encryption method. Obtain the encrypted password from the configuration file of another device.
+      - 8 is to input a password that is already encrypted using sha256-based encryption method. Obtain the encrypted password from the configuration file of another device.
+
+## 6. Management Interface Configuration
 
 You can configure the OOB management port on the rear of the switch or use a data port on the front of the device. 
 
@@ -201,7 +278,7 @@ DellEMC(conf-if-vl-10)# tagged tengigabitethernet 1/48
 
 [*Reference: Management Networks for Dell EMC Switches - Section 5.2.1*](https://infohub.delltechnologies.com/section-assets/dell-emc-mgmt-networking-may-2019-1)
 
-## Configure a user for remote SSH accesss
+## 7. Configure a user for remote SSH access
 
 Create user:
 
@@ -233,62 +310,7 @@ DellEMC(conf)# ip ssh server version 2
 [*Reference: Enable SSH by Password*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s5048f-on-9.14.2.4-config/enabling-ssh-authentication-by-password?guid=guid-0685bdc9-9b7f-4fa1-b0be-9e6c83da445d&lang=en-us)</br>
 [*Reference: `Enable Password`*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-the-enable-password?guid=guid-cf0ca3a8-65f4-4859-b058-ecb7c424f0ec&lang=en-us)
 
-## Configure time zone and NTP
-
-Set UTC to 0:
-```shell
-DellEMC(conf)# clock timezone UTC 0 
-```
-
-Set the time (`clock set <time> <month> <day> <year>`):
-
-```shell
-DellEMC# clock set 16:20:00 sep 9 2017
-```
-
-Show current clock:
-
-```shell
-DellEMC(conf)# show clock
-```
-
-Set the NTP server:
-
-!!! note "A Windows DC will not work as an NTP server..."
-
-```shell
-DellEMC(conf)# ntp server <ip>
-```
-
-[*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/system-time-and-date?guid=guid-047210d7-7dae-4a6d-86df-37a79e8e8b9f&lang=en-us)
-
-## Configuring the Enable Password
-
-EXEC Privilege mode is unrestricted by default and can be accessed via the console port from EXEC mode with the `enable` command. Configure a password as a basic security measure.
-
-There are three types of passwords:
-
-- `enable password` is stored in the running/startup configuration using a DES encryption method.
-- `enable secret` is stored in the running/startup configuration using MD5 encryption method.
-- `enable sha256-password` is stored in the running/startup configuration using sha256-based encryption method (PBKDF2).
-
-Dell EMC Networking recommends using the enable sha256-password password.
-
-Create a password to access EXEC Privilege mode from CONFIGURATION mode.
-
-```txt
-enable [password | secret | sha256-password] [level <level>] [encryption-type] <password>
-```
-
-- `level` is the privilege level. The default is 15.
-- `encryption-type` specifies how you input the pasword, is 0 by default, and is not required.
-      - 0 is to input the password in clear text.
-      - 5 is to input a password that is already encrypted using MD5 encryption method. Obtain the encrypted password from the configuration file of another device.
-      - 7 is to input a password that is already encrypted using DES encryption method. Obtain the encrypted password from the configuration file of another device.
-      - 8 is to input a password that is already encrypted using sha256-based encryption method. Obtain the encrypted password from the configuration file of another device.
-
-
-## Apply the Running Configuration to the Startup Configuration
+## 8. Save changes to the startup config
 
 The running config contains the current system configuration. If you do not copy (save) the running config to the startup config, any changes that you made will be lost after a reboot.
 
@@ -298,7 +320,7 @@ Save the running config to the startup config on the internal flash:
 DellEMC# copy running-config startup-config
 ```
 
-## Back-up a Configuration File
+### Back-up the configuration
 
 We prefer backing up to a USB flash drive.
 
@@ -310,7 +332,7 @@ DellEMC# copy running-config usbflash://OS9_Switch-A.conf
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/save-the-running-configuration?guid=guid-30740b60-fdc7-4980-b20e-06e195bbaf13&lang=en-us)
 
-## Importing a Configuration File
+### Import a Configuration File
 
 Insert a USB flash drive into the front port of the switch and then run the following command:
 
@@ -322,7 +344,7 @@ DellEMC# copy usbflash://OS9_Switch-A.conf flash://running-config
 
 ## Upgrading the Firmware
 
-OS9 switches have two boot banks, A and B. It's good practice to upload new firmware into on boot bank and keep the old firmware in the other in case you need to roll back.
+OS9 switches have two boot banks, A and B. It's good practice to upload new firmware into one boot bank and keep the old firmware in the other in case you need to roll back.
 
 1. Make a copy of the startup configuration
         ```shell
@@ -475,7 +497,3 @@ Alternatively, use the `power-cycle stack-unit 1` command.
 #### Upgrading ONIE?
 
 Steps are in the release notes, but I don't think we need to update ONIE. From what I understand, its just the environment that Dell ON switches use to install open source network OS's which we're not doing. 
-
-#### Upgrade OS9
-
-[Up...](../S4048-ON/os9-getting-started.md#upgrading-the-firmware)
