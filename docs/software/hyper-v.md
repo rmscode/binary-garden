@@ -52,6 +52,29 @@ Powershell:
 Move-VM –Name VM01 –IncludeStorage –DestinationHost HVSRV02 –DestinationStoragePath D:\Hyper-V\
 ```
 
+### Use SNLM to Migrate VMs from one Cluster to Another
+
+1. Drop the VM from its current cluster:
+    - From Cluster Manager, right-click the VM and select **Move** > **Remove from Cluster**.
+2. Prepare the VM for migration:</br>
+    - From the node that now owns the VM, open **Hyper-V Manager** > **Hyper-V Settings** > **Live Migrations** and enable incoming and outgoing live migrations.
+    - Check "Migrate to a physical computer with a different processor version" in **Hyper-V Settings** > **Processor Compatibility**
+3. Migrate the VM:
+    - Right-click the VM in Hyper-V Manager and select **Move** > **Live Migration**.
+    - Follow the wizard.
+
+PowerShell:
+
+```powershell
+$VM = Get-VM -Name "VMName"
+Set-VMProcessor $VM -CompatibilityForMigrationEnabled $true
+Remove-ClusterGroup -VMId $VM.VMId -Force -RemoveResources
+$targetServer = "node01"
+$targetRootPath = 'C:\ClusterStorage\Volume1'
+$targetVMPath = $targetRootPath + "\" + ($VM.Name).ToUpper()
+Move-VM -Name $VM.Name -ComputerName $VM.ComputerName -IncludeStorage -DestinationHost $targetServer -DestinationStoragePath $targetVMPath
+```
+
 ## NIC Teaming
 
 NIC Teaming is a feature in Windows Server that allows you to combine multiple physical network adapters (NICs) into a single logical network card. This virtual NIC is then presented to the operating system as a unified interface, streamlining network management and enhancing reliability, performance, and fault tolerance.
@@ -79,7 +102,7 @@ NIC Teaming is a feature in Windows Server that allows you to combine multiple p
 
 #### Create SET Team
 
-!!! note "Unlike legacy LBFO teams which can be created and  managed via the Server Manager GUI, Switch Embedded Teams can only be created and managed using PowerShell."
+!!! note "Unlike legacy LBFO teams which can be created and managed via the Server Manager GUI, Switch Embedded Teams can only be created and managed using PowerShell."
 
 1. List all network adapters on the system:
         ```powershell
@@ -105,4 +128,4 @@ If a Windows 11 VM won't boot in Hyper-V, ensure the following settings are conf
 2. Click **Security** in the left pane. 
 3. Tick **Enable Trusted Platform Module**
 4. Click **Processor** in the left pane.
-5. Change the **Number of virtual processors** to a minumum of 2.
+5. Change the **Number of virtual processors** to a minimum of 2.
