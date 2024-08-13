@@ -76,7 +76,7 @@ To change directories, use `cd <path_to_dir>`. To show the current working direc
 
 To copy one file to another location, use the `copy` command with the following syntax - `copy <source-file-url> <destination-file-url>`. Dell OS9 supports IPv4 and IPv6 addressing for FTP, HTTP, TFTP, and SCP.
 
-!!! info " To enable the internal FTP server, use the `ftp-server enable` command."
+!!! info "To enable the internal FTP server, use the `ftp-server enable` command."
 
 === "Local copy (duplicate on internal flash)"
 
@@ -143,7 +143,7 @@ boot system stack-unit 1 primary system: A:
 boot system stack....
 ```
 
-!!! tip "To save the output of `show file`, pipe it into the `save` command.
+!!! tip "To save the output of `show file`, pipe it into the `save` command."
 
     ```shell
     DellEMC# show command-history | save flash://command-history.txt 
