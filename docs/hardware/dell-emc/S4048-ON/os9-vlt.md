@@ -191,23 +191,39 @@ Verify matching configuration on both VLT peers with `show vlt mismatch`.
 
     If there are no mismatches between the switches, the output will be blank.
 
-## Create a LACP LAG Between VLT Domain and Connected Devices (TOR switch, server...) 
+## Create a VLT Peer LAG Between VLT Domain and Connected Devices (TOR switch, server...) 
 
-To configure both VLT peers to agree on making two separate port-channels (LAG) a single Virtual Link Trunk (MLAG) toward an attached device, each peer must be configured with the same port-channel ID. 
+To configure both VLT peers to agree on making two separate port-channels (LAG) a single Virtual Link Trunk (MLAG) toward an attached device, each peer must be configured with the same port-channel ID.
+
+!!! note
+
+    You will need to add VLT port-channel interfaces to VLANs as needed for proper traffic flow. See "[VLAN Configuration](../S4048-ON/os9-vlan.md)" for more information. 
+
+!!! Warning "Potential to black-hole traffic"
+
+    At start-up time, once the physical ports are active a newly started VLT peer takes several seconds to fully negotiate protocols and synchronize. The attached devices are not aware of that activity and upon activation of a physical interface, the connected device will start forwarding traffic on the restored link, despite the VLT peer unit being still unprepared. It will black-hole traffic.
+
+    Dampening (or equivalent) should be configured on the attached device. Dampening will temporarily hold an interface down after a VLT peer device reload. A reload is detected as a flap: the link goes down and then up. Suggested dampening time is 30 seconds to 1 minute.
+
+    [This](os10.md#unexpected-behavior-while-testing-failure-scenarios) is also probably worth reading.
+
+### Dynamic LAG (LACP)
+
+Dell recommends using LACP to benefit from the protocol negotiations. It must be configured on both ends (VLT domain and attached device).
 
 ```shell
-VLT-1(conf)# interface port-channel 10
-VLT-1(conf-if-po-10)# description "VLT port-channel toward SwitchName"
-VLT-1(conf-if-po-10)# no shutdown
-VLT-1(conf-if-po-10)# no ip address
-VLT-1(conf-if-po-10)# switchport    #(1)
-VLT-1(conf-if-po-10)# vlt-peer-lag port-channel 10    #(2)
-VLT-1(conf-if-po-10)# exit
+VLT-1(conf)# interface port-channel 12
+VLT-1(conf-if-po-12)# description "VLT port-channel toward SwitchName"
+VLT-1(conf-if-po-12)# no shutdown
+VLT-1(conf-if-po-12)# no ip address
+VLT-1(conf-if-po-12)# switchport    #(1)
+VLT-1(conf-if-po-12)# vlt-peer-lag port-channel 12   #(2)
+VLT-1(conf-if-po-12)# exit
 VLT-1(conf)# interface FortyGigabitEthernet 1/51
 VLT-1(conf-if-te-1/51)# description "Member of port-channel 10 for upstream connection to SwitchName"
 VLT-1(conf-if-te-1/51)# no shutdown
 VLT-1(conf-if-te-1/51)# port-channel-protocol LACP    #(3)
-VLT-1(conf-if-te-1/51-lacp)# port-channel 10 mode active    #(4)
+VLT-1(conf-if-te-1/51-lacp)# port-channel 12 mode active    #(4)
 ```
 
 1. The `switchport` command puts the port-channel in layer 2 mode.
@@ -217,17 +233,37 @@ VLT-1(conf-if-te-1/51-lacp)# port-channel 10 mode active    #(4)
 
 *Repeat these steps on the other VLT peer.*
 
-!!! note
+### Static LAG (No LACP)
 
-    You will need to add the VLT port channel interface to VLANs as needed for proper traffic flow. See "[VLAN Configuration](../S4048-ON/os9-vlan.md)" for more information. Also, don't forget to create a LAG with LACP on the attached device as well!
+Despite Dell's recommendation to use LACP, you can still configure a static LAG if you prefer. In fact, in some cases, LACP may not be supported by the attached device. Prime example: Windows servers using Switch Embedded Teaming (SET). In that case, the NIC team will handle the load balancing and failover.
 
-!!! Warning "Potential to black-hole traffic"
+Clear any previous configuration on the interfaces that will be part of the LAG:
 
-    At start-up time, once the physical ports are active a newly started VLT peer takes several seconds to fully negotiate protocols and synchronize. The attached devices are not aware of that activity and upon activation of a physical interface, the connected device will start forwarding traffic on the restored link, despite the VLT peer unit being still unprepared. It will black-hole traffic.
+```shell
+VLT-1# configure
+VLT-1(conf)# default interface TenGigabitEthernet 1/25
+VLT-1(conf)# interface TenGigabitEthernet 1/25
+VLT-1(conf-if-te-1/25)# switchport
+VLT-1(conf-if-te-1/25)# no shutdown 
+VLT-1(conf-if-te-1/25)# exit
+```
 
-    Dampening (or equivalent) should be configured on the attached device. Dampening will temporarily hold an interface down after a VLT peer device reload. A reload is detected as a flap: the link goes down and then up. Suggested dampening time is 30 seconds to 1 minute.
+Create the VLT Peer LAG:
 
-    [This](os10.md#unexpected-behavior-while-testing-failure-scenarios) is also probably worth reading.
+```shell
+VLT-1# configure
+VLT-1(conf)# interface port-channel 101
+VLT-1(conf-if-po-101)# description "VLT Peer LAG for NODE01"
+VLT-1(conf-if-po-101)# channel-member TenGigabitEthernet 1/25 #(1)
+VLT-1(conf-if-po-101)# switchport
+VLT-1(conf-if-po-101)# vlt-peer-lag port-channel 101 #(2)
+VLT-1(conf-if-po-101)# exit
+```
+
+1. The `channel-member` command statically assigns the interface to the port-channel.
+2. This instructs the VLT peer to coordinate with the other VLT peer to make the port-channel a single logical link.
+
+*Repeat these steps on the other VLT peer.*
 
 ### Dampening
 
