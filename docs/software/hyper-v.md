@@ -118,6 +118,10 @@ NIC Teaming is a feature in Windows Server that allows you to combine multiple p
         New-NetIPAddress -InterfaceAlias "vEthernet (EmbeddedAdapter)" -IPAddress 192.168.1.15 -PrefixLength 24 -DefaultGateway 192.168.1.1
         ```
 
+## Single Root I/O Virtualization (SR-IOV)
+
+SR-IOV allows a host to share PCIe resources with multiple VMs. SR-IOV enables a physical PCIe device to appear as multiple separate virtual devices called Virtual Functions (VFs). These VFs can be directly assigned to a VM. In regard to network traffic, this bypasses the software switch layer of the Hyper-V stack so that traffic flows directly between a VF and a VM...Reducing the I/O overhead in the emulation layer. Microsoft claims that with SR-IOV, network performance is nearly the same as in non-virtualized environments.
+
 ## Troubleshooting
 
 ### This PC Can't Run Windows 11
