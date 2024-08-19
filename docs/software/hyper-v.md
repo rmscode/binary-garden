@@ -45,44 +45,25 @@ SNLM allows you to live migrate a VM from one Hyper-V host to another without th
 ### Prerequisites
 
 - Source and target systems must be Hyper-V hosts in the same or trusting domains.
-- Source and target systems must have the same type or family of processors (Intel or AMD) if you're using the VM's processor compatibility feature.
-- Source and target systems must be connected by at least a 1 Gbps Ethernet connection.
-- The VM cannot be clustered.
-- Enable incoming and outgoing live migrations in **Hyper-V Settings** > **Live Migrations**
+- Source and target systems must have the same type or family of processors (Intel or AMD). Otherwise, processor compatibility mode must be enabled.
+- Source and target systems must be connected by at least a 1 Gbps Ethernet connection on the same network enabled for live migration.
+- The VM cannot be a clustered role.
 
 ### Steps
 
-1. Right-click the VM in Hyper-V Manager and select **Move** > **Live Migration**.
-2. Follow the wizard and select the target host.
-
-Powershell:
-
-```powershell
-Move-VM –Name VM01 –IncludeStorage –DestinationHost HVSRV02 –DestinationStoragePath D:\Hyper-V\
-```
-
-### Use SNLM to Migrate VMs from one Cluster to Another
-
-1. Drop the VM from its current cluster:
-    - From Cluster Manager, right-click the VM and select **Move** > **Remove from Cluster**.
-2. Prepare the VM for migration:</br>
-    - From the node that now owns the VM, open **Hyper-V Manager** > **Hyper-V Settings** > **Live Migrations** and enable incoming and outgoing live migrations.
-    - Check "Migrate to a physical computer with a different processor version" in **Hyper-V Settings** > **Processor Compatibility**
-3. Migrate the VM:
-    - Right-click the VM in Hyper-V Manager and select **Move** > **Live Migration**.
-    - Follow the wizard.
-
-PowerShell:
-
-```powershell
-$VM = Get-VM -Name "VMName"
-Set-VMProcessor $VM -CompatibilityForMigrationEnabled $true
-Remove-ClusterGroup -VMId $VM.VMId -Force -RemoveResources
-$targetServer = "node01"
-$targetRootPath = 'C:\ClusterStorage\Volume1'
-$targetVMPath = $targetRootPath + "\" + ($VM.Name).ToUpper()
-Move-VM -Name $VM.Name -ComputerName $VM.ComputerName -IncludeStorage -DestinationHost $targetServer -DestinationStoragePath $targetVMPath
-```
+1. Ensure that Kerberos constrained delegation is configured on the target host.
+    1. On a Domain Controller, open ADUC and right-click the target host computer object.
+    2. In **Properties** > **Delegation** select "Trust this computer for delegation to any services (Kerberos only)"
+2. Ensure that Live Migration is enabled on both hosts. (If the hosts are part of a cluster, this is already enabled.)
+    1. Open Hyper-V Manager, goto **Hyper-V Settings** > **Live Migrations** and enable incoming and outgoing live migrations.
+3. Ensure that both the source and target hosts can communicate on the same network enabled for live migration.
+    1. **Hyper-V Settings** > **Live Migration Settings**: Add a network that both hosts can communicate on.
+4. (Optional) Check "Migrate to a physical computer with a different processor version" in **Processor Compatibility** of the VM to be moved.</br>
+    NOTE: This requires the VM to be offline.
+5. If the VM is a clustered role, drop the VM from the cluster.
+    1. From Cluster Manager, right-click the VM role and select **Remove**.
+6. Move the VM
+    1. Right-click the VM in Hyper-V Manager, select **Move** > **Live Migration** and follow the wizard.
 
 ## NIC Teaming
 
