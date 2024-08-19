@@ -29,6 +29,15 @@ Enable with `Enable-VMIntegrationService -VMName "TestVM" -Name "Guest Service I
 5. Restart the system to complete the installation.
 6. After the reboot, verify that Integration Services are updated by looking at the VM summary in Hyper-V Manager.
 
+## Processor Compatibility Mode
+
+Found in a VM' settings (Processor > Compatibility), processor compatibility  allows you to move a running virtual machine or save state between virtualization hosts that use different generations of processors. This feature works by disabling a number of modern processor features, which can affect virtual machine performance. Processor compatibility is not enabled by default.
+
+Windows Server 2025 introduces "[Dynamic Processor Compatibility](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/manage/dynamic-processor-compatibility-mode)".
+
+[Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn859550(v=ws.11))</br>
+[Altaro](https://www.altaro.com/hyper-v/troubleshooting-hyper-v-live-migration)
+
 ## Shared Nothing Live Migration (SNLM)
 
 SNLM allows you to live migrate a VM from one Hyper-V host to another without the need for shared storage.
