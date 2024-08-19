@@ -206,8 +206,8 @@ nav:
     - servers/index.md
     - Windows Server:
       #- servers/windows-server/index.md
-      - Active Directory & Domain Servcies:
-        - Overview: servers/windows-server/active-directory.md
+      - Active Directory & Domain Services:
+        - Overview: servers/windows-server/active-directory/active-directory.md
       #- Data Deduplication: servers/windows-server/dedup.md
       - Failover Clustering:
         - Overview: servers/windows-server/msft-cluster.md
