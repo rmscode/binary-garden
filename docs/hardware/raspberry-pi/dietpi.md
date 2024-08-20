@@ -4,8 +4,6 @@
 
     DietPi is a highly optimised & minimal Debian-based Linux distribution. DietPi is extremely lightweight at its core, and also extremely easy to install and use. We primarily use it to display content on TVs via DietPi's autostart feature to launch chromium kiosk mode.
 
-!!! note "There are [additional steps](../raspberry-pi/dietpi.md#raspberry-pi-5-bookworm-and-xorg-issues) to get X and 4K working on the RPi 5."
-
 ---
 
 ## Installation and Intial Setup
