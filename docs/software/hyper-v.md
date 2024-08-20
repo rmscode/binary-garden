@@ -53,7 +53,7 @@ SNLM allows you to live migrate a VM, and optionally its storage, from one Hyper
 
 1. Ensure that Live Migration is enabled on both hosts. (If the hosts are part of a cluster, this is already enabled.)
     1. Open Hyper-V Manager, goto **Hyper-V Settings** > **Live Migrations** and enable incoming and outgoing live migrations.
-2. Ensure that both the source and target hosts can communicate on the same network enabled for live migration.
+2. Ensure that both the source and target host can communicate on the same network enabled for live migration.
     1. **Hyper-V Settings** > **Live Migration Settings**: Add a network that both hosts can communicate on.
 3. Ensure that Kerberos constrained delegation is configured on the target host.
     1. On a Domain Controller, open ADUC and right-click the target host computer object.
@@ -65,6 +65,10 @@ SNLM allows you to live migrate a VM, and optionally its storage, from one Hyper
     1. From Cluster Manager, right-click the VM role and select **Remove**.
 6. Move the VM
     1. Right-click the VM in Hyper-V Manager, select **Move** > **Live Migration** and follow the wizard.
+
+!!! note
+
+    You may need to create a "dummy" private switch under Virtual Switch Manager in Hyper-V if the source and target hosts do not have a common one. 
 
 ## NIC Teaming
 
