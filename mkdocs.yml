@@ -110,6 +110,7 @@ nav:
   - Home: index.md
   - General:
     - general/index.md
+    - Change Management: general/change-management.md
     - Git Cheat Sheet: general/git-cheat-sheet.md
     - Linux Cheat Sheets:
       - Commands: general/linux-cheat-sheet.md
