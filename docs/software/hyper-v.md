@@ -40,7 +40,7 @@ Windows Server 2025 introduces "[Dynamic Processor Compatibility](https://learn.
 
 ## Shared Nothing Live Migration (SNLM)
 
-SNLM allows you to live migrate a VM from one Hyper-V host to another without the need for shared storage.
+SNLM allows you to live migrate a VM, and optionally its storage, from one Hyper-V host to another without the need for shared storage between the hosts.
 
 ### Prerequisites
 
@@ -51,13 +51,14 @@ SNLM allows you to live migrate a VM from one Hyper-V host to another without th
 
 ### Steps
 
-1. Ensure that Kerberos constrained delegation is configured on the target host.
-    1. On a Domain Controller, open ADUC and right-click the target host computer object.
-    2. In **Properties** > **Delegation** select "Trust this computer for delegation to any services (Kerberos only)"
-2. Ensure that Live Migration is enabled on both hosts. (If the hosts are part of a cluster, this is already enabled.)
+1. Ensure that Live Migration is enabled on both hosts. (If the hosts are part of a cluster, this is already enabled.)
     1. Open Hyper-V Manager, goto **Hyper-V Settings** > **Live Migrations** and enable incoming and outgoing live migrations.
-3. Ensure that both the source and target hosts can communicate on the same network enabled for live migration.
+2. Ensure that both the source and target hosts can communicate on the same network enabled for live migration.
     1. **Hyper-V Settings** > **Live Migration Settings**: Add a network that both hosts can communicate on.
+3. Ensure that Kerberos constrained delegation is configured on the target host.
+    1. On a Domain Controller, open ADUC and right-click the target host computer object.
+    2. In **Properties** > **Delegation** select "Trust this computer for delegation to any services (Kerberos only)"</br>
+    !!! Note "Make the auth protocol is to "Use Kerberos" in the the VM's settings (Live Migrations > Advanced Features)."
 4. (Optional) Check "Migrate to a physical computer with a different processor version" in **Processor Compatibility** of the VM to be moved.</br>
     NOTE: This requires the VM to be offline.
 5. If the VM is a clustered role, drop the VM from the cluster.
