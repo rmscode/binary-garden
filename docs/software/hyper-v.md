@@ -58,7 +58,7 @@ SNLM allows you to live migrate a VM, and optionally its storage, from one Hyper
 3. Ensure that Kerberos constrained delegation is configured on the target host.
     1. On a Domain Controller, open ADUC and right-click the target host computer object.
     2. In **Properties** > **Delegation** select "Trust this computer for delegation to any services (Kerberos only)"</br>
-    !!! Note "Make the auth protocol is to "Use Kerberos" in the the VM's settings (Live Migrations > Advanced Features)."
+    !!! Note "Make sure the auth protocol is set to "Use Kerberos" in the the VM's settings (Live Migrations > Advanced Features)."
 4. (Optional) Check "Migrate to a physical computer with a different processor version" in **Processor Compatibility** of the VM to be moved.</br>
     NOTE: This requires the VM to be offline.
 5. If the VM is a clustered role, drop the VM from the cluster.
