@@ -110,11 +110,12 @@ nav:
   - Home: index.md
   - General:
     - general/index.md
+    - Cheat Sheets:
+      - Git Cheat Sheet: general/cheat-sheets/git-cheat-sheet.md
+      - Linux Cheat Sheet: general/cheat-sheets/linux-cheat-sheet.md
+      - Dell OS9 Cheat Sheet: general/cheat-sheets/dell-os9-cheat-sheet.md
     - Change Management: general/change-management.md
-    - Git Cheat Sheet: general/git-cheat-sheet.md
-    - Linux Cheat Sheets:
-      - Commands: general/linux-cheat-sheet.md
-      - Directory Structure Explained: general/linux-directory-structure.md
+    - Linux Directory Structure: general/linux-directory-structure.md
     - RAID: general/raid.md
     - ReFS vs NTFS: general/refs-vs-ntfs.md
     - Storage Snapshot: general/storage-snapshots.md
