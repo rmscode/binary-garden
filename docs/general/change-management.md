@@ -16,7 +16,7 @@ The process that management uses to identify, document and authorize changes to 
 
 What are the primary goals and objectives?
 
-- To manage and create a documented record of required changes and ensure that each change is implemented ni the most cost effective, high quality manner with minimal disruption to operations.
+- To manage and create a documented record of required changes and ensure that each change is implemented in the most cost effective, high quality manner with minimal disruption to operations.
 
 ## Roles and responsibilities
 
@@ -42,7 +42,7 @@ What are the primary goals and objectives?
 2. The CAB meets weekly to review upcoming changes. **Note**: Emergency changes are not presented at the weekly CAB meeting. They are presented to the eCAB ASAP.
     - Outcomes:
         - Approved - Change is approved and scheduled
-        - Denied - Change is rejected, which will result in the change going back to the initial state of "New", where the requestor may update or changge whatever is needed based on CAB recommendations. Reasons may include not enough info, no representation at change meeting and/or risk too high.
+        - Denied - Change is rejected, which will result in the change going back to the initial state of "New", where the requestor may update or change whatever is needed based on CAB recommendations. Reasons may include not enough info, no representation at change meeting and/or risk too high.
 3. Notifications of changes will be sent to all affected personnel.
 4. Changes will begin at the assigned time and follow a change schedule. After the change is implemented, testing will begin.
 5. RFC Closure
