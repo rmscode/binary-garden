@@ -1,5 +1,7 @@
 # Change Management / Change Control
 
+> Originally from my notes taken on [11.20.2023](../notes/2023.md#m-11202023).
+
 The process that management uses to identify, document and authorize changes to an IT environment. It minimizes the likelihood of disruptions, unauthorized alterations and errors.
 
 ## What are some common change control targets?
