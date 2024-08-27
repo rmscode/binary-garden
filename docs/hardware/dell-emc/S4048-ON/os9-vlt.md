@@ -2,7 +2,7 @@
 
 !!! info "Feature Description"
 
-    Virtual Link Trunking is Dell's implementation of MLAG (Multi-Chassis Link Aggregation). It allows you to create a port-channel (LAG) between two switches and have them act as one logical switch. This provides redundancy and load balancing. 
+    Virtual Link Trunking is Dell's implementation of MC-LAG (Multi-Chassis Link Aggregation). It allows you to create a port-channel (LAG) between two switches and have them act as one logical switch. This provides redundancy and load balancing. 
 
 !!! note "For brevity, when a configuration step is identical for both VLT peers, I will only show CLI examples for one of the peers."
 
@@ -67,7 +67,7 @@ VLT-1(conf-if-po-128)# exit
 2. The `description` command is useful for labeling interfaces and port-channels, among other things. When using the the `show` command, the description will be displayed first. Its not required, but it's good practice.
 3. Configuring a port-channel (LAG) for the VLTi. In OS9, the ID # can be anything from 1-128.
 4. Selecting the interfaces that will be used to form the port-channel.
-5. To become the VLTi, the port-channel must be in default mode (no switchport, no VLAN assigned).
+5. To become the VLTi, the port-channel must be in default mode (no switchport, no VLAN assigned). [*Reference*](https://i.dell.com/sites/content/business/large-business/merchandizing/en/Documents/Dell_Force10_S4810_VLT_Technical_Guide.pdf)
 
 !!! warning
 
@@ -191,7 +191,7 @@ Verify matching configuration on both VLT peers with `show vlt mismatch`.
 
     If there are no mismatches between the switches, the output will be blank.
 
-## Create a VLT Peer LAG Between VLT Domain and Connected Devices (TOR switch, server...) 
+## 6. Create a VLT Peer LAG Between VLT Domain and Connected Devices (TOR switch, server...) 
 
 To configure both VLT peers to agree on making two separate port-channels (LAG) a single Virtual Link Trunk (MLAG) toward an attached device, each peer must be configured with the same port-channel ID.
 
@@ -243,7 +243,7 @@ Clear any previous configuration on the interfaces that will be part of the LAG:
 VLT-1# configure
 VLT-1(conf)# default interface TenGigabitEthernet 1/25
 VLT-1(conf)# interface TenGigabitEthernet 1/25
-VLT-1(conf-if-te-1/25)# switchport
+VLT-1(conf-if-po-101)# description "Member of VLT Peer LAG for NODE04"
 VLT-1(conf-if-te-1/25)# no shutdown 
 VLT-1(conf-if-te-1/25)# exit
 ```
@@ -252,11 +252,11 @@ Create the VLT Peer LAG:
 
 ```shell
 VLT-1# configure
-VLT-1(conf)# interface port-channel 101
-VLT-1(conf-if-po-101)# description "VLT Peer LAG for NODE01"
+VLT-1(conf)# interface port-channel 104
+VLT-1(conf-if-po-101)# description "VLT Peer LAG for NODE04"
 VLT-1(conf-if-po-101)# channel-member TenGigabitEthernet 1/25 #(1)
 VLT-1(conf-if-po-101)# switchport
-VLT-1(conf-if-po-101)# vlt-peer-lag port-channel 101 #(2)
+VLT-1(conf-if-po-101)# vlt-peer-lag port-channel 104 #(2)
 VLT-1(conf-if-po-101)# exit
 ```
 
