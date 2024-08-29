@@ -187,6 +187,8 @@ nav:
         - Logging: hardware/dell-emc/powervault-me5/me5-logging.md
         - Troubleshooting: hardware/dell-emc/powervault-me5/me5-troubleshooting.md
         - Best Practices: hardware/dell-emc/powervault-me5/me5-best-practice.md
+    - Displays:
+      - TVs: hardware/display/tv.md
     - Microsoft:
       - Microsoft Surface: hardware/microsoft/surface-rt.md
     - Raspberry Pi:
