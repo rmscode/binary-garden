@@ -201,7 +201,7 @@ To configure both VLT peers to agree on making two separate port-channels (LAG) 
 
 !!! Warning "Potential to black-hole traffic"
 
-    At start-up time, once the physical ports are active a newly started VLT peer takes several seconds to fully negotiate protocols and synchronize. The attached devices are not aware of that activity and upon activation of a physical interface, the connected device will start forwarding traffic on the restored link, despite the VLT peer unit being still unprepared. It will black-hole traffic.
+    At startup, once the physical ports are active, a newly started VLT peer takes several seconds to fully negotiate protocols and synchronize. During this time, the attached devices are unaware of the ongoing activity. As soon as a physical interface is activated, the connected devices begin forwarding traffic on the restored link, even though the VLT peer is not yet fully prepared. Traffic will be black-holed.
 
     Dampening (or equivalent) should be configured on the attached device. Dampening will temporarily hold an interface down after a VLT peer device reload. A reload is detected as a flap: the link goes down and then up. Suggested dampening time is 30 seconds to 1 minute.
 
