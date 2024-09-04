@@ -8,9 +8,13 @@
 
 ## 1. Enable rSTP globally on *each* VLT peer
 
-!!! info
+!!! warning "rSTP has the potential to disrupt traffic if not configured correctly"
 
-    Dell recommends, at least initially, to enable rSTP globally on each VLT peer. This is to prevent loops in the event of a misconfiguration. More info [here](../S4048-ON/os9-other.md#rstp-and-vlt)...
+    During our initial configuration and testing of VLT we experienced some traffic flow issues that we later learned was due to the spanning-tree protocol. Whenever the primary VLT peer reloaded or was the subject of a simulated power failure, we lost client connectivity via our access switch for 30 seconds and our cluster's networking was disrupted. You can find a detailed explanation of this in my notes on [9/3/2024](../../../notes/2024.md#t-09032024). See also, "[RSTP and VLT](./os9-other.md#rstp-and-vlt)". 
+    
+    What it boils down to is either configuring EdgePorts or disabling spanning-tree once the VLT configuration is complete. 
+
+Dell recommends that you configure the spanning-tree protocol on both peers *before* VLT to prevent loops during initial configuration. Whichever peer switch you end up configuring as the primary, set its bridge priority to the lowest value. The other peer should have a higher bridge priority. This will ensure that the primary peer is the root bridge for the VLT domain. In this example, we have decided to use the rapid spanning-tree protocol (RSTP).
 
 === "VLT Peer 1"
 
@@ -243,7 +247,7 @@ Clear any previous configuration on the interfaces that will be part of the LAG:
 VLT-1# configure
 VLT-1(conf)# default interface TenGigabitEthernet 1/25
 VLT-1(conf)# interface TenGigabitEthernet 1/25
-VLT-1(conf-if-po-101)# description "Member of VLT Peer LAG for NODE04"
+VLT-1(conf-if-te-1/25)# description "Member of VLT Peer LAG for NODE04"
 VLT-1(conf-if-te-1/25)# no shutdown 
 VLT-1(conf-if-te-1/25)# exit
 ```
