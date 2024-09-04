@@ -201,7 +201,11 @@ To configure both VLT peers to agree on making two separate port-channels (LAG) 
 
 !!! note
 
-    You will need to add VLT port-channel interfaces to VLANs as needed for proper traffic flow. See "[VLAN Configuration](../S4048-ON/os9-vlan.md)" for more information. 
+    You will need to add VLT port-channel interfaces to VLANs as needed for proper traffic flow. See "[VLAN Configuration](../S4048-ON/os9-vlan.md)" for more information.
+
+!!! note
+
+    If you wish to keep spanning-tree enabled, consider configuring interfaces attached to end stations as EdgePorts. Example: `spanning-tree rstp edge-port`
 
 !!! Warning "Potential to black-hole traffic"
 
