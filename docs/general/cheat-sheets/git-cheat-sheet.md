@@ -67,7 +67,7 @@
 
 ## Ignoring Patterns
 
-!!! info "Preventing unintentional staging or commiting of files"
+!!! info "Preventing unintentional staging or committing of files"
 
 Save a file with desired patterns as .gitignore with either direct string matches or wildcard globs.
 
