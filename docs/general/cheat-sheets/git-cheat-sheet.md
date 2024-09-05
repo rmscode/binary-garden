@@ -114,9 +114,8 @@ git config --global core.excludesfile [file]
 | `git stash`                                        | save modified and staged changes
 | `git stash save [description]`                     | save modified and staged changes with a unique description/name
 | `git stash list`                                   | list stack-order of stashed file changes
-| `git stash pop`                                    | write working from top of stash stack and then discard that stash
-| `git stash apply`                                  | write working from top of stash stack and keep that stash for possible reuse later
-| `git stash drop`                                   | discard the changes from top of stash stack
-| `git stash drop [n]`                               | discard the changes from the nth stash in the stack
+| `git stash pop [n]`                                | write working from top of stash stack or the nth stash and then discard that stash
+| `git stash apply [n]`                              | write working from top of stash stack or the nth stash and keep that stash for possible reuse later
+| `git stash drop [n]`                               | discard the changes from top of stash stack or the nth stash
 
-!!! note "Using `git stash drop [n]` will *change* the `stash@{n}` designations of all stashes further down the stack."
+!!! note "Using `pop`, `apply`, or `drop` will change the `stash@{n}` designations of all stashes further down the stack."
