@@ -117,5 +117,6 @@ git config --global core.excludesfile [file]
 | `git stash pop [n]`                                | write working from top of stash stack or the nth stash and then discard that stash
 | `git stash apply [n]`                              | write working from top of stash stack or the nth stash and keep that stash for possible reuse later
 | `git stash drop [n]`                               | discard the changes from top of stash stack or the nth stash
+| `git stash clear`                                  | clear the entire stash stack
 
 !!! note "Using `pop`, `apply`, or `drop` will change the `stash@{n}` designations of all stashes further down the stack."
