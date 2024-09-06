@@ -239,6 +239,8 @@ nav:
       - Teams: software/microsoft-office/teams/ms-teams.md
       - Word:
         - Hide Images: software/microsoft-office/word/hide-images.md
+    - Operating Systems:
+      - Windows: software/operating-systems/windows.md
     - MkDocs:
       - Getting Started: software/mkdocs/getting-started.md
       - Creating Your Site: software/mkdocs/creating-site.md
