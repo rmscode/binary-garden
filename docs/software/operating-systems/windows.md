@@ -22,3 +22,5 @@ Microsoft started installing this automatically, but most users have no need for
 !!! note
 
     If you encounter issues with the command above, you probably need to make sure the AppX Deployment Service is running. Run services.msc, find and start "AppX Deployment Service (AppXSVC)". A reboot will probably be needed. If that doesn't work, you may need to use the legacy loading mode with the `-UseWinPS` switch. Run `Import-Module Appx -UseWinPS` and then the command above.
+
+    [*Reference*](https://superuser.com/questions/1456837/powershell-get-appxpackage-not-working)
