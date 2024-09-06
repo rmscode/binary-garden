@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Best Practices
 
 ## Identifying Your Hosts Easily

@@ -116,10 +116,12 @@ nav:
   - Home: index.md
   - General:
     - general/index.md
-    - Git Cheat Sheet: general/git-cheat-sheet.md
-    - Linux Cheat Sheets:
-      - Commands: general/linux-cheat-sheet.md
-      - Directory Structure Explained: general/linux-directory-structure.md
+    - Cheat Sheets:
+      - Git Cheat Sheet: general/cheat-sheets/git-cheat-sheet.md
+      - Linux Cheat Sheet: general/cheat-sheets/linux-cheat-sheet.md
+      - Dell OS9 Cheat Sheet: general/cheat-sheets/dell-os9-cheat-sheet.md
+    - Change Management: general/change-management.md
+    - Linux Directory Structure: general/linux-directory-structure.md
     - RAID: general/raid.md
     - ReFS vs NTFS: general/refs-vs-ntfs.md
     - Storage Snapshot: general/storage-snapshots.md
@@ -191,8 +193,13 @@ nav:
         - Logging: hardware/dell-emc/powervault-me5/me5-logging.md
         - Troubleshooting: hardware/dell-emc/powervault-me5/me5-troubleshooting.md
         - Best Practices: hardware/dell-emc/powervault-me5/me5-best-practice.md
+    - Displays:
+      - TVs: hardware/display/tv.md
     - Microsoft:
       - Microsoft Surface: hardware/microsoft/surface-rt.md
+    - Printers & Copiers:
+      - Copiers: hardware/printers-copiers/copiers.md
+      - Printers: hardware/printers-copiers/printers.md
     - Raspberry Pi:
       - Overview: hardware/raspberry-pi/overview.md
       - DietPi: hardware/raspberry-pi/dietpi.md
@@ -212,8 +219,8 @@ nav:
     - servers/index.md
     - Windows Server:
       #- servers/windows-server/index.md
-      - Active Directory & Domain Servcies:
-        - Overview: servers/windows-server/active-directory.md
+      - Active Directory & Domain Services:
+        - Overview: servers/windows-server/active-directory/active-directory.md
       #- Data Deduplication: servers/windows-server/dedup.md
       - Failover Clustering:
         - Overview: servers/windows-server/msft-cluster.md
@@ -238,11 +245,14 @@ nav:
       - Teams: software/microsoft-office/teams/ms-teams.md
       - Word:
         - Hide Images: software/microsoft-office/word/hide-images.md
+    - Operating Systems:
+      - Windows: software/operating-systems/windows.md
     - MkDocs:
       - Getting Started: software/mkdocs/getting-started.md
       - Creating Your Site: software/mkdocs/creating-site.md
       - Publishing Your Site: software/mkdocs/publishing.md 
     - Remote Desktop: software/remote-desktop.md
+    - Zoom: software/zoom.md
   - SOP: 
     - sop/index.md
   - Notes:

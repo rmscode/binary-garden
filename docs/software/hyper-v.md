@@ -29,28 +29,46 @@ Enable with `Enable-VMIntegrationService -VMName "TestVM" -Name "Guest Service I
 5. Restart the system to complete the installation.
 6. After the reboot, verify that Integration Services are updated by looking at the VM summary in Hyper-V Manager.
 
+## Processor Compatibility Mode
+
+Found in a VM' settings (Processor > Compatibility), processor compatibility  allows you to move a running virtual machine or save state between virtualization hosts that use different generations of processors. This feature works by disabling a number of modern processor features, which can affect virtual machine performance. Processor compatibility is not enabled by default.
+
+Windows Server 2025 introduces "[Dynamic Processor Compatibility](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/manage/dynamic-processor-compatibility-mode)".
+
+[Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn859550(v=ws.11))</br>
+[Altaro](https://www.altaro.com/hyper-v/troubleshooting-hyper-v-live-migration)
+
 ## Shared Nothing Live Migration (SNLM)
 
-SNLM allows you to live migrate a VM from one Hyper-V host to another without the need for shared storage.
+SNLM allows you to live migrate a VM, and optionally its storage, from one Hyper-V host to another without the need for shared storage between the hosts.
 
 ### Prerequisites
 
 - Source and target systems must be Hyper-V hosts in the same or trusting domains.
-- Source and target systems must have the same type or family of processors (Intel or AMD) if you're using the VM's processor compatibility feature.
-- Source and target systems must be connected by at least a 1 Gbps Ethernet connection.
-- The VM cannot be clustered.
-- Enable incoming and outgoing live migrations in **Hyper-V Settings** > **Live Migrations**
+- Source and target systems must have the same type or family of processors (Intel or AMD). Otherwise, processor compatibility mode must be enabled.
+- Source and target systems must be connected by at least a 1 Gbps Ethernet connection on the same network enabled for live migration.
+- The VM cannot be a clustered role.
 
 ### Steps
 
-1. Right-click the VM in Hyper-V Manager and select **Move** > **Live Migration**.
-2. Follow the wizard and select the target host.
+1. Ensure that Live Migration is enabled on both hosts. (If the hosts are part of a cluster, this is already enabled.)
+    1. Open Hyper-V Manager, goto **Hyper-V Settings** > **Live Migrations** and enable incoming and outgoing live migrations.
+2. Ensure that both the source and target host can communicate on the same network enabled for live migration.
+    1. **Hyper-V Settings** > **Live Migration Settings**: Add a network that both hosts can communicate on.
+3. Ensure that Kerberos constrained delegation is configured on the target host.
+    1. On a Domain Controller, open ADUC and right-click the target host computer object.
+    2. In **Properties** > **Delegation** select "Trust this computer for delegation to any services (Kerberos only)"</br>
+    !!! Note "Make sure the auth protocol is set to "Use Kerberos" in the the VM's settings (Live Migrations > Advanced Features)."
+4. (Optional) Check "Migrate to a physical computer with a different processor version" in **Processor Compatibility** of the VM to be moved.</br>
+    NOTE: This requires the VM to be offline.
+5. If the VM is a clustered role, drop the VM from the cluster.
+    1. From Cluster Manager, right-click the VM role and select **Remove**.
+6. Move the VM
+    1. Right-click the VM in Hyper-V Manager, select **Move** > **Live Migration** and follow the wizard.
 
-Powershell:
+!!! note
 
-```powershell
-Move-VM –Name VM01 –IncludeStorage –DestinationHost HVSRV02 –DestinationStoragePath D:\Hyper-V\
-```
+    You may need to create a "dummy" private switch under Virtual Switch Manager in Hyper-V if the source and target hosts do not have a common one. 
 
 ## NIC Teaming
 
@@ -79,7 +97,7 @@ NIC Teaming is a feature in Windows Server that allows you to combine multiple p
 
 #### Create SET Team
 
-!!! note "Unlike legacy LBFO teams which can be created and  managed via the Server Manager GUI, Switch Embedded Teams can only be created and managed using PowerShell."
+!!! note "Unlike legacy LBFO teams which can be created and managed via the Server Manager GUI, Switch Embedded Teams can only be created and managed using PowerShell."
 
 1. List all network adapters on the system:
         ```powershell
@@ -95,6 +113,10 @@ NIC Teaming is a feature in Windows Server that allows you to combine multiple p
         New-NetIPAddress -InterfaceAlias "vEthernet (EmbeddedAdapter)" -IPAddress 192.168.1.15 -PrefixLength 24 -DefaultGateway 192.168.1.1
         ```
 
+## Single Root I/O Virtualization (SR-IOV)
+
+SR-IOV allows a host to share PCIe resources with multiple VMs. SR-IOV enables a physical PCIe device to appear as multiple separate virtual devices called Virtual Functions (VFs). These VFs can be directly assigned to a VM. In regard to network traffic, this bypasses the software switch layer of the Hyper-V stack so that traffic flows directly between a VF and a VM...Reducing the I/O overhead in the emulation layer. Microsoft claims that with SR-IOV, network performance is nearly the same as in non-virtualized environments.
+
 ## Troubleshooting
 
 ### This PC Can't Run Windows 11
@@ -105,4 +127,4 @@ If a Windows 11 VM won't boot in Hyper-V, ensure the following settings are conf
 2. Click **Security** in the left pane. 
 3. Tick **Enable Trusted Platform Module**
 4. Click **Processor** in the left pane.
-5. Change the **Number of virtual processors** to a minumum of 2.
+5. Change the **Number of virtual processors** to a minimum of 2.

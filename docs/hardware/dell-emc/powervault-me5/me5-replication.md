@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Replication
 
 Two internal snapshots (S1,S2) are created on both the primary and secondary storage arrays when a replication set is created. The source and target volume(s), as well as the S1 and S2 snapshots all contain the same data upon initial replication. The primary storage array will then only write changes to it's S2 snapshot. S1 and S2 are then compared and only the latest changes are sent to the secondary storage array. 

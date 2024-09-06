@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Shutting/Restarting Down a Controller Module
 
 Shutting down the controller module in an enclosure ensures that a proper failover sequence is used, which includes *stopping all I/O* operations and writing any data in write cache to disk. Perform a shut down before you remove a controller module from an enclosure, or before you power off an enclosure for maintenance, repair, or a move.

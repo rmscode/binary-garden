@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Deployment Brief
 
 !!! info "Required Tools"

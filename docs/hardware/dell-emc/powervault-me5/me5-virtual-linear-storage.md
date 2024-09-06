@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Virtual and Linear Storage
 
 The ME5 series storage system uses two different storage technologies that share a common user interface. One uses the virtual method while the other one uses the linear method.

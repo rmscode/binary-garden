@@ -1,6 +1,6 @@
 # Linux Cheat Sheet
 
-A collection of commonly used commands in various Linuz operating systems. If the Linux ditro is not specifically mentioned, its safe to assume the command is universal.
+A collection of commonly used commands in various Linux operating systems. If the Linux ditro is not specifically mentioned, its safe to assume the command is universal.
 
 ## File System Navigation
 
@@ -60,7 +60,7 @@ A collection of commonly used commands in various Linuz operating systems. If th
 | `tree`             | View the directory structure for a path   
 | `mount and umount` | Mount and unmount a storage device or ISO file
 
-!!! tip "For info on accessing a drive on Windows from WSL, see [here](../general/wsl.md#accessing-a-linux-file-system-format-on-windows-from-wsl)."
+!!! tip "For info on accessing a drive on Windows from WSL, see [here](../../general/wsl.md#accessing-a-linux-file-system-format-on-windows-from-wsl)."
 
     This is particularly useful for when you need to access the contents of storage media that is formatted in a Linux file system, but don't have immediate access to a computer running Linux.
 

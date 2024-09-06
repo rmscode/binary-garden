@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Accessing the CLI
 
 Embedded within the controller modules is a command-line interface (CLI) that enables you to manage and monitor the storage system. The CLI can be accessed in two ways:

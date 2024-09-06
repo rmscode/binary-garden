@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Volumes and Volume groups
 
 A volume is a logical subdivision of a virtual or linear pool and can be mapped to host-based applications. An attached volume provides addressable storage to a host (for example, a file system partition you create with your operating system or third-party tools). For more information, see [Attaching volumes to hosts](https://www.dell.com/support/manuals/en-us/powervault-me5084/me5_series_ag/attaching-volumes-to-hosts?guid=guid-337fb819-979a-485c-afcd-3105aa78e3bd&lang=en-us).

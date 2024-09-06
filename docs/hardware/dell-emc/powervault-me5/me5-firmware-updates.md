@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Firmware Updates
 
 The Firmware panel (**Maintenance > Firmware**) shows information about system and disk firmware versions, and enables you to perform firmware updates.

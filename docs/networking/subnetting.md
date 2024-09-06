@@ -1,6 +1,6 @@
 # Subnetting
 
-## Wilcard Mask
+## wildcard Mask
 
 A wildcard mask is a mask of bits that indicates which parts of an IP address are available for examination and can be thought of as an inverted subnet mask. 
 
@@ -14,3 +14,8 @@ A wildcard mask is a matching rule. The rules are as follows:
 !!! example
 
     The wildcard mask of 0.0.0.254 applied to the IP address 10.10.10.2 will match even numbered IP addresses 10.10.10.0, 10.10.10.2, 10.10.10.4 etc.
+
+
+!!! note
+
+    THIS EXAMPLE SEEMS WRONG. CANT REMEMBER WHERE I COPIED FROM. 

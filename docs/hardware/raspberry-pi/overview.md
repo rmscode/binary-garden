@@ -10,4 +10,4 @@
     
     As of 12/22/23, we are using [DietPi](dietpi.md) for digital signage purposes. This allows us to update the OS and Chromium on a more regular basis. Something we had to wait on the PiSignage developers for. This was a problem because we moved from a .NET MAUI app to Blazor WASM (for easier development) and it wouldn't work with the PiSignage build we had.
 
-!!! tip "For a list of common Linux commands, see the [Linux Cheat Sheet](../../general/linux-cheat-sheet.md)."
+!!! tip "For a list of common Linux commands, see the [Linux Cheat Sheet](../../general/cheat-sheets/linux-cheat-sheet.md)."

@@ -2,15 +2,19 @@
 
 !!! info "Feature Description"
 
-    Virtual Link Trunking is Dell's implementation of MLAG (Multi-Chassis Link Aggregation). It allows you to create a port-channel (LAG) between two switches and have them act as one logical switch. This provides redundancy and load balancing. 
+    Virtual Link Trunking is Dell's implementation of MC-LAG (Multi-Chassis Link Aggregation). It allows you to create a port-channel (LAG) between two switches and have them act as one logical switch. This provides redundancy and load balancing. 
 
 !!! note "For brevity, when a configuration step is identical for both VLT peers, I will only show CLI examples for one of the peers."
 
 ## 1. Enable rSTP globally on *each* VLT peer
 
-!!! info
+!!! warning "rSTP has the potential to disrupt traffic if not configured correctly"
 
-    Dell recommends, at least initially, to enable rSTP globally on each VLT peer. This is to prevent loops in the event of a misconfiguration. More info [here](../S4048-ON/os9-other.md#rstp-and-vlt)...
+    During our initial configuration and testing of VLT we experienced some traffic flow issues that we later learned was due to the spanning-tree protocol. Whenever the primary VLT peer reloaded or was the subject of a simulated power failure, we lost client connectivity via our access switch for 30 seconds and our cluster's networking was disrupted. You can find a detailed explanation of this in my notes on [9/3/2024](../../../notes/2024.md#t-09032024). See also, "[RSTP and VLT](./os9-other.md#rstp-and-vlt)". 
+    
+    What it boils down to is either configuring EdgePorts or disabling spanning-tree once the VLT configuration is complete. 
+
+Dell recommends that you configure the spanning-tree protocol on both peers *before* VLT to prevent loops during initial configuration. Whichever peer switch you end up configuring as the primary, set its bridge priority to the lowest value. The other peer should have a higher bridge priority. This will ensure that the primary peer is the root bridge for the VLT domain. In this example, we have decided to use the rapid spanning-tree protocol (RSTP).
 
 === "VLT Peer 1"
 
@@ -50,14 +54,14 @@
     The VLTi may consist of any 10G or 40G ports, but a combination of 10G *and* 40G ports is not supported. Dell recommends forming the VLTi with at least 2 ports as best practice.
 
 ```shell
-VLT-1(conf)# interface range FortyGigabitEthernet 1/49-1/50 #(1)
+VLT-1(conf)# interface range FortyGigabitEthernet 1/47-1/48 #(1)
 VLT-1(conf-if-range-fo-1/47,fo-1/48)# description "Member of port-channel 128 for the VLT Interconnect" #(2)
 VLT-1(conf-if-range-fo-1/47,fo-1/48)# no shutdown
 VLT-1(conf-if-range-fo-1/47,fo-1/48)# exit
 VLT-1(conf)# interface port-channel 128 #(3)
 VLT-1(conf-if-po-128)# description "VLT Interconnect"
-VLT-1(conf-if-po-128)# channel-member FortyGigabitEthernet 1/49 #(4)
-VLT-1(conf-if-po-128)# channel-member FortyGigabitEthernet 1/50
+VLT-1(conf-if-po-128)# channel-member FortyGigabitEthernet 1/47 #(4)
+VLT-1(conf-if-po-128)# channel-member FortyGigabitEthernet 1/48
 VLT-1(conf-if-po-128)# no switchport #(5)
 VLT-1(conf-if-po-128)# no shutdown
 VLT-1(conf-if-po-128)# exit
@@ -67,7 +71,7 @@ VLT-1(conf-if-po-128)# exit
 2. The `description` command is useful for labeling interfaces and port-channels, among other things. When using the the `show` command, the description will be displayed first. Its not required, but it's good practice.
 3. Configuring a port-channel (LAG) for the VLTi. In OS9, the ID # can be anything from 1-128.
 4. Selecting the interfaces that will be used to form the port-channel.
-5. This will default the port-channel and place it in Layer 2 Access mode if it isn't already. This is required for the VLTi.
+5. To become the VLTi, the port-channel must be in default mode (no switchport, no VLAN assigned). [*Reference*](https://i.dell.com/sites/content/business/large-business/merchandizing/en/Documents/Dell_Force10_S4810_VLT_Technical_Guide.pdf)
 
 !!! warning
 
@@ -191,23 +195,43 @@ Verify matching configuration on both VLT peers with `show vlt mismatch`.
 
     If there are no mismatches between the switches, the output will be blank.
 
-## Create a LACP LAG Between VLT Domain and Connected Devices (TOR switch, server...) 
+## 6. Create a VLT Peer LAG Between VLT Domain and Connected Devices (TOR switch, server...) 
 
-To configure both VLT peers to agree on making two separate port-channels (LAG) a single Virtual Link Trunk (MLAG) toward an attached device, each peer must be configured with the same port-channel ID. 
+To configure both VLT peers to agree on making two separate port-channels (LAG) a single Virtual Link Trunk (MLAG) toward an attached device, each peer must be configured with the same port-channel ID.
+
+!!! note
+
+    You will need to add VLT port-channel interfaces to VLANs as needed for proper traffic flow. See "[VLAN Configuration](../S4048-ON/os9-vlan.md)" for more information.
+
+!!! note
+
+    If you wish to keep spanning-tree enabled, consider configuring interfaces attached to end stations as EdgePorts. Example: `spanning-tree rstp edge-port`
+
+!!! Warning "Potential to black-hole traffic"
+
+    At startup, once the physical ports are active, a newly started VLT peer takes several seconds to fully negotiate protocols and synchronize. During this time, the attached devices are unaware of the ongoing activity. As soon as a physical interface is activated, the connected devices begin forwarding traffic on the restored link, even though the VLT peer is not yet fully prepared. Traffic will be black-holed.
+
+    Dampening (or equivalent) should be configured on the attached device. Dampening will temporarily hold an interface down after a VLT peer device reload. A reload is detected as a flap: the link goes down and then up. Suggested dampening time is 30 seconds to 1 minute.
+
+    [This](os10.md#unexpected-behavior-while-testing-failure-scenarios) is also probably worth reading.
+
+### Dynamic LAG (LACP)
+
+Dell recommends using LACP to benefit from the protocol negotiations. It must be configured on both ends (VLT domain and attached device).
 
 ```shell
-VLT-1(conf)# interface port-channel 10
-VLT-1(conf-if-po-10)# description "VLT port-channel toward SwitchName"
-VLT-1(conf-if-po-10)# no shutdown
-VLT-1(conf-if-po-10)# no ip address
-VLT-1(conf-if-po-10)# switchport    #(1)
-VLT-1(conf-if-po-10)# vlt-peer-lag port-channel 10    #(2)
-VLT-1(conf-if-po-10)# exit
+VLT-1(conf)# interface port-channel 12
+VLT-1(conf-if-po-12)# description "VLT port-channel toward SwitchName"
+VLT-1(conf-if-po-12)# no shutdown
+VLT-1(conf-if-po-12)# no ip address
+VLT-1(conf-if-po-12)# switchport    #(1)
+VLT-1(conf-if-po-12)# vlt-peer-lag port-channel 12   #(2)
+VLT-1(conf-if-po-12)# exit
 VLT-1(conf)# interface FortyGigabitEthernet 1/51
 VLT-1(conf-if-te-1/51)# description "Member of port-channel 10 for upstream connection to SwitchName"
 VLT-1(conf-if-te-1/51)# no shutdown
 VLT-1(conf-if-te-1/51)# port-channel-protocol LACP    #(3)
-VLT-1(conf-if-te-1/51-lacp)# port-channel 10 mode active    #(4)
+VLT-1(conf-if-te-1/51-lacp)# port-channel 12 mode active    #(4)
 ```
 
 1. The `switchport` command puts the port-channel in layer 2 mode.
@@ -217,17 +241,37 @@ VLT-1(conf-if-te-1/51-lacp)# port-channel 10 mode active    #(4)
 
 *Repeat these steps on the other VLT peer.*
 
-!!! note
+### Static LAG (No LACP)
 
-    You will need to add the VLT port channel interface to VLANs as needed for proper traffic flow. See "[VLAN Configuration](../S4048-ON/os9-vlan.md)" for more information. Also, don't forget to create a LAG with LACP on the attached device as well!
+Despite Dell's recommendation to use LACP, you can still configure a static LAG if you prefer. In fact, in some cases, LACP may not be supported by the attached device. Prime example: Windows servers using Switch Embedded Teaming (SET). In that case, the NIC team will handle the load balancing and failover.
 
-!!! Warning "Potential to black-hole traffic"
+Clear any previous configuration on the interfaces that will be part of the LAG:
 
-    At start-up time, once the physical ports are active a newly started VLT peer takes several seconds to fully negotiate protocols and synchronize. The attached devices are not aware of that activity and upon activation of a physical interface, the connected device will start forwarding traffic on the restored link, despite the VLT peer unit being still unprepared. It will black-hole traffic.
+```shell
+VLT-1# configure
+VLT-1(conf)# default interface TenGigabitEthernet 1/25
+VLT-1(conf)# interface TenGigabitEthernet 1/25
+VLT-1(conf-if-te-1/25)# description "Member of VLT Peer LAG for NODE04"
+VLT-1(conf-if-te-1/25)# no shutdown 
+VLT-1(conf-if-te-1/25)# exit
+```
 
-    Dampening (or equivalent) should be configured on the attached device. Dampening will temporarily hold an interface down after a VLT peer device reload. A reload is detected as a flap: the link goes down and then up. Suggested dampening time is 30 seconds to 1 minute.
+Create the VLT Peer LAG:
 
-    [This](os10.md#unexpected-behavior-while-testing-failure-scenarios) is also probably worth reading.
+```shell
+VLT-1# configure
+VLT-1(conf)# interface port-channel 104
+VLT-1(conf-if-po-101)# description "VLT Peer LAG for NODE04"
+VLT-1(conf-if-po-101)# channel-member TenGigabitEthernet 1/25 #(1)
+VLT-1(conf-if-po-101)# switchport
+VLT-1(conf-if-po-101)# vlt-peer-lag port-channel 104 #(2)
+VLT-1(conf-if-po-101)# exit
+```
+
+1. The `channel-member` command statically assigns the interface to the port-channel.
+2. This instructs the VLT peer to coordinate with the other VLT peer to make the port-channel a single logical link.
+
+*Repeat these steps on the other VLT peer.*
 
 ### Dampening
 
@@ -272,7 +316,7 @@ DellEMC(conf-if-range-fo-1/47,fo-1/48)# dampening 10 100 1000 60
 
 This *will* be our exact scenario! We cannot "span" the connections of the servers across the VLT peers using VLT port-channels. Each of our servers will be utilizing Switch Embedded Teams which *only* support switch-independent configuration. See [Uplink Failure Detection](../S4048-ON/os9-ufd.md)!
 
-The `port-delay-restore` command may be another thing worth considering. It allows a delayed bring up of *all* interfaces during switch boot up. I have not tested this, but I would assume the action of a peer reloading would be the same as a switch rebooting...Pretty sure reboot/reload are used synonmously in Dell's documentation.
+The `port-delay-restore` command may be another thing worth considering. It allows a delayed bring up of *all* interfaces during switch boot up. I have not tested this, but I would assume the action of a peer reloading would be the same as a switch rebooting...Pretty sure reboot/reload are used synonymously in Dell's documentation.
 
 ---
 
@@ -283,5 +327,5 @@ This [VLT Technical guide](https://i.dell.com/sites/content/business/large-busin
 - When a VLAN is created on VLTi peers, the VLTi port-channel is added automatically to the VLAN, whether the vlan have members or not. A VLAN creation or deletion message from the VLT peer is the trigger for adding or removing VLTi port-channels to or from a VLAN. You can manually add or remove a VLTi port-channel to a VLAN. In case a VLTi port-channel is manually removed from a VLAN, it is added back to the VLAN after reload of the VLTi peers.
 - In a scenario where one hundred hosts are connected to a Peer1 on a non-VLT domain and traffic flows through Peer1 to Peer2; when you move these hosts from a non-VLT domain to a VLT domain and send ARP requests to Peer1, only half of these ARP requests reach Peer1, while the remaining half reach Peer2 (because of LAG hashing). The reason for this behavior is that Peer1 ignores the ARP requests that it receives on VLTi (ICL) and updates only the ARP requests that it receives on the local VLT. As a result, the remaining ARP requests still points to the Non-VLT links and traffic does not reach half of the hosts. To mitigate this issue, ensure that you configure the following settings on both the Peers (Peer1 and Peer2): arp learn-enable and mac-address-table station-move refresh-arp.
 - The VLT interconnect is used for data traffic only when there is a link failure that requires using VLTi in order for data packets to reach their final destination.
-- If you replace a VLT peer node, preconfigure the switch with the VLT system MAC address, unit-id, and other VLT parameters before connecting it to the existing VLT peer switch using the VLTi connection.
+- If you replace a VLT peer node, pre-configure the switch with the VLT system MAC address, unit-id, and other VLT parameters before connecting it to the existing VLT peer switch using the VLTi connection.
 - On a link failover, when a VLT port channel fails, the traffic destined for that VLT port channel is redirected to the VLTi to avoid flooding.

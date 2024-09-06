@@ -2,7 +2,9 @@
 
 !!! info "Feature Description"
 
-    Uplink failure detection (UFD) provides detection of the loss of upstream connectivity and, if used with network interface controller (NIC) teaming, automatic recovery from a failed link. A switch provides upstream connectivity for devices, such as servers. If a switch loses its upstream connectivity, downstream devices also lose their connectivity. However, the devices do not receive a direct indication that upstream connectivity is lost because connectivity to the switch is still operational. UFD allows a switch to associate downstream interfaces with upstream interfaces. When upstream connectivity fails, the switch disables the downstream links. Failures on the downstream links allow downstream devices to recognize the loss of upstream connectivity.
+    Uplink failure detection (UFD) provides detection of the loss of upstream connectivity and, if used with network interface controller (NIC) teaming, automatic recovery from a failed link. 
+    
+    If a switch loses its upstream connectivity, downstream devices also lose their connectivity. However, the devices do not receive a direct indication that upstream connectivity is lost because connectivity to the switch is still operational. UFD allows a switch to associate downstream interfaces with upstream interfaces. When upstream connectivity fails, the switch disables the downstream links. Failures on the downstream links allow downstream devices to recognize the loss of upstream connectivity.
 
 For example, as shown below, Switches S1 and S2 both have upstream upstream connectivity to Router R1 and downstream connectivity to the server. UFD operation is shown in Steps A through C:
 
@@ -42,7 +44,7 @@ DellEMC(conf-uplink-state-group-1)# no enable #(3)
 
 !!! info "Points to Remember"
 
-    - You can assign an interface to only one uplink-state-group. Configure each interface assigned as eiter an upstream or downstream interface, but not both.
+    - You can assign an interface to only one uplink-state-group. Configure each interface assigned as either an upstream or downstream interface, but not both.
     - You can assign individual member ports of a port-channel *or* the port-channel itself, but not both.
     - Downstream interfaces are put into a UFD-Disabled state only when ALL upstream interfaces are down.
     - To enable debug messages for UFD events, use the `debug uplink-state-group [group-id]` command.
