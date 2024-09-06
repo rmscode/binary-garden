@@ -7,7 +7,7 @@ For information related to Windows Server operating systems, see [Windows Server
 1. Start installing Windows 10/11 as usual.
 2. On the "Language to install" screen, select either *English (World)* or *English (Europe)* from the **Time and currency format** dropdown.
 3. Click **Next** and continue setting up Windows.
-4. When you reach to OOBE part, you will likely see an **OOBEREGION** message. Click on **Skip**.
+4. When you reach the OOBE screen, you will likely see the message "something went wrong". Click on **Skip**.
 5. After the installation is complete, you can change your locale options under **Settings** > **Time & Language** > **Region** > **Regional format** dropdown.
 
 ## Uninstall DevHome
