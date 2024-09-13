@@ -38,11 +38,11 @@ sudo apt install remmina-plugin-rdp
 Use this if you don't need or want to save your connection. Only RDP, SSH, VNC and NX are supported in the quick connect dialog.
 
 1. Open Remmina
-2. Choose the protocol
-3. Insert the hostname or IP of the target machine
+2. Choose the protocol from the drop down to the left of the search bar
+3. Insert the hostname or IP of the target machine in the search bar
 4. Click on connect
 
-You will be prompted for you credentials if needed. Defining the "Domain" is not needed in my experience.
+You will be prompted for credentials if needed. Defining the "Domain" is not needed in my experience.
 
 ## Disable Storing of Passwords
 
