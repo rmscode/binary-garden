@@ -48,6 +48,13 @@ You will be prompted for credentials if needed. Defining the "Domain" is not nee
 
 Users have the option to save their passwords when using a connection profile. To disable this feature, edit the profile in `$HOME/.local/share/remmina` and set `disablepasswordstoring` to `1`.
 
-!!! note
+## Securing the Remmina Client
 
-    Unfortunately, this isn't a bullet proof method for preventing users from saving their passwords. Users, can edit the profile and untick the "Forget passwords" option which is the same as setting `disablepasswordstoring` to `0`.
+Remmina allows you to protect the client with a master passphrase. This passphrase will be required to make any configuration changes, but will not prevent a user from initiating a remote session.
+
+1. Go to **Preferences** (Three horizontal lines, upper right)
+2. Click the **Security** tab
+3. Toggle on **Remmina Password** and set your passphrase.
+4. Toggle on **Require to modify**
+
+Additionally you can set the timeout for the passphrase to be required again. The default is 300 seconds, or 5 minutes.
