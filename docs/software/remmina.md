@@ -6,7 +6,7 @@ Remmina is available in the official package repositories for Debian and Ubuntu 
 
 !!! info 
 
-    For information on how to create a remote desktop thin client using Remmina, click [here](../hardware/raspberry-pi/dietpi.md#custom-auto-start-with-auto-login).
+    For information on how to create a remote desktop thin client using Remmina, click [here](../general/guides/remmina-thin-client.md).
 
 ## Installation (Debian/Ubuntu)
 
