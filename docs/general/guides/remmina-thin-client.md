@@ -65,11 +65,16 @@ You can use any Debian based Linux distro, but we used DietPi because it is ligh
     ??? example "Example"
     
         ```bash
-        # set PATH so it includes user's private bin if it exists
-        if [ -d "$HOME/.local/bin" ] ; then
-            PATH="$HOME/.local/bin:$PATH"
+        # ~/.profile: executed by Bourne-compatible login shells.
+
+        if [ "$BASH" ]; then
+        if [ -f ~/.bashrc ]; then
+            . ~/.bashrc
+        fi
         fi
 
+        mesg n 2> /dev/null || true
+        
         [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && startx
         ```
 
