@@ -121,6 +121,8 @@ nav:
       - Linux Cheat Sheet: general/cheat-sheets/linux-cheat-sheet.md
       - Dell OS9 Cheat Sheet: general/cheat-sheets/dell-os9-cheat-sheet.md
     - Change Management: general/change-management.md
+    - Guides:
+      - RDP Thin Client: general/guides/remmina-thin-client.md
     - Linux Directory Structure: general/linux-directory-structure.md
     - RAID: general/raid.md
     - ReFS vs NTFS: general/refs-vs-ntfs.md
@@ -250,8 +252,9 @@ nav:
     - MkDocs:
       - Getting Started: software/mkdocs/getting-started.md
       - Creating Your Site: software/mkdocs/creating-site.md
-      - Publishing Your Site: software/mkdocs/publishing.md 
+      - Publishing Your Site: software/mkdocs/publishing.md
     - Remote Desktop: software/remote-desktop.md
+    - Remmina: software/remmina.md
     - Zoom: software/zoom.md
   - SOP: 
     - sop/index.md

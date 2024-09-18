@@ -199,13 +199,15 @@ Verify matching configuration on both VLT peers with `show vlt mismatch`.
 
 To configure both VLT peers to agree on making two separate port-channels (LAG) a single Virtual Link Trunk (MLAG) toward an attached device, each peer must be configured with the same port-channel ID.
 
-!!! note
+!!! note "VLANs"
 
     You will need to add VLT port-channel interfaces to VLANs as needed for proper traffic flow. See "[VLAN Configuration](../S4048-ON/os9-vlan.md)" for more information.
 
-!!! note
+!!! note "Spanning Tree"
 
-    If you wish to keep spanning-tree enabled, consider configuring interfaces attached to end stations as EdgePorts. Example: `spanning-tree rstp edge-port`
+    If you wish to keep spanning-tree enabled, consider configuring interfaces attached to end stations as EdgePorts. Example: `spanning-tree rstp edge-port`. EdgePorts will continue to forward traffic immediately after a link comes up, whereas other ports will wait for the spanning-tree protocol to converge.
+
+    You may also consider disabling spanning-tree entirely within the VLT domain and on the spanned LAG interfaces of any switches connected to it. Keeping spanning-tree enabled may lead to traffic flow issues. For example, when one peer reloads, the surviving peer will participate in the spanning-tree convergence of the rest of your network, potentially causing a temporary loss of traffic.
 
 !!! Warning "Potential to black-hole traffic"
 
