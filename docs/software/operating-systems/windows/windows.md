@@ -1,6 +1,6 @@
 # Microsoft Windows
 
-For information related to Windows Server operating systems, see [Windows Server](../../servers/windows-server/index.md).
+For information related to Windows Server operating systems, see [Windows Server](../../../servers/windows-server/index.md).
 
 ## Install Windows 10 & 11 Without Third-Party Apps
 

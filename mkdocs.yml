@@ -119,7 +119,6 @@ nav:
     - Cheat Sheets:
       - Git Cheat Sheet: general/cheat-sheets/git-cheat-sheet.md
       - Linux Cheat Sheet: general/cheat-sheets/linux-cheat-sheet.md
-      - Dell OS9 Cheat Sheet: general/cheat-sheets/dell-os9-cheat-sheet.md
     - Change Management: general/change-management.md
     - Guides:
       - RDP Thin Client: general/guides/remmina-thin-client.md
@@ -204,10 +203,8 @@ nav:
       - Printers: hardware/printers-copiers/printers.md
     - Raspberry Pi:
       - Overview: hardware/raspberry-pi/overview.md
-      - DietPi: hardware/raspberry-pi/dietpi.md
       - Hardening: hardware/raspberry-pi/hardening.md
       - Hardware Watchdog: hardware/raspberry-pi/hardware-watchdog.md
-      - PiSignage: hardware/raspberry-pi/pisignage.md
       - VNC: hardware/raspberry-pi/vnc.md
     - VOIP Phones: 
       - Fanvil V64: hardware/voip-phones/fanvil.md
@@ -248,7 +245,11 @@ nav:
       - Word:
         - Hide Images: software/microsoft-office/word/hide-images.md
     - Operating Systems:
-      - Windows: software/operating-systems/windows.md
+      - Linux:
+        - DietPi: software/operating-systems/linux/dietpi.md
+        - PiSignage: software/operating-systems/linux/pisignage.md
+      - Windows: 
+        - General: software/operating-systems/windows/windows.md
     - MkDocs:
       - Getting Started: software/mkdocs/getting-started.md
       - Creating Your Site: software/mkdocs/creating-site.md

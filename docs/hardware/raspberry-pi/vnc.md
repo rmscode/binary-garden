@@ -17,7 +17,7 @@ sudo apt install tigervnc-xorg-extension
 
 !!! note
 
-    Tiger VNC can be easily installed in [DietPi](dietpi.md) by running the `dietpi-software` commmand and following the prompts.
+    Tiger VNC can be easily installed in [DietPi](../../software/operating-systems/linux/dietpi.md) by running the `dietpi-software` command and following the prompts.
 
 Create an xorg config file to load the extension:
 

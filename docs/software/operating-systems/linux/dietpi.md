@@ -1,6 +1,5 @@
 # DietPi OS
 
-
 DietPi is a highly optimized & minimal Debian-based Linux distribution. DietPi is extremely lightweight at its core, and also extremely easy to install and use. We primarily use it for digital signage driven by Raspberry Pis, but have also used it to repurpose old PCs as remote desktop "thin stations".
 
 ## Installation and Initial Setup
@@ -439,7 +438,7 @@ DietPi allows you to create a custom autostart script that will run immediately 
 3. Select option option 17, **Custom script (foreground, with autologin)**
     - DietPi will generate a template script at `/var/lib/dietpi/dietpi-autostart/custom.sh` and open it in the nano editor.
 
-The sky is the limit at this point, but below I will show you a script I created to automatically launch [Remmina](../../software/remmina.md) to repurpose an old NUC for use as a thin client.
+The sky is the limit at this point, but below I will show you a script I created to automatically launch [Remmina](../../remmina.md) to repurpose an old NUC for use as a thin client.
 
 !!! abstract "NUC?"
 

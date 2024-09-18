@@ -11,7 +11,7 @@ I was recently tasked with creating a Linux based RDP thin client. Linux is free
 ## Requirements
 
 - Intel NUC or similar hardware. You could even use a Raspberry Pi.
-- Debian based Linux Distro. We used [DietPi](../../hardware/raspberry-pi/dietpi.md).
+- Debian based Linux Distro. We used [DietPi](../../software/operating-systems/linux/dietpi.md).
 - X Window System
 - Openbox, a lightweight window manager for Linux.
 - Remmina, a free and open-source remote desktop client for Linux.
@@ -20,7 +20,7 @@ I was recently tasked with creating a Linux based RDP thin client. Linux is free
 
 ### Install Linux
 
-You can use any Debian based Linux distro, but we used DietPi because it is lightweight and easy to use. I won't go over the steps to install Linux in this guide, but you can refer to this [page](../../hardware/raspberry-pi/dietpi.md#installation-and-initial-setup) for help.
+You can use any Debian based Linux distro, but we used DietPi because it is lightweight and easy to use. I won't go over the steps to install Linux in this guide, but you can refer to this [page](../../software/operating-systems/linux/dietpi.md#installation-and-initial-setup) for help.
 
 ### Install Packages and Their Dependencies
 
