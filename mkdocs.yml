@@ -64,7 +64,7 @@ plugins:
         - notes/*
   - git-latest-changes:
       limit_to_docs_dir: True
-      repo_vendor: github
+      repo_vendor: rmscode/mydocs
       enabled_on_serve: True
       history_limit: 10
 
