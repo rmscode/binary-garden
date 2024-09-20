@@ -148,17 +148,3 @@ A collection of commonly used commands in various Linux operating systems. If th
 | `hdparm -I /dev/sdx`           | Get information about your hard drive’s make, model, serial number, firmware version, and configuration
 | `hdparm -tT /dev/sdx`	         | Show the speed of an installed hard drive – including cached reads and buffered disk reads
 | `wodim --devices`	             | Locate CD or DVD device file
-
-```bash
-echo "Please enter the first 3 octets of the subnet you would like to scan (e.g., 10.0.10):"
-read subnet
-for octet in {1..254}; do ping -c 1 $subnet.$octet -W 1 >> pingsweep.txt & done
-numTargets=$(cat pingsweep.txt | grep "bytes from" | wc -l)
-echo "$numTargets potential targets have been found and written to targets.txt"
-cat pingsweep.txt | grep "bytes from" | cut -d " " -f4 | cut -d ":" -f1 | sort -n -t . -k 1,1 -k 2,2 -k 3,3 -k 4,4 > targets.txt
-
-# Scan each IP in targets.txt for open ports using nmap
-while read ip; do
-    nmap -p 22,25,53,80,443,445,1433,3306,3389,5800,5900,8080,8443 $ip
-done < targets.txt
-```
