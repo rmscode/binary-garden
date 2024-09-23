@@ -29,3 +29,10 @@ Single Player Tarkov (SPT) is a mod for Escape from Tarkov that allows you to pl
     Server is running, do not close while playing SPT, Happy playing!!
     ```
 14. Start `SPT.Launcher.exe`
+
+## Port Forwarding
+
+1. TCP port 6969 needs to be forwarded (both in and out)
+2. UDP ort 25565 needs to be forwarded as well (both in and out)
+3. When prompted by Windows, allow all connections in your Firewall
+
