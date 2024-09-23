@@ -4,6 +4,8 @@ The stuff here is mostly universal across all Linux distributions. It's a collec
 
 ## Prevent a user from logging into any shell (console)
 
+You can change the shell (`chsh`) assigned to a user to `/usr/sbin/nologin` to prevent them from logging in.
+
 `chsh [user] -s /usr/sbin/nologin`
 
 ## Find out what caused a system shutdown
@@ -11,6 +13,14 @@ The stuff here is mostly universal across all Linux distributions. It's a collec
 Run this command and compare to the outputs below:
 
 `last -x | head | tac`
+
+!!! info "last, head and tac"
+
+    - `last` prints information about connect times of users. Records are printed from most recent to least recent.
+    - `head is used to keep the latest 10 events
+    - `tac` is used to reverse the order of the output so that we don't get confused by the fact that the `last` prints from most recent to least recent event.
+
+### Normal Shutdown Examples
 
 A normal shutdown and power-up looks like this (note that you have a shutdown event and then a system boot event):
 
@@ -28,3 +38,68 @@ runlevel (to lvl 0)   ... <-- first the system shuts down (init level 0)
 reboot   system boot  ... <-- afterwards the system boots
 runlevel (to lvl 2)   2.6.24-... Fri Aug 10 15:58 - 15:32 (2+23:34)
 ```
+
+### Unexpected Shutdown Examples
+
+An unexpected shutdown from power loss looks like this (note that you have a system boot event without a prior system shutdown event):
+
+```shell
+runlevel (to lvl 3)   ... <-- the system was running since this momemnt
+reboot   system boot  ... <-- then we've a boot WITHOUT a prior shutdown
+runlevel (to lvl 3)   3.10.0-693.21.1. Sun Jun 17 15:40 - 09:51  (18:11)
+```
+
+When an unexpected power off or hardware failure occurs the filesystems will not be properly unmounted so in the next boot you may get logs like this:
+
+```shell
+EXT4-fs ... INFO: recovery required ... 
+Starting XFS recovery filesystem ...
+systemd-fsck: ... recovering journal
+systemd-journald: File /var/log/journal/.../system.journal corrupted or uncleanly shut down, renaming and replacing.
+```
+
+When the system powers off because user pressed the power button you get logs like this:
+
+```shell
+systemd-logind: Power key pressed.
+systemd-logind: Powering Off...
+systemd-logind: System is powering down.
+```
+
+Only when the system shuts down orderly you get logs like this:
+
+```shell
+rsyslogd: ... exiting on signal 15
+```
+
+When the system shuts down due to overheating you get logs like this:
+
+```shell
+critical temperature reached...,shutting down
+```
+
+[*Reference*](https://unix.stackexchange.com/questions/9819/how-to-find-out-from-the-logs-what-caused-system-shutdown)
+
+## Watch logs in real time
+
+### Method 1: `tail`
+
+The `tail` command is so popular that admins often use the term "tail the log file".
+
+```shell
+tail -f location_of_log_file
+```
+
+> `-f` will follow the tail of a file. Meaning, it will keep on showing the new lines added to the file continuously.
+
+### Method 2: `less`
+
+The `less` command is more suited for reading through text files without cluttering the screen.
+
+```shell
+less +F location_of_log_file
+```
+
+> `+F` will start `less` in follow mode. This is similar to `tail -f` but you can exit follow mode by pressing `Ctrl+C` and then you can scroll up and down in the file.
+
+[*Reference*](https://linuxhandbook.com/watch-logs-real-time)
