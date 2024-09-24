@@ -1,1 +1,1 @@
-# Ceybersecutiy Part 2: Understanding the Hackers
+# Cybersecurity Part 2: Understanding the Hackers
