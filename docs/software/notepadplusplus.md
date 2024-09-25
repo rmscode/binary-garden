@@ -20,6 +20,8 @@ You may want to use Notepad++ instead of Notepad as the default text editor in W
 
 === "Windows 7 & Windows 10"
 
+    From an elevated command prompt, run the following command:
+
     ```cmd
     reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\notepad.exe" /v "Debugger" /t REG_SZ /d "\"%ProgramFiles%\Notepad++\notepad++.exe\" -notepadStyleCmdline -z" /f
     ```
@@ -35,6 +37,8 @@ You may want to use Notepad++ instead of Notepad as the default text editor in W
     ```
 
 === "Windows 11"
+
+    From an elevated command prompt, run the following commands:
 
     ```cmd
     reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\notepad.exe\0" /v Debugger /t REG_SZ /d "\"%ProgramFiles%\Notepad++\notepad++.exe\" -notepadStyleCmdline -z" /f
