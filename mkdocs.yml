@@ -254,7 +254,7 @@ nav:
       - Getting Started: software/mkdocs/getting-started.md
       - Creating Your Site: software/mkdocs/creating-site.md
       - Publishing Your Site: software/mkdocs/publishing.md
-    - Notepad++: software/notepadplusplus.md
+    - Notepad++: software/notepadpp.md
     - Remote Desktop: software/remote-desktop.md
     - Remmina: software/remmina.md
     - Zoom: software/zoom.md
