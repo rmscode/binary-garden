@@ -258,6 +258,7 @@ nav:
     - Notepad++: software/notepadpp.md
     - Remote Desktop: software/remote-desktop.md
     - Remmina: software/remmina.md
+    - Uhubctl: software/ubhubctl.md
     - Zoom: software/zoom.md
   - SOP: 
     - sop/index.md
