@@ -217,7 +217,6 @@ nav:
   - Servers:
     - servers/index.md
     - Windows Server:
-      #- servers/windows-server/index.md
       - Active Directory & Domain Services:
         - Overview: servers/windows-server/active-directory/active-directory.md
       #- Data Deduplication: servers/windows-server/dedup.md
@@ -231,6 +230,7 @@ nav:
         - Security Filtering: servers/windows-server/group-policy/security-filtering.md
         - Troubleshooting: servers/windows-server/group-policy/troubleshooting.md
         - Best Practices: servers/windows-server/group-policy/best-practices.md
+      - MABS: servers/windows-server/mabs.md
       - Rearm Trial: servers/windows-server/rearm-trial.md
     - Linux Servers:
       - NetBox: servers/linux-servers/netbox.md
@@ -254,6 +254,7 @@ nav:
       - Getting Started: software/mkdocs/getting-started.md
       - Creating Your Site: software/mkdocs/creating-site.md
       - Publishing Your Site: software/mkdocs/publishing.md
+    - Notepad++: software/notepadpp.md
     - Remote Desktop: software/remote-desktop.md
     - Remmina: software/remmina.md
     - Zoom: software/zoom.md
