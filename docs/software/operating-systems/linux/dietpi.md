@@ -466,3 +466,15 @@ exec "$STARTX" "$REMMINA" $REMMINA_OPTS
 !!! info
 
     After you're finished editing the script, make sure you make it executable with `sudo chmod +x custom.sh`.
+
+## Miscellaneous
+
+### Add New User
+
+Usually, alias definitions for DietPi scripts are done within `/etc/bashrc.d/dietpi.bash`. Therefore, the `bash` shell needs to be set explicitly for the user or else commands like `dietpi-config` will not be available.
+
+```shell
+useradd -g dietpi -s /usr/bin/bash -m usernamehere
+passwd usernamehere
+usermod -aG sudo usernamehere
+```
