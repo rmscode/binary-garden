@@ -2,6 +2,30 @@
 
 The stuff here is mostly universal across all Linux distributions. It's a collection of commonly used commands, tips, and tricks that you can use to get around in a Linux environment.
 
+## Disable `root` Login
+
+The follow commands will disable `root` login for most flavors of Linux.
+
+!!! warning "Don't lock yourself out!"
+
+	Prior to doing this, make sure that you already have an existing user that is a member of the sudoers group! You should definitely be running the following commands logged in as that user. Test the configuration by opening a separate session before applying the changes and closing your current session.
+	
+1. Disable `root` login:</br>
+	```shell
+	sudo passwd -l root 
+	```
+2. Disable `root` SSH login:</br>
+	```shell
+	sudo sed -i 's/^#PermitRootLogin.*/PermitRootLogin no/' /etc/ssh/sshd_config
+	```
+
+    !!! note "This applies to OpenSSH installations only."
+
+3. Restart the SSH service:</br>
+	```shell
+	sudo systemctl restart sshd
+	```
+
 ## Prevent a user from logging into any shell (console)
 
 You can change the shell (`chsh`) assigned to a user to `/usr/sbin/nologin` to prevent them from logging in.
