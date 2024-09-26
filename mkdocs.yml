@@ -246,6 +246,7 @@ nav:
         - Hide Images: software/microsoft-office/word/hide-images.md
     - Operating Systems:
       - Linux:
+        - General: software/operating-systems/linux/general.md
         - DietPi: software/operating-systems/linux/dietpi.md
         - PiSignage: software/operating-systems/linux/pisignage.md
       - Windows: 
