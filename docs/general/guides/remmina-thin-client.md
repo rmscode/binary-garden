@@ -139,7 +139,7 @@ At this point, you can reboot the system and it should load right into an Openbo
 
 ## Securing the System
 
-Unless you chose a different distro or changed it during installation, you've probably been using DietPi's default password. That needs to change. We also need to make sure users can't access the underlying OS, namely the console. Right now, this can easily be done by pressing <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Backspace</kbd> to terminate the X server which exits the Openbox session and drops you to the console. Lastly, we can and should password protect Remmina to prevent unauthorized configuration changes.
+Unless you chose a different distro or changed it during installation, you've probably been using DietPi's default password. That needs to change. We also need to make sure users can't access the underlying OS, namely the console. Right now, this can easily be done by pressing <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Backspace</kbd> or right-clicking the desktop and selecting "Exit". Both of those will terminate the X server and drop you to the console. Lastly, we can and should password protect Remmina to prevent unauthorized configuration changes.
 
 1. Change the password for the default user and root:
     1. Enter `sudo dietpi-config` into the console
@@ -150,7 +150,7 @@ Unless you chose a different distro or changed it during installation, you've pr
     !!! note "If you're using some other flavor of Debian, you can change your user's password by entering the `passwd` command and following the prompts. Be sure to change the password for root as well."
 
 2. Create a .conf file to disable the <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Backspace</kbd> shortcut:
-    1. `nano /etc/X11/xorg.conf.d/00-keyboard.conf` and add the following:</br>
+    1. `sudo nano /etc/X11/xorg.conf.d/00-keyboard.conf` and add the following:</br>
 
     ```bash
     Section "InputClass"
@@ -172,7 +172,27 @@ Unless you chose a different distro or changed it during installation, you've pr
 
         The risk of leaving this enabled is pretty low since credentials are required. I would also argue that there is some administrative utility in leaving it enabled, but that's just my opinion.
 
-3. You can learn how to password protect Remmina [here](../../software/remmina.md#securing-the-remmina-client). 
+3. Edit the Openbox "root menu" to remove everything except "Restart":
+    1.  `sudo nano /etc/xdg/openbox/menu.xml` and replace with the following:</br>
+
+    ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
+
+    <openbox_menu xmlns="http://openbox.org/"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://openbox.org/
+                    file:///usr/share/openbox/menu.xsd">
+
+    <menu id="root-menu" label="Openbox 3">
+    <item label="Restart">
+        <action name="Restart" />
+    </item>
+    </menu>
+
+    </openbox_menu>
+    ```
+
+4. You can learn how to password protect Remmina [here](../../software/remmina.md#securing-the-remmina-client). 
 
 ## Kiosk Experience
 
