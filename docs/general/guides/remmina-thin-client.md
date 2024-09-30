@@ -24,10 +24,6 @@ You can use any Debian based Linux distro, but we used DietPi because it is ligh
 
 ### Install Packages and Their Dependencies
 
-!!! note
-
-    Make sure you have an internet connection before proceeding. Also, you can do this remotely via SSH or directly on the device's console.
-
 1. Update and upgrade your distribution:</br>
 
     ```bash
