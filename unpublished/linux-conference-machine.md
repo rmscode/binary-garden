@@ -239,7 +239,7 @@ Cairo doc is buggy! Cant remove applet even after reinstalling. Maintains settin
 
 **Editing the openbox "root menu"**
 
-`~/.config/openbox/menu.xml`
+`/etc/xdg/openbox/menu.xml`
 
     - remove all but restart
     NOTE: Was not aware of this menu when setting up the "ThinPi". I quickly removed all items from that menu except for obconf, reconfigure, restart.
