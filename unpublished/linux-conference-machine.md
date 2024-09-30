@@ -235,18 +235,19 @@ Cairo doc is buggy! Cant remove applet even after reinstalling. Maintains settin
 
 ### OpenBox
 
-Editing the openbox "root menu"
-		- remove all but restart
-		NOTE: Was not aware of this menu when setting up the "ThinPi". I quickly removed all items from that menu except for obconf, reconfigure, restart.
-		
-		To remove items from "Applications >", edit obamenu
-				- sudo nano /usr/bin/obamenu
-				- From application_groups, remove:
-					- "System"
-					- "Development"
-					- "Settings"
-		
-		https://www.techtimejourney.net/autostarting-programs-with-openbox-desktop/
+**Editing the openbox "root menu"**
+
+    - remove all but restart
+    NOTE: Was not aware of this menu when setting up the "ThinPi". I quickly removed all items from that menu except for obconf, reconfigure, restart.
+
+    To remove items from "Applications >", edit obamenu
+    	- sudo nano /usr/bin/obamenu
+    	- From application_groups, remove:
+    		- "System"
+    		- "Development"
+    		- "Settings"
+
+    https://www.techtimejourney.net/autostarting-programs-with-openbox-desktop/
 		
 ### Prevent accounts from remaining logged in
 
