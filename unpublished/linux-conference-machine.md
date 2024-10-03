@@ -235,6 +235,71 @@ Cairo doc is buggy! Cant remove applet even after reinstalling. Maintains settin
 
     !!! note "Had to do this in order for custom launcher to associate its shortcut with the Remmina window. Otherwise it would spawn a second icon when launched"
 
+#### Add custom launchers via config file
+
+Custom launchers live in `~/.config/cairo-dock/current_theme/launchers`. Each new launcher when created via the dock is stored in this directory and the file names iterate up (01launcher.desktop, 02launcher.desktop, etc). You can save the .desktop file as any name you want when creating them manually. 
+
+> Well it worked the first time. I tried again after deleting all the launchers and removing the module (see below)...cairo now deletes to file when relaunched. 
+
+Pointing to a valid path for setting the icon works, but in my testing just using the icon name did not work. I figured for that to work, that the icon must be placed in `~/.config/cairo-dock/current_theme/icons`, but that didn't work. It may be looking for system icons.
+
+`~/.config/cairo-dock/current_theme/cairo-dock.conf` is the main config file. The last setting, `modules=`, under the section `[System]` is where the system launchers are defined. Removing them will remove them from the dock. I am unsure of what `Animated icons;illusion;Remote-Control;` are. They don't seem to have a corresponding icon.
+
+The launcher `.desktop` files look this:
+
+```
+#3.4.1
+
+#[gtk-about]
+
+[Desktop Entry]
+
+#F[Icon]
+frame_maininfo=
+
+#d+ Name of the container it belongs to:
+Container=_MainDock_
+
+#v
+sep_display=
+
+#s[Default] Launcher's name:
+Name=LAUNCHER_NAME_HERE
+
+#S+[Default] Image's name or path:
+Icon=PATH_TO_CUSTOM_ICON
+
+#s[Default] Command to launch on click:
+#{Example: nautilus --no-desktop, gedit, etc. You can even enter a shortkey, e.g. <Alt>F1, <Ctrl>c,  <Ctrl>v, etc}
+Exec=COMMAND_TO_EXECUTE
+
+
+#X[Extra parameters]
+frame_extra=
+
+#b Don't link the launcher with its window
+#{If you chose to mix launcher and applications, this option will deactivate this behaviour for this launcher only. It can be useful for instance for a launcher that launches a script in a terminal, but you don't want it to steal the terminal's icon from the taskbar.} 
+prevent inhibate=false
+
+#K[Default] Class of the program:
+#{The only reason you may want to modify this parameter is if you made this launcher by hands. If you dropped it into the dock from the menu, it is nearly sure that you shouldn't touch it. It defines the class of the program, which is useful to link the application with its launcher.}
+StartupWMClass=
+
+#b Run in a terminal?
+Terminal=false
+
+#i-[0;16] Only show in this specific viewport:
+#{If '0' the launcher will be displayed on every viewport.}
+ShowOnViewport=0
+
+#f[0;100] Order you want for this launcher among the others:
+Order=0.840972900390625
+
+Icon Type=0
+Type=Application
+Origin=
+```
+
 ### OpenBox
 
 **Editing the openbox "root menu"**
