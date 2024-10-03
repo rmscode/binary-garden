@@ -28,6 +28,8 @@ wsl --install -d <distro name>
 
 To see a list of available distros, enter `wsl --list --online`.
 
+---
+
 ## Accessing a Linux File System Format on Windows from WSL
 
 If you find yourself needing to access the contents of a drive formatted in a Linux specific file system, but don't have immediate access to a computer running Linux, you can mount the media in WSL with this command - `sudo mount -t drvfs D: /mnt/d`.
@@ -37,6 +39,8 @@ If you find yourself needing to access the contents of a drive formatted in a Li
 You can then navigate to that path with `cd /mnt/d`
 
 !!! tip "The C drive and other internal Windows drives should already be automatically mounted in WSL."
+
+---
 
 ## Run Linux GUI Apps on WSL
 
