@@ -37,3 +37,35 @@ If you find yourself needing to access the contents of a drive formatted in a Li
 You can then navigate to that path with `cd /mnt/d`
 
 !!! tip "The C drive and other internal Windows drives should already be automatically mounted in WSL."
+
+## Run Linux GUI Apps on WSL
+
+WSL supports running Linux GUI applications (X11 and Wayland) on Windows in a fully integrated desktop experience.
+
+**Update WSL and installed packages:**
+
+1. Update and restart WSL:</br>
+    ```cmd
+    wsl --update
+    wsl --shutdown
+    ```
+2. Update the packages in your distro:</br>
+    ```bash
+    sudo apt update && sudo apt upgrade
+    ```
+
+**Install GUI Apps:**
+
+| App Name                     | Command to Install
+|----------------------------- |---------------------
+| Gnome Text Editor            | sudo apt install gnome-text-editor -y
+| GIMP                         | sudo apt install gimp -y
+| Nautilus                     | sudo apt install nautilus -y
+| VLC Media Player             | sudo apt install vlc -y
+| X1 Apps                      | sudo apt install x11-apps -y
+
+!!! note
+
+    Support for GUI apps on WSL does not provide a full desktop experience. It relies on Windows desktop, so installing desktop-focused tools or apps may not be supported.
+
+[*Reference*](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps#run-linux-gui-apps)
