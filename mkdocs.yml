@@ -44,10 +44,6 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
-# Extra JavaScript
-extra_javascript:
-  - _javascripts/extra.js
-
 # Plugins
 plugins:
   - search
