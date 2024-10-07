@@ -63,6 +63,7 @@ plugins:
       repo_vendor: rmscode/mydocs
       enabled_on_serve: True
       history_limit: 10
+  - mkdocs-audio
 
 # Additional configuration
 extra:
