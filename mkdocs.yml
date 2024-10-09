@@ -255,6 +255,7 @@ nav:
       - Publishing Your Site: software/mkdocs/publishing.md
     - ALSA: software/alsa.md
     - Notepad++: software/notepadpp.md
+    - PulseAudio: software/pulse-audio.md
     - Remote Desktop: software/remote-desktop.md
     - Remmina: software/remmina.md
     - Uhubctl: software/uhubctl.md
