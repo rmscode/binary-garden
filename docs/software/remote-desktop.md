@@ -4,7 +4,7 @@
 
 ### Black Screen of Death
 
-Immediately after logging in, the remote sceen turns black. This appears to be caused by screen caching and accessing a system with different a display resolution or RDP window size. If this happens to you, try the following:
+Immediately after logging in, the remote screen turns black. This appears to be caused by screen caching and accessing a system with a different display resolution or RDP window size. If this happens to you, try the following:
 
 - While logged in and stuck on the black screen, press `Ctrl` + `Alt` + `Escape`. This calls the Task Manager and in most cases you'll immediately see the desktop.
     - If only the Task Manager appears and not the desktop, click on **File** > **Run new task** > and type `explorer.exe` to restart the Windows Explorer.
