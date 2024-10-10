@@ -10,7 +10,7 @@
 
 !!! note "Regarding sessions"
 
-    Perhaps the best way to share those across computers is to use the *Load Session* and *Save Session* options in the **File** menu. For this to work, you would need to save the session XLM file and the files you are working on in the same cloud synced directory. I presume the path would need to match between computers as well - `C:\Users\jdoe\OneDrive\Notepad++` on one machine and `C:\Users\john\OneDrive\Notepad++` on the other would probably be an issue.
+    Perhaps the best way to share those across computers is to use the *Load Session* and *Save Session* options in the **File** menu. For this to work, you would need to save the session XML file and the files you are working on in the same cloud synced directory. I presume the path would need to match between computers as well - `C:\Users\jdoe\OneDrive\Notepad++` on one machine and `C:\Users\john\OneDrive\Notepad++` on the other would probably be an issue.
 
 [*Reference*](https://community.notepad-plus-plus.org/topic/14299/setup-notepad-with-cloud-syncing/8)
 
