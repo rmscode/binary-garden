@@ -242,6 +242,10 @@ nav:
       - Teams: software/microsoft-office/teams/ms-teams.md
       - Word:
         - Hide Images: software/microsoft-office/word/hide-images.md
+    - MkDocs:
+      - Getting Started: software/mkdocs/getting-started.md
+      - Creating Your Site: software/mkdocs/creating-site.md
+      - Publishing Your Site: software/mkdocs/publishing.md
     - Operating Systems:
       - Linux:
         - General: software/operating-systems/linux/general.md
@@ -249,13 +253,10 @@ nav:
         - PiSignage: software/operating-systems/linux/pisignage.md
       - Windows: 
         - General: software/operating-systems/windows/windows.md
-    - MkDocs:
-      - Getting Started: software/mkdocs/getting-started.md
-      - Creating Your Site: software/mkdocs/creating-site.md
-      - Publishing Your Site: software/mkdocs/publishing.md
     - ALSA: software/alsa.md
     - Notepad++: software/notepadpp.md
     - PulseAudio: software/pulse-audio.md
+    - Quick Assist: software/quick-assist.md
     - Remote Desktop: software/remote-desktop.md
     - Remmina: software/remmina.md
     - Uhubctl: software/uhubctl.md
