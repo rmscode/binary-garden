@@ -25,4 +25,18 @@ Install:
 sudo apt install pulseaudio -y
 ```
 
-## Usage
+## Configuration
+
+By default, PulseAudion is configured to automatically detect and manage all sound cards. It takes control of all detected ALSA devices and redirects all audio streams to itself. Usually, PulseAudio runs fine out of the box and requires only minimal configuration. Unless you have a specific use case, you should not need to change the default configuration.
+
+### Configuration Files
+
+PulseAudio will first look for config files in the home directory `~/config/pulse/`, and if they are not found, the system-wide configuration from `/etc/pulse/` will be used.
+
+!!! tip
+
+    - It is strongly recommended to avoid editing the system-wide configuration files, but rather edit user ones. Create the `~/.config/pulse/` directory if it does not exist and copy the system-wide configuration files to it.
+    - Make sure to keep user configuration in sync with changes to the packaged files in `/etc/pulse/` or PulseAudio may refuse to start.
+    - There is usually no need to add your user to the `audio` group since PulseAudio give access dynamically to the currently active user.
+
+[*Reference*](https://wiki.archlinux.org/title/PulseAudio#Configuration)
