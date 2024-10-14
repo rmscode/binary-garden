@@ -234,7 +234,6 @@ nav:
       - NetBox: servers/linux-servers/netbox.md
   - Software: 
     - software/index.md
-    - Hyper-V: software/hyper-v.md
     - LibreOffice:
       - Impress: software/libre-office/impress.md
     - Microsoft Office:
@@ -254,6 +253,7 @@ nav:
       - Windows: 
         - General: software/operating-systems/windows/windows.md
     - ALSA: software/alsa.md
+    - Hyper-V: software/hyper-v.md
     - Notepad++: software/notepadpp.md
     - PulseAudio: software/pulse-audio.md
     - Quick Assist: software/quick-assist.md
