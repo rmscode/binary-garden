@@ -2,7 +2,7 @@
 
 PulseAudio is a network-capable sound server program distributed via the [freedesktop.org](https://freedesktop.org) project. It runs mainly on Linux, various BSD distributions, and other Unix-like systems.
 
-!!! question "Why do we need PulseAudio when [ALSA](alsa.md) exists?
+!!! question "Why do we need PulseAudio when [ALSA](alsa.md) exists?"
 
     ALSA is part of the Linux kernel and provides the necessary device drivers to read from/write to the sound card. Applications like VLC and Audacity can directly use ALSA without needing an audio server like PulseAudio. However, you can't rely on ALSA as it will take full control of the sound device, allowing only one application to use it at a time because there is no hardware multiplexing. For this reason, an audio server like PulseAudio is often needed.
 
