@@ -8,7 +8,7 @@ There are three main types of UPS systems:
 
 1. **Standby UPS**: The most basic type of UPS, the standby UPS switches to battery power when it detects a power outage. It provides basic protection against power interruptions but may not be suitable for sensitive equipment.
 2. **Line-Interactive UPS**: The line-interactive UPS regulates voltage fluctuations and provides battery backup when needed. It offers better protection than a standby UPS and is suitable for most home and small business applications.
-3. **Online UPS**: The online UPS provides continuous power to connected devices by converting AC power to DC power and then back to AC power. It offers the highest level of protection against power interruptions and is ideal for critical applications.
+3. **On-Line UPS**: The online UPS provides continuous power to connected devices by converting AC power to DC power and then back to AC power. It offers the highest level of protection against power interruptions and is ideal for critical applications.
 
 ## Modes of Operation
 
