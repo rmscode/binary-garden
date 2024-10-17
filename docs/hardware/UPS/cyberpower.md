@@ -2,6 +2,10 @@
 
 ## OL1500RTXL2U
 
+On-Line Double Conversion UPS
+
+**Specifications**:
+
 - 1500VA
 - 1350W
 - Input voltage range: 100-125Vac
@@ -9,8 +13,15 @@
 - Output Voltage: 100, 110, 115, 120, 125Vac +/- 2%
 - Output frequency: 50/60Hz (Auto-sensing or configurable)
 
-Overload Protection:
+**Modes**:
+
+- Line Mode
+- Bypass Mode
+- Battery Mode
+
+**Overload Protection**:
 
 - Line Mode: 105-125% load for 1 min / 125-150% load for 10 sec
 - Battery Mode: 105-130% load for 10 sec / 131-150% load for 2 sec
 
+If in Line Mode, the UPS will transfer to Bypass Mode. If in Battery Mode, the UPS will shut down.
