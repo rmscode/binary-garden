@@ -8,8 +8,8 @@
 2. Go to [Surface Tools for IT](https://go.microsoft.com/fwlink/?linkid=2147546)
 3. Click **Download** and select the correct version for your Surface (AMD64 or ARM64). The file will begin with `Surface_Dock_FWUpdate_`.
       - If you're running Surface Pro X, download the arm64 build. For all others, use the amd64 build. 
-4. Run the firware updater MSI.
-5. Disonnect your Surface from the Dock, wait ~5 seconds, and then reconnect. The Dock updates silently in the background. The process can take a few minutes to complete and continues even if interrupted.
+4. Run the firmware updater MSI.
+5. Disconnect your Surface from the Dock, wait ~5 seconds, and then reconnect. The Dock updates silently in the background. The process can take a few minutes to complete and continues even if interrupted.
 
 !!! tip "Monitor the Surface Dock firmware update
 
