@@ -54,7 +54,7 @@ Determine runtime:
 
 1. Find the capacity of the UPS battery in ampere hours (Ah).
 2. Find the input voltage of the UPS.
-3. Determine the total load for the UPS in watts by adding up the watts used by all of the connected devices.</br>
+3. Determine the total load for the UPS in watts by adding up the watts used by all of the connected devices.<br />
    !!! note "FYI, in DC circuits, Watts and Volt-amps are equal."
 4. Multiply the battery Ah by the input voltage, then divide that number by the total load.
 

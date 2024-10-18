@@ -10,18 +10,18 @@ The follow commands will disable `root` login for most flavors of Linux.
 
 	Prior to doing this, make sure that you already have an existing user that is a member of the sudoers group! You should definitely be running the following commands logged in as that user. Test the configuration by opening a separate session before applying the changes and closing your current session.
 	
-1. Disable `root` login:</br>
+1. Disable `root` login:<br />
 	```shell
 	sudo passwd -l root 
 	```
-2. Disable `root` SSH login:</br>
+2. Disable `root` SSH login:<br />
 	```shell
 	sudo sed -i 's/^#PermitRootLogin.*/PermitRootLogin no/' /etc/ssh/sshd_config
 	```
 
     !!! note "This applies to OpenSSH installations only."
 
-3. Restart the SSH service:</br>
+3. Restart the SSH service:<br />
 	```shell
 	sudo systemctl restart sshd
 	```

@@ -119,7 +119,7 @@ The reason for doing so is that each pair of ports (A0,A1 or A2,A3) are connecte
 
     References:
 
-    (Dell Employee suggests one pool)[https://www.dell.com/community/en/conversations/powervault/me5024-one-pool-or-two/663ceb6449d3ee2f2acf81b3?commentId=663d2ee2f8f6be1eb2b65a33]</br>
+    (Dell Employee suggests one pool)[https://www.dell.com/community/en/conversations/powervault/me5024-one-pool-or-two/663ceb6449d3ee2f2acf81b3?commentId=663d2ee2f8f6be1eb2b65a33]<br />
     (Reddit user explains that two pools is only necessary when at risk of overloading one controller)[https://www.reddit.com/r/storage/comments/1d3fcq8/adapt_dell_me4024_10gb_iscsi_with_24_192_sas_ssds/l680ifp/]
 
 ### Power-of-2 Method

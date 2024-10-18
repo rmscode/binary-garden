@@ -35,7 +35,7 @@ Found in a VM' settings (Processor > Compatibility), processor compatibility  al
 
 Windows Server 2025 introduces "[Dynamic Processor Compatibility](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/manage/dynamic-processor-compatibility-mode)".
 
-[Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn859550(v=ws.11))</br>
+[Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn859550(v=ws.11))<br />
 [Altaro](https://www.altaro.com/hyper-v/troubleshooting-hyper-v-live-migration)
 
 ## Shared Nothing Live Migration (SNLM)
@@ -57,9 +57,9 @@ SNLM allows you to live migrate a VM, and optionally its storage, from one Hyper
     1. **Hyper-V Settings** > **Live Migration Settings**: Add a network that both hosts can communicate on.
 3. Ensure that Kerberos constrained delegation is configured on the target host.
     1. On a Domain Controller, open ADUC and right-click the target host computer object.
-    2. In **Properties** > **Delegation** select "Trust this computer for delegation to any services (Kerberos only)"</br>
+    2. In **Properties** > **Delegation** select "Trust this computer for delegation to any services (Kerberos only)"<br />
     !!! Note "Make sure the auth protocol is set to "Use Kerberos" in the the VM's settings (Live Migrations > Advanced Features)."
-4. (Optional) Check "Migrate to a physical computer with a different processor version" in **Processor Compatibility** of the VM to be moved.</br>
+4. (Optional) Check "Migrate to a physical computer with a different processor version" in **Processor Compatibility** of the VM to be moved.<br />
     NOTE: This requires the VM to be offline.
 5. If the VM is a clustered role, drop the VM from the cluster.
     1. From Cluster Manager, right-click the VM role and select **Remove**.

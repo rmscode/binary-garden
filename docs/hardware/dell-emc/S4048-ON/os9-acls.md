@@ -49,7 +49,7 @@ DellEMC(conf-if-te-1/1)# ip access-group TestACL <in | out> #(1)
 
 1. Filter traffic entering (ingress) or exiting (egress) an interface with the `in` or `out` keyword, respectively.
 
-[*Reference: Ingress*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configure-ingress-acls?guid=guid-f3044d5d-d348-48d4-b975-4ac04c966d24&lang=en-us)</br>
+[*Reference: Ingress*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configure-ingress-acls?guid=guid-f3044d5d-d348-48d4-b975-4ac04c966d24&lang=en-us)<br />
 [*Reference: Egress*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configure-egress-acls?guid=guid-719f97ee-334a-4ef5-b276-94555b4a428f&lang=en-us)
 
 ## Notes...

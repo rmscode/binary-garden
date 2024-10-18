@@ -25,7 +25,7 @@ You can also join a [test meeting](https://zoom.us/test) to familiarize yourself
     - If you want to join a meeting by signing in:
         1. Sign in to the Zoom desktop client.
         2. Click the **Home** tab.
-        3. Click **Join**.</br> 
+        3. Click **Join**.<br /> 
         ![Join icon](https://assets.zoom.us/images/en-us/desktop/generic/home/join-button.png){width=48}
 3. Enter the meeting ID and your display name.
     - If you're signewd in, change your name if you don't want your default name to appear.
@@ -50,7 +50,7 @@ Alternatively, you can join the meeting without downloading or opening the Zoom 
 1. Open the Zoom mobile app. (Download from Google Play or Apple App app store)
 2. Join a meeting using one of these methods:
     - Tap **Join a Meeting** if you want to join without signing in.
-    - Sign in to Zoom then tap **Join**.</br>
+    - Sign in to Zoom then tap **Join**.<br />
     ![Mobile join icon](https://assets.zoom.us/images/en-us/mobile/generic/meet-and-chat/join-button.png){width=48}
 3. Enter the meeting ID number and your display name.
     - If you're signed in, change your name if you don't want your default name to appear.
@@ -66,10 +66,10 @@ The Zoom web client allows users to join a meeting from a web browser without do
     The meeting host must enable **Show a "Join from your browser" link** for their participants.
 
 1. Locate the meeting invite link from your email or calendar invitation.
-2. Click the join link to join the meeting.</br>
+2. Click the join link to join the meeting.<br />
 On your web browser, a pop-up window will prompt you to open or download the application.
 3. In the pop-up window, click **Cancel**.
-4. At the bottom of the page, click **join from your browser**.</br>
+4. At the bottom of the page, click **join from your browser**.<br />
 You will be directed to a new page.
 5. Click **Allow** to allow Zoom permission for your microphone and camera.
 6. Sign in with your name to join the meeting.
@@ -89,10 +89,10 @@ You do not need a Zoom account to join meetings as a participant. If someone inv
 
 The easiest way to join as a guest is to click the link provided to you by the host.
 
-1. Click the meeting invite link you received from the host, for example in your email or calendar invitation.</br>
+1. Click the meeting invite link you received from the host, for example in your email or calendar invitation.<br />
 On your web browser, a pop-up window will prompt you to open or download the application.
 2. In the pop-up window, click **Cancel**.
-3. At the bottom of the page, click the **Join From your Browser** link.</br>
+3. At the bottom of the page, click the **Join From your Browser** link.<br />
 **Note**: If you don’t see the link to join from the browser, the host may not have it enabled and you will have to join a Zoom meeting by opening the Zoom client or downloading it first.
 4. In the pop-up window at the top-left corner of the screen, click **Allow** to allow Zoom permission for your microphone and camera.
 5. In the **Your Name** field, enter a display name.
@@ -123,7 +123,7 @@ Zoom offers a number of methods for creating hosting a meeting. As a host, you h
 3. (Optional) Under **New Meeting**, click the down arrow ![Down arrow](https://assets.zoom.us/generic-images/common-buttons-and-icons/outline/down-arrow-button.png) icon to get the following options:
     - **Start with video**: Start an instant meeting with your video automatically enabled.
     - **Use My Personal Meeting ID**: Allows you to use your PMI as the meeting ID for your personal meeting room
-4. Click **New Meeting** to start an instant meeting.</br>
+4. Click **New Meeting** to start an instant meeting.<br />
 **Note**: By default, no one is invited to the meeting, so be sure to invite others to join. 
 
 #### From the mobile app:
@@ -133,7 +133,7 @@ Zoom offers a number of methods for creating hosting a meeting. As a host, you h
 3. (Optional) Toggle the following options to use them in your meeting:
     - **Video on**: Start an instant meeting with your video automatically turned on.
     - **Use personal meeting ID (PMI)**: Use your PMI as the meeting ID for your instant meeting.
-4. Once you’re done with the adjustments, select Start a meeting to host your instant meeting.</br>
+4. Once you’re done with the adjustments, select Start a meeting to host your instant meeting.<br />
 **Note**: By default, no one is invited to the meeting, so be sure to invite others to join.
 
 ### Schedule a meeting
@@ -148,7 +148,7 @@ Zoom offers a number of methods for creating hosting a meeting. As a host, you h
 #### From the desktop client:
 
 1. Sign in to the Zoom desktop client.
-2. On the **Meetings** ![Meetings](https://assets.zoom.us/generic-images/common-buttons-and-icons/outline/video-on-button.png) tab, click **Schedule** ![Schedule](https://assets.zoom.us/generic-images/desktop-client/home-tab/schedule-button.png){width=24 height=24}.</br>
+2. On the **Meetings** ![Meetings](https://assets.zoom.us/generic-images/common-buttons-and-icons/outline/video-on-button.png) tab, click **Schedule** ![Schedule](https://assets.zoom.us/generic-images/desktop-client/home-tab/schedule-button.png){width=24 height=24}.<br />
 This will open the scheduler window.
 3. Select your meeting settings. Note that some of these options might not be available if they were disabled and locked to the off position at the account or group level.
 4. Click **Save** to finish, and open the selected calendar service to add the meeting.

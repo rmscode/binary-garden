@@ -62,7 +62,7 @@ The automatized setup is based on the configuration file `/boot/dietpi.txt`. It 
 
 1. After flashing, leave the SD card in your computer, navigate to the FAT32 boot partition in Windows Explorer and open the `dietpi.txt` file in a text editor of your choice.
 2. Adjust `dietpi.txt` as needed, insert your SD card and power on your Raspberry Pi.
-    - DietPi will now go through a one time setup process based on the options in the `dietpi.txt` file. This may take several minutes depending on the speed of the SD card and software chosen to install.</br>
+    - DietPi will now go through a one time setup process based on the options in the `dietpi.txt` file. This may take several minutes depending on the speed of the SD card and software chosen to install.<br />
 
     ??? abstract "Example dietpi.txt - Autostart Chromium in kiosk mode"
 

@@ -174,5 +174,5 @@ MD5 hash VERIFIED for firmware.bin
 
 ---
 
-[*Reference 1*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuration-file-management?guid=guid-ee703c5d-ff2c-4e01-8dcf-e2a7e49eb69b&lang=en-us)</br>
+[*Reference 1*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuration-file-management?guid=guid-ee703c5d-ff2c-4e01-8dcf-e2a7e49eb69b&lang=en-us)<br />
 [*Reference 2*](https://gainanov.pro/eng-blog/sysad/dell-file-management/)

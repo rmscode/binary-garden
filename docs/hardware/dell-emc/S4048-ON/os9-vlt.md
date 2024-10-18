@@ -306,8 +306,8 @@ DellEMC(conf-if-range-fo-1/47,fo-1/48)# dampening 10 100 1000 60
 
 1. In our environment, we would apply dampening to the port-channel interface comprised of the links towards the VLT domain.
 
-[*Reference: Connecting a VLT domain to an attached access switch or device*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/connecting-a-vlt-domain-to-an-attached-access-device-switch-or-server?guid=guid-99a5a114-5dbc-4286-b64f-c5e43c4edf26&lang=en-us) </br>
-[*Reference: Layer 2 topology configurations*](https://infohub.delltechnologies.com/l/dell-emc-networking-with-isilon-front-end-deployment-and-best-practices-1/layer-2-topology-configurations-7/)</br>
+[*Reference: Connecting a VLT domain to an attached access switch or device*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/connecting-a-vlt-domain-to-an-attached-access-device-switch-or-server?guid=guid-99a5a114-5dbc-4286-b64f-c5e43c4edf26&lang=en-us) <br />
+[*Reference: Layer 2 topology configurations*](https://infohub.delltechnologies.com/l/dell-emc-networking-with-isilon-front-end-deployment-and-best-practices-1/layer-2-topology-configurations-7/)<br />
 [*Reference: VLT Technical Guide*](https://i.dell.com/sites/content/business/large-business/merchandizing/en/Documents/Dell_Force10_S4810_VLT_Technical_Guide.pdf)
 
 ## Things to consider

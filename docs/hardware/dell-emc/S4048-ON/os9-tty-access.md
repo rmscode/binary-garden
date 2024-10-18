@@ -19,7 +19,7 @@ There are 10 VTY lines, 0-9. Each of which have various methods to restrict acce
 - You cannot use the `show ip accounting access-list` command to display the contents of an ACL that is applied only to a VTY line.
 - To be able to filter access exclusively using either IPv4 or IPv6 rules, use either the `ipv4` or `ipv6` attribute along with the `access-class` `access-list-name` command. If no attribute is specified, the system applies the ACL to both IPv4 and IPv6 traffic. This is the generic way of configuring access restrictions.
 
-## VTY Line Local Authentication and Athorization
+## VTY Line Local Authentication and Authorization
 
 Retrieves the access class from the local database.
 

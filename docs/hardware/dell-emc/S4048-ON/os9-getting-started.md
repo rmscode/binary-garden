@@ -249,7 +249,7 @@ DellEMC(conf)# management route 0.0.0.0/0 10.1.1.254 #(1)
 
 !!! tip "To remove the management route, you must use the `no` command followed by the full management route: `no management route 0.0.0.0/0 10.1.1.254`."
 
-[*Reference: Management Port IP*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configure-the-management-port-ip-address?guid=guid-d18626b7-74dd-4a2b-a4b7-bb8a852386e5&lang=en-us)</br>
+[*Reference: Management Port IP*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configure-the-management-port-ip-address?guid=guid-d18626b7-74dd-4a2b-a4b7-bb8a852386e5&lang=en-us)<br />
 [*Reference: Management Route*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configure-a-management-route?guid=guid-e615d634-8863-4c93-92d1-5b269fd756ab&lang=en-us)
 
 ### In-Band Management
@@ -306,8 +306,8 @@ DellEMC(conf)# ip ssh server version 2
 
     For more info on managing remote access to the terminal, see ["Managing Access to Terminal Lines"](../S4048-ON/os9-tty-access.md)
 
-[*Reference: Username and Password*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-a-username-and-password?guid=guid-5afd0af5-ceac-4a0c-b3c8-e14ee7bcddb4&lang=en-us)</br>
-[*Reference: Enable SSH by Password*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s5048f-on-9.14.2.4-config/enabling-ssh-authentication-by-password?guid=guid-0685bdc9-9b7f-4fa1-b0be-9e6c83da445d&lang=en-us)</br>
+[*Reference: Username and Password*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-a-username-and-password?guid=guid-5afd0af5-ceac-4a0c-b3c8-e14ee7bcddb4&lang=en-us)<br />
+[*Reference: Enable SSH by Password*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s5048f-on-9.14.2.4-config/enabling-ssh-authentication-by-password?guid=guid-0685bdc9-9b7f-4fa1-b0be-9e6c83da445d&lang=en-us)<br />
 [*Reference: `Enable Password`*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configuring-the-enable-password?guid=guid-cf0ca3a8-65f4-4859-b058-ecb7c424f0ec&lang=en-us)
 
 ## 8. Save changes to the startup config

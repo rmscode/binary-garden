@@ -4,7 +4,7 @@
 
 1. Go to **Settings** > **Preferences** > **Cloud & Link**
 2. Select the radio button for **Set your cloud location path here** and set the path to your cloud synced directory
-    - For example: `C:\Users\user\OneDrive\Notepad++`</br>
+    - For example: `C:\Users\user\OneDrive\Notepad++`<br />
     > Personally, I used a path to a cloned github repository. 
 3. Restart Notepad++ and it will begin keeping a copy of files from `%APPDATA%\Roaming\Notepad++` to your cloud synced directory.
 

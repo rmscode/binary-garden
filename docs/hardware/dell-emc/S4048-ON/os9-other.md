@@ -68,7 +68,7 @@ Return MTU to default value:
 DellEMC(conf-if-te-1/1)# no mtu
 ```
 
-*[Reference 1](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configure-the-mtu-size-on-an-interface?guid=guid-2c62872c-1387-4fd1-b49c-a990c7e7ddc4&lang=en-us)* </br>
+*[Reference 1](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/configure-the-mtu-size-on-an-interface?guid=guid-2c62872c-1387-4fd1-b49c-a990c7e7ddc4&lang=en-us)* <br />
 [*Reference 2 - Configuring Jumbo Frames*](https://www.dell.com/support/kbdoc/en-us/000146740/how-to-configure-the-optimal-switch-settings-for-an-ip-based-san)
 
 ## DHCP
