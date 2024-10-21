@@ -2,11 +2,7 @@
 
 ## OL1500RTXL2U
 
-On-Line Double Conversion UPS
-
-**Specifications**:
-
-**Specifications**:
+On-Line Double Conversion UPS with Pure Sine Wave output. The UPS is rack/tower convertible and has a 2U form factor.
 
 | Specification         | Value                          |
 |-----------------------|--------------------------------|
