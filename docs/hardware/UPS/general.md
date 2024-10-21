@@ -20,7 +20,7 @@ An Uninterruptible Power Supply (UPS) is a device that provides backup power to 
 
 `Line Mode`
 
-:   In Line Mode (On line), the UPS provides power directly from the utility mains to the connected load while also regulating voltage and filtering power to protect against power fluctuations (like surges, spikes, and noise). The UPS charges its internal batteries during this mode. This is the default operating state when incoming utility power is within acceptable parameters (voltage and frequency are stable. It will remain in Line Mode as long as the power is normal.
+:   In Line Mode (On line), the UPS provides power directly from the utility mains to the connected load while also regulating voltage and filtering power to protect against power fluctuations (like surges, spikes, and noise). The UPS charges its internal batteries during this mode. This is the default operating state when incoming utility power is within acceptable parameters (voltage and frequency are stable). It will remain in Line Mode as long as the power is normal.
 
 `Bypass Mode`
 
