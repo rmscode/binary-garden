@@ -6,14 +6,18 @@ On-Line Double Conversion UPS
 
 **Specifications**:
 
-- Capacity (VA): 1500
-- Capacity (W): 1350
-- Battery Specs: 12V/9Ah
-- Power Factor: 0.9
-- Input voltage range: 100-125Vac
-- Input frequency range: 50/60Hz
-- Output Voltage: 100, 110, 115, 120, 125Vac +/- 2%
-- Output frequency: 50/60Hz (Auto-sensing or configurable)
+**Specifications**:
+
+| Specification         | Value                          |
+|-----------------------|--------------------------------|
+| Capacity (VA)         | 1500                           |
+| Capacity (W)          | 1350                           |
+| Battery Specs         | 12V/9Ah                        |
+| Power Factor          | 0.9                            |
+| Input voltage range   | 100-125Vac                     |
+| Input frequency range | 50/60Hz                        |
+| Output Voltage        | 100, 110, 115, 120, 125Vac +/- 2% |
+| Output frequency      | 50/60Hz (Auto-sensing or configurable) |
 
 **Modes**:
 
