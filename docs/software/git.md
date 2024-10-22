@@ -1,8 +1,12 @@
 # Git
 
+For a quick reference of common commands, see the [Git Cheat Sheet](../general/cheat-sheets/git-cheat-sheet.md).
+
 ## Recover a Dropped Stash
 
-Eventually, we all learn the hard way that we should never stash changes we can't afford to lose.
+!!! note
+
+    Eventually, we all learn the hard way that we should never stash changes we can't afford to lose.
 
 Run the following command to list all dangling commits (every lost commit, including every stash commit ever created):
 
