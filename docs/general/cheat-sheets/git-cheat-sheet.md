@@ -53,7 +53,7 @@
 | `git log`                                          | show the commit history for the currently active branch
 | `git log branchB..branchA`                         | show the commits on branchA that are not on branchB
 | `git log --follow [file]`                          | show the commits that changed file, even across renames
-| `gitk -- [file]`                                   | open a visual representation of the commit history for a file
+| `gitk [file]`                                      | open a visual representation of the commit history for a file
 | `git show [SHA]`                                   | show any object in Git in human-readable format
 
 ## Tracking Path Changes
