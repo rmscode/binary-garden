@@ -2,7 +2,7 @@
 
 Continuous Availability refers to the ability of a system to remain operational without interruption, even in the face of failures. This is crucial for businesses that require their services to be accessible 24/7.
 
-Availability is usually expressed as a percentage of uptime in a given year, with `99.999%` (often referred to as "five nines") being a common target for mission-critical systems.
+Availability is usually expressed as a percentage of uptime in a given year, with `99.999%` (often referred to as "[five nines](https://en.wikipedia.org/wiki/High_availability#Percentage_calculation)") being a common target for mission-critical systems.
 
 ## Achieving Continuous Availability
 
