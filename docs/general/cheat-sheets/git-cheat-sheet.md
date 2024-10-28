@@ -44,7 +44,9 @@
 | `git merge [branch]`                               | merge the specified branch’s history into the current one
 | `git log`                                          | show all commits in the current branch’s history
 | `git branch -d [branch-name]`                      | delete the specified branch (local)
-| `git push origin --delete [branch-name]`           | delete the specified branch (remote)
+| `git push origin -d [branch-name]`           | delete the specified branch (remote)
+
+!!! tip "Don't forget to `git fetch --all --prune` on other machines after deleting the remote branch. Other machines may still have obsolete tracking branches."
 
 ## Inspect & Compare
 
