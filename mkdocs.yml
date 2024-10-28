@@ -117,9 +117,10 @@ nav:
     - Cheat Sheets:
       - Git Cheat Sheet: general/cheat-sheets/git-cheat-sheet.md
       - Linux Cheat Sheet: general/cheat-sheets/linux-cheat-sheet.md
-    - Change Management: general/change-management.md
     - Guides:
       - RDP Thin Client: general/guides/remmina-thin-client.md
+    - Change Management: general/change-management.md
+    - Continuous Availability: general/continuous-availability.md
     - Linux Directory Structure: general/linux-directory-structure.md
     - RAID: general/raid.md
     - ReFS vs NTFS: general/refs-vs-ntfs.md
