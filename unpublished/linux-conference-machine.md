@@ -110,15 +110,17 @@ You can use any Debian based Linux distro, but we used DietPi because it is ligh
 
     ```bash
     xset -dpms #(1)!
-    xcompmgr & #(2)!
-    cairo-dock & #(3)!
-    nitrogen --restore & #(4)!
+    xset s off #(2)!
+    xcompmgr & #(3)!
+    cairo-dock & #(4)!
+    nitrogen --restore & #(5)!
     ```
 
     1. Disables power management
-    2. Enables basic compositing effects for cairo-dock
-    3. Start cairo-dock
-    4. Ensures background is set after reboot
+    2. Disables screen saver
+    3. Enables basic compositing effects for cairo-dock
+    4. Start cairo-dock
+    5. Ensures background is set after reboot
 
     ??? example "Example"
 
@@ -163,7 +165,7 @@ To solve the problem of users forgetting to sign out of their accounts on a shar
 - `cairo-dock` for dock`
 - `nitrogen` for background
 - `remmina`, `remmina-plugin-rdp` for remote desktop
-- Via `idetpi-software`
+- Via `dietpi-software`
     - `chromium`
     - `x`
     - `lxde` for icon support
@@ -353,4 +355,4 @@ Im thinking this is because there is no desktop environment so therefor no iconp
     GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
     sudo update-grub
 	
-    Can be improved
+    Can be probably improved
