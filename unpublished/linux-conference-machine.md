@@ -11,7 +11,7 @@ Much like the [Linux Based RDP Client](../guides/remmina-thin-client.md), I was 
 
 ## Requirements
 
-- Small form factor PC similar to an Intel NUC.</br>
+- Small form factor PC similar to an Intel NUC.<br>
     !!! Note "We first tested a RaspberryPi 4, but it was getting quite hot and the performance was not great."
 - Debain based Linux distro. We used [DietPi](../../software/operating-systems/linux/dietpi.md)
 - A quality webcam
@@ -33,26 +33,18 @@ You can use any Debian based Linux distro, but we used DietPi because it is ligh
 
 ### Install Packages and Their Dependencies
 
-1. Update and upgrade your distribution:</br>
-
-    ```bash
-    sudo apt update && upgrade -y
-    ```
-
-2. Install the following packages via `apt`:</br>
-
+1. Install DietPi optimized packages via `sudo dietpi-software` (if using the DietPi distro):
+    - X.org X Server aka X11
+    - LXDE desktop environment<br>
+    !!! note "Remmina relies on a desktop environment for some of its icons/GUI elements.
+    - ALSA
+    - PulseAudio
+    - FFmpeg
+    - Chromium (or FireFox if you prefer)
+2. Install the following packages via `apt`:<br>
     ```bash
     sudo apt install openbox obconf xdg-utils xcompmgr nitrogen remmina remmina-plugin-rdp cairo-dock -y
     ```
-
-3. Install the following packages via `dietpi-software`:
-    - Chromium
-    - ALSA
-    - FFmpeg
-    - X
-    - LXDE desktop environment</br>
-
-    !!! note "You're not required to install these packages via `dietpi-software`, but its probably ideal. DietPi uses post installation scripts to optimize certain packages."
 
 ### Base Configuration
 
@@ -60,7 +52,7 @@ You can use any Debian based Linux distro, but we used DietPi because it is ligh
 
     In almost all cases, it's not considered good practice to use root. DietPi already has a default non-root user (`dietpi`). Otherwise, I suggest you create a new user and add it to the sudo group.
 
-1. Append the following to the end of `~/.profile` (use `nano ~/.profile`):</br>
+1. Append the following to the end of `~/.profile` (use `nano ~/.profile`):<br>
 
     ```bash
     [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && startx
@@ -88,7 +80,7 @@ You can use any Debian based Linux distro, but we used DietPi because it is ligh
 
 2. Configure xinitrc to use Openbox (use `sudo nano /etc/X11/xinit/xinitrc`):
     1. Comment out the line `. /etc/X11/xsession` by adding a `#` in front of it
-    2. Append `exec openbox-session` to the end of the file</br>
+    2. Append `exec openbox-session` to the end of the file<br>
 
     ??? example "Example"
 
@@ -104,7 +96,7 @@ You can use any Debian based Linux distro, but we used DietPi because it is ligh
         exec openbox—session
         ```
 
-3. Configure the Openbox autostart file (use `sudo nano /etc/xdg/openbox/autostart`):</br>
+3. Configure the Openbox autostart file (use `sudo nano /etc/xdg/openbox/autostart`):<br>
 
     Add the following:
 
@@ -149,10 +141,13 @@ At this point, the system should boot straight into Openbox with the Cairo dock 
 
 ## Configuring Chromium and Installing PWAs
 
-To solve the problem of users forgetting to sign out of their accounts on a shared device, set Chromium to delete all site data when it closes.
+To solve the problem of users forgetting to sign out of their accounts on a shared device, consider the following two options:
 
-1. Open Chromium
+1. Have Chromium delete on-device data every time it is closed.
+    - Open Chromium and go to **Settings** > **Privacy and Security** > **Site Settings** > **Additional content settings** > **On-Device site data**.
+2. Launch Chromium with the `--incognito` flag to prevent the browser from storing data at all.
 
+Installing PWAs (Progressive Web Apps)
 
 
 ## Notes taken during setup
@@ -233,7 +228,7 @@ Cairo doc is buggy! Cant remove applet even after reinstalling. Maintains settin
 - Set name to Remmina
 - Set icon (had to download one)
 - Set command to launch on click `remmina --enable-fullscreen`
-- Edit remmina in dock > extra params > class of the program > click grab button and click the remmina windows</br>
+- Edit remmina in dock > extra params > class of the program > click grab button and click the remmina windows<br>
 
     !!! note "Had to do this in order for custom launcher to associate its shortcut with the Remmina window. Otherwise it would spawn a second icon when launched"
 
