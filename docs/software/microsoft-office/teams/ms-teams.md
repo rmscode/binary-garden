@@ -43,7 +43,7 @@ Allows compatible legacy SIP devices to make and receive calls using Microsoft T
 4. Select **Manage policies**, select a policy, and then select **Edit**.
 5. Turn on the setting for **SIP devices can be used for calls**, and then select **Save**.
 
-!!! tip "You can also use PowerShell
+!!! tip "You can also use PowerShell"
 
     ```powershell
     Set-CsTeamsCallingPolicy -Identity Global -AllowSIPDevicesCalling $true
@@ -61,18 +61,18 @@ Successfully provisioned SIP phones will display the Teams logo and a soft butto
 
 Only local sign-in is supported for users' personal devices.
 
-User Pairing and Sign-in:
+User Pairing and Sign in:
 
 1. Press **Sign-in** on the SIP phone to display the [authentication URL](https://portal.sdg.teams.microsoft.com/) and pairing code. The pairing code is time-sensitive.
 2. Open the [authentication URL](https://portal.sdg.teams.microsoft.com/) in a web browser, use corporate credentials to log in and enter the pairing code.
 
 !!! info "Sign-in may take a while. The phone will display the phone number and username, if the device supports it."
 
-Sign-out:
+Sign out:
 
 - Press **Sign-out** on the SIP device and follow the steps described on the device.
 
-Sign-out a device via the Teams Admin center:
+Sign out a device via the Teams Admin center:
 
 1. Log in to the [Teams Admin center](https://admin.teams.microsoft.com/).
 2. Select **Teams devices** > **SIP devices**, select the device.
