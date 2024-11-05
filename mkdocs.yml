@@ -243,6 +243,7 @@ nav:
     - Microsoft Office:
       - Outlook: software/microsoft-office/outlook/outlook.md
       - Teams: software/microsoft-office/teams/ms-teams.md
+      - Teams Phone: software/microsoft-office/teams/ms-teams-phone.md
       - Word:
         - Hide Images: software/microsoft-office/word/hide-images.md
     - MkDocs:
