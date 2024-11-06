@@ -235,11 +235,19 @@ $users | Export-Csv -Path "C:\temp\NewAccountResults.csv" -NoTypeInformation
 
 #### Get new phone numbers for your service accounts
 
-Refer back to [this section](#get-new-phone-numbers-for-your-users), but make sure you select the appropriate **Number type**. For example, you probably want to select **Auto attendant** for a front desk/main reception phone.
+Refer back to [the steps above](#get-new-phone-numbers-for-your-users), but make sure you select the appropriate **Number type**. For example, you probably want to select **Auto attendant** for a front desk/main reception phone.
+
+#### Assign a phone number to a service account
+
+Refer back to [the steps above](#assign-a-phone-number-to-a-user)...
 
 ### Configure Legacy SIP Phones (SIP Gateway)
 
-Supported legacy SIP phones that are not Teams Certified can be used with Teams by connecting them to a SIP Gateway.
+Supported legacy SIP phones that are not Teams Certified can be used with Teams by connecting them to Microsoft's SIP Gateway.
+
+!!! note
+
+    The Yealink T46S phone with the minimum firmware version of "83" (assuming they mean 66.83.x.x?) is supported by the SIP Gateway. The "approved" firmware version is 66.86.5.1. Fanvil devices are not on the list of [compatible devices](https://learn.microsoft.com/en-us/microsoftteams/devices/sip-gateway-plan#compatible-devices).
 
 #### Verify that SIP Gateway is Available
 
