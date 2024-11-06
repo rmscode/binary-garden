@@ -97,3 +97,11 @@ Use the arrow keys to scroll up and down in history to find the commit and copy 
 git log
 git revert $saved_hash
 ```
+
+### Abort a Merge With Conflicts
+
+If you're met with conflicts that need to be resolved before you can continue, but you're not ready to resolve them just yet, you can abort the merge and try again later.
+
+```shell
+git merge --abort
+```
