@@ -1,10 +1,6 @@
 # Teams Phone
 
-https://a.co/d/euavurH
-
-## Prepare Your Environment
-
-### Network
+## Prepare Network Environment
 
 - Review access to: Microsoft Teams, Intune, Microsoft Entra ID, & Microsoft Common destinations.
     - Open required ports to the required destinations documented in [Teams Android Device - Network Security](https://learn.microsoft.com/en-us/microsoftteams/rooms/security?tabs=Android#network-security)
@@ -13,7 +9,9 @@ https://a.co/d/euavurH
 - Open the UDP port in the range `49152` to `53247` for IP ranges `52.112.0.0/14` and `52.122.0.0/15`.
 - Open TCP port `5061` for IP ranges `52.112.0.0/14` and `52.122.0.0/15`.
 
-#### Bandwidth
+[*Reference*](https://learn.microsoft.com/en-us/microsoftteams/phones/prepare-network-teams-phones)
+
+### Bandwidth
 
 Feature | Standard       | Advanced
 ------- | -------------- | -----------------------
@@ -29,7 +27,9 @@ If you wish to implement a bandwidth policy on your common area phones, it is re
 
 See [here](https://learn.microsoft.com/en-us/microsoftteams/meeting-policies-audio-and-video#mode-for-ip-audio) for more information on the different modes.
 
-#### QoS
+[*Reference*](https://learn.microsoft.com/en-us/microsoftteams/phones/qos-on-teams-phones#how-much-bandwidth-does-a-microsoft-teams-phone-device-use)
+
+### QoS
 
 Microsoft Teams Rooms supports Quality of Service (QoS) Differentiated Services Code Point (DSCP) markings to ensure you can manage the media traffic on your corporate network. Microsoft's recommendations are below.
 
@@ -68,9 +68,103 @@ New-NetQosPolicy -Name "Classic Teams Calling-Meeting Signaling" -AppPathNameMat
 
 See [here](https://learn.microsoft.com/en-us/microsoftteams/qos-in-teams-clients) for additional methods of implementation including InTune and Group Policy.
 
+[*Reference*](https://learn.microsoft.com/en-us/microsoftteams/phones/qos-on-teams-phones#quality-of-service-qos-with-microsoft-teams-phones)
+
 ## Set up and Configure
 
-### Common Area Phones
+### Teams Phones (User Accounts)
+
+#### Buy the licenses
+
+1. In the [M365 admin center](https://admin.microsoft.com), go to **Marketplace**.
+2. At the right, select **All products**.
+3. Search for **Microsoft Teams Phone** and select either "with Calling Plan" or "with Pay as you go Calling".
+4. Select the number of licenses you need and select **Buy**.
+
+#### Assign the licenses to users
+
+1. In the [M365 admin center](https://admin.microsoft.com), go to **Users** > **Active Users**.
+2. Select the row of the user that you want to assign a license to.
+    - To assign a license to multiple users, select the checkbox next to each user. 
+3. In the right pane, select **Licenses and Apps**.
+    - If multiple users selected, select **Manage product licenses** at the top. Select **Assign more: Keep the existing licenses and assign more** > **Next**.
+4. Expand the **Licenses** section, select the appropriate license(s), and then select **Save changes**.
+
+[*Reference*](https://learn.microsoft.com/en-us/microsoft-365/admin/manage/assign-licenses-to-users?view=o365-worldwide#use-the-active-users-page-to-assign-or-unassign-licenses)
+
+#### Get new phone numbers for your users
+
+1. Sign in to the [Teams Admin center](https://admin.teams.microsoft.com/).
+2. In the left navigation, go to **Voice** > **Phone numbers**, and then select **Add**.
+3. Enter a name for the order and add a description.
+4. Fill in the required information on the **Location and quantity** page. The **Number type** should be **User (subscriber)**.
+5. Select the numbers you want. You have 10 minutes to select your phone numbers and place your order.
+6. When you're ready to place your order, select **Place order**.
+
+!!! info
+
+    The quantity of phone numbers for users is equal to the total number of **Domestic Calling Pan** and **International Calling Plan** licenses you have assigned multiplied by 1.1, plus 10 additional phone numbers. For example, if you have 50 users in total with a Domestic Calling Plan and/or International Calling Plan, you can acquire **65** phone numbers (**50 x 1.1** + **10**). Note that if you have a Pay-As-You-Go Calling Plan, you can only acquire 1 phone number per license assigned.
+
+[*Reference*](https://learn.microsoft.com/en-us/microsoftteams/getting-phone-numbers-for-your-users#get-new-phone-numbers-for-your-users)
+
+#### Port or transfer numbers from your current provider
+
+- If you need 999 or fewer numbers for your users, use the porting wizard in the Microsoft Teams admin center. (Outlined below)
+- If you need to port more than 999 numbers, you can [manually submit a port order](https://learn.microsoft.com/en-us/microsoftteams/phone-number-calling-plans/manually-submit-port-order).
+
+!!! note
+
+    To port/transfer 999 or fewer phone numbers for your users, upload the completed and signed Letters of Authorization (LOAs) in the Microsoft Teams admin center for further processing.
+
+    - [LOA for the United States (user and service numbers)](https://download.microsoft.com/download/7/3/8/73843692-632f-4078-874d-021f9680e12b/letter-of-authorization-(loa)-for-the-u.s.-(user-and-service-numbers)-(v.3.3)-(en-us).pdf)
+    - [LOA for the Unites States (toll free numbers)](https://download.microsoft.com/download/a/b/b/abbd920f-6f52-4e68-869d-591a9e5ae132/LoA_US_TollFreeNumbers_v3.2.pdf)
+
+1. Sign in to the [Teams Admin center](https://admin.teams.microsoft.com/).
+2. At the left, under **Voice**, select **Phone numbers**. At the right, select **Numbers**, and then select **Port** to start the porting wizard.
+3. Review the information on the **Get started** page, and then select **Next**.
+4. Fill in the required information on the **Select location and number type** page and then select **Next**.
+5. Fill in the required information on the **Add account information** page and then select **Next**.
+    - You'll need to have the details of your current service provider (account number, service address, etc.) for this step.
+6. On the **Add numbers** page, select **Select a file**, and upload a CSV that contains the numbers you want to transfer.
+    - The CSV file must only have one column with a header named **PhoneNumber**. Each number must be on a separate row and be digits only or in the E.164 format (`+1XXXYYYZZZZ`).
+7. On the **Complete your order** page, select **Upload a signed Letter of Authorization** to upload a scanned copy of the signed Letter of Authorization (LOA).
+8. Review your order details, and then select **Submit**.
+
+Your port order request will be updated daily. If your port order is rejected by the carrier, contact the [TNS Service Desk](https://learn.microsoft.com/en-us/microsoftteams/manage-phone-numbers-for-your-organization/contact-tns-service-desk). To view the status of your port order, got to **Voice** > **Port orders**, and then select **Order history**.
+
+[*Reference*](https://learn.microsoft.com/en-us/microsoftteams/phone-number-calling-plans/transfer-phone-numbers-to-teams#create-a-port-order-and-transfer-your-phone-numbers-to-teams)
+
+#### Assign a phone number to a user
+
+1. Sign in to the [Teams Admin center](https://admin.teams.microsoft.com/).
+2. At the left, under **Voice**, select **Phone numbers**.
+3. On the **Phone numbers** page, select an unassigned number in the list, and then click **Edit**.
+4. Under **Assigned to**, search for the user, and then click **Assign**.
+5. To assign or change the associated emergency location, under **Emergency location**, search for and then select the location.
+6. Turn off or on **Email user with telephone number information**.
+7. Click **Save**.
+
+??? tip "You can also use PowerShell"
+
+    ```powershell title="For Calling Plan numbers"
+    Set-CsPhoneNumberAssignment -Identity <user> -PhoneNumber <phone number> -PhoneNumberType CallingPlan
+    ```
+
+    ```powershell title="For Operator Connect numbers"
+    Set-CsPhoneNumberAssignment -Identity <user> -PhoneNumber <phone number> -PhoneNumberType OperatorConnect
+    ```
+
+    ```powershell title="For Teams Phone Mobile numbers"
+    Set-CsPhoneNumberAssignment -Identity <user> -PhoneNumber <phone number> -PhoneNumberType OperatorConnect
+    ```
+
+!!! info
+
+    Because of the latency between M365 and Teams, it can take up to 24 hours for users to be enabled. *Plan acc* If a phone number isn't assigned correctly after 24 hours, see [Phone Number Service Center](https://pstnsd.powerappsportals.com/).
+
+[*Reference*](https://learn.microsoft.com/en-us/microsoftteams/assign-change-or-remove-a-phone-number-for-a-user#assign-a-phone-number-to-a-user)
+
+### Common Area Phones (Service Accounts)
 
 #### Buy the licenses
 
@@ -79,11 +173,13 @@ See [here](https://learn.microsoft.com/en-us/microsoftteams/qos-in-teams-clients
 3. Search for **Microsoft Teams Shared Devices** and select **Details**.
 4. Enter the number of licenses you need and select **Buy**.
 
+[*Reference*](https://learn.microsoft.com/en-us/microsoftteams/phones/set-up-common-area-phones#step-1---buy-the-licenses)
+
 #### Create a new resource account and assign licenses
 
 If you're deploying one device:
 
-1. In the [M365 admin center](https://admin.micrososft.com), go to **Users** > **Active Suers** > **Add a user**.
+1. In the [M365 admin center](https://admin.micrososft.com), go to **Users** > **Active Users** > **Add a user**.
 2. Enter a username like `Main` for the first name and `Reception` for the second name.
 3. Enter a display name if it doesn't autogenerate one like `Main Reception`.
 4. Enter a username like `MainReception` or `Mainlobby`.
@@ -94,20 +190,18 @@ If you're deploying one device:
 
 	You don't need to add a license with Phone System features. It's included with the Teams Shared Devices license.
 	
-If you're creating and assigning licenses for more than one user account at once, use PowerShell:
+If you're creating and assigning licenses for more than one account at once, use PowerShell:
 
-1. Create a CSV file containing the required user account information.
-
+1. Create a CSV file containing the required user account information.<br>
 ```text
 UserPrincipalName,FirstName,LastName,DisplayName,UsageLocation,MailNickname
 MainReception@contoso.onmicrosoft.com,Main,Reception,Main Reception,US,mainreception
 FrontGate@contoso.onmicrosoft.com,Front,Gate,Front Gate,US,frontgate
 TollFree@contoso.onmicrosoft.com,Toll,Free,Toll Free,US,tollfree
 DOTOffice@contoso.onmicrosoft.com,DOT,Office,DOT Office,US,dotoffice
+A2Conference@contoso.onmicrosoft.com,A2,Conference,A2 Conference,US,a2conference
 ```
-
-2. Use a PowerShell script to create the accounts.
-
+2. Use a PowerShell script to create the accounts.<br>
 ```powershell
 # Import the CSV file
 $users = Import-Csv -Path "C:\temp\NewAccounts.csv"
@@ -131,29 +225,21 @@ foreach ($user in $users) {
 # Export the results to a CSV file
 $users | Export-Csv -Path "C:\temp\NewAccountResults.csv" -NoTypeInformation
 ```
-
-New-MgUser -AccountEnabled $true -DisplayName "Main Reception" -MailNickname "mainreception" -UserPrincipalName "mainreception@yourdomain.com" -PasswordProfile @{ Password = "YourSecurePassword123"; ForceChangePasswordNextSignIn = $false }
-
 3. Review the output file to see the results.
 
 !!! info 
 
-	https://learn.microsoft.com/en-us/microsoftteams/phones/common-area-mobile-phones can be set up as common area phones as well. This is ideal for "frontline workers" in the field.
-	
-### Teams Phones (SIP Gateway)
+	[Android mobile phones](https://learn.microsoft.com/en-us/microsoftteams/phones/common-area-mobile-phones) can be set up as common area phones as well. This is ideal for "frontline workers" in the field.
 
-Allows compatible legacy SIP devices to make and receive calls using Microsoft Teams.
+[*Reference*](https://learn.microsoft.com/en-us/microsoftteams/phones/set-up-common-area-phones#step-2---create-a-new-resource-account-and-assign-licenses)
 
-#### Buy the licenses
+#### Get new phone numbers for your service accounts
 
-1. In the [M365 admin center](https://admin.microsoft.com), go to **Marketplace**.
-2. At the right, select **All products**.
-3. Search for **Microsoft Teams Phone** and select either "with Calling Plan" or "with Pay as you go Calling".
-4. Select the number of licenses you need and select **Buy**.
+Refer back to [this section](#get-new-phone-numbers-for-your-users), but make sure you select the appropriate **Number type**. For example, you probably want to select **Auto attendant** for a front desk/main reception phone.
 
-#### Assign the licenses to users
+### Configure Legacy SIP Phones (SIP Gateway)
 
-1. In the [M365 admin center](https://admin.microsoft.com), go to **Users** > **Active Users**.
+Supported legacy SIP phones that are not Teams Certified can be used with Teams by connecting them to a SIP Gateway.
 
 #### Verify that SIP Gateway is Available
 
@@ -176,15 +262,13 @@ Allows compatible legacy SIP devices to make and receive calls using Microsoft T
 
 #### Set the SIP Gateway Provisioning Server URL
 
-For each SIP device, reset to factory defaults and set the following SIP Gateway provisioning server URL:
+For each legacy SIP device, reset to factory defaults and set the following SIP Gateway provisioning server URL:
 
 `http://noam.ipp.sdg.teams.microsoft.com`
 
 Successfully provisioned SIP phones will display the Teams logo and a soft button for sign-in.
 
 #### Sign in and Out
-
-Only local sign-in is supported for users' personal devices.
 
 User Pairing and Sign in:
 
@@ -202,3 +286,7 @@ Sign out a device via the Teams Admin center:
 1. Log in to the [Teams Admin center](https://admin.teams.microsoft.com/).
 2. Select **Teams devices** > **SIP devices**, select the device.
 3. On the device's **Details pane**, select the **Details** tab, and at the upper right on the **Actions** menu, select **Sign out**.
+
+### Configure Teams Certified Devices
+
+<https://a.co/d/euavurH>
