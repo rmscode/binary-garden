@@ -298,3 +298,18 @@ Sign out a device via the Teams Admin center:
 ### Configure Teams Certified Devices
 
 <https://a.co/d/euavurH>
+
+## Call Queues and Auto Attendants
+
+### Prerequisites
+
+- A Resource Account for each Auto attendant or Call queue. 
+- Free [Teams Phone Resource Account](https://learn.microsoft.com/en-us/microsoftteams/teams-add-on-licensing/virtual-user#how-to-obtain-microsoft-teams-phone-resource-account-licenses) licenses for said Resource Accounts.
+- At least one Microsoft service number, Operator Connect number, Direct Routing number, or a hybrid number for each resource account.
+- Web click-to-call:
+    - [Quickstart: Join your calling app to a Teams auto attendant](https://learn.microsoft.com/en-us/azure/communication-services/quickstarts/voice-video-calling/get-started-teams-auto-attendant)
+    - [Quickstart: Join your calling app to a Teams call queue](https://learn.microsoft.com/en-us/azure/communication-services/quickstarts/voice-video-calling/get-started-teams-call-queue)
+
+[Setting up call queues](https://learn.microsoft.com/en-us/microsoftteams/create-a-phone-system-call-queue)
+
+[Setting up auto attendants](https://learn.microsoft.com/en-us/microsoftteams/create-a-phone-system-auto-attendant)

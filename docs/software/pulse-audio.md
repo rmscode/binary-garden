@@ -16,8 +16,7 @@ PulseAudio is a network-capable sound server program distributed via the [freede
 
 ## Installation
 
-Most distributions come with PulseAudio pre-installed and configured to run the daemon by default as a service. However, if yours does not, here are some first steps:
-
+Most distributions come with PulseAudio pre-installed and configured to run the daemon by default as a service. However, if yours does not, here are some first steps...
 
 Install:
 
