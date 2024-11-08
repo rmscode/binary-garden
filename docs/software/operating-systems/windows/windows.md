@@ -22,3 +22,13 @@ Microsoft started installing this automatically, but most users have no need for
     If you encounter issues with the command above, you probably need to make sure the AppX Deployment Service is running. Run services.msc, find and start "AppX Deployment Service (AppXSVC)". A reboot will probably be needed. If that doesn't work, you may need to use the legacy loading mode with the `-UseWinPS` switch. Run `Import-Module Appx -UseWinPS` and then the command above.
 
     [*Reference*](https://superuser.com/questions/1456837/powershell-get-appxpackage-not-working)
+
+## Enable High Performance Power Plan
+
+On certain laptops, sometimes the high performance power plan is not available. To enable, run the following command in the command prompt:
+
+```cmd
+powercfg /s SCHEME_MIN
+```
+
+This definitely works for Windows 10, but should work for Windows 11 as well.
