@@ -32,3 +32,14 @@ powercfg /s SCHEME_MIN
 ```
 
 This definitely works for Windows 10, but should work for Windows 11 as well.
+
+## Fix Open Windows Moving to Main Monitor After Locking/Unlocking Computer
+
+After [replacing my monitors](../../../notes#11112024-1556), all open windows would move to the main monitor after locking/unlocking the computer. Remove unused monitors from the display settings to fix this issue.
+
+1. Open Display Manager as Administrator
+2. Click on **View** > **Show Hidden Devices**
+3. Expand **Monitors** and right-click to **Uninstall device** for every dimmed/grayed out monitor in the list.
+
+[*Reference*](https://trycatch.dev/2020/09/05/fixing-windows-moving-and-resizing-your-windows-after-sleep)
+
