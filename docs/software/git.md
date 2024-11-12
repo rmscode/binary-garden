@@ -55,12 +55,18 @@ Have you ever made a commit and then immediately realized you forgot to add a fi
 
 !!! warning
 
-    Do not amend commits that have already been pushed to a public/shared branch. Only amend commits that exist in your local copy unless you want to have a bad time.
+    Do not amend commits that have already been pushed to a public/shared branch. Only amend commits that exist in your local copy unless you want to have a bad time. 
 
 ```shell
 git add . # or add individual files
 git commit --amend --no-edit
 ```
+
+??? note "Here's an amusing flowchart"
+
+    This gives the correct recommendation for both the original issue (amend last commit) and for the question "What if it weren't the last commit?".
+
+    [!flowchart](../assets/amend-commit.png)
 
 ### Change the Message of the Last Commit
 
