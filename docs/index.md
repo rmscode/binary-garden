@@ -8,8 +8,6 @@ This static site was generated using [MkDocs](https://www.mkdocs.org). The theme
     
     -Ricky
 
----
-
-## Recent Changes
+## :octicons-git-commit-16: Latest Commits
 
 {{ latest_changes }}
