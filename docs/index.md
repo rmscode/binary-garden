@@ -1,3 +1,7 @@
+---
+icon: material/home-outline
+---
+
 # Documentation & Notes
 
 This static site was generated using [MkDocs](https://www.mkdocs.org). The theme & markdown extensions are provided by [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).

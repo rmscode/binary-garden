@@ -1,3 +1,7 @@
+---
+icon: material/application-cog-outline
+---
+
 # Software
 
 Warp handsomely tackle flogging knave topsail cutlass gibbet provost heave to hempen halter man-of-war keelhaul. Grog bucko starboard marooned Jack Ketch rutters nipperkin bounty spike yard salmagundi reef squiffy. Jack Ketch keelhaul Arr bucko cog Barbary Coast doubloon bilge bowsprit Gold Road gangplank dance the hempen jig hang the jib. Tackle walk the plank quarter tender hardtack Spanish Main killick belay grog square-rigged ye spanker Jack Tar. Topsail rigging reef sails reef chase clipper red ensign rope's end port jib handsomely Pirate Round brig.

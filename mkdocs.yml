@@ -1,5 +1,5 @@
 # Project information
-site_name: My Docs
+site_name: rms/docs
 site_url: https://rmscode.github.io/MyDocs/
 site_author: Ricky Saull
 site_description: >-
@@ -16,6 +16,8 @@ repo_url: https://github.com/rmscode/MyDocs
 # Material theme configuration
 theme:
   name: material
+  icon:
+    logo: material/note-edit-outline
   features:
     - content.code.annotate
     - content.code.copy
@@ -275,4 +277,6 @@ nav:
     - Daily Work Log: notes/2024.md
     - Work Log Archive: 
       - 2023: notes/2023.md
-  - Archives: archives/archives.md
+  - Archives: 
+    - archives/index.md
+    - Hardware: archives/hardware-archive.md
