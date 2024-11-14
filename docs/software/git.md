@@ -111,3 +111,16 @@ If you're met with conflicts that need to be resolved before you can continue, b
 ```shell
 git merge --abort
 ```
+
+### Apply Multiple Stashes
+
+Git doesn't allow you to apply a stash if there are conflicts wit modified files in the working tree. You must commit any changes first. Well, what if you want to apply multiple stashes so they can be part of the same commit?
+
+1. Pop the first stash.
+`git stash pop [n] # index of stash or its hash will do`
+2. Temporarily commit the changes from the first stash.
+`git add . && commit -am 'WIP'`
+3. Pop the second stash.
+`git stash pop [n]`
+4. Undo the temporary commit, keeping the changes introduced.
+`git reset --soft HEAD^`
