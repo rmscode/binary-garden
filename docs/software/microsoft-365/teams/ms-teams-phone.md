@@ -295,6 +295,10 @@ Sign out a device via the Teams Admin center:
 2. Select **Teams devices** > **SIP devices**, select the device.
 3. On the device's **Details pane**, select the **Details** tab, and at the upper right on the **Actions** menu, select **Sign out**.
 
+!!! note "Common Issues with SIP devices"
+
+    <https://learn.microsoft.com/en-us/microsoftteams/troubleshoot/phone-system/sip-gateway-issues>
+
 ### Configure Teams Certified Devices
 
 <https://a.co/d/euavurH>
