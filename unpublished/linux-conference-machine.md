@@ -13,17 +13,17 @@ Much like the [Linux Based RDP Client](../guides/remmina-thin-client.md), I was 
 
 - Small form factor PC similar to an Intel NUC.<br>
     !!! Note "We first tested a RaspberryPi 4, but it was getting quite hot and the performance was not great."
-- Debain based Linux distro. We used [DietPi](../../software/operating-systems/linux/dietpi.md)
+- Debian based Linux distro. We used [DietPi](../../software/operating-systems/linux/dietpi.md) because it is lightweight and easy to use.
 - A quality webcam
-- X Window System
+- X.Org display server
 - Openbox, a lightweight window manager for Linux
 - Nitrogen, a background browser for X
 - ALSA, a sound system for Linux
 - FFmpeg, a multimedia framework for Linux
 - Cairo Dock, a lightweight dock for Linux for launching apps
-- Chromium for web browsing and the installation of Teams/Zoom PWAs
+- Chromium for web browsing and the installation of Teams PWA
 - Remmina, a free and open-source remote desktop client for Linux
-- LXDE desktop environment for icon support
+- LXDE desktop environment for icon/UI support in certain apps
 
 ## Initial Setup
 
@@ -78,7 +78,7 @@ You can use any Debian based Linux distro, but we used DietPi because it is ligh
         [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && startx
         ```
 
-2. Configure xinitrc to use Openbox (use `sudo nano /etc/X11/xinit/xinitrc`):
+2. Configure xinitrc to use the Openbox window manager instead of X's (use `sudo nano /etc/X11/xinit/xinitrc`):
     1. Comment out the line `. /etc/X11/xsession` by adding a `#` in front of it
     2. Append `exec openbox-session` to the end of the file<br>
 
@@ -132,87 +132,167 @@ You can use any Debian based Linux distro, but we used DietPi because it is ligh
         nitrogen --restore &
         ```
 
-4. Enable console autologin:
+4. Enable console auto-login:
     1. Enter `sudo dietpi-config` into the console
     2. Select **AutoStart Options** > **Automatic login**
     3. Choose the user to automatically login on boot. We used the default user `dietpi`.
+
+!!! info
+
+    If prompted to enable/disable `ctrl+alt+backspace` to close X, choose to disable. This will prevent users from accidentally closing the X server.
 
 At this point, the system should boot straight into Openbox with the Cairo dock at the bottom of the screen. We can now start customizing the system to meet our requirements.
 
 ## Configuring Chromium and Installing PWAs
 
+Launch Chromium from the Cairo Dock by selecting the xTerm icon and typing `chromium-browser`.
+
 To solve the problem of users forgetting to sign out of their accounts on a shared device, consider the following two options:
 
-1. Have Chromium delete on-device data every time it is closed.
-    - Open Chromium and go to **Settings** > **Privacy and Security** > **Site Settings** > **Additional content settings** > **On-Device site data**.
-2. Launch Chromium with the `--incognito` flag to prevent the browser from storing data at all.
+- Have Chromium delete on-device data every time it is closed.
+    - Open Chromium and go to **Settings** > **Privacy and Security** > **Site Settings** > **Additional content settings** > **On-Device site data**. *OR;*
+- Launch Chromium with the `--incognito` flag to prevent the browser from storing data at all.
 
-Installing PWAs (Progressive Web Apps)
+### Installing PWAs (Progressive Web Apps)
+
+1. Navigate to `https://teams.microsoft.com/v2`
+2. Click the PWA icon at the far right of the address bar. *OR;*
+3. Go to **Settings** > **Cast, save, and share** > **Install Page as app**.
+
+!!! info
+
+    If you prefer to provide an experience for your users where they do not need to log in to Teams, but rather quickly join a meeting by invite code, use the following URL: `https://www.microsoft.com/en-us/microsoft-teams/join-a-meeting`.
+
+### Find the PWA's and Pin to Cairo Dock
+
+!!! note 
+
+    YMMV on this one, but I have found that PWAs are typically stored in `~/.config/chromium/Default/'Web Applications'`. If they're not there, you may find them in `~/.local/share/applications`. If you're still having trouble finding them, enter `chrome://apps/` into the URL bar, right-click the app, and select **Create shortcuts**. This will place a `.desktop` file in the `~/Desktop` directory.
+
+The easiest method that I have found to add these to the Cairo Dock is to use Nautilus to navigate to the directory, find the PWA files, and drag them to the dock.
+
+Nautilus can be launched with the command `nautilus -n` or by right clicking the desktop and selecting **Files**. Make sure to open settings (the hamburger icon - 3 vertical lines) and select **Show hidden files**.
+
+## Add Remmina to Cairo Dock
+
+1. Navigate to `~/.config/cairo-dock/current_theme/launchers`
+2. Create a new file named `01remmina.desktop` (or any number that is not already in use) with the command `nano 01remmina.desktop`.
+3. Copy and paste the config from below into the file and save it.
+
+!!! note
+
+    Take note of the line that says `Icon=/home/dietpi/Downloads/remmina-512x512.png`. You'll have to make sure you have an appropriate icon downloaded to that location. You can fetch the icon that I used with `wget https://static-00.iconduck.com/assets.00/remmina-icon-512x512-y73zws4d.png".
+
+??? Remmina Launcher Config
+
+    ```txt title="Remmina Launcher config for cairo"
+    #3.4.1
+
+    #[gtk-about]
+
+    [Desktop Entry]
+
+    #F[Icon]
+    frame_maininfo=
+
+    #d+ Name of the container it belongs to:
+    Container=_MainDock_
+
+    #v
+    sep_display=
+
+    #s[Default] Launcher's name:
+    Name=Remote Desktop
+
+    #S+[Default] Image's name or path:
+    Icon=/home/dietpi/Downloads/remmina-512x512.png
+
+    #s[Default] Command to launch on click:
+    #{Example: nautilus --no-desktop, gedit, etc. You can even enter a shortkey, e.g. <Alt>F1, <Ctrl>c,  <Ctrl>v, etc}
+    Exec=remmina --enable-fullscreen
+
+
+    #X[Extra parameters]
+    frame_extra=
+
+    #b Don't link the launcher with its window
+    #{If you chose to mix launcher and applications, this option will deactivate this behaviour for this launcher only. It can be useful for i>
+    prevent inhibate=false
+
+    #K[Default] Class of the program:
+    #{The only reason you may want to modify this parameter is if you made this launcher by hands. If you dropped it into the dock from the me>
+    StartupWMClass=org
+
+    #b Run in a terminal?
+    Terminal=false
+
+    #i-[0;16] Only show in this specific viewport:
+    #{If '0' the launcher will be displayed on every viewport.}
+    ShowOnViewport=0
+
+    #f[0;100] Order you want for this launcher among the others:
+    Order=1.5
+
+    Icon Type=0
+    Type=Application
+    Origin=
+    ```
 
 
 ## Notes taken during setup
 
-### Installed packages
+```txt title="Remmina Launcher config for cairo"
+#3.4.1
 
-- `ALSA` for audio
-- `ffmpeg` for audio/video codecs
-- `openbox`, `obconf`, `xdg-utils for window manager
-- `cairo-dock` for dock`
-- `nitrogen` for background
-- `remmina`, `remmina-plugin-rdp` for remote desktop
-- Via `dietpi-software`
-    - `chromium`
-    - `x`
-    - `lxde` for icon support
+#[gtk-about]
 
-### Start openbox session instead of xsession
+[Desktop Entry]
 
-- Append the following to the end of `~/.profile` (use `nano ~/.profile`):
-	- `[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && startx`
-	
-- Configure xinitrc to use Openbox (use `sudo nano /etc/X11/xinit/xinitrc`):
-	- comment `. /etc/X11/xsession`
-	- add `exec openbox-session`
+#F[Icon]
+frame_maininfo=
 
-### Configure the openbox autostart
+#d+ Name of the container it belongs to:
+Container=_MainDock_
 
-- Configure the Openbox autostart file (use `sudo nano /etc/xdg/openbox/autostart`):
-	- Add...
-	```
-	xset s off 
-	xset s noblank 
-	xset -dpms
-	xcompmgr &
-    cairo-dock 
-    nitrogen --restore &
-	```
+#v
+sep_display=
 
-!!! question "Maybe blanking should be on?"
+#s[Default] Launcher's name:
+Name=Remote Desktop
 
-### The PWAs
+#S+[Default] Image's name or path:
+Icon=/home/dietpi/Downloads/remmina-512x512.png
 
-- https://join.zoon.us 
-- https://teams.microsoft.com/v2
-    - https://www.microsoft.com/en-us/microsoft-teams/join-a-meeting
-
-**To install**:
-
-Click the PWA icon in address bar or **Settings** > **Cast, save, and share** > **Install Page as app**
-
-**PWA location**:
-
-Use nautilus to drag from location to dock. Right click **Desktop** > **Files** > Click **hamburger** > **show hidden files**. Navigate to `~/.config/chromium/Default/'Web Applications'`. Find the .desktop files and drag to dock.
-
-I had also temporarily added a custom Files launcher to the dock - `nautilus -n`.
-
-It would probably be ideal to figure out how launcher info is stored int he cairo config.
+#s[Default] Command to launch on click:
+#{Example: nautilus --no-desktop, gedit, etc. You can even enter a shortkey, e.g. <Alt>F1, <Ctrl>c,  <Ctrl>v, etc}
+Exec=remmina --enable-fullscreen
 
 
-### Enable autologin via dietpi-config
-		
-!!! note
+#X[Extra parameters]
+frame_extra=
 
-    I had never seen this prompt before. dietpi-config > language/regional settings. After running through the keyboard layout settings, I was asked if I wanted ctrl+alt+backspace to close X.
+#b Don't link the launcher with its window
+#{If you chose to mix launcher and applications, this option will deactivate this behaviour for this launcher only. It can be useful for i>
+prevent inhibate=false
+
+#K[Default] Class of the program:
+#{The only reason you may want to modify this parameter is if you made this launcher by hands. If you dropped it into the dock from the me>
+StartupWMClass=org
+
+#b Run in a terminal?
+Terminal=false
+
+#i-[0;16] Only show in this specific viewport:
+#{If '0' the launcher will be displayed on every viewport.}
+ShowOnViewport=0
+
+#f[0;100] Order you want for this launcher among the others:
+Order=1.5
+
+Icon Type=0
+Type=Application
+Origin=
+```
 
 ### Cairo Dock
 
