@@ -73,12 +73,12 @@ git commit --amend --no-edit
 Run this command and follow the prompts to change the commit message.
 
 ```shell
-got commit --amend
+git commit --amend
 ```
 
 ### Move Last Commit to New Branch
 
-As long as you haven't already pushed the commit to a public/shared branch and you haven't made any other commits on the wrong branch, you can move the commit to the correct branch pretty easily.
+As long as you haven't already pushed the commit to a public/shared branch and you haven't made any other commits on the "wrong" branch, you can move the commit to the correct branch pretty easily.
 
 ```shell
 git branch new-branch-name
@@ -90,7 +90,7 @@ git checkout new-branch-name
 
 ```shell
 git checkout correct-branch-name
-git cherry-pick master # or whatever branch the commit is  currently on
+git cherry-pick master # or whatever branch the commit is currently on
 git checkout master
 git reset HEAD~ --hard
 ```
