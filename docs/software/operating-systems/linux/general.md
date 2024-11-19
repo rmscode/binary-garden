@@ -127,3 +127,23 @@ less +F location_of_log_file
 > `+F` will start `less` in follow mode. This is similar to `tail -f` but you can exit follow mode by pressing `Ctrl+C` and then you can scroll up and down in the file.
 
 [*Reference*](https://linuxhandbook.com/watch-logs-real-time)
+
+## Get Hardware Information
+
+If you're not opposed to installing a package, give `inxi` a try and run the `inxi -Fxz` command (`sudo atp install inxi`). Otherwise, use the methods below.
+
+### CPU 
+
+`lscpu | sed -nr '/Model name/ s/.*:\s*(.*) @ .*/\1/p'`
+
+### GPU
+
+`lspci | grep -i vga`
+
+!!! info
+
+    If the command is not found, install the `pciutils` package. If you would rather not install a package, you can try `sudo dmesg | grep -i VGA`.
+
+### RAM 
+
+`sudo dmidecode --type memory`
