@@ -112,6 +112,8 @@ If you're met with conflicts that need to be resolved before you can continue, b
 git merge --abort
 ```
 
+## Tips and Tricks
+
 ### Apply Multiple Stashes
 
 Git doesn't allow you to apply a stash if there are conflicts with modified files in the working tree. You must commit any changes first. Well, what if you want to apply multiple stashes so they can be part of the same commit?
