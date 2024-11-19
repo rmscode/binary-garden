@@ -33,9 +33,9 @@ Enable with `Enable-VMIntegrationService -VMName "TestVM" -Name "Guest Service I
 
 Found in a VM's settings (**Processor** > **Compatibility**), processor compatibility allows you to move a running virtual machine or save state between hosts that use different generations of processors. This feature works by disabling a number of modern processor features from the processor's Instruction Set Architecture (ISA), which can affect virtual machine performance. Processor compatibility is *not* enabled by default and the VM must be turned off in order to enable it. If you do not require your VMs to remain running when moving between hosts, you can simply shut down the VM and move it without enabling processor compatibility mode.
 
-!!! info
+In some cases, you may be able to move a running VM from a host with an older processor to a host with a newer processor without processor compatibility mode enabled. This is because the newer processor's ISA likely contains all of the instruction sets of the older processor. However, if the VM is restarted on the host with the newer processor, the guest OS will enumerate the new processor compatibilities. This will prevent you from moving it back to the original host with the older processor without shutting it down or enabling processor compatibility mode.
 
-    In some cases, you may be able to move a running VM from a host with an older processor to a host with a newer processor without processor compatibility mode enabled. This is because the newer processor's ISA likely contains all of the instruction sets of the older processor. However, if the VM is restarted on the host with the newer processor, the guest OS will enumerate the new processor compatibilities. This will prevent you from moving it back to the original host with the older processor without shutting it down or enabling processor compatibility mode.
+!!! note
 
     I believe I experienced this when first learning about Hyper-V and Failover Clustering in a lab environment. Prior to learning of the processor compatibility feature, VMs from one particular host would move to the others and back without issue until that VM was restarted on said host. A [SpiceHead](https://community.spiceworks.com/t/hyper-v-issue-with-move-vm/1143337) had a similar experience.
 
