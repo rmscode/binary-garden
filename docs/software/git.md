@@ -66,7 +66,7 @@ git commit --amend --no-edit
 
     This gives the correct recommendation for both the original issue (amend last commit) and for the question "What if it weren't the last commit?".
 
-    [!flowchart](../assets/amend-commit.png)
+    ![flowchart](../assets/amend-commit.png)
 
 ### Change the Message of the Last Commit
 
