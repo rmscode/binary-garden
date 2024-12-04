@@ -45,6 +45,8 @@ Note: It takes a 5-10 seconds for the meeting code to be generated.
 1. In the meeting controls, select **More actions** > **record and transcribe**.
 2. Choose **Stop recording** or **Stop Transcription**.
 
+[*Reference*](https://support.microsoft.com/en-us/office/record-a-meeting-in-microsoft-teams-34dfbe7f-b07d-4a27-b4c6-de62f1348c24)
+
 ## Tips and Tricks
 
 ### Quickly edit last message
