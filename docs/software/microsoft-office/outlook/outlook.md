@@ -1,5 +1,21 @@
 # Outlook
 
+## Outlook Mobile App
+
+### Outlook for Android
+
+#### Add Email Account (Exchange)
+
+1. Open the Outlook Mobile App
+2. If it's your first time launching the app, tap **Get Started** and then **Skip**. Otherwise, tap **Menu** > **Settings** > **Add Account**.
+3. Enter your company email address and select **Continue**.
+4. Select **Exchange**.
+5. Enter the your password and a description for the account.
+6. Select the **Advanced Settings** toggle at the bottom right of the screen.
+7. Ensure that `mail.northeastprecast.com` is entered in the **Server** field.
+8. Leave the **Domain** field blank and enter your full email address in the **Username** field.
+9. Tap the checkmark in the top right corner to finish.
+
 ## Prevent Meeting Requests From Being Deleted After Responding
 
 By default, Outlook will automatically delete meeting requests from your inbox after responding. To prevent this, follow these steps:
