@@ -1,6 +1,6 @@
 # Hybrid Exchange Deployment
 
-## Pre check
+## Pre-check
 
 - [ ] Latest CU or RU thats available for the version of Exchange that you are running. The immediately previous release is also supported.
 - [x] At least one mailbox server.
@@ -14,6 +14,7 @@
 - [ ] **EdgeSync**: If you deployed Edge Transport servers in your on-prem organization and want to configure the Edge Transport servers for hybrid secure mail transport, you need to configure EdgeSync prior to using the Hybrid Configuration Wizard. 
 - [x] **.NET Framework**: Verify the versions that can be used with your specific version of Exchange (Ex2019 CU14 supports 4.8.1 & 4.8).
 - [ ] **Protocols, Ports, and Endpoints**: You need to configure the following protocols, ports, and connection endpoints in the firewall that protects your on-prem organization.
+- [ ] Download and install the 
 
 !!! info "Important"
 
@@ -27,20 +28,11 @@ Exchange Online endpoints  | TCP/443 (HTTPS)   | Exchange 2019 Mailbox      | On
 Exchange 2019 Mailbox      | TCP/443 (HTTPS)   | Exchange Online endpoints  | On-premises Exchange Servers used to publish Exchange Web Services and Autodiscover to Internet
 Exchange 2019 Mailbox/Edge | 80                | ctldl.windowsupdate.com/*  | For hybrid functionality, Exchange Servers needs outbound connectivity to various Certificate Revocation List (CRL) endpoints mentioned [here](https://learn.microsoft.com/en-us/azure/security/fundamentals/azure-ca-details). Microsoft strongly recommends letting Windows maintain the Certificate Trust List (CTL) on your machine. Otherwise, this must be maintained manually on a regular basis. To allow Windows to maintain the CTL, the URL must be reachable from the computer on which Exchange Server is installed.
 
+[*Reference*](https://learn.microsoft.com/en-us/exchange/hybrid-deployment-prerequisites)
+
 ## Useful Tools and Services
 
 - [Mail Migration Advisor](https://learn.microsoft.com/en-us/exchange/mail-migration-jump)
 - [Remote Connectivity Analyzer](https://testconnectivity.microsoft.com/)
 - [Single Sign-On](https://learn.microsoft.com/en-us/exchange/single-sign-on)
 
-
-[ ] Perform discovery and remediation ([IdFix](https://microsoft.github.io/idfix/)) of of identity objects and their attributes in AD to prepare for migration to Entra ID.
-    - We already have Entra Connect (previously Azure AD sync) in place, so this was already done at least once. We may want to consider running the tool again to ensure that all objects are in a good state. 
-[x] Install and configure Entra Connect
-[ ] Stand up a new Exchange server to be used as the Hybrid server and make sure existing servers are up to date.
-[ ] Ensure that the following ports are open for mail flow and services (443, 25)
-[ ] Enable [MRS (Mailbox Replication Service) Proxy](https://learn.microsoft.com/en-us/exchange/architecture/mailbox-servers/mrs-proxy-endpoint?view=exchserver-2019).
-    - The Hybrid Configuration Wizard (HCW) will enable this for you, but it is recommended that you complete this step before running the HCW to ensure the IIS cache has time to clear before HCW validates the endpoint.
-[ ] Remove any existing/previous versions of HCW.
-[ ] Install HCW
-    - It is recommended to run the HCW from the server that will be used as the Hybrid server.
