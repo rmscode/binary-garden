@@ -13,12 +13,10 @@
     - More info [here](https://learn.microsoft.com/en-us/exchange/certificate-requirements).
 - [ ] **EdgeSync**: If you deployed Edge Transport servers in your on-prem organization and want to configure the Edge Transport servers for hybrid secure mail transport, you need to configure EdgeSync prior to using the Hybrid Configuration Wizard. 
 - [x] **.NET Framework**: Verify the versions that can be used with your specific version of Exchange (Ex2019 CU14 supports 4.8.1 & 4.8).
-- [ ] **Protocols, Ports, and Endpoints**: You need to configure the following protocols, ports, and connection endpoints in the firewall that protects your on-prem organization.
 - [ ] (CLASSIC HYBRID DEPLOYMENT) Enable [MRS Proxy](https://learn.microsoft.com/en-us/exchange/enable-the-mrs-proxy-endpoint-for-remote-moves-exchange-2013-help).
-    - If you don’t complete this step before running the HCW, the HCW will enable MRS proxy. However, completing this step before running the HCW ensures the IIS cache has time to clear before HCW validates the endpoint.
+    - The HCW will enable MRS proxy for you, but completing this step before running the HCW ensures the IIS cache has time to clear before HCW validates the endpoint.
     - Modern Hybrid deployments do not use the MRS proxy.
-
-> *
+- [ ] **Protocols, Ports, and Endpoints**: You need to configure the following protocols, ports, and connection endpoints in the firewall that protects your on-prem organization.
 
 !!! info "Important"
 
@@ -37,8 +35,21 @@ Exchange 2019 Mailbox/Edge | 80                | ctldl.windowsupdate.com/*  | Fo
 ### Useful Tools and Services
 
 - [Mail Migration Advisor](https://learn.microsoft.com/en-us/exchange/mail-migration-jump)
+    - The advisor will recommend the best migration path for your organization based on your current mail system.
+- [Exchange Server Deployment Assistant](https://setup.cloud.microsoft/exchange/deployment-assistant)
+    - MSFT says this tool will create a customized checklist with instructions to configure your hybrid deployment.
 - [Remote Connectivity Analyzer](https://testconnectivity.microsoft.com/)
+    - Run this prior to starting the HCW to check the external connectivity of your on-prem Exchange organization.
 - [Single Sign-On](https://learn.microsoft.com/en-us/exchange/single-sign-on)
+
+## Migration Best Practices
+
+- Perform Migrations when servers have maximum resources available, such as after hours or on weekends.
+- Perform migration when no other resource-intensive tasks are running.
+- Best results are achieved when the Hybrid server is a physical machine instead of a VM.
+- It is possible to configure the max number of MRS Proxy connections for the on-prem Hybrid server.
+    - `Set-WebServicesVirtualDirectory -Identity "EWS (Default Web Site)" -MRSMaxConnections <number between 0 and unlimited; default is 100>`
+- 
 
 ## Hybrid Configuration Wizard
 
