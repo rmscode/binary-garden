@@ -243,7 +243,7 @@ nav:
     - LibreOffice:
       - Impress: software/libre-office/impress.md
     - Microsoft 365:
-      - Hybrid Exchange: software/microsoft-365/hybrid-exchange.md
+      - Exchange Hybrid Deployment: software/microsoft-365/hybrid-exchange.md
       - Teams: software/microsoft-365/teams/ms-teams.md
       - Teams Phone: software/microsoft-365/teams/ms-teams-phone.md
     - Microsoft Office:

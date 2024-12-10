@@ -1,4 +1,4 @@
-# Hybrid Exchange Deployment
+# Exchange Hybrid Deployment
 
 ## Pre-check
 
@@ -14,7 +14,11 @@
 - [ ] **EdgeSync**: If you deployed Edge Transport servers in your on-prem organization and want to configure the Edge Transport servers for hybrid secure mail transport, you need to configure EdgeSync prior to using the Hybrid Configuration Wizard. 
 - [x] **.NET Framework**: Verify the versions that can be used with your specific version of Exchange (Ex2019 CU14 supports 4.8.1 & 4.8).
 - [ ] **Protocols, Ports, and Endpoints**: You need to configure the following protocols, ports, and connection endpoints in the firewall that protects your on-prem organization.
-- [ ] Download and install the 
+- [ ] (CLASSIC HYBRID DEPLOYMENT) Enable [MRS Proxy](https://learn.microsoft.com/en-us/exchange/enable-the-mrs-proxy-endpoint-for-remote-moves-exchange-2013-help).
+    - If you don’t complete this step before running the HCW, the HCW will enable MRS proxy. However, completing this step before running the HCW ensures the IIS cache has time to clear before HCW validates the endpoint.
+    - Modern Hybrid deployments do not use the MRS proxy.
+
+> *
 
 !!! info "Important"
 
@@ -30,9 +34,19 @@ Exchange 2019 Mailbox/Edge | 80                | ctldl.windowsupdate.com/*  | Fo
 
 [*Reference*](https://learn.microsoft.com/en-us/exchange/hybrid-deployment-prerequisites)
 
-## Useful Tools and Services
+### Useful Tools and Services
 
 - [Mail Migration Advisor](https://learn.microsoft.com/en-us/exchange/mail-migration-jump)
 - [Remote Connectivity Analyzer](https://testconnectivity.microsoft.com/)
 - [Single Sign-On](https://learn.microsoft.com/en-us/exchange/single-sign-on)
+
+## Hybrid Configuration Wizard
+
+There are far better guides that already exist for walking you through the HCW. 
+
+- [Ali Tajran: Run the Hybrid Configuration Wizard (Modern Hybrid Deployment)](https://www.alitajran.com/hybrid-configuration-wizard/#h-run-hybrid-configuration-wizard)
+    - He has a great [collection of Exchange Hybrid articles](https://www.alitajran.com/exchange-hybrid/).
+- [Office 365 Concepts: Hybrid Configuration Wizard Step by Step (Classic Hybrid Deployment)](https://office365concepts.com/hybrid-configuration-wizard-step-by-step/#run-hybrid-configuration-wizard-step-by-step)
+
+## Post-check
 
