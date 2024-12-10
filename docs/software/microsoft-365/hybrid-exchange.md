@@ -49,7 +49,6 @@ Exchange 2019 Mailbox/Edge | 80                | ctldl.windowsupdate.com/*  | Fo
 - Best results are achieved when the Hybrid server is a physical machine instead of a VM.
 - It is possible to configure the max number of MRS Proxy connections for the on-prem Hybrid server.
     - `Set-WebServicesVirtualDirectory -Identity "EWS (Default Web Site)" -MRSMaxConnections <number between 0 and unlimited; default is 100>`
-- 
 
 ## Hybrid Configuration Wizard
 
@@ -61,3 +60,10 @@ There are far better guides that already exist for walking you through the HCW.
 
 ## Post-check
 
+## Troubleshooting
+
+<https://www.alitajran.com/hcw8078-migration-endpoint-could-not-be-created/>
+
+<https://www.alitajran.com/error-validate-hybrid-agent-for-exchange-usage/>
+
+<https://www.regainsoftware.com/blog/hybrid-configuration-wizard-resolve-connection-issues-with-office365/>
