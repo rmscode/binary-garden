@@ -11,11 +11,9 @@
     - The IIS instance on the Exchange servers that are configured in the hybrid deployment require a valid certificate purchased from a CA
     - The EWS external URL and the Autodiscover endpoint that you specified in your public DNS must be listed in the Subject Alternative Name (SAN) field of the certificate. The certificates that you install on the Exchange servers for mail flow in the hybrid deployment must all be issued by the same certificate authority and have the same subject. 
     - More info [here](https://learn.microsoft.com/en-us/exchange/certificate-requirements).
-- [ ] **EdgeSync**: If you deployed Edge Transport servers in your on-prem organization and want to configure the Edge Transport servers for hybrid secure mail transport, you need to configure EdgeSync prior to using the Hybrid Configuration Wizard. 
 - [x] **.NET Framework**: Verify the versions that can be used with your specific version of Exchange (Ex2019 CU14 supports 4.8.1 & 4.8).
-- [ ] (CLASSIC HYBRID DEPLOYMENT) Enable [MRS Proxy](https://learn.microsoft.com/en-us/exchange/enable-the-mrs-proxy-endpoint-for-remote-moves-exchange-2013-help).
+- [ ] Enable [MRS Proxy](https://learn.microsoft.com/en-us/exchange/enable-the-mrs-proxy-endpoint-for-remote-moves-exchange-2013-help).
     - The HCW will enable MRS proxy for you, but completing this step before running the HCW ensures the IIS cache has time to clear before HCW validates the endpoint.
-    - Modern Hybrid deployments do not use the MRS proxy.
 - [ ] **Protocols, Ports, and Endpoints**: You need to configure the following protocols, ports, and connection endpoints in the firewall that protects your on-prem organization.
 
 !!! info "Important"
@@ -42,23 +40,25 @@ Exchange 2019 Mailbox/Edge | 80                | ctldl.windowsupdate.com/*  | Fo
     - Run this prior to starting the HCW to check the external connectivity of your on-prem Exchange organization.
 - [Single Sign-On](https://learn.microsoft.com/en-us/exchange/single-sign-on)
 
-## Migration Best Practices
-
-- Perform Migrations when servers have maximum resources available, such as after hours or on weekends.
-- Perform migration when no other resource-intensive tasks are running.
-- Best results are achieved when the Hybrid server is a physical machine instead of a VM.
-- It is possible to configure the max number of MRS Proxy connections for the on-prem Hybrid server.
-    - `Set-WebServicesVirtualDirectory -Identity "EWS (Default Web Site)" -MRSMaxConnections <number between 0 and unlimited; default is 100>`
-
 ## Hybrid Configuration Wizard
 
-There are far better guides that already exist for walking you through the HCW. 
+There are far better guides that already exist for walking you through the HCW. Here are a few.
 
 - [Ali Tajran: Run the Hybrid Configuration Wizard (Modern Hybrid Deployment)](https://www.alitajran.com/hybrid-configuration-wizard/#h-run-hybrid-configuration-wizard)
     - He has a great [collection of Exchange Hybrid articles](https://www.alitajran.com/exchange-hybrid/).
 - [Office 365 Concepts: Hybrid Configuration Wizard Step by Step (Classic Hybrid Deployment)](https://office365concepts.com/hybrid-configuration-wizard-step-by-step/#run-hybrid-configuration-wizard-step-by-step)
 
+I'll probably add more here once we have a change to test the HCW ourselves. 
+
 ## Post-check
+
+- [ ] EXO user mailbox: Create a user mailbox in EXO, test GAL visibility in both organizations, and test hybrid mail flow between organizations.
+- [ ] EXO shared mailbox: Create a shared mailbox in EXO, test GAL visibility in both organizations, and test hybrid mail flow to the mailbox.
+- [ ] EXO resource mailbox: Create a room mailbox in EXO, test GAL visibility in both organizations, and test making a booking.
+- [ ] Distribution group membership changes: Create a distribution group on-premises, add an on-premises and cloud mailbox, and test that mail to the DG delivers to both recipients.
+- [ ] EXO integration: Create a EXO Group, test GAL visibility on-premises, and test that mail is delivered to on-premises members.
+- [ ] Shared mailbox access and Send-as: Test that on-premises and cloud mailbox users can access shared mailboxes cross-premises, and Send-as permissions work.
+- [ ] Delegate mailbox access and Send-on-Behalf: Test that on-premises and cloud mailbox users can edit calendars that they are delegates for, and Send-on-behalf permissions work.
 
 ## Troubleshooting
 
@@ -67,3 +67,54 @@ There are far better guides that already exist for walking you through the HCW.
 <https://www.alitajran.com/error-validate-hybrid-agent-for-exchange-usage/>
 
 <https://www.regainsoftware.com/blog/hybrid-configuration-wizard-resolve-connection-issues-with-office365/>
+
+## Mailbox Migration
+
+Download and install the Exchange Online PowerShell module.
+
+<https://www.powershellgallery.com/packages/ExchangeOnlineManagement/>
+
+**Single mailbox**:
+
+1. Connect to Exchange Online PowerShell<br>
+```powershell
+Connect-ExchangeOnline -UserPrincipalName admin@contoso.com
+```
+2. Find migration endpoint remote server URL<br>
+```powershell
+Get-MigrationEndpoint | Format-List Identity, RemoteServer
+```
+3. Move mailbox to Exchange Online with PowerShell<br>
+```powershell
+New-MoveRequest -Identity "jsmith@contoso.com" -Remote -RemoteHostName "mail.contoso.com" -TargetDeliveryDomain "contoso.mail.onmicrosoft.com" -RemoteCredential (Get-Credential)
+```
+4. Disconnect from Exchange Online PowerShell<br>
+```powershell
+Disconnect-ExchangeOnline -Confirm:$false
+```
+
+**Many mailboxes (New-MoveRequest)**:
+
+1. Create a CSV file that contains a single column with the email addresses for the mailboxes that will be moved. The header for this column must be named `EmailAddress`.
+2. Use the following script:<br>
+```powershell
+$Mailboxes = Import-Csv "C:\temp\mailboxes.csv"
+$RemoteHostName = "mail.contoso.com"
+$TargetDeliveryDomain = "contoso.mail.onmicrosoft.com"
+$OnPremCred = (Get-Credential)
+
+foreach ($Mailbox in $Mailboxes) {
+    $params = @{
+        Identity             = $Mailbox.EmailAddress
+        Remote               = $true
+        RemoteHostName       = $RemoteHostName
+        TargetDeliveryDomain = $TargetDeliveryDomain
+        RemoteCredential     = $OnPremCred
+    }
+    New-MoveRequest @params
+}
+```
+
+### Migration Troubleshooting
+
+<https://learn.microsoft.com/en-us/exchange/troubleshoot/move-or-migrate-mailboxes/troubleshoot-migration-issues-in-exchange-hybrid>
