@@ -70,6 +70,8 @@ I'll probably add more here once we have a change to test the HCW ourselves.
 
 ## Mailbox Migration
 
+### Move Mailboxes with PowerShell
+
 Download and install the Exchange Online PowerShell module.
 
 <https://www.powershellgallery.com/packages/ExchangeOnlineManagement/>
@@ -78,7 +80,7 @@ Download and install the Exchange Online PowerShell module.
 
 1. Connect to Exchange Online PowerShell<br>
 ```powershell
-Connect-ExchangeOnline -UserPrincipalName admin@contoso.com
+Connect-ExchangeOnline -UserPrincipalName admin@<domain>.com
 ```
 2. Find migration endpoint remote server URL<br>
 ```powershell
@@ -114,6 +116,12 @@ foreach ($Mailbox in $Mailboxes) {
     New-MoveRequest @params
 }
 ```
+
+[*Reference*](https://learn.microsoft.com/en-us/exchange/hybrid-deployment/move-mailboxes-using-powershell#use-powershell-to-move-mailboxes)
+
+### Move Mailboxes with EAC
+
+
 
 ### Migration Troubleshooting
 
