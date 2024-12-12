@@ -60,11 +60,10 @@ I'll probably add more here once we have a chance to test the HCW ourselves.
 
 ## Troubleshooting
 
-<https://www.alitajran.com/hcw8078-migration-endpoint-could-not-be-created/>
-
-<https://www.alitajran.com/error-validate-hybrid-agent-for-exchange-usage/>
-
-<https://www.regainsoftware.com/blog/hybrid-configuration-wizard-resolve-connection-issues-with-office365/>
+[Migration endpoint could not be created](https://www.alitajran.com/hcw8078-migration-endpoint-could-not-be-created/)<br>
+[Error validating hybrid agent](https://www.alitajran.com/error-validate-hybrid-agent-for-exchange-usage/)<br>
+[Resolve connection issues](https://www.regainsoftware.com/blog/hybrid-configuration-wizard-resolve-connection-issues-with-office365/)<br>
+[MSFT: Troubleshooting HCW modern agent like a pro](https://techcommunity.microsoft.com/blog/exchange/modern-hcw-hybrid-agent-troubleshooting-like-a-pro/1558725)
 
 ## Mailbox Migration
 
