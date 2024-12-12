@@ -32,13 +32,11 @@ Exchange 2019 Mailbox/Edge | 80                | ctldl.windowsupdate.com/*  | Fo
 
 ### Useful Tools and Services
 
-- [Mail Migration Advisor](https://learn.microsoft.com/en-us/exchange/mail-migration-jump)
-    - The advisor will recommend the best migration path for your organization based on your current mail system.
-- [Exchange Server Deployment Assistant](https://setup.cloud.microsoft/exchange/deployment-assistant)
-    - MSFT says this tool will create a customized checklist with instructions to configure your hybrid deployment.
-- [Remote Connectivity Analyzer](https://testconnectivity.microsoft.com/)
-    - Run this prior to starting the HCW to check the external connectivity of your on-prem Exchange organization.
-- [Single Sign-On](https://learn.microsoft.com/en-us/exchange/single-sign-on)
+The [Mail Migration Advisor](https://learn.microsoft.com/en-us/exchange/mail-migration-jump) will recommend the best migration path for your organization based on your current mail system.
+
+The [Exchange Server Deployment Assistant](https://setup.cloud.microsoft/exchange/deployment-assistant) will create a customized checklist with instructions to configure your hybrid deployment.
+
+The [Remote Connectivity Analyzer](https://testconnectivity.microsoft.com/) is useful for testing the external connectivity of your on-prem Exchange org prior to running the HCW.
 
 ## Hybrid Configuration Wizard
 
@@ -48,17 +46,17 @@ There are far better guides that already exist for walking you through the HCW. 
     - He has a great [collection of Exchange Hybrid articles](https://www.alitajran.com/exchange-hybrid/).
 - [Office 365 Concepts: Hybrid Configuration Wizard Step by Step (Classic Hybrid Deployment)](https://office365concepts.com/hybrid-configuration-wizard-step-by-step/#run-hybrid-configuration-wizard-step-by-step)
 
-I'll probably add more here once we have a change to test the HCW ourselves. 
+I'll probably add more here once we have a chance to test the HCW ourselves. 
 
 ## Post-check
 
-- [ ] EXO user mailbox: Create a user mailbox in EXO, test GAL visibility in both organizations, and test hybrid mail flow between organizations.
-- [ ] EXO shared mailbox: Create a shared mailbox in EXO, test GAL visibility in both organizations, and test hybrid mail flow to the mailbox.
-- [ ] EXO resource mailbox: Create a room mailbox in EXO, test GAL visibility in both organizations, and test making a booking.
-- [ ] Distribution group membership changes: Create a distribution group on-premises, add an on-premises and cloud mailbox, and test that mail to the DG delivers to both recipients.
-- [ ] EXO integration: Create a EXO Group, test GAL visibility on-premises, and test that mail is delivered to on-premises members.
-- [ ] Shared mailbox access and Send-as: Test that on-premises and cloud mailbox users can access shared mailboxes cross-premises, and Send-as permissions work.
-- [ ] Delegate mailbox access and Send-on-Behalf: Test that on-premises and cloud mailbox users can edit calendars that they are delegates for, and Send-on-behalf permissions work.
+- [ ] **EXO user mailbox**: Create a user mailbox in EXO, test GAL visibility in both organizations, and test hybrid mail flow between organizations.
+- [ ] **EXO shared mailbox**: Create a shared mailbox in EXO, test GAL visibility in both organizations, and test hybrid mail flow to the mailbox.
+- [ ] **EXO resource mailbox**: Create a room mailbox in EXO, test GAL visibility in both organizations, and test making a booking.
+- [ ] **Distribution group membership changes**: Create a distribution group on-premises, add an on-premises and cloud mailbox, and test that mail to the DG delivers to both recipients.
+- [ ] **EXO integration**: Create a EXO Group, test GAL visibility on-premises, and test that mail is delivered to on-premises members.
+- [ ] **Shared mailbox access and Send-as**: Test that on-premises and cloud mailbox users can access shared mailboxes cross-premises, and Send-as permissions work.
+- [ ] **Delegate mailbox access and Send-on-Behalf**: Test that on-premises and cloud mailbox users can edit calendars that they are delegates for, and Send-on-behalf permissions work.
 
 ## Troubleshooting
 
@@ -72,37 +70,36 @@ I'll probably add more here once we have a change to test the HCW ourselves.
 
 ### Move Mailboxes with PowerShell
 
-Download and install the Exchange Online PowerShell module.
-
-<https://www.powershellgallery.com/packages/ExchangeOnlineManagement/>
+Download and install the [Exchange Online PowerShell module](https://www.powershellgallery.com/packages/ExchangeOnlineManagement/).
 
 **Single mailbox**:
 
 1. Connect to Exchange Online PowerShell<br>
 ```powershell
-Connect-ExchangeOnline -UserPrincipalName admin@<domain>.com
+Connect-ExchangeOnline -UserPrincipalName admin@nep.com # This is your admin account for Exchange Online
 ```
-2. Find migration endpoint remote server URL<br>
+1. Find migration endpoint remote server URL<br>
 ```powershell
 Get-MigrationEndpoint | Format-List Identity, RemoteServer
 ```
-3. Move mailbox to Exchange Online with PowerShell<br>
+    Copy the **RemoteServer URL** value from the output. You will need it for `-RemoteHostName` in the next step.
+1. Move mailbox to Exchange Online<br>
 ```powershell
-New-MoveRequest -Identity "jsmith@contoso.com" -Remote -RemoteHostName "mail.contoso.com" -TargetDeliveryDomain "contoso.mail.onmicrosoft.com" -RemoteCredential (Get-Credential)
+New-MoveRequest -Identity "jsmith@nep.com" -Remote -RemoteHostName "mail.nep.com" -TargetDeliveryDomain "nep.mail.onmicrosoft.com" -RemoteCredential (Get-Credential) # This is your on-prem admin account
 ```
-4. Disconnect from Exchange Online PowerShell<br>
+1. Disconnect from Exchange Online PowerShell<br>
 ```powershell
 Disconnect-ExchangeOnline -Confirm:$false
 ```
 
-**Many mailboxes (New-MoveRequest)**:
+**Many mailboxes**:
 
 1. Create a CSV file that contains a single column with the email addresses for the mailboxes that will be moved. The header for this column must be named `EmailAddress`.
-2. Use the following script:<br>
+2. Connect to Exchange Online PowerShell and use the following script:<br>
 ```powershell
-$Mailboxes = Import-Csv "C:\temp\mailboxes.csv"
-$RemoteHostName = "mail.contoso.com"
-$TargetDeliveryDomain = "contoso.mail.onmicrosoft.com"
+$Mailboxes = Import-Csv "C:\migration\mailboxes.csv"
+$RemoteHostName = "mail.nep.com"
+$TargetDeliveryDomain = "nep.mail.onmicrosoft.com"
 $OnPremCred = (Get-Credential)
 
 foreach ($Mailbox in $Mailboxes) {
@@ -117,11 +114,72 @@ foreach ($Mailbox in $Mailboxes) {
 }
 ```
 
-[*Reference*](https://learn.microsoft.com/en-us/exchange/hybrid-deployment/move-mailboxes-using-powershell#use-powershell-to-move-mailboxes)
+!!! tip 
+
+    You can use the EAC to export a list of all your email addresses to a CSV file.
+
+    Navigate to **Recipients** > **Mailboxes**. Click the more options icon (**...**) in the toolbar and click **Export data to a CSV file**. Check the box for **EMAIL ADDRESS** and click **Export**.
+
+    Make sure you edit the CSV header to comply with the correct format mentioned above (`EmailAddress`).
+
+**Get Mailbox Move Status:**
+
+```powershell
+Get-MoveRequest -Identity "jsmith@nep.com" | Get-MoveRequestStatistics
+Get-MoveRequest | Get-MoveRequestStatistics # To get status of all move requests
+Get-MoveRequest -MoveStatus InProgress | Get-MoveRequestStatistics # To get status of all move requests that are in progress
+```
+
+**Suspend a Move Request**:
+
+```powershell
+Suspend-MoveRequest -Identity "jsmith@nep.com"
+Get-MoveRequest -MoveStatus InProgress | Suspend-MoveRequest -Confirm:$false # To suspend all move requests that are in progress
+```
+
+**Resume a Move Request**:
+
+```powershell
+Resume-MoveRequest -Identity "jsmith@nep.com"
+Get-MoveRequest -MoveStatus Suspended | Resume-MoveRequest # To resume all suspended move requests
+```
+
+!!! tip
+    
+    The Suspend and Resume cmdlets can sometimes be used to fix a stuck move request.
+
+[*MSFT: Move Mailboxes Using PowerShell*](https://learn.microsoft.com/en-us/exchange/hybrid-deployment/move-mailboxes-using-powershell#use-powershell-to-move-mailboxes)<br>
+[*MSFT: Exchange PowerShell*](https://learn.microsoft.com/en-us/powershell/module/exchange/?view=exchange-ps)<br>
+[*MSFT: Exchange Online PowerShell*](https://learn.microsoft.com/en-us/powershell/exchange/exchange-online-powershell?view=exchange-ps)
 
 ### Move Mailboxes with EAC
 
+1. In the on-premises EAC, got to **Home** > **Migration**.
+2. Select **Add migration batch**.
+3. On the **Add migration batch** page:
+    1. Enter a name for the batch in the **Give migration batch a unique name** box.
+    2. From the **Select the mailbox migration path** drop-down list, select **Migration to Exchange Online**.
+    3. Select **Next**.
+4. Select **Remote move migration** and then select **Next**.
+5. On the **Prerequisites for remote migration** page, select **Next**. Confirm the endpoint.
+6. On the Add user mailboxes page:
+    1. Select **Manually add users to migrate**.<br>
+    !!! info "To migrate mailboxes in bulk, select the **Migrate from CSV file** option. See [here](https://learn.microsoft.com/en-us/exchange/mailbox-migration/csv-files-for-migration) for more info."
+    2. Enter the name of email address of the user whose mailboxes you want to migrate.
+    3. Select the mailboxes that you want to move to Exchange Online and then select **Next**.<br>
+    !!! info "If shared mailbox accounts don't appear in the user selection list, you need to sync the shared mailbox on-premises AD accounts to Microsoft 365 or Office 365 by using cloud sync or Microsoft Entra Connect. The shared mailbox AD accounts appear as blocked accounts in the Microsoft 365 admin center and you can select them from the user list."
+7. Select a target delivery domain and then click **Next**.
+8. On the **Schedule batch migration** page:
+    1. In the search box under **After the batch is complete, a report will be sent to the following recipients**, you must select at least one recipient to receive this report.
+    2. Select the desired option for starting the migration batch.
+    3. Select the desired option ending the migration batch.<br>
+    !!! info "If you select to manually complete the batch later, EXO will only sync 95% of each mailbox in that batch. EXO periodically syncs the batch to keep each mailbox at 95% synchronization until the batch is manually completed."
+9. Select a timezone and select **Save**.
+10. Select **Done**.
+11. Select your migration batch from the **Migration batches** page and select **Resume migration**.
+12. Select **Confirm** and close the page that displays the notification message **Operation successful**.
 
+[*MSFT: Use the EAC to move mailboxes*](https://learn.microsoft.com/en-us/exchange/hybrid-deployment/move-mailboxes-using-eac#use-the-eac-to-move-mailboxes)
 
 ### Migration Troubleshooting
 
