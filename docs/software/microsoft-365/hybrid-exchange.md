@@ -40,7 +40,7 @@ The [Remote Connectivity Analyzer](https://testconnectivity.microsoft.com/) is u
 
 ## Hybrid Configuration Wizard
 
-There are far better guides that already exist for walking you through the HCW. Here are a few.
+There are far better guides that already exist for walking you through the HCW. Here are a few:
 
 - [Ali Tajran: Run the Hybrid Configuration Wizard (Modern Hybrid Deployment)](https://www.alitajran.com/hybrid-configuration-wizard/#h-run-hybrid-configuration-wizard)
     - He has a great [collection of Exchange Hybrid articles](https://www.alitajran.com/exchange-hybrid/).
@@ -48,7 +48,7 @@ There are far better guides that already exist for walking you through the HCW. 
 
 I'll probably add more here once we have a chance to test the HCW ourselves. 
 
-## Post-check
+### Post-check
 
 - [ ] **EXO user mailbox**: Create a user mailbox in EXO, test GAL visibility in both organizations, and test hybrid mail flow between organizations.
 - [ ] **EXO shared mailbox**: Create a shared mailbox in EXO, test GAL visibility in both organizations, and test hybrid mail flow to the mailbox.
@@ -58,7 +58,7 @@ I'll probably add more here once we have a chance to test the HCW ourselves.
 - [ ] **Shared mailbox access and Send-as**: Test that on-premises and cloud mailbox users can access shared mailboxes cross-premises, and Send-as permissions work.
 - [ ] **Delegate mailbox access and Send-on-Behalf**: Test that on-premises and cloud mailbox users can edit calendars that they are delegates for, and Send-on-behalf permissions work.
 
-## Troubleshooting
+### HCW Troubleshooting
 
 [Migration endpoint could not be created](https://www.alitajran.com/hcw8078-migration-endpoint-could-not-be-created/)<br>
 [Error validating hybrid agent](https://www.alitajran.com/error-validate-hybrid-agent-for-exchange-usage/)<br>
@@ -183,3 +183,27 @@ Get-MoveRequest -MoveStatus Suspended | Resume-MoveRequest # To resume all suspe
 ### Migration Troubleshooting
 
 <https://learn.microsoft.com/en-us/exchange/troubleshoot/move-or-migrate-mailboxes/troubleshoot-migration-issues-in-exchange-hybrid>
+
+## Creating Exchange Online Mailboxes
+
+!!! warning "Important"
+
+    While it is possible to add a user in ADUC, wait for it to sync to Entra, and then license the user in M365, the user's Exchange Online attributes will never sync back to the on-premises environment to create a Mail-enabled user (MEU) object. In this scenario, managing the mailboxes from the on-prem environment isn't possible and since the M365 user is synced with on-prem AD, managing attributes from the cloud is also not possible. 
+
+    Instead, EXO mailboxes can be created from the on-prem Exchange environment (EAC/EAS). This option will create the on-prem AD user *and* the MEU object with the remote routing address (such as jsmith@contoso.mail.onmicorosot.com). AD sync can then occur to establish the appropriate objects/attributes in the cloud.
+
+    <https://techcommunity.microsoft.com/blog/exchange/on-provisioning-mailboxes-in-exchange-online-when-in-hybrid/1406335>
+
+!!! tip "Quickly sync your on-premises changes to the cloud with `Start-ADSyncSyncCycle -PolicyType Delta`"
+
+### EAC
+
+### PowerShell
+
+```powershell
+$Credentials = Get-Credential
+New-RemoteMailbox -Name "John Smith" -Alias "jsmith" -FirstName "John" -LastName "Smith" -Password $Credentials.Password -UserPrincipalName jsmith@contoso.com -OnPremisesOrganizationalUnit "corp.contoso.com/Users"
+Start-ADSyncSyncCycle -PolicyType Delta
+```
+
+> Despite the warning above, `Enable-RemoteMailbox` can be used to "activate" an online mailbox for a user that was created in ADUC first...I think. `Enable-RemoteMailbox "John Smith" -RemoteRoutingAddress "jsmith@contoso.mail.onmicrosoft.com"`
