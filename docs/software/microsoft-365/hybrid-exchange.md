@@ -124,23 +124,34 @@ foreach ($Mailbox in $Mailboxes) {
 **Get Mailbox Move Status:**
 
 ```powershell
+# Single mailbox
 Get-MoveRequest -Identity "jsmith@nep.com" | Get-MoveRequestStatistics
-Get-MoveRequest | Get-MoveRequestStatistics # To get status of all move requests
-Get-MoveRequest -MoveStatus InProgress | Get-MoveRequestStatistics # To get status of all move requests that are in progress
+
+# All move requests
+Get-MoveRequest | Get-MoveRequestStatistics 
+
+# All move requests that are in progress
+Get-MoveRequest -MoveStatus InProgress | Get-MoveRequestStatistics
 ```
 
 **Suspend a Move Request**:
 
 ```powershell
+# Suspend a specific move request
 Suspend-MoveRequest -Identity "jsmith@nep.com"
-Get-MoveRequest -MoveStatus InProgress | Suspend-MoveRequest -Confirm:$false # To suspend all move requests that are in progress
+
+# Suspend all move requests that are in progress
+Get-MoveRequest -MoveStatus InProgress | Suspend-MoveRequest -Confirm:$false 
 ```
 
 **Resume a Move Request**:
 
 ```powershell
+# Resume a specific move request
 Resume-MoveRequest -Identity "jsmith@nep.com"
-Get-MoveRequest -MoveStatus Suspended | Resume-MoveRequest # To resume all suspended move requests
+
+# Resume all suspended move requests
+Get-MoveRequest -MoveStatus Suspended | Resume-MoveRequest 
 ```
 
 !!! tip
@@ -194,16 +205,36 @@ Get-MoveRequest -MoveStatus Suspended | Resume-MoveRequest # To resume all suspe
 
     <https://techcommunity.microsoft.com/blog/exchange/on-provisioning-mailboxes-in-exchange-online-when-in-hybrid/1406335>
 
-!!! tip "Quickly sync your on-premises changes to the cloud with `Start-ADSyncSyncCycle -PolicyType Delta`"
-
-### EAC
-
-### PowerShell
+### Create Mailboxes with PowerShell
 
 ```powershell
-$Credentials = Get-Credential
-New-RemoteMailbox -Name "John Smith" -Alias "jsmith" -FirstName "John" -LastName "Smith" -Password $Credentials.Password -UserPrincipalName jsmith@contoso.com -OnPremisesOrganizationalUnit "corp.contoso.com/Users"
+$Password = Read-Host "Enter password" -AsSecureString
+New-RemoteMailbox -Name "John Smith" -Alias "jsmith" -FirstName "John" -LastName "Smith" -UserPrincipalName jsmith@nep.com -RemoteRoutingAddress "jsmith@nep.mail.onmicrosoft.com" -Password $Password
 Start-ADSyncSyncCycle -PolicyType Delta
 ```
 
-> Despite the warning above, `Enable-RemoteMailbox` can be used to "activate" an online mailbox for a user that was created in ADUC first...I think. `Enable-RemoteMailbox "John Smith" -RemoteRoutingAddress "jsmith@contoso.mail.onmicrosoft.com"`
+<https://learn.microsoft.com/en-us/powershell/module/exchange/new-remotemailbox?view=exchange-ps>
+
+### Create Mailboxes with EAC
+
+!!! info "Sign in to the on-premises Exchange Admin Center and NOT the Exchange Online Admin Center."
+
+1. In the on-premises EAC, go to **Recipients** > **Mailboxes**.
+2. Click on the **+** icon from the toolbar and select Office 365 mailbox.
+3. Fill in the information and click **Save**.
+4. Force sync Entra Connect with `Start-ADSyncSyncCycle -PolicyType Delta`.
+5. On the **Recipients** page, select the new mailbox and click the **Edit (Pencil)** icon from the toolbar.
+6. Click **email address** and verify the following:
+    1. smtp `<user>@tenant.mail.onmicrosoft.com`
+    2. Remote routing address.
+7. Sign in to the Exchange Online Admin Center.
+8. Go to **Recipients > Mailboxes** and click on the new Office 365 mailbox.
+9. Select **General** and click on **Manage email address types**. There is no remote routing address option in the cloud, and you should see two smtp `onmicrosoft.com` addresses:
+    1. `smtp:<user>@tenant.mail.onmicrosoft.com`
+    2. `smtp:<user>@tenant.onmicrosoft.com`
+
+!!! note
+
+    Don't forget that this new user/mailbox still needs to be licensed in order to send/receive mail. 
+    
+    Ali Tajran has a nice [article](https://www.alitajran.com/assign-microsoft-365-licenses-group-based-licensing/) on how to configure group based licensing.
