@@ -50,11 +50,11 @@ I'll probably add more here once we have a chance to test the HCW ourselves.
 
 ### Post-check
 
-- [ ] **EXO user mailbox**: Create a user mailbox in EXO, test GAL visibility in both organizations, and test hybrid mail flow between organizations.
-- [ ] **EXO shared mailbox**: Create a shared mailbox in EXO, test GAL visibility in both organizations, and test hybrid mail flow to the mailbox.
-- [ ] **EXO resource mailbox**: Create a room mailbox in EXO, test GAL visibility in both organizations, and test making a booking.
+- [ ] **ExO user mailbox**: Create a user mailbox in ExO, test GAL visibility in both organizations, and test hybrid mail flow between organizations.
+- [ ] **ExO shared mailbox**: Create a shared mailbox in ExO, test GAL visibility in both organizations, and test hybrid mail flow to the mailbox.
+- [ ] **ExO resource mailbox**: Create a room mailbox in ExO, test GAL visibility in both organizations, and test making a booking.
 - [ ] **Distribution group membership changes**: Create a distribution group on-premises, add an on-premises and cloud mailbox, and test that mail to the DG delivers to both recipients.
-- [ ] **EXO integration**: Create a EXO Group, test GAL visibility on-premises, and test that mail is delivered to on-premises members.
+- [ ] **ExO integration**: Create a ExO Group, test GAL visibility on-premises, and test that mail is delivered to on-premises members.
 - [ ] **Shared mailbox access and Send-as**: Test that on-premises and cloud mailbox users can access shared mailboxes cross-premises, and Send-as permissions work.
 - [ ] **Delegate mailbox access and Send-on-Behalf**: Test that on-premises and cloud mailbox users can edit calendars that they are delegates for, and Send-on-behalf permissions work.
 
@@ -69,7 +69,7 @@ I'll probably add more here once we have a chance to test the HCW ourselves.
 
 ### Move Mailboxes with PowerShell
 
-Download and install the [Exchange Online PowerShell module](https://www.powershellgallery.com/packages/ExchangeOnlineManagement/).
+[Download](https://www.powershellgallery.com/packages/ExchangeOnlineManagement/) and [install](https://learn.microsoft.com/en-us/powershell/exchange/exchange-online-powershell-v2?view=exchange-ps#windows) the Exchange Online PowerShell module.
 
 **Single mailbox**:
 
@@ -161,6 +161,7 @@ Get-MoveRequest -MoveStatus Suspended | Resume-MoveRequest
 [*MSFT: Move Mailboxes Using PowerShell*](https://learn.microsoft.com/en-us/exchange/hybrid-deployment/move-mailboxes-using-powershell#use-powershell-to-move-mailboxes)<br>
 [*MSFT: Exchange PowerShell*](https://learn.microsoft.com/en-us/powershell/module/exchange/?view=exchange-ps)<br>
 [*MSFT: Exchange Online PowerShell*](https://learn.microsoft.com/en-us/powershell/exchange/exchange-online-powershell?view=exchange-ps)
+[*MSFT: Connect to Exchange Online PowerShell*](https://learn.microsoft.com/en-us/powershell/exchange/connect-to-exchange-online-powershell)
 
 ### Move Mailboxes with EAC
 
@@ -183,7 +184,7 @@ Get-MoveRequest -MoveStatus Suspended | Resume-MoveRequest
     1. In the search box under **After the batch is complete, a report will be sent to the following recipients**, you must select at least one recipient to receive this report.
     2. Select the desired option for starting the migration batch.
     3. Select the desired option ending the migration batch.<br>
-    !!! info "If you select to manually complete the batch later, EXO will only sync 95% of each mailbox in that batch. EXO periodically syncs the batch to keep each mailbox at 95% synchronization until the batch is manually completed."
+    !!! info "If you select to manually complete the batch later, ExO will only sync 95% of each mailbox in that batch. ExO periodically syncs the batch to keep each mailbox at 95% synchronization until the batch is manually completed."
 9. Select a timezone and select **Save**.
 10. Select **Done**.
 11. Select your migration batch from the **Migration batches** page and select **Resume migration**.
@@ -201,7 +202,7 @@ Get-MoveRequest -MoveStatus Suspended | Resume-MoveRequest
 
     While it is possible to add a user in ADUC, wait for it to sync to Entra, and then license the user in M365, the user's Exchange Online attributes will never sync back to the on-premises environment to create a Mail-enabled user (MEU) object. In this scenario, managing the mailboxes from the on-prem environment isn't possible and since the M365 user is synced with on-prem AD, managing attributes from the cloud is also not possible. 
 
-    Instead, EXO mailboxes can be created from the on-prem Exchange environment (EAC/EAS). This option will create the on-prem AD user *and* the MEU object with the remote routing address (such as jsmith@contoso.mail.onmicorosot.com). AD sync can then occur to establish the appropriate objects/attributes in the cloud.
+    Instead, ExO mailboxes can be created from the on-prem Exchange environment (EAC/EAS). This option will create the on-prem AD user *and* the MEU object with the remote routing address (such as jsmith@contoso.mail.onmicorosot.com). AD sync can then occur to establish the appropriate objects/attributes in the cloud.
 
     <https://techcommunity.microsoft.com/blog/exchange/on-provisioning-mailboxes-in-exchange-online-when-in-hybrid/1406335>
 
