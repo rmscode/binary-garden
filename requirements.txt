@@ -15,7 +15,7 @@ mergedeep==1.3.4
 mkdocs==1.6.1
 mkdocs-audio==0.0.2
 mkdocs-get-deps==0.2.0
-mkdocs-git-latest-changes-plugin==0.0.20
+mkdocs-git-latest-changes-plugin @ git+https://github.com/tombreit/mkdocs-git-latest-changes-plugin.git@319c36c4ad28cc0f734e377f9397a46d4c13e305
 mkdocs-git-revision-date-localized-plugin==1.3.0
 mkdocs-material==9.5.43
 mkdocs-material-extensions==1.3.1
