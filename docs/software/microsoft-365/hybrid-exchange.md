@@ -58,13 +58,6 @@ I'll probably add more here once we have a chance to test the HCW ourselves.
 - [ ] **Shared mailbox access and Send-as**: Test that on-premises and cloud mailbox users can access shared mailboxes cross-premises, and Send-as permissions work.
 - [ ] **Delegate mailbox access and Send-on-Behalf**: Test that on-premises and cloud mailbox users can edit calendars that they are delegates for, and Send-on-behalf permissions work.
 
-### HCW Troubleshooting
-
-[Migration endpoint could not be created](https://www.alitajran.com/hcw8078-migration-endpoint-could-not-be-created/)<br>
-[Error validating hybrid agent](https://www.alitajran.com/error-validate-hybrid-agent-for-exchange-usage/)<br>
-[Resolve connection issues](https://www.regainsoftware.com/blog/hybrid-configuration-wizard-resolve-connection-issues-with-office365/)<br>
-[MSFT: Troubleshooting HCW modern agent like a pro](https://techcommunity.microsoft.com/blog/exchange/modern-hcw-hybrid-agent-troubleshooting-like-a-pro/1558725)
-
 ## Mailbox Migration
 
 ### Move Mailboxes with PowerShell
@@ -192,10 +185,6 @@ Get-MoveRequest -MoveStatus Suspended | Resume-MoveRequest
 
 [*MSFT: Use the EAC to move mailboxes*](https://learn.microsoft.com/en-us/exchange/hybrid-deployment/move-mailboxes-using-eac#use-the-eac-to-move-mailboxes)
 
-### Migration Troubleshooting
-
-<https://learn.microsoft.com/en-us/exchange/troubleshoot/move-or-migrate-mailboxes/troubleshoot-migration-issues-in-exchange-hybrid>
-
 ## Creating Exchange Online Mailboxes
 
 !!! warning "Important"
@@ -239,3 +228,12 @@ Start-ADSyncSyncCycle -PolicyType Delta
     Don't forget that this new user/mailbox still needs to be licensed in order to send/receive mail. 
     
     Ali Tajran has a nice [article](https://www.alitajran.com/assign-microsoft-365-licenses-group-based-licensing/) on how to configure group based licensing.
+
+## Troubleshooting
+
+[*Ali Tajran: Migration endpoint could not be created*](https://www.alitajran.com/hcw8078-migration-endpoint-could-not-be-created/)<br>
+[*Ali Tajran: Error validating hybrid agent*](https://www.alitajran.com/error-validate-hybrid-agent-for-exchange-usage/)<br>
+[*Regain Software: Resolve connection issues*](https://www.regainsoftware.com/blog/hybrid-configuration-wizard-resolve-connection-issues-with-office365/)<br>
+[*MSFT: Troubleshooting HCW modern agent like a pro*](https://techcommunity.microsoft.com/blog/exchange/modern-hcw-hybrid-agent-troubleshooting-like-a-pro/1558725)<br>
+[*MSFT: Migration Issues*](https://learn.microsoft.com/en-us/exchange/troubleshoot/move-or-migrate-mailboxes/troubleshoot-migration-issues-in-exchange-hybrid)<br>
+[*MSFT: Troubleshooting Hybrid mail flow*](https://techcommunity.microsoft.com/blog/exchange/demystifying-and-troubleshooting-hybrid-mail-flow-when-is-a-message-internal/1420838)
