@@ -31,5 +31,5 @@ To resolve issues with Ethernet connectivity, try the following:
 - Reboot the Surface
 - Power cycle the dock
 - Ensure that the ethernet dock setting is enabled in Surface bios
-- Disconnect everything from the dock, reconnect the Surface, confirm an ethernet is working, connect everything else
+- Disconnect everything from the dock, reconnect the Surface, confirm ethernet is working, connect everything else
 - Reinstall/[Update the dock's firmware](#firmware-update) (This is what worked when I had this issue)
