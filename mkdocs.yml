@@ -212,6 +212,7 @@ nav:
       - CyberPower: hardware/ups/cyberpower.md
     - VOIP Phones: 
       - Fanvil V64: hardware/voip-phones/fanvil.md
+      - Yealink: hardware/voip-phones/yealink.md
   - Networking: 
     - networking/index.md
     - Link Aggregation & LACP Basics: networking/link-aggregation.md
