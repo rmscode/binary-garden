@@ -70,16 +70,16 @@ I'll probably add more here once we have a chance to test the HCW ourselves.
 ```powershell
 Connect-ExchangeOnline -UserPrincipalName admin@nep.com # This is your admin account for Exchange Online
 ```
-1. Find migration endpoint remote server URL<br>
+2. Find migration endpoint remote server URL<br>
 ```powershell
 Get-MigrationEndpoint | Format-List Identity, RemoteServer
 ```
     Copy the **RemoteServer URL** value from the output. You will need it for `-RemoteHostName` in the next step.
-1. Move mailbox to Exchange Online<br>
+3. Move mailbox to Exchange Online<br>
 ```powershell
 New-MoveRequest -Identity "jsmith@nep.com" -Remote -RemoteHostName "mail.nep.com" -TargetDeliveryDomain "nep.mail.onmicrosoft.com" -RemoteCredential (Get-Credential) # This is your on-prem admin account
 ```
-1. Disconnect from Exchange Online PowerShell<br>
+4. Disconnect from Exchange Online PowerShell<br>
 ```powershell
 Disconnect-ExchangeOnline -Confirm:$false
 ```
@@ -228,6 +228,27 @@ Start-ADSyncSyncCycle -PolicyType Delta
     Don't forget that this new user/mailbox still needs to be licensed in order to send/receive mail. 
     
     Ali Tajran has a nice [article](https://www.alitajran.com/assign-microsoft-365-licenses-group-based-licensing/) on how to configure group based licensing.
+
+### `Enable-RemoteMailbox`
+
+Let's say there is some scenario where a user was created in ADUC anyway and then synced to M365. You can still create the MEU object with the `Enable-RemoteMailbox` cmdlet.
+
+1. Connect to Exchange Online PowerShell.<br>
+```powershell
+Connect-ExchangeOnline -UserPrincipalName admin@nep.com # This is your admin account for Exchange Online
+```
+2. Run `Enable-RemoteMailbox`.<br>
+```powershell
+Enable-RemoteMailbox -Identity "John Smith" -RemoteRoutingAddress "jsmith@nep.mail.onmicrosoft.com" -Alias "jsmith" -DisplayName "John Smith"
+```
+3. Disconnect from Exchange Online PowerShell<br>
+```powershell
+Disconnect-ExchangeOnline -Confirm:$false
+```
+4. Force sync Entra Connect.<br>
+```powqershell
+Start-ADSyncSyncCycle -PolicyType Delta
+```
 
 ## Troubleshooting
 
