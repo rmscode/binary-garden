@@ -191,7 +191,7 @@ Get-MoveRequest -MoveStatus Suspended | Resume-MoveRequest
 
     While it is possible to add a user in ADUC, wait for it to sync to Entra, and then license the user in M365, the user's Exchange Online attributes will never sync back to the on-premises environment to create a Mail-enabled user (MEU) object. In this scenario, managing the mailboxes from the on-prem environment isn't possible and since the M365 user is synced with on-prem AD, managing attributes from the cloud is also not possible. 
 
-    Instead, ExO mailboxes can be created from the on-prem Exchange environment (EAC/EAS). This option will create the on-prem AD user *and* the MEU object with the remote routing address (such as jsmith@contoso.mail.onmicorosot.com). AD sync can then occur to establish the appropriate objects/attributes in the cloud.
+    Instead, ExO mailboxes can be created from the on-prem Exchange environment (EAC/EMS). This option will create the on-prem AD user *and* the MEU object with the remote routing address (such as jsmith@contoso.mail.onmicorosot.com). AD sync can then occur to establish the appropriate objects/attributes in the cloud.
 
     <https://techcommunity.microsoft.com/blog/exchange/on-provisioning-mailboxes-in-exchange-online-when-in-hybrid/1406335>
 
