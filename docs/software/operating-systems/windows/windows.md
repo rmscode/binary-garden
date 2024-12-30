@@ -43,3 +43,10 @@ After [replacing my monitors](../../../notes/2024.md#11112024-1556), all open wi
 
 [*Reference*](https://trycatch.dev/2020/09/05/fixing-windows-moving-and-resizing-your-windows-after-sleep)
 
+## Display Current Power Requests
+
+The command `powercfg /requests` is used to display the current power requests that are preventing the system from entering a lower power state, such as sleep or hibernation. It shows active requests made by applications, services, or devices that keep the computer awake. These power requests can also prevent the display from going into standby mode and certain apps from properly detecting a user's presence (away status).
+
+!!! note
+
+    I had issues with my personal computer not turning off the displays and locking after being away from my desk. I also noticed that social apps like Discord or Steam weren't automatically updating my status to *Away*. A few seconds of searching the web lead me to find this command. For me, it was the new RSI launcher (Star Citizen). Going to the launcher settings and disabling "background video" fixed the issue for me. Wasteful piece of eye candy that is. I thought the launcher menu's background animation was a gif or something, not a full blown video on repeat.
