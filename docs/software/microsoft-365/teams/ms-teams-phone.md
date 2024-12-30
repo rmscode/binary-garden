@@ -299,7 +299,13 @@ Sign out a device via the Teams Admin center:
 
     <https://learn.microsoft.com/en-us/microsoftteams/troubleshoot/phone-system/sip-gateway-issues>
 
+#### Bulk Sign in for Common Area Phones
+
+<https://learn.microsoft.com/en-us/microsoftteams/devices/sip-gateway-configure#bulk-sign-in-prerequisites>
+
 ### Configure Teams Certified Devices
+
+We don't have any, but the link below seems to be a decent option should we ever decide to buy some. 
 
 <https://a.co/d/euavurH>
 
