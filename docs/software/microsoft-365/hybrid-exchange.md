@@ -246,7 +246,7 @@ Enable-RemoteMailbox -Identity "John Smith" -RemoteRoutingAddress "jsmith@nep.ma
 Disconnect-ExchangeOnline -Confirm:$false
 ```
 4. Force sync Entra Connect.<br>
-```powqershell
+```powershell
 Start-ADSyncSyncCycle -PolicyType Delta
 ```
 
