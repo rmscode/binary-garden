@@ -305,9 +305,7 @@ Sign out a device via the Teams Admin center:
 
 ### Configure Teams Certified Devices
 
-We don't have any, but the link below seems to be a decent option should we ever decide to buy some. 
-
-<https://a.co/d/euavurH>
+We don't have any, but the [Yealink MP45](https://a.co/d/euavurH) seems to be a decent option should we ever decide to buy some.
 
 ## Call Queues and Auto Attendants
 
