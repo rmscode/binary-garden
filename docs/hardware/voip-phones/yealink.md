@@ -1,6 +1,8 @@
 # Yealink VoIP Phones
 
-## Call park & retrieve
+## SIP Phones
+
+### Call park & retrieve
 
 Call parking allows you to place a call on hold for another user to take.
 
@@ -16,7 +18,7 @@ Dial the extension that was specified when the call was parked or, if your phone
 
 !!! info "Park buttons will be green when idle/empty and red when an active call is parked."
 
-## Conference Calling
+### Conference Calling
 
 **While speaking to the first caller**:
 
@@ -35,18 +37,18 @@ Dial the extension that was specified when the call was parked or, if your phone
 
 Hang up.
 
-## Hold
+### Hold
 
 To place a call on hold, press the **Hold** soft key or button.
 
 To resume a call, press the **Resume** soft key or press the **Hold** *button* again.
 
-## Intercom another phone
+### Intercom another phone
 
 1. Dial `*90` and the extension of the target phone.
 2. Press the **Send** soft key.
 
-## Transferring Calls
+### Transferring Calls
 
 **Blind transfers**:
 
@@ -61,3 +63,12 @@ To resume a call, press the **Resume** soft key or press the **Hold** *button* a
 3. Wait for the party to answer to announce that you are transferring a call to them.
 4. Press the **Transfer** soft key again.
 
+## Teams Certified Phones
+
+### MP45
+
+!!! note
+
+    So I picked one up because I saw a pretty good deal on ebay - $40 bucks. I used a gift card the in-laws gave me for Christmas so it was a guilt free purchase 😁. It's extremely basic, but works well. It's literally just plug and play. It immediately detected my personal account signed into Teams on my computer. No configuration needed. 
+
+    The functions that you can perform from the actual phone are quite limited. You can make/take calls and place them on hold, but thats about it. Anything else needs to be handled from the desktop app. When a call is placed or received on the handset, the Teams phone app on the desktop will automatically open up. I now understand why there are so many reports online of users preferring to use the soft phone with a headset. Call quality was mediocre, but I was on Wifi and quite far from my access point at the time. 
