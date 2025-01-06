@@ -120,6 +120,7 @@ nav:
       - Git Cheat Sheet: general/cheat-sheets/git-cheat-sheet.md
       - Linux Cheat Sheet: general/cheat-sheets/linux-cheat-sheet.md
     - Guides:
+      - Conference Kiosk: general/guides/linux-conference-machine.md
       - RDP Thin Client: general/guides/remmina-thin-client.md
     - Change Management: general/change-management.md
     - Continuous Availability: general/continuous-availability.md
