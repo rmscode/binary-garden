@@ -6,7 +6,7 @@ site_description: >-
   My personal documentation and note keeping site related to my work in IT.
 
 # Repository
-repo_name: rmscode/MyDocs
+repo_name: GitHub
 repo_url: https://github.com/rmscode/MyDocs
 #edit_uri: edit/main/docs/
 
@@ -62,7 +62,7 @@ plugins:
         - notes/*
   - git-latest-changes:
       limit_to_docs_dir: True
-      repo_vendor: rmscode/mydocs
+      repo_vendor: github
       enabled_on_serve: True
       history_limit: 10
   - mkdocs-audio
@@ -236,7 +236,7 @@ nav:
         - Security Filtering: servers/windows-server/group-policy/security-filtering.md
         - Troubleshooting: servers/windows-server/group-policy/troubleshooting.md
         - Best Practices: servers/windows-server/group-policy/best-practices.md
-      - MABS: servers/windows-server/mabs.md
+      #- MABS: servers/windows-server/mabs.md
       - Rearm Trial: servers/windows-server/rearm-trial.md
     - Linux Servers:
       - NetBox: servers/linux-servers/netbox.md
