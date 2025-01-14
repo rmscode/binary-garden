@@ -77,7 +77,7 @@ extra:
 markdown_extensions:
   - toc:
       permalink: "⚓︎"
-      permalink_title: "Anchor link to this section for reference"
+      permalink_title: "Direct link"
       toc_depth: 3
   - pymdownx.highlight:
       anchor_linenums: true
