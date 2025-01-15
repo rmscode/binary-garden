@@ -307,17 +307,154 @@ Sign out a device via the Teams Admin center:
 
 We don't have any, but the [Yealink MP45](https://a.co/d/euavurH) seems to be a decent option should we ever decide to buy some.
 
-## Call Queues and Auto Attendants
+## Auto Attendants and Call Queues
 
 ### Prerequisites
 
-- A Resource Account for each Auto attendant or Call queue. 
-- Free [Teams Phone Resource Account](https://learn.microsoft.com/en-us/microsoftteams/teams-add-on-licensing/virtual-user#how-to-obtain-microsoft-teams-phone-resource-account-licenses) licenses for said Resource Accounts.
-- At least one Microsoft service number, Operator Connect number, Direct Routing number, or a hybrid number for each resource account.
-- Web click-to-call:
+- A [Resource Account](#create-a-new-resource-account-and-assign-licenses) for each Auto attendant or Call queue. 
+- Free Teams Phone [Resource Account licenses](https://learn.microsoft.com/en-us/microsoftteams/teams-add-on-licensing/virtual-user#how-to-obtain-microsoft-teams-phone-resource-account-licenses) for said Resource Accounts.
+- For external phone calls:
+    - At least one Microsoft service number, Operator Connect number, Direct Routing number, or a hybrid number for each resource account.
+- For web click-to-call:
+    - [Contact centers with Azure Communication Services](https://learn.microsoft.com/en-us/azure/communication-services/tutorials/contact-center)
     - [Quickstart: Join your calling app to a Teams auto attendant](https://learn.microsoft.com/en-us/azure/communication-services/quickstarts/voice-video-calling/get-started-teams-auto-attendant)
     - [Quickstart: Join your calling app to a Teams call queue](https://learn.microsoft.com/en-us/azure/communication-services/quickstarts/voice-video-calling/get-started-teams-call-queue)
 
-[Setting up call queues](https://learn.microsoft.com/en-us/microsoftteams/create-a-phone-system-call-queue)
+Theres a bunch more to read in [Microsoft's docs](https://learn.microsoft.com/en-us/microsoftteams/plan-auto-attendant-call-queue) . . . 
 
-[Setting up auto attendants](https://learn.microsoft.com/en-us/microsoftteams/create-a-phone-system-auto-attendant)
+### Auto Attendants
+
+[Teams Admin Center](https://admin.teams.microsoft.com/) > Expand **Voice** > Select **Auto attendants** > Select **Add**
+
+=== "Step 1:<br>General Info"
+
+    1. Type a name for the Auto attendant.
+    2. Specify an operator to allow callers to break out of the menu and speak to a designated person. This designation is optional, but recommended.
+    3. Specify the timezone.
+    4. Specify the language.
+    5. Choose if you want to enable voice inputs. 
+    6. Select **Next**
+
+=== "Step 2:<br>Call Flow"
+
+    1. Set a greeting.
+    2. Route the call:
+        - If you select **Disconnect**, the Auto attendant hangs up.
+        - If you select **Redirect call**, you can choose a call routing destination.
+        - If you select **Play menu options**, you can create a menu with dialing options.<br>
+        !!! note "If you assign dial keys to destinations, choose **None** for Directory search. Dial keys are matched before directory searches are performed. Create a separate Auto attendant for directory search and have your main Auto attendant link to it with a dial key instead instead."
+    3. Select **Next**.
+    4. Set up call flows for after hours and holidays.
+    5. Select **Next**.
+
+=== "Step 3:<br>Dial Scope (Optional)"
+
+    1. Define which users are available in the directory when a caller uses dial-by-name or dial-by-extension.
+    2. Select **Next**.
+
+=== "Step 4:<br>Assign Resource Accounts"
+
+    1. Assign a Resource account to this Auto attendant.
+        - You can create a new Resource account from this page, but you'll need to add a number and assign a license to it later.
+        - Nested Auto attendants and Call queues that receive calls from an auto attendant or call queue that has already answered the call don't require a resource account.
+    2. Select **Next**.
+
+=== "Step 5:<br>Authorized Users"
+
+    1. Select the people from you organization that are allowed to make changes to this Auto attendant.
+        - A user must have a policy assigned that enables at least on type of config change and must also be assigned as an authorized user to at least one Auto attendant/Call queue.
+    2. Select **Submit**.
+
+[TEST TEAMS AUTO ATTENDANT](https://aka.ms/TeamsAADiag){ .md-button }
+
+[*Reference*](https://learn.microsoft.com/en-us/microsoftteams/create-a-phone-system-auto-attendant)
+
+### Call Queues
+
+[Teams Admin Center](https://admin.teams.microsoft.com/) > Expand **Voice** > Select **Call queues** > Select **Add**
+
+=== "Step 1:<br>General Info"
+
+    1. Type a name for the Call queue.
+    2. Add an existing Resource account.
+        - You can assign several Resource accounts to a call queue.
+        - Nested Auto attendants and Call queues that receive calls from an auto attendant or call queue that has already answered the call don't require a resource account.
+    3. Assign outbound caller ID numbers for the agents. Agents will be able to select which number to use with each outbound call.
+    4. Service level measures the efficiency and responsiveness to incoming calls. Optional.
+    5. Set the language for transcription. 
+    6. Select **Next**
+
+=== "Step 2:<br>Greeting & Music"
+
+    Nothing special to note here. Just add your greeting music/message.
+
+=== "Step 3:<br>Call Answering"
+
+    1. Add agents via a Team or users and groups
+        - You can add up to 200 agents via a Teams channel. You must be a member of the team or the creator or owner of the channel to add a channel to the queue.
+        - You can add up to 20 agents individually and up to 200 agents via groups.
+    2. Conference mode on or off.
+        - Reduces the amount of time it takes for a caller to be connected to an agent after the agent accepts the call. When it is off, a traditional transfer is used.
+    3. Select **Next**.
+
+    !!! info
+
+        - Conference mode isn't supported for calls that are routed from a Direct Routing gateway that enabled for location based routing.
+        - Conference mode is required is Teams users need to consult/transfer calls.
+        - Transfer mode (Conference mode off) is scheduled to be removed by June 2025.
+
+=== "Step 4:<br>Agent Selection"
+
+    1. Select routing method:
+        - Attended: The first call will ring all agents at the same time until one of them picks up.
+        - Serial: Incoming calls will ring agents one by one, starting from the beginning of the list.
+        - Round robin: Each agent will get the same number of calls from the queue.
+        - Longest idle: The next call in the queue will ring the opted-in agent that has been in presence state "Available" for the longest time.
+    2. Presence-based routing:
+        - When turned off, agents who have opted in will receive calls, regardless of their presence state.
+        - When turned on, agents must be in the presence state "Available" to receive calls.
+    3. Allow/Disallow agents to opt out of taking calls.
+    4. Set the agent alert time (Amount of time agent's phone rings).
+    5. Select **Next**.
+
+    !!! info
+
+        If Presence-based routing isn't enabled and there are multiple calls in the queue, the system presents these calls simultaneously to the agents, regardless of their presence status. This action results in multiple call notifications to agents, particularly if some agents don't answer the initial call presented to them. 
+        
+        When using Presence-based routing, there may be times when an agent receives a call from the queue shortly after becoming unavailable or a short delay in receiving a call from the queue after becoming available.
+
+        Microsoft recommends allowing agents to opt out. They do not explain what happens if you disallow it. I guess the phone just keeps ringing.
+
+=== "Step 5:<br>Callback"
+
+    1. Allow users to request an automated callback.
+    2. Set the eligibility conditions.
+    3. Select **Next**.
+
+=== "Step 6:<br>Exception Handling"
+
+    Exception handling determines how calls are handled when certain exceptions occur.
+    
+    Each exception allows you to disconnect the call or redirect it to any of the call routing destinations.
+
+    !!! info
+
+        The No Agents handling exception occurs under the following conditions:
+
+        - Presence based routing off: No agents are opted into the queue.
+        - Presence based routing on: No agents logged in, or all agents are in Appear Offline.
+
+        Known issues:
+
+        1. When Longest idle is selected as the routing method, the No Agents treatment will not work when New Calls Only is selected and new calls will be queued. The All Calls option works as expected. Support is investigating.
+        2. Don't include any special characters in the greeting message when redirecting to Voicemail (shared) as these will not be spoken by the system.
+
+=== "Step 7:<br>Authorized Users"
+
+    1. Select the people from you organization that are allowed to make changes to this Call queue.
+        - A user must have a policy assigned that enables at least on type of config change and must also be assigned as an authorized user to at least one Auto attendant/Call queue.
+    2. Select **Submit**.
+
+[TEST TEAMS CALL QUEUE](https://aka.ms/TeamsCallQueueDiag){ .md-button }
+
+[*Reference*](https://learn.microsoft.com/en-us/microsoftteams/create-a-phone-system-call-queue)
