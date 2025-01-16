@@ -144,7 +144,7 @@ Your port order request will be updated daily. If your port order is rejected by
 6. Turn off or on **Email user with telephone number information**.
 7. Click **Save**.
 
-??? tip "You can also use PowerShell"
+!!! tip "You can also use PowerShell"
 
     ```powershell title="For Calling Plan numbers"
     Set-CsPhoneNumberAssignment -Identity <user> -PhoneNumber <phone number> -PhoneNumberType CallingPlan
@@ -458,3 +458,68 @@ Theres a bunch more to read in [Microsoft's docs](https://learn.microsoft.com/en
 [TEST TEAMS CALL QUEUE](https://aka.ms/TeamsCallQueueDiag){ .md-button }
 
 [*Reference*](https://learn.microsoft.com/en-us/microsoftteams/create-a-phone-system-call-queue)
+
+## Caller ID
+
+The default outbound caller ID is the number assigned to the user. To set a substitute number, create a custom caller ID policy:
+
+1. In the left navigation of the Microsoft Teams admin center, go to **Voice** > **Caller ID policies**.
+2. Select **Add**.
+3. Enter a name and description for the policy.
+4. Turn on or off **Block incoming caller ID** and O**verride the caller ID policy**.
+5. Enter a **Calling Party Name**.
+6. Under **Replace the caller ID with**, set which caller ID is displayed for users by selecting one of the following:
+    - **User's number**: Display the user's number.
+    - **Anonymous**: Display the caller ID as Anonymous.
+    - **Resource account**: Set a resource account associated with an Auto Attendant or Call Queue.
+7. Select **Save**.
+
+!!! tip "You can also use PowerShell"
+
+    ```powershell title="Create new policy that sets caller ID to phone number of resource account"
+    $ObjId = (Get-CsOnlineApplicationInstance -Identity dkcq@contoso.com).ObjectId
+    New-CsCallingLineIdentity -Identity DKCQ -CallingIDSubstitute Resource -EnableUserOverride $false -ResourceAccount $ObjId -CompanyName "Contoso"
+    ```
+
+    ```powershell title="Create new policy that sets caller ID to Anonymous"
+    New-CsCallingLineIdentity -Identity Anonymous -Description "anonymous policy" -CallingIDSubstitute Anonymous -EnableUserOverride $false
+    ```
+
+    ```powershell title="Remove a caller ID policy"
+    Remove-CsCallingLineIdentity -Identity "UKAA"
+    ```
+
+    ```powershell title="Grant a caller ID policy"
+    Grant-CsCallingLineIdentity -Identity "amos.marble@contoso.com" -PolicyName "Anonymous"
+    ```
+
+[*Reference*](https://learn.microsoft.com/en-us/microsoftteams/caller-id-policies)
+
+## Call Forwarding and Delegation
+
+1. In the Teams admin center, got o **Users** > **Manage users** and select a user.
+2. Go to the **Voice** tab.
+3. To configure immediate call forward settings, under **Call answering rules**, select:
+    - **Be immediately forwarded** so that calls to the user don't ring their devices.
+    - **Ring the user's devices** to use simultaneous ringing and tin the user's device first.
+4. Configure unanswered settings in the **If unanswered** drop-down.
+5. Select **Save**.
+
+!!! info
+
+    The configuration of call delegation/group call pickup is integrated into the call forwarding settings by selecting the appropriate type in the **Also allow** drop-down.
+
+[TEST TEAMS CALL FORWARDING](https://aka.ms/TeamsCallForwardingDiag){ .md-button }
+
+[*Reference*](https://learn.microsoft.com/en-us/microsoftteams/user-call-settings)
+
+## Shared Line Appearance
+
+Lets a user choose a delegate to answer or handle calls on their behalf. This is helpful if a user has an administrative assistant who regularly handles the user's calls.
+
+1. In the navigation menu of the Microsoft Teams admin center, select **Voice** > **Calling policies**.
+2. Choose the policy to update or select **Add** to create a new one.
+3. Toggle **Delegation for inbound and outbound calls** on.
+4. Select **Save**.
+
+[*Reference*](https://learn.microsoft.com/en-us/microsoftteams/shared-line-appearance)
