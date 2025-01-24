@@ -49,4 +49,4 @@ sudo systemctl restart lightdm
 
 To connect to the Pi, download and run [vncviewer64](https://github.com/TigerVNC/tigervnc/releases) from TigerVNC. Input the Pi's IP address and use the default user/password.
 
-[*Reference*](https://the-eg.github.io/2022/01/22/tigervnc-server-rpi.html)
+[*Reference*](https://the-eg.github.io/setting-up-tiger-vnc-server-in-raspberry-pi-os.html)
