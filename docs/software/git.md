@@ -134,3 +134,13 @@ git stash pop [n]
 ```
 git reset --soft HEAD^
 ```
+
+### Update a Repo With Files From a Remote Repo
+
+I wanted to parse and modify a handful of files from a repository for a different purpose using a few scripts. I didn't want the modified versions of those files nor the scripts to be committed to that repo, but I still wanted to be able to access them from both work and home. The solution was to create a new repo and add the other as a remote to fetch from.
+
+```git
+git remote add repoName https://github.com/username/repoName.git || true # Add remote if it doesn't exist. "repoName" is just whatever alias you choose for the remote.
+git fetch repoName # Fetch the remote repo
+git checkout repoName/main -- /path/to/file/in/remote/repo.txt /path/to/other/file.txt # checkout only the files I need
+```
