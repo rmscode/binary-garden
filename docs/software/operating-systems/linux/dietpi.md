@@ -483,8 +483,10 @@ Sometimes, a TV might advertise a preferred mode via EDID that isn't what you wa
 
 ```bash
 $ export DISPLAY=:0 # The DISPLAY variable needs to be defined only when connected to a remote SSH session.
-$ xrandr --output HDMI-1 --mode 3840x2160
+$ xrandr --output HDMI-1 --mode 3840x2160 # HDMI-2 if connected to the second port
 ```
+
+See [here](../../x11.md) for more X11 commands, including how to find the `DISPLAY` number.
 
 !!! info
 
