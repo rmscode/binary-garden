@@ -467,9 +467,7 @@ exec "$STARTX" "$REMMINA" $REMMINA_OPTS
 
     After you're finished editing the script, make sure you make it executable with `sudo chmod +x custom.sh`.
 
-## Miscellaneous
-
-### Add New User
+## Add New User
 
 Usually, alias definitions for DietPi scripts are done within `/etc/bashrc.d/dietpi.bash`. Therefore, the `bash` shell needs to be set explicitly for the user or else commands like `dietpi-config` will not be available.
 
@@ -478,3 +476,16 @@ useradd -g dietpi -s /usr/bin/bash -m usernamehere
 passwd usernamehere
 usermod -aG sudo usernamehere
 ```
+
+## Resolution
+
+Sometimes, a TV might advertise a preferred mode via EDID that isn't what you want. If all the usual ways of setting the resolution don't work, you can set the resolution manually with `xrandr` (if you're running X).
+
+```bash
+$ export DISPLAY=:0 # The DISPLAY variable needs to be defined only when connected to a remote SSH session.
+$ xrandr --output HDMI-1 --mode 3840x2160
+```
+
+!!! info
+
+    The resolution set via `xrandr` will be lost on reboot.
