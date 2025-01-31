@@ -201,6 +201,8 @@ nav:
       - TVs: hardware/display/tv.md
     - Microsoft:
       - Microsoft Surface: hardware/microsoft/surface-rt.md
+    - Panasonic:
+      - Toughpad: hardware/panasonic/toughpad.md
     - Printers & Copiers:
       - Copiers: hardware/printers-copiers/copiers.md
       - Printers: hardware/printers-copiers/printers.md
