@@ -148,7 +148,7 @@ If you're not opposed to installing a package, give `inxi` a try and run the `in
 
 `sudo dmidecode --type memory`
 
-## The Bash Read Command File (`.bashrc`)
+## The "Bash Read Command" File (`.bashrc`)
 
 Located in the user's home directory, the `.bashrc` file is a configuration file for the bash shell. It is executed whenever a new terminal session is started. With that said, this makes it great for setting up aliases, functions, environment variables and executing commands at login.
 
