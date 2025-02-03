@@ -147,3 +147,21 @@ If you're not opposed to installing a package, give `inxi` a try and run the `in
 ### RAM 
 
 `sudo dmidecode --type memory`
+
+## The Bash Read Command File (`.bashrc`)
+
+Located in the user's home directory, the `.bashrc` file is a configuration file for the bash shell. It is executed whenever a new terminal session is started. With that said, this makes it great for setting up aliases, functions, environment variables and executing commands at login.
+
+The file is hidden by default, so a simple `ls` command will not show it. Use `ls -a` instead.
+
+!!! note
+
+    Changes made to the `.bashrc` file only apply to the current user. However, system-wide changes can be made to the `/etc/bash.bashrc` file instead.
+
+For example, if you wanted to create the alias `la` for `ls -a`, you would add the following line to the `.bashrc` file:
+
+```shell
+alias la='ls -a'
+```
+
+Then reload the file with `source ~/.bashrc` or restart the terminal.
