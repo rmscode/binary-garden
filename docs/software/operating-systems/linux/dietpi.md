@@ -490,4 +490,4 @@ See [here](../../x11.md) for more X11 commands, including how to find the `DISPL
 
 !!! info
 
-    The resolution set via `xrandr` will be lost on reboot.
+    For a more permanent solution, add those commands to the end of your `~/.bashrc` file and the will be executed automatically on login.
