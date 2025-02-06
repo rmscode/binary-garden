@@ -2,25 +2,22 @@
 
 ## 802.11x Standards
 
-Standard              | Year Published | Max Theoretical Speed | Max In Practice Speed | GHz Band    | Notes
---------------------- | -------------- | --------------------- | --------------------- | ----------- | -----
-802.11-1997           | 1997           | 2 Mbps                | <1 Mbps               | 2.4 GHz     | Quickly became obsolete and was replaced by 802.11b
-802.11a ("Wi-Fi 2")*  | 1999           | 54 Mbps               | ~20-25 Mbps           | 5 GHz       | Only for legacy support
-802.11b ("Wi-Fi 1")*  | 1999           | 11 Mbps               | ~2-3 Mbps             | 2.4 GHz     | Only for legacy support
-802.11g ("Wi-Fi 3")*  | 2003           | 54 Mbps               | ~20-25 Mbps           | 2.4 GHz     | Only for legacy support
-802.11n ("Wi-Fi 4")   | 2009           | 600 Mbps              | ~50-60 Mbps           | 2.4/5 GHz   | Almost considered legacy. Few use cases exist today (older phones, IoT devices)
-802.11ac ("Wi-Fi 5")  | 2013           | 1.3 Gbps              | ~100-300 Mbps**       | 5 GHz       | Good choice for most modern devices (2020/2021) and networks.
-802.11ax ("Wi-Fi 6")  | 2019           | 9.6 Gbps              | ~800-1,500 Mbps**     | 2.4/5/6 GHz | For best performance and future proofing.
-802.11be ("Wi-Fi 7")  | 2024           | 40 Gbps***            |                       | 2.4/5/6 GHz | Not yet ready for mainstream use.
-802.11bn ("Wi-Fi 8")  | TBD            | 100 Gbps***           |                       | 2.4/5/6 GHz |
+Standard               | Year Published | Max Theoretical Speed | Max In Practice Speed | GHz         | Notes
+---------------------- | -------------- | --------------------- | --------------------- | ----------- | -----
+802.11-1997            | 1997           | 2 Mbps                | <1 Mbps               | 2.4 GHz     | Quickly became obsolete and was replaced by 802.11b
+802.11a ("Wi-Fi 2")^1^ | 1999           | 54 Mbps               | ~20-25 Mbps           | 5 GHz       | Only for legacy support
+802.11b ("Wi-Fi 1")^1^ | 1999           | 11 Mbps               | ~2-3 Mbps             | 2.4 GHz     | Only for legacy support
+802.11g ("Wi-Fi 3")^1^ | 2003           | 54 Mbps               | ~20-25 Mbps           | 2.4 GHz     | Only for legacy support
+802.11n ("Wi-Fi 4")    | 2009           | 600 Mbps              | ~50-60 Mbps           | 2.4/5 GHz   | Almost considered legacy. Few use cases exist today (older phones, IoT devices)
+802.11ac ("Wi-Fi 5")   | 2013           | 1.3 Gbps              | ~100-300 Mbps^2^      | 5 GHz^3^    | Good choice for most modern devices (2020/2021) and networks.
+802.11ax ("Wi-Fi 6")   | 2019           | 9.6 Gbps              | ~800-1,500 Mbps^2^    | 2.4/5/6 GHz | For best performance and future proofing.
+802.11be ("Wi-Fi 7")   | 2024           | 40 Gbps^4^            |                       | 2.4/5/6 GHz | Not yet ready for mainstream use.
+802.11bn ("Wi-Fi 8")   | TBD            | 100 Gbps^4^           |                       | 2.4/5/6 GHz |
 
-`*`The Wi-Fi 1, 2, and 3 labels are unofficial. The Wi-Fi Alliance never gave generations before Wi-Fi 4 an official name.<br>
-`**`Largely dependent on distance. The faster speeds were recorded at very short distances.<br>
-`***`Based on industry chatter
-
-!!! info
-
-    Since 802.11ac only operates on the 5Ghz band, Wi-Fi 5 access points will fallback to 802.11n in order to support the 2.4Ghz band if enabled.
+^1^*The Wi-Fi Alliance never gave generations before Wi-Fi 4 an official name so these labels are unofficial.*<br>
+^2^*Largely dependent on distance, channel width and number of spatial streams.*<br>
+^3^*Since 802.11ac only operates on the 5Ghz band, Wi-Fi 5 access points will fallback to 802.11n in order to support the 2.4Ghz band if enabled.*<br>
+^4^*Based on industry chatter.*
 
 *[Reference: CBTnuggets](https://www.cbtnuggets.com/blog/technology/networking/when-to-use-802-11-a-b-g-b-nc-wifi-standards)*<br>
 *[Reference: SpeedGuide](https://www.speedguide.net/faq/what-is-the-actual-real-life-speed-of-wireless-374)*<br>
@@ -67,7 +64,7 @@ RSSI Value | Quality
 -80dBm     | Poor. The minimum signal strength for basic connectivity. Packet delivery may be unreliable.
 -90dBm     | Very Poor. The minimum signal strength for a connection. Packet delivery is unreliable. 
 
-!!! tip
+!!! tip "Tip: Minimum RSSI"
 
     Some access points allow you to configure a minimum RSSI value. This is the lowest RSSI value that a client must have in order to connect to the access point. If the client's RSSI drops below this value, the access point will disconnect the client. This can help to ensure that clients are only connected to access points with a strong signal.
 
