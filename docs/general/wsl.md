@@ -44,7 +44,7 @@ You can then navigate to that path with `cd /mnt/d`
 
 ## Run Linux GUI Apps on WSL
 
-WSL supports running Linux GUI applications (X11 and Wayland) on Windows in a fully integrated desktop experience.
+WSL supports running Linux GUI applications (X11 and Wayland) on Windows.
 
 **Update WSL and installed packages:**
 
@@ -74,8 +74,31 @@ WSL supports running Linux GUI applications (X11 and Wayland) on Windows in a fu
 
 [*Reference*](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps#run-linux-gui-apps)
 
-## Location of WSL VHDX
+## Locate the WSL Virtual Disk (.vhdx)
 
-This will differ a bit depending on the distro you have installed. For Ubuntu, the path looks like this:
+Replace `<distribution-name>` with the name of your distribution.
 
-`%appdata%\Local\Packages\CanonicalGroupLimited.Ubuntu\LocalState\ext4.vhdx`
+```ps
+(Get-ChildItem -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Lxss | Where-Object { $_.GetValue("DistributionName") -eq '<distribution-name>' }).GetValue("BasePath") + "\ext4.vhdx"
+```
+
+## Shrink the WSL Virtual Disk
+
+Installed Linux distros often do not consume the entire size of the virtual disk created by WSL. You can reclaim this space by shrinking the virtual disk with the `diskpart` tool.
+
+1. Open an elevated command prompt and start diskpart:
+```cmd
+diskpart
+```
+2. Select the virtual disk ([to locate, see here](#locate-the-wsl-virtual-disk-vhdx)):
+```cmd
+select vdisk file="C:\Users\user\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState\ext4.vhdx"
+```
+3. Compact the virtual disk:
+```cmd
+compact vdisk
+```
+
+!!! note
+
+    I was able to shrink my 30GB virtual disk down to 12GB with this command!
