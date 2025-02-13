@@ -73,3 +73,9 @@ WSL supports running Linux GUI applications (X11 and Wayland) on Windows in a fu
     Support for GUI apps on WSL does not provide a full desktop experience. It relies on Windows desktop, so installing desktop-focused tools or apps may not be supported.
 
 [*Reference*](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps#run-linux-gui-apps)
+
+## Location of WSL VHDX
+
+This will differ a bit depending on the distro you have installed. For Ubuntu, the path looks like this:
+
+`%appdata%\Local\Packages\CanonicalGroupLimited.Ubuntu\LocalState\ext4.vhdx`
