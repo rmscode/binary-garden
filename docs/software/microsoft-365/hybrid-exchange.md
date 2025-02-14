@@ -250,6 +250,38 @@ Disconnect-ExchangeOnline -Confirm:$false
 Start-ADSyncSyncCycle -PolicyType Delta
 ```
 
+#### Fixing the "ExchangeGuid is mandatory on UserMailbox" Issue
+
+Ali Tajran's has an [article](https://www.alitajran.com/enable-remotemailbox-exchangeguid-is-mandatory-on-usermailbox/) that explains how to solve this issue but never gets into why it might happen. Other [sources](https://www.mistercloudtech.com/2017/02/06/fixing-the-exchangeguid-is-mandatory-on-usermailbox-issue/) indicate that it may be caused by an internal mailbox decommissioning process failure, so the **msExchHomeServerName** attribute was not cleared properly on the user object.
+
+!!! example
+
+    ```powershell
+    ExchangeGuid is mandatory on UserMailbox.
+        + CategoryInfo          : NotSpecified: (exoip.local/Company/I...Jon Smith:ADObjectId) [Enable-RemoteMailbox], DataValidationException
+        + FullyQualifiedErrorId : [Server=EX01-2019,RequestId=0a83a0bb-6893-4768-8be7-d23f6f65413f,TimeStamp=14-1-2021 18:43:16] [FailureCategory=
+       Cmdlet-DataValidationException] 228B08D6,Microsoft.Exchange.Management.RecipientTasks.EnableRemoteMailbox
+        + PSComputerName        : ex01-2019.exoip.local
+
+    Database is mandatory on UserMailbox.
+        + CategoryInfo          : NotSpecified: (exoip.local/Company/I...Jon Smith:ADObjectId) [Enable-RemoteMailbox], DataValidationException
+        + FullyQualifiedErrorId : [Server=EX01-2019,RequestId=0a83a0bb-6893-4768-8be7-d23f6f65413f,TimeStamp=14-1-2021 18:43:16] [FailureCategory=
+       Cmdlet-DataValidationException] 27A58729,Microsoft.Exchange.Management.RecipientTasks.EnableRemoteMailbox
+        + PSComputerName        : ex01-2019.exoip.local
+    ```
+
+1. Start Active Directory Users and Computers (ADUC) on the on-premises server. Click on **View** and enable **Advanced Features**.
+2. Find the user object and open its properties. Click the **Attribute Editor** tab. Find the attribute m**sExchHomeServerName** and click **Edit**.
+3. Click on **Clear**. The value will be changed to `<not set>`. Click **OK**.
+4. Force sync Entra Connect before running the `Enable-RemoteMailbox` cmdlet again.
+```powershell
+Start-ADSyncSyncCycle -PolicyType Delta
+```
+
+!!! info 
+
+    [This article](https://martinsblog.dk/enable-remotemailbox-exchangeguid-is-mandatory-on-usermailbox/) adds that you should clear any entry beginning with "msExch" so the values are all `<not set>`.
+
 ## Troubleshooting
 
 [*Ali Tajran: Migration endpoint could not be created*](https://www.alitajran.com/hcw8078-migration-endpoint-could-not-be-created/)<br>
