@@ -215,6 +215,8 @@ nav:
     - VOIP Phones: 
       - Fanvil V64: hardware/voip-phones/fanvil.md
       - Yealink: hardware/voip-phones/yealink.md
+    - Zyxel:
+      - ATP800: hardware/zyxel/atp800.md
   - Networking: 
     - networking/index.md
     - Link Aggregation & LACP Basics: networking/link-aggregation.md
