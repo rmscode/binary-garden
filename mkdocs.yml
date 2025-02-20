@@ -57,7 +57,7 @@ plugins:
       timezone: America/New_York
       exclude:
         - index.md
-        - notes/*
+        - notes/20**.md
   - git-latest-changes:
       limit_to_docs_dir: True
       repo_vendor: github
