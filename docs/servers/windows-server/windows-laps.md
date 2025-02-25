@@ -192,3 +192,24 @@ Set-LapsADAuditing -Identity "NEP_Computers" -AuditedPrincipals "user@northeastp
 OU=NEP_computers,DC=northeastprecast,DC=com
 ```
 
+## Misc
+
+# Windows LAPS
+
+Adding this function to your powershell profile will enable you to use a quick one liner to retrieve and copy the local admin password of a computer to your clipboard in one swoop.
+
+```powershell
+function Get-AdmPw {
+    param (
+        [Parameter(Mandatory=$true)]
+        [string]$ComputerName
+    )
+
+    # Get the LAPS password for the specified computer and copy it to the clipboard
+    (Get-LapsADPassword -Identity $ComputerName).Password | Set-Clipboard
+}
+```
+
+Example:
+
+`Get-AdmPw ComputerName`
