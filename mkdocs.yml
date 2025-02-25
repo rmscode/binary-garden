@@ -240,6 +240,7 @@ nav:
         - Security Filtering: servers/windows-server/group-policy/security-filtering.md
         - Troubleshooting: servers/windows-server/group-policy/troubleshooting.md
         - Best Practices: servers/windows-server/group-policy/best-practices.md
+      - Windows LAPS: servers/windows-server/windows-laps.md
       #- MABS: servers/windows-server/mabs.md
       - Rearm Trial: servers/windows-server/rearm-trial.md
     - Linux Servers:
