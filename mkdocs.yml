@@ -229,17 +229,19 @@ nav:
     - Windows Server:
       - Active Directory & Domain Services:
         - Overview: servers/windows-server/active-directory/active-directory.md
+        - Group Policy:
+          - Overview: servers/windows-server/group-policy/overview.md
+          - Processing Order and Precedence: servers/windows-server/group-policy/processing-and-precedence.md
+          - Managing GPOs: servers/windows-server/group-policy/managing.md
+          - Preferences: servers/windows-server/group-policy/preferences.md
+          - Security Filtering: servers/windows-server/group-policy/security-filtering.md
+          - Troubleshooting: servers/windows-server/group-policy/troubleshooting.md
+          - Best Practices: servers/windows-server/group-policy/best-practices.md
       #- Data Deduplication: servers/windows-server/dedup.md
+      - Exchange:
+        - Hybrid Deployment: servers/windows-server/exchange/hybrid-exchange.md
       - Failover Clustering:
         - Overview: servers/windows-server/msft-cluster.md
-      - Group Policy:
-        - Overview: servers/windows-server/group-policy/overview.md
-        - Processing Order and Precedence: servers/windows-server/group-policy/processing-and-precedence.md
-        - Managing GPOs: servers/windows-server/group-policy/managing.md
-        - Preferences: servers/windows-server/group-policy/preferences.md
-        - Security Filtering: servers/windows-server/group-policy/security-filtering.md
-        - Troubleshooting: servers/windows-server/group-policy/troubleshooting.md
-        - Best Practices: servers/windows-server/group-policy/best-practices.md
       - Windows LAPS: servers/windows-server/windows-laps.md
       #- MABS: servers/windows-server/mabs.md
       - Rearm Trial: servers/windows-server/rearm-trial.md
@@ -249,14 +251,15 @@ nav:
     - software/index.md
     - LibreOffice:
       - Impress: software/libre-office/impress.md
-    - Microsoft 365:
-      - Exchange Hybrid Deployment: software/microsoft-365/hybrid-exchange.md
-      - Teams: software/microsoft-365/teams/ms-teams.md
-      - Teams Phone: software/microsoft-365/teams/ms-teams-phone.md
-    - Microsoft Office:
-      - Outlook: software/microsoft-office/outlook/outlook.md
-      - Word:
-        - Hide Images: software/microsoft-office/word/hide-images.md
+    - Microsoft:
+      - Microsoft 365:
+        - Teams: software/microsoft-365/teams/ms-teams.md
+        - Teams Phone: software/microsoft-365/teams/ms-teams-phone.md
+      - Microsoft Office:
+        - Outlook: software/microsoft-office/outlook/outlook.md
+        - Word:
+          - Hide Images: software/microsoft-office/word/hide-images.md
+      - Windows LAPS: servers/windows-server/windows-laps.md
     - MkDocs:
       - Getting Started: software/mkdocs/getting-started.md
       - Creating Your Site: software/mkdocs/creating-site.md
