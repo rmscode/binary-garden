@@ -18,6 +18,10 @@ Update-LapsADSchema
 
 You can verify the schema extension by opening a computer object's properties in ADUC. You should see a new LAPS tab.
 
+!!! info 
+
+    When finished setting up LAPS, make sure to see the section on [Querying Extended Rights](#query-extended-rights).
+
 ### Configure GPO and Set Permissions
 
 1. Open Group Policy Management Console.
@@ -146,6 +150,13 @@ This example demonstrates querying the current LAPS password for the LAPSCLIENT2
 
     When the user doesn't have permissions to decrypt the LAPS password, `Account` and `Password` are not returned and `DecryptionStatus` will be "Unauthorized".
 
+#### Retrieving password history
+
+What if you've restored a computer from a back up and now the current LAPS password doesn't work?
+
+a. Use `-IncludeHistory` to retrieve the password history. This will return up to the last 12 passwords (if policy settings are configured that way) for the specified computer object.<br>
+b. If the domain trust is valid, you could also set the LAPS password expiration date on the AD object to `0` and reboot the machine. When the next policy refresh is applied, a new password will be set.
+
 ### Resetting Passwords
 
 It is recommended that you configure the policy to automatically reset the passwords after they are used, but you can also force a reset with PowerShell. This cmdlet must be run from the endpoint, otherwise you will need to run the command remotely with `Invoke-Command`.
@@ -192,11 +203,19 @@ Set-LapsADAuditing -Identity "NEP_Computers" -AuditedPrincipals "user@northeastp
 OU=NEP_computers,DC=northeastprecast,DC=com
 ```
 
+### Query Extended Rights
+
+[`Find-LapsADExtendedRights -Identity newlaps`](https://learn.microsoft.com/en-us/windows-server/identity/laps/laps-scenarios-windows-server-active-directory#query-extended-rights-permissions)
+
+Legacy, but related info below...document.
+
+<https://techcommunity.microsoft.com/blog/coreinfrastructureandsecurityblog/you-might-want-to-audit-your-laps-permissions-/2280785>
+
+<https://techcommunity.microsoft.com/blog/coreinfrastructureandsecurityblog/part-2---you-might-want-to-audit-your-laps-permissions-/2465708>
+
 ## Misc
 
-# Windows LAPS
-
-Adding this function to your powershell profile will enable you to use a quick one liner to retrieve and copy the local admin password of a computer to your clipboard in one swoop.
+This function enables you to use a quick one liner to retrieve and copy the local admin password of a computer to your clipboard in one swoop.
 
 ```powershell
 function Get-AdmPw {
