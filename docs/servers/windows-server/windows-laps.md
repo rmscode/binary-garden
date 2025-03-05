@@ -29,15 +29,15 @@ You can verify the schema extension by opening a computer object's properties in
 3. Edit the policy and navigate to **Computer Configuration** > **Policies** > **Administrative Templates** > **System** > **LAPS**.
 4. Grant the managed computers permission to update their password in AD with the following command:<br>
 ```powershell
-Set-LapsADComputerSelfPermission -Identity "NEP_Computers"
+Set-LapsADComputerSelfPermission -Identity NEP_Computers
 ```
 1. Grant permission to read the LAPS password information stored in Active Directory. Domain Admins have this permission by default.<br>
 ```powershell
 # Grant permission to a group
-Set-LapsADReadPasswordPermission -Identity "NEP_Computers" -AllowedPrincipals "HelpDesk"
+Set-LapsADReadPasswordPermission -Identity NEP_Computers -AllowedPrincipals "HelpDesk"
 
 # Grant permission to specific users
-Set-LapsADReadPasswordPermission -Identity "NEP_Computers" -AllowedPrincipals @("northeastprecast.com/user1", "user2@northeastprecast.com")
+Set-LapsADReadPasswordPermission -Identity NEP_Computers -AllowedPrincipals @("northeastprecast.com/user1", "user2@northeastprecast.com")
 ```
 
 !!! note 
@@ -196,22 +196,41 @@ Event ID | Description
 **Enable auditing**:
 
 ```powershell
-Set-LapsADAuditing -Identity "NEP_Computers" -AuditedPrincipals "user@northeastprecast.com" -AuditType Success
+Set-LapsADAuditing -Identity NEP_Computers -AuditedPrincipals "user@northeastprecast.com" -AuditType Success
 OU=NEP_computers,DC=northeastprecast,DC=com
 
-Set-LapsADAuditing -Identity "NEP_Computers" -AuditedPrincipals "user@northeastprecast.com" -AuditType Failure
+Set-LapsADAuditing -Identity NEP_Computers -AuditedPrincipals "user@northeastprecast.com" -AuditType Failure
 OU=NEP_computers,DC=northeastprecast,DC=com
 ```
 
 ### Query Extended Rights
 
-[`Find-LapsADExtendedRights -Identity newlaps`](https://learn.microsoft.com/en-us/windows-server/identity/laps/laps-scenarios-windows-server-active-directory#query-extended-rights-permissions)
+Some users/groups might already be granted Extended Rights on the managed device's OU. This permission is problematic because it grants the ability to read confidential attributes (all of the Windows LAPS password attributes are marked as confidential). 
 
-Legacy, but related info below...document.
+Check to see who has Extended Rights:
+
+```powershell
+Find-LapsADExtendedRights -Identity NEP_Computers | Format-Table
+```
+
+Remove Extended Rights from a user/group:
+
+1. Open ADSIEdit
+2. Right click the OU that contains the managed computers and select **Properties**.
+3. Click the **Security** tab.
+4. Click **Advanced**.
+5. Select the users/groups that you *do not* want to be able to read the passwords and click **Edit**.
+6. Uncheck **All extended rights**
+
+!!! warning
+
+    This will remove ALL extended rights, not only CONTROL_ACCESS right. Make sure that all roles retain the necessary permissions required for their work.
 
 <https://techcommunity.microsoft.com/blog/coreinfrastructureandsecurityblog/you-might-want-to-audit-your-laps-permissions-/2280785>
 
 <https://techcommunity.microsoft.com/blog/coreinfrastructureandsecurityblog/part-2---you-might-want-to-audit-your-laps-permissions-/2465708>
+
+<https://www.reddit.com/r/sysadmin/comments/xs5y5z/question_about_laps_multiple_ous_and_extended/>
 
 ## Misc
 
