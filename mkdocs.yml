@@ -253,8 +253,9 @@ nav:
       - Impress: software/libre-office/impress.md
     - Microsoft:
       - Microsoft 365:
-        - Teams: software/microsoft-365/teams/ms-teams.md
-        - Teams Phone: software/microsoft-365/teams/ms-teams-phone.md
+        - Teams: 
+          - General: software/microsoft-365/teams/ms-teams.md
+          - Teams Phone: software/microsoft-365/teams/ms-teams-phone.md
       - Microsoft Office:
         - Outlook: software/microsoft-office/outlook/outlook.md
         - Word:
