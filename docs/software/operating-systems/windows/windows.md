@@ -50,3 +50,15 @@ The command `powercfg /requests` is used to display the current power requests t
 !!! note
 
     I had issues with my personal computer not turning off the displays and locking after being away from my desk. I also noticed that social apps like Discord or Steam weren't automatically updating my status to *Away*. A few seconds of searching the web lead me to find this command. For me, it was the new RSI launcher (Star Citizen). Going to the launcher settings and disabling "background video" fixed the issue for me. Wasteful piece of eye candy that is. I thought the launcher menu's background animation was a gif or something, not a full blown video on repeat.
+
+## Delete a file that is open in Windows Explorer
+
+I was once met with "The action can’t be completed because the file is open in Windows Explorer" when trying to delete what I thought was an empty folder in Windows 10. It turns out that there was a `Thumbs.db` file preventing me from deleting said folder.
+
+1. In File Explorer, navigate to the parent folder of the one with the pesky file.
+2. View > Layout > Change from **Details** to **List** 
+3. Try deleting the folder.
+
+!!! note
+
+    I did have to try a few times before it worked. There was another solution on the same page linked above that suggested switching the view to "Content", renaming the `Thumbs.db` file, and then deleting the folder. I tested that and it worked as well.
