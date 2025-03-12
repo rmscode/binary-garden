@@ -1,5 +1,7 @@
 ---
 icon: material/network-outline
+search:
+  exclude: true
 ---
 
 # Networking

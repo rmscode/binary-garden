@@ -1,5 +1,7 @@
 ---
 icon: material/harddisk
+search:
+  exclude: true
 ---
 
 # Hardware

@@ -1,5 +1,7 @@
 ---
 icon: material/application-cog-outline
+search:
+  exclude: true
 ---
 
 # Software

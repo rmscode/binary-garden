@@ -1,5 +1,7 @@
 ---
 icon: material/home-outline
+search:
+  exclude: true
 ---
 
 # Documentation & Notes

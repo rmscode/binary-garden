@@ -1,5 +1,7 @@
 ---
 icon: material/list-box-outline
+search:
+  exclude: true
 ---
 
 # General
