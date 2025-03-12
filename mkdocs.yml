@@ -260,6 +260,7 @@ nav:
         - Outlook: software/microsoft-office/outlook/outlook.md
         - Word:
           - Hide Images: software/microsoft-office/word/hide-images.md
+          - Track Changes On/Off: software/microsoft-office/word/track-changes-on-off.md
       - Windows LAPS: servers/windows-server/windows-laps.md
     - MkDocs:
       - Getting Started: software/mkdocs/getting-started.md
