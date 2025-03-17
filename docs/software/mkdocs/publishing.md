@@ -18,7 +18,7 @@ This will deploy your docs to a new branch called `gh-pages`. Check out [this ov
 
 !!! warning
 
-    Never edit the files in your pages repository by hadn if you're using `gh-deploy` because you will lose you work the next time you run the command. 
+    Never edit the files in your pages repository by hand if you're using `gh-deploy` because you will lose you work the next time you run the command. 
 
     If there are any untracked files or uncommitted work in the local repository where `mkdocs gh-deploy` is run, these will be included in the pages that are deployed.
 
@@ -75,7 +75,7 @@ jobs:
 4.  This is the place to install further [MkDocs plugins] or Markdown
     extensions with `pip` to be used during the build:
 
-    ``` sh
+    ```sh
     pip install \
         mkdocs-material \
         mkdocs-awesome-pages-plugin \
@@ -88,7 +88,7 @@ Now, every time a new commit is pushed to either the `master` or `main` branches
 
 ## Deploying to a Local Network Share
 
-In addition to GitHub Pages, I publish my docs to a local network share. Below is a little PowerShell function I wrote to make that process easier. Just copy and paste it into your PowerShell profile and update the paths to match your environment.
+In addition to GitHub Pages, you can publish your docs to a local network share. Below is a little PowerShell function I wrote to make that process easier. Just copy and paste it into your PowerShell profile and update the paths to match your environment.
 
 !!! tip "You can find your PowerShell profile by running `$PROFILE` in a PowerShell console."
 
@@ -111,8 +111,24 @@ function Update-MyDocs {
 ```
 
 1.  For example, mine looks like this:
-    `C:\Users\rmscode\Repositories\MyDocs\`
+    `C:\Users\user\Repositories\MyDocs\`
 2.  For example, mine looks like this:
-    `"C:\Users\rmscode\Repositories\MyDocs\site\" "\\file001\shared\users\Ricky\MyDocs\site\"`
+    `"C:\Users\user\Repositories\MyDocs\site\" "\\path\to\network\share\"`
 
 Now, whenever I want to update documentation locally, I just open a PowerShell console and run `Update-MyDocs`. The function will build the site and copy the files to the network share.
+
+## Local development server via `mkdocs serve`
+
+There is a built in development server for hosting a small local web server to preview your documentation. This is not only useful for testing, but for accessing the documentation from other devices on the same network.
+
+To start the server, run the following command in the root directory of your project:
+
+```sh
+mkdocs serve
+```
+
+Optionally, you can set the following parameters to customize the server:
+
+- `--livereload`: Enable live reloading of the site when changes are made to the source files.
+- `-a`: IP address and port to serve documentation locally (default: localhost:8000)
+- `--dirty`: Only re-build files that have changed.
