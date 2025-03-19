@@ -187,6 +187,10 @@ Get-MoveRequest -MoveStatus Suspended | Resume-MoveRequest
 
 ## Creating Exchange Online Mailboxes
 
+!!! info "30-day grace period"
+
+    Whether we provision a new remote mailbox on-premises or migrate a mailbox that never had an Exchange Online license to Exchange Online, the service will allow a period of 30 days for the admins to assign an Exchange Online license to the user. Note that this is not a way to get 30 days of service for free, but to help customers with their own provisioning defined processes and give them some time to assign an Exchange Online license to a regular mailbox instead. Microsoft's recommendation is to ALWAYS assign a license as soon as you see the mailbox provisioned in Exchange Online, and in migration scenario, even before the move is injected.
+
 !!! warning "Important"
 
     While it is possible to add a user in ADUC, wait for it to sync to Entra, and then license the user in M365, the user's Exchange Online attributes will never sync back to the on-premises environment to create a Mail-enabled user (MEU) object. In this scenario, managing the mailboxes from the on-prem environment isn't possible and since the M365 user is synced with on-prem AD, managing attributes from the cloud is also not possible. 
@@ -282,6 +286,60 @@ Start-ADSyncSyncCycle -PolicyType Delta
 
     [This article](https://martinsblog.dk/enable-remotemailbox-exchangeguid-is-mandatory-on-usermailbox/) adds that you should clear any entry beginning with "msExch" so the values are all `<not set>`.
 
+## Decommissioning the Last Exchange Server
+
+!!! info "Important"
+
+    Ensure that all mailboxes have been migrated to the cloud and that there is no SMTP relay.
+
+### Prepare Exchange Hybrid Server
+
+Use `Set-AdServerSettings -ViewEntireForest $true` to view all objects in the forest.
+
+Verify there are no mailboxes on-prem with `Get-Mailbox`.
+
+Verify that the ExO tenant coexistence domain is configured.
+
+    ```powershell
+    Get-AcceptedDomain Hybrid* | Format-Table Name, DomainName, TargetDeliveryDomain
+    ```
+
+If the coexistence domain isn't added as a remote domain, add it with:
+
+    ```powershell
+    New-RemoteDomain -Name 'Hybrid Domain - biz.mail.onmicrosoft.com' -DomainName 'biz.mail.onmicrosoft.com'
+    ```
+
+If it isn’t set as the Target Delivery Domain, set it with:
+
+    ```powershell
+    Set-RemoteDomain -TargetDeliveryDomain: $true -Identity 'Hybrid Domain - biz.mail.onmicrosoft.com'
+    ```
+
+### Install Management Tools
+
+Install Exchange management tools on a computer/server from where you want to manage Exchange.
+
+```powershell
+Install-WindowsFeature rsat-adds
+```
+
+Download [Exchange Server 2019 CU15](https://learn.microsoft.com/en-us/exchange/new-features/build-numbers-and-release-dates?view=exchserver-2019) or newer.
+
+Mount the Exchange Server ISO on a domain joined computer/server and run the wizard.
+
+No updates > Next x2 > Accept license agreement > Next > Select **Use recommended settings** > Next > Select **Management Tools**, Automatically install Windows Server roles... > Next x2 > Install > Finish
+
+Restart management server.
+
+### Create "Recipient Management EMT" Group
+
+### Test
+
+### Remove Exchange Hybrid Server
+
+### AD Cleanup
+
 ## Troubleshooting
 
 [*Ali Tajran: Migration endpoint could not be created*](https://www.alitajran.com/hcw8078-migration-endpoint-could-not-be-created/)<br>
@@ -289,4 +347,5 @@ Start-ADSyncSyncCycle -PolicyType Delta
 [*Regain Software: Resolve connection issues*](https://www.regainsoftware.com/blog/hybrid-configuration-wizard-resolve-connection-issues-with-office365/)<br>
 [*MSFT: Troubleshooting HCW modern agent like a pro*](https://techcommunity.microsoft.com/blog/exchange/modern-hcw-hybrid-agent-troubleshooting-like-a-pro/1558725)<br>
 [*MSFT: Migration Issues*](https://learn.microsoft.com/en-us/exchange/troubleshoot/move-or-migrate-mailboxes/troubleshoot-migration-issues-in-exchange-hybrid)<br>
-[*MSFT: Troubleshooting Hybrid mail flow*](https://techcommunity.microsoft.com/blog/exchange/demystifying-and-troubleshooting-hybrid-mail-flow-when-is-a-message-internal/1420838)
+[*MSFT: Troubleshooting Hybrid mail flow*](https://techcommunity.microsoft.com/blog/exchange/demystifying-and-troubleshooting-hybrid-mail-flow-when-is-a-message-internal/1420838)<br>
+[*MSFT: Delays in provisioning of user/mailbox or syn changes in ExO*](https://learn.microsoft.com/en-us/exchange/troubleshoot/user-and-shared-mailboxes/delays-provision-mailbox-sync-changes)
