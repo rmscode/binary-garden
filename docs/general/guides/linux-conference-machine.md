@@ -1,28 +1,29 @@
-# Linux Based Video Conference Client
+# Lightweight Linux Based Conference Computer
 
-Much like the [Linux Based RDP Client](../guides/remmina-thin-client.md), I was recently tasked with creating a Linux based video conferencing client. There are [purpose-built systems](https://www.logitech.com/en-us/products/video-conferencing/room-solutions/rally-ultra-hd-conferencecam.960-001217.html) for this, but they are costly and for our particular use case, overkill.
+Much like the [Linux Based RDP Client](../guides/remmina-thin-client.md)(archived), I was recently tasked with creating a Linux based video conferencing client capable of also making remote desktop connections.
 
 ## Objectives
 
-1. Provide an easy way to initiate and join video conferences.
-2. Provide a simple user experience.
-3. Remain flexible enough to perform other web based tasks and make remote desktop connections.
-4. Secure the client as much as possible.
+1. Create a familiar desktop-like environment.
+2. Provide a browser for basic access to the web, web-based applications and video conferencing.
+3. Provide an easy way to initiate RDP sessions.
+4. Prevent end users from being able to modify the state of the system.
 
-## Requirements
+## Basic Requirements
 
-- Small form factor PC similar to an Intel NUC.<br>
+- Small form factor PC like an Intel NUC or equivalent
 - Debian based Linux distro. We used [DietPi](../../software/operating-systems/linux/dietpi.md) because it is lightweight and easy to use.
-- A quality webcam
-- X.Org display server
-- Openbox, a lightweight window manager for Linux
-- Nitrogen, a background browser for X
-- ALSA, a sound system for Linux
-- FFmpeg, a multimedia framework for Linux
-- Cairo Dock, a lightweight dock for Linux for launching apps
-- Chromium for web browsing and the installation of Teams PWA
-- Remmina, a free and open-source remote desktop client for Linux
+- Webcam with microphone
+- Window manager (Openbox)
+- Web Browser (Chromium)
+- App launcher/taskbar (tint2)
+- Remote desktop client (Remmina with RDP plugin)
+
+Additionally, we also be installing:
+
+- Nitrogen, a background/wallpaper utility for X
 - LXDE desktop environment for icon/UI support in certain apps
+- PulseAudio
 
 ## Initial Setup
 
@@ -33,15 +34,13 @@ You can use any Debian based Linux distro, but we used DietPi because it is ligh
 ### Install Packages and Their Dependencies
 
 1. Install DietPi optimized packages via `sudo dietpi-software` (if using the DietPi distro):
-    - X.org X Server aka X11
-    - LXDE desktop environment (**NOTE**: Remmina relies on a desktop environment for some of its UI components)
-    - ALSA
-    - PulseAudio
-    - FFmpeg
-    - Chromium (or FireFox if you prefer)
-2. Install the following packages via `apt`:<br>
+    - Chromium
+        - X.org and ALSA will automatically be installed as dependencies
+    - LXDE desktop environment to provide Remmina with the icon pack it needs. I would like to find a way around this soon.
+    - PulseAudio to sit on top of ALSA for additional audio support
+2. Install the remaining packages and some dependencies via `apt`:<br>
     ```bash
-    sudo apt install openbox obconf xdg-utils xcompmgr nitrogen remmina remmina-plugin-rdp cairo-dock -y
+    sudo apt install openbox obconf xdg-utils remmina remmina-plugin-rdp tint2 nitrogen -y
     ```
 
 ### Base Configuration
@@ -58,7 +57,7 @@ You can use any Debian based Linux distro, but we used DietPi because it is ligh
 
     !!! info 
 
-        This command checks if the system is ready to start the graphical environment (X server). The condition (`[[ ]]`) as a whole checks whether there is no graphical session running (`$DISPLAY` is empty) and the user is on the first virtual terminal (`$XDG_VTNR is 1`). If the condition is true, the `startx` command is executed.
+        This command checks if the system is ready to start the graphical environment (X server). The condition (`[[ ]]`) as a whole checks to see if there is no graphical session running (`$DISPLAY` is empty) and if the user is on the first virtual terminal (`$XDG_VTNR is 1`). If the condition is true, the `startx` command is executed.
 
     ??? example "Example"
     
@@ -76,7 +75,7 @@ You can use any Debian based Linux distro, but we used DietPi because it is ligh
         [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && startx
         ```
 
-2. Configure xinitrc to use the Openbox window manager instead of X's (use `sudo nano /etc/X11/xinit/xinitrc`):
+2. Configure `xinitrc` to use the Openbox window manager instead X's windows system (use `sudo nano /etc/X11/xinit/xinitrc`):
     1. Comment out the line `. /etc/X11/xsession` by adding a `#` in front of it
     2. Append `exec openbox-session` to the end of the file<br>
 
@@ -101,16 +100,14 @@ You can use any Debian based Linux distro, but we used DietPi because it is ligh
     ```bash
     xset -dpms #(1)!
     xset s off #(2)!
-    xcompmgr & #(3)!
-    cairo-dock & #(4)!
-    nitrogen --restore & #(5)!
+    nitrogen --restore & #(3)!
+    (sleep 2s && tint2) & #(4)!
     ```
 
     1. Disables power management
     2. Disables screen saver
-    3. Enables basic compositing effects for cairo-dock
-    4. Starts cairo-dock
-    5. Ensures background image is restored after reboot
+    3. Sets the wallpaper with nitrogen 
+    4. Starts tint2 after a 2 second delay to allow the wallpaper to load first since it uses fake transparency
 
     ??? example "Example"
 
@@ -120,14 +117,14 @@ You can use any Debian based Linux distro, but we used DietPi because it is ligh
         # Disable power management
         xset -dpms
 
-        # Start compositing manager
-        xcompmgr &
+        # Disable screensaver
+        xset s off
 
-        # Start cairo-dock
-        cairo-dock &
-
-        # Set the background
+        # Set wallpaper
         nitrogen --restore &
+
+        # Start tint2 launcher/taskbar
+        (sleep 2s && tint2) &
         ```
 
 4. Enable console auto-login:
@@ -139,11 +136,269 @@ You can use any Debian based Linux distro, but we used DietPi because it is ligh
 
     If prompted to enable/disable `ctrl+alt+backspace` to close X, choose to disable. This will prevent users from accidentally closing the X server.
 
-At this point, the system should boot straight into Openbox with the Cairo dock at the bottom of the screen. We can now start customizing the system to meet our requirements.
+At this point, the system can be rebooted. The `dietpi` user will automatically log in to an Openbox session and we can now start customizing the system to meet the rest of our requirements.
+
+## Configuring the Tint2 Launcher/Taskbar
+
+Tint2 can be configured via the **Tint2 Settings** app that is pinned to the launcher by default (far left). Set things up how you'd like and hit apply to save your changes. 
+
+Some suggestions:
+
+- Remove the **System Tray** and **Battery** elements from **Panel items**
+- Add a Button to the right of the clock with the following settings:
+    - **Icon**: `/usr/share/icons/Adwaita/32x32/actions/system-reboot-symbolic.symbolic.png`
+    - **Tooltip**: `Restart (Middle Click)`
+    - **Middle click command**: `sudo reboot now`
+- Untick **Show desktop name** from **Taskbar** > **Desktop name**
+- Remove the **Tint2 Settings** app from the launcher to prevent users from altering the configuration. Future changes can be made by modifying the `tint2rc` file located in `~/.config/tint2/` via SSH.
+    - **NOTE**: Be kind to yourself and save this step for the very end after you've pinned all your apps and what not.
+
+??? example "`tint2rc` example"
+
+    ```txt
+    #---- Generated by tint2conf 443b ----
+    # See https://gitlab.com/o9000/tint2/wikis/Configure for
+    # full documentation of the configuration options.
+    #-------------------------------------
+    # Gradients
+    #-------------------------------------
+    # Backgrounds
+    # Background 1: Launcher, Panel
+    rounded = 0
+    border_width = 0
+    border_sides = TBLR
+    border_content_tint_weight = 0
+    background_content_tint_weight = 0
+    background_color = #000000 60
+    border_color = #000000 30
+    background_color_hover = #000000 60
+    border_color_hover = #000000 30
+    background_color_pressed = #000000 60
+    border_color_pressed = #000000 30
+
+    # Background 2: Default task, Iconified task
+    rounded = 4
+    border_width = 1
+    border_sides = TBLR
+    border_content_tint_weight = 0
+    background_content_tint_weight = 0
+    background_color = #777777 20
+    border_color = #777777 30
+    background_color_hover = #aaaaaa 22
+    border_color_hover = #eaeaea 44
+    background_color_pressed = #555555 4
+    border_color_pressed = #eaeaea 44
+
+    # Background 3: Active task
+    rounded = 4
+    border_width = 1
+    border_sides = TBLR
+    border_content_tint_weight = 0
+    background_content_tint_weight = 0
+    background_color = #777777 20
+    border_color = #ffffff 40
+    background_color_hover = #aaaaaa 22
+    border_color_hover = #eaeaea 44
+    background_color_pressed = #555555 4
+    border_color_pressed = #eaeaea 44
+
+    # Background 4: Urgent task
+    rounded = 4
+    border_width = 1
+    border_sides = TBLR
+    border_content_tint_weight = 0
+    background_content_tint_weight = 0
+    background_color = #aa4400 100
+    border_color = #aa7733 100
+    background_color_hover = #cc7700 100
+    border_color_hover = #aa7733 100
+    background_color_pressed = #555555 4
+    border_color_pressed = #aa7733 100
+
+    # Background 5: Tooltip
+    rounded = 1
+    border_width = 1
+    border_sides = TBLR
+    border_content_tint_weight = 0
+    background_content_tint_weight = 0
+    background_color = #222222 100
+    border_color = #333333 100
+    background_color_hover = #ffffaa 100
+    border_color_hover = #000000 100
+    background_color_pressed = #ffffaa 100
+    border_color_pressed = #000000 100
+
+    #-------------------------------------
+    # Panel
+    panel_items = LTSC:P
+    panel_size = 100% 50
+    panel_margin = 0 0
+    panel_padding = 2 0 2
+    panel_background_id = 1
+    wm_menu = 1
+    panel_dock = 0
+    panel_pivot_struts = 0
+    panel_position = top center horizontal
+    panel_layer = top
+    panel_monitor = primary
+    panel_shrink = 0
+    autohide = 1
+    autohide_show_timeout = 0
+    autohide_hide_timeout = 0.5
+    autohide_height = 2
+    strut_policy = follow_size
+    panel_window_name = tint2
+    disable_transparency = 1
+    mouse_effects = 1
+    font_shadow = 0
+    mouse_hover_icon_asb = 100 0 10
+    mouse_pressed_icon_asb = 100 0 0
+    scale_relative_to_dpi = 0
+    scale_relative_to_screen_height = 0
+
+    #-------------------------------------
+    # Taskbar
+    taskbar_mode = single_desktop
+    taskbar_hide_if_empty = 0
+    taskbar_padding = 0 0 2
+    taskbar_background_id = 0
+    taskbar_active_background_id = 0
+    taskbar_name = 0
+    taskbar_hide_inactive_tasks = 0
+    taskbar_hide_different_monitor = 0
+    taskbar_hide_different_desktop = 0
+    taskbar_always_show_all_desktop_tasks = 0
+    taskbar_name_padding = 4 2
+    taskbar_name_background_id = 0
+    taskbar_name_active_background_id = 0
+    taskbar_name_font_color = #e3e3e3 100
+    taskbar_name_active_font_color = #ffffff 100
+    taskbar_distribute_size = 0
+    taskbar_sort_order = none
+    task_align = left
+
+    #-------------------------------------
+    # Task
+    task_text = 1
+    task_icon = 1
+    task_centered = 1
+    urgent_nb_of_blink = 100000
+    task_maximum_size = 150 35
+    task_padding = 2 2 4
+    task_tooltip = 1
+    task_thumbnail = 0
+    task_thumbnail_size = 210
+    task_font_color = #ffffff 100
+    task_background_id = 2
+    task_active_background_id = 3
+    task_urgent_background_id = 4
+    task_iconified_background_id = 2
+    mouse_left = toggle_iconify
+    mouse_middle = close
+    mouse_right = none
+    mouse_scroll_up = toggle
+    mouse_scroll_down = iconify
+
+    #-------------------------------------
+    # System tray (notification area)
+    systray_padding = 0 4 2
+    systray_background_id = 0
+    systray_sort = ascending
+    systray_icon_size = 24
+    systray_icon_asb = 100 0 0
+    systray_monitor = 1
+    systray_name_filter =
+
+    #-------------------------------------
+    # Launcher
+    launcher_padding = 2 4 2
+    launcher_background_id = 1
+    launcher_icon_background_id = 0
+    launcher_icon_size = 32
+    launcher_icon_asb = 100 0 0
+    launcher_icon_theme_override = 0
+    startup_notifications = 1
+    launcher_tooltip = 1
+    launcher_item_app = /usr/share/applications/chromium.desktop
+    launcher_item_app = ~/.local/share/applications/chrome-hoiomclbngpkcgaapnlgiiebnbpkbhio-Default.desktop
+    launcher_item_app = ~/.local/share/applications/chrome-cifhbcnohmdccbgoicgdjpfamggdegmo-Default.desktop
+    launcher_item_app = /usr/share/applications/org.remmina.Remmina.desktop
+
+    #-------------------------------------
+    # Clock
+    time1_format = %H:%M
+    time2_format = %A %d %B
+    time1_timezone =
+    time2_timezone =
+    clock_font_color = #ffffff 100
+    clock_padding = 2 0
+    clock_background_id = 0
+    clock_tooltip =
+    clock_tooltip_timezone =
+    clock_lclick_command =
+    clock_rclick_command = orage
+    clock_mclick_command =
+    clock_uwheel_command =
+    clock_dwheel_command =
+
+    #-------------------------------------
+    # Battery
+    battery_tooltip = 1
+    battery_low_status = 10
+    battery_low_cmd = xmessage 'tint2: Battery low!'
+    battery_full_cmd =
+    battery_font_color = #ffffff 100
+    bat1_format =
+    bat2_format =
+    battery_padding = 1 0
+    battery_background_id = 0
+    battery_hide = 101
+    battery_lclick_command =
+    battery_rclick_command =
+    battery_mclick_command =
+    battery_uwheel_command =
+    battery_dwheel_command =
+    ac_connected_cmd =
+    ac_disconnected_cmd =
+
+    #-------------------------------------
+    # Separator 1
+    separator = new
+    separator_background_id = 0
+    separator_color = #777777 86
+    separator_style = dots
+    separator_size = 3
+    separator_padding = 1 0
+
+    #-------------------------------------
+    # Button 1
+    button = new
+    button_icon = /usr/share/icons/Adwaita/32x32/actions/system-reboot-symbolic.symbolic.png
+    button_text =
+    button_tooltip = Restart (Left Click) | Shutdown (Middle Click)
+    button_lclick_command = sudo reboot now
+    button_rclick_command =
+    button_mclick_command = sudo shutdown now
+    button_uwheel_command =
+    button_dwheel_command =
+    button_font_color = #000000 100
+    button_padding = 0 0
+    button_background_id = 0
+    button_centered = 0
+    button_max_icon_size = 0
+
+    #-------------------------------------
+    # Tooltip
+    tooltip_show_timeout = 0.1
+    tooltip_hide_timeout = 0.1
+    tooltip_padding = 4 4
+    tooltip_background_id = 5
+    tooltip_font_color = #dddddd 100
+    ```
 
 ## Configuring Chromium and Installing PWAs
 
-Launch Chromium from the Cairo Dock by selecting the xTerm icon and typing `chromium-browser`.
+### Prevent Chromium from Saving Data on the Device
 
 To solve the problem of users forgetting to sign out of their accounts on a shared device, consider the following two options:
 
@@ -151,88 +406,21 @@ To solve the problem of users forgetting to sign out of their accounts on a shar
     - Open Chromium and go to **Settings** > **Privacy and Security** > **Site Settings** > **Additional content settings** > **On-Device site data**. *OR;*
 - Launch Chromium with the `--incognito` flag to prevent the browser from storing data at all.
 
-### Installing Teams PWA (Progressive Web Apps)
+### Installing Teams PWA (Progressive Web App)
 
-1. Navigate to `https://teams.microsoft.com/v2`
-2. Click the PWA icon at the far right of the address bar. *OR;*
-3. Go to **Settings** > **Cast, save, and share** > **Install Page as app**.
+1. Navigate to `https://teams.microsoft.com/`
+2. Click the PWA icon at the far right of the address bar to install *OR* Go to **Settings** > **Cast, save, and share** > **Install Page as app**.
+3. Add the Teams PWA to the tint2 launcher.
+
+You can install and pin additional PWAs if you'd like.
 
 !!! info
 
     If you prefer to provide an experience for your users where they do not need to log in to Teams, but rather quickly join a meeting by invite code, use the following URL: `https://www.microsoft.com/en-us/microsoft-teams/join-a-meeting`.
 
-### Find the PWA's and Pin to Cairo Dock
-
 !!! note 
 
-    YMMV on this one, but I have found that PWAs are typically stored in `~/.config/chromium/Default/'Web Applications'`. If they're not there, you may find them in `~/.local/share/applications`. If you're still having trouble finding them, enter `chrome://apps/` into the URL bar, right-click the app, and select **Create shortcuts**. This will place a `.desktop` file in the `~/Desktop` directory.
-
-The easiest method that I have found to add these to the Cairo Dock is to use Nautilus to navigate to the directory, find the PWA files, and drag them to the dock.
-
-Nautilus can be launched with the command `nautilus -n` or by right clicking the desktop and selecting **Files**. Make sure to open settings (the hamburger icon - 3 vertical lines) and select **Show hidden files**.
-
-## Add Remmina to Cairo Dock
-
-1. Navigate to `~/.config/cairo-dock/current_theme/launchers`
-2. Create a new file named `01remmina.desktop` (or any number that is not already in use) with the command `nano 01remmina.desktop`.
-3. Copy and paste the config from below into the file and save it. <br>
-
-    ??? Example "Remmina Launcher Config"
-
-        Take note of the line that says `Icon=/home/dietpi/Downloads/remmina-512x512.png`. You'll have to make sure you have an appropriate icon downloaded to that location. You can fetch the icon that I used with `wget https://static-00.iconduck.com/assets.00/remmina-icon-512x512-y73zws4d.png".
-
-        ```txt title="Remmina Launcher config for cairo"
-        #3.4.1
-
-        #[gtk-about]
-
-        [Desktop Entry]
-
-        #F[Icon]
-        frame_maininfo=
-
-        #d+ Name of the container it belongs to:
-        Container=_MainDock_
-
-        #v
-        sep_display=
-
-        #s[Default] Launcher's name:
-        Name=Remote Desktop
-
-        #S+[Default] Image's name or path:
-        Icon=/home/dietpi/Downloads/remmina-512x512.png
-
-        #s[Default] Command to launch on click:
-        #{Example: nautilus --no-desktop, gedit, etc. You can even enter a shortkey, e.g. <Alt>F1, <Ctrl>c,  <Ctrl>v, etc}
-        Exec=remmina --enable-fullscreen
-
-
-        #X[Extra parameters]
-        frame_extra=
-
-        #b Don't link the launcher with its window
-        #{If you chose to mix launcher and applications, this option will deactivate this behaviour for this launcher only. It can be useful for i>
-        prevent inhibate=false
-
-        #K[Default] Class of the program:
-        #{The only reason you may want to modify this parameter is if you made this launcher by hands. If you dropped it into the dock from the me>
-        StartupWMClass=org
-
-        #b Run in a terminal?
-        Terminal=false
-
-        #i-[0;16] Only show in this specific viewport:
-        #{If '0' the launcher will be displayed on every viewport.}
-        ShowOnViewport=0
-
-        #f[0;100] Order you want for this launcher among the others:
-        Order=1.5
-
-        Icon Type=0
-        Type=Application
-        Origin=
-        ```
+    If for whatever reason, tint2 does not automatically locate your PWAs, you might have some luck finding them in `~/.config/chromium/Default/'Web Applications'` and/or `~/.local/share/applications`.
 
 ## Securing the System
 
@@ -290,20 +478,3 @@ Unless you chose a different distro or changed it during installation, you've pr
     ```
     
 4. You can learn how to password protect Remmina [here](../../software/remmina.md#securing-the-remmina-client).
-
-### Prevent Cairo Dock from Being Modified
-
-1. Make a backup copy of the configuration:
-```
-cp -r /home/dietpi/.config/cairo-dock /home/dietpi/.config/cairo-dock-backup
-```
-2. Change the owner of the directory to root:
-```
-sudo chown root:root /home/dietpi/.config/cairo-dock -R\
-```
-3. Set permissions to make read & execute:
-```
-sudo chmod 755 /home/dietpi/.config/cairo-dock -R
-```
-
-The results aren't perfect, but they're good enough. They can still access the dock's settings by right-clicking, but any changes they male won't persist after a reboot. If someone happens to mess up the dock, a reboot will restore it to its original state. Given the nature of Linux and this particular setup, the power button can be used to restart the machine without consequences. I'm happy with that.
