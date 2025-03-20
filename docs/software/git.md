@@ -118,34 +118,59 @@ git merge --abort
 
 Git supports the use of custom aliases for commands. This is useful for shortening long commands or creating custom commands that are not part of the default Git command set.
 
-You can add a custom alias via the git cli with the following command:
+You can add them to your `.gitconfig` file directly (located in the root of your home folder), or you can use the `git config` command to add them via the git cli.
 
-```shell
-git config --global alias.CustomAlias 'command(s) to run'
+```shell title="Via the git CLI"
+git config --global alias.a 'add'
 ```
 
-You can also add aliases to your `.gitconfig` file directly which lives in the root of your user's home folder (`/home/user` for Linux and `C:\Users\User\` for Windows). Here are some examples:
-
-```
+``` title="Via the .gitconfig file"
+[core]
+...
+[user]
+...
+[safe]
+...
 [alias]
-	st = status
-	sw = switch
-	co = checkout
-	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
-	ci = commit
-	cm = commit -m
-	last = log -1 HEAD
-	del = branch -D
-	cob = checkout -b
-	swb = switch -b
-    done = push origin HEAD
-	mkdone = push origin HEAD && pwsh -Command Update-MyDocs
-	lg = log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30
+	a = add
+	b = branch
+	c = commit
+	d = diff
+	f = fetch
+	g = grep
+	l = log
+	m = merge
+	o = checkout
+	p = pull
+	s = status
+	w = whatchanged
 ```
 
 !!! tip
 
-    You can execute shell commands external to git by prefixing them with `!` and PowerShell commands with `pwsh -Command`.
+    You can execute shell commands external to git by prefixing them with `!` and PowerShell commands by prefixing them with `pwsh -Command`.
+
+    Example:
+    
+    ```
+    # shell
+    git config --global alias.done 'push origin HEAD && !cp /path/to/file.txt /path/to/other/file.txt'
+    # pwsh
+    git config --global alias.done 'push origin HEAD && pwsh -Command My-PSFunction'
+	```
+
+Git also allows you to include config directives from other sources via the `[include]` and `[includeif]` sections. This is a much better way to add and maintain custom aliases in my opinion. 
+
+Simply create a file anywhere you'd like, define your aliases in the `[alias]` section, and include the config directive in `.gitconfig` like so:
+
+```
+[include]
+	path = /path/to/.gitaliases
+```
+
+!!! info "Conditional includes"
+
+	Vincent Schmalbach has a great [article](https://www.vincentschmalbach.com/git-includeif-the-config-superpower-you-didnt-know-about/) about the `includeif` directive. Interesting stuff.
 
 ### Apply Multiple Stashes
 
