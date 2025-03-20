@@ -114,6 +114,39 @@ git merge --abort
 
 ## Tips and Tricks
 
+### Aliases
+
+Git supports the use of custom aliases for commands. This is useful for shortening long commands or creating custom commands that are not part of the default Git command set.
+
+You can add a custom alias via the git cli with the following command:
+
+```shell
+git config --global alias.CustomAlias 'command(s) to run'
+```
+
+You can also add aliases to your `.gitconfig` file directly which lives in the root of your user's home folder (`/home/user` for Linux and `C:\Users\User\` for Windows). Here are some examples:
+
+```
+[alias]
+	st = status
+	sw = switch
+	co = checkout
+	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+	ci = commit
+	cm = commit -m
+	last = log -1 HEAD
+	del = branch -D
+	cob = checkout -b
+	swb = switch -b
+    done = push origin HEAD
+	mkdone = push origin HEAD && pwsh -Command Update-MyDocs
+	lg = log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30
+```
+
+!!! tip
+
+    You can execute shell commands external to git by prefixing them with `!` and PowerShell commands with `pwsh -Command`.
+
 ### Apply Multiple Stashes
 
 Git doesn't allow you to apply a stash if there are conflicts with modified files in the working tree. You must commit any changes first. Well, what if you want to apply multiple stashes so they can be part of the same commit?
