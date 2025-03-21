@@ -18,6 +18,9 @@ theme:
   name: material
   icon:
     logo: material/note-edit-outline
+    tag:
+      notes: material/notebook-edit
+      docs: material/file-document-multiple
   features:
     - content.code.annotate
     - content.code.copy
@@ -50,6 +53,8 @@ extra_css:
 plugins:
   - search
   - offline
+  - meta:
+      enabled: true
   #- encryptcontent
   - git-revision-date-localized:
       enable_creation_date: true
@@ -64,12 +69,20 @@ plugins:
       enabled_on_serve: True
       history_limit: 5
   - mkdocs-audio
+  - tags
 
 # Additional configuration
 extra:
   status:
     new: Recently added
     deprecated: Deprecated
+  tags:
+    Notes: notes
+    Documentation: docs
+    Hardware: hardware
+    Networking: networking
+    Software: software
+    Standard Operating Procedures: sop
 
 # Extensions
 markdown_extensions:
