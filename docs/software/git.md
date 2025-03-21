@@ -168,6 +168,10 @@ Simply create a file anywhere you'd like, define your aliases in the `[alias]` s
 	path = /path/to/.gitaliases
 ```
 
+!!! note
+
+    On my Windows PC, git didn't like `C:\Users\me\path\to\my\.gitalias-file` but was okay with `~/path/to/my/.gitalias-file`.
+
 !!! info "Conditional includes"
 
 	Vincent Schmalbach has a great [article](https://www.vincentschmalbach.com/git-includeif-the-config-superpower-you-didnt-know-about/) about the `includeif` directive. Interesting stuff.
