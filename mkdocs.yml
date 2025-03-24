@@ -77,10 +77,10 @@ extra:
     new: Recently added
     deprecated: Deprecated
   tags:
-    Notes: notes
     Documentation: docs
     Hardware: hardware
     Networking: networking
+    Notes: notes
     Software: software
     Standard Operating Procedures: sop
 
