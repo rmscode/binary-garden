@@ -48,6 +48,13 @@ To resume a call, press the **Resume** soft key or press the **Hold** *button* a
 1. Dial `*90` and the extension of the target phone.
 2. Press the **Send** soft key.
 
+### Reboot
+
+1. If your computer is connected to the phone, close all files on your computer
+2. Press the X key (turns phone display on)
+3. Hold the X key until Reboot prompt appears
+4. Click the button under OK
+
 ### Transferring Calls
 
 **Blind transfers**:

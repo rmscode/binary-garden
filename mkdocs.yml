@@ -18,6 +18,9 @@ theme:
   name: material
   icon:
     logo: material/note-edit-outline
+    tag:
+      notes: material/notebook-edit
+      docs: material/file-document-multiple
   features:
     - content.code.annotate
     - content.code.copy
@@ -50,6 +53,8 @@ extra_css:
 plugins:
   - search
   - offline
+  - meta:
+      enabled: true
   #- encryptcontent
   - git-revision-date-localized:
       enable_creation_date: true
@@ -64,12 +69,20 @@ plugins:
       enabled_on_serve: True
       history_limit: 5
   - mkdocs-audio
+  - tags
 
 # Additional configuration
 extra:
   status:
     new: Recently added
     deprecated: Deprecated
+  tags:
+    Documentation: docs
+    Hardware: hardware
+    Networking: networking
+    Notes: notes
+    Software: software
+    Standard Operating Procedures: sop
 
 # Extensions
 markdown_extensions:
@@ -119,7 +132,7 @@ nav:
       - Git Cheat Sheet: general/cheat-sheets/git-cheat-sheet.md
       - Linux Cheat Sheet: general/cheat-sheets/linux-cheat-sheet.md
     - Guides:
-      - Conference Kiosk: general/guides/linux-conference-machine.md
+      - Lite Conference Room Computer: general/guides/linux-conference-machine.md
       - RDP Thin Client: general/guides/remmina-thin-client.md
     - Change Management: general/change-management.md
     - Continuous Availability: general/continuous-availability.md
@@ -281,6 +294,7 @@ nav:
     - Quick Assist: software/quick-assist.md
     - Remote Desktop: software/remote-desktop.md
     - Remmina: software/remmina.md
+    - Tint2: software/tint2.md
     - Uhubctl: software/uhubctl.md
     - X Windows System: software/x11.md
     - Zoom: software/zoom.md

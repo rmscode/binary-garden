@@ -114,6 +114,68 @@ git merge --abort
 
 ## Tips and Tricks
 
+### Aliases
+
+Git supports the use of custom aliases for commands. This is useful for shortening long commands or creating custom commands that are not part of the default Git command set.
+
+You can add them to your `.gitconfig` file directly (located in the root of your home folder), or you can use the `git config` command to add them via the git cli.
+
+```shell title="Via the git CLI"
+git config --global alias.a 'add'
+```
+
+``` title="Via the .gitconfig file"
+[core]
+...
+[user]
+...
+[safe]
+...
+[alias]
+	a = add
+	b = branch
+	c = commit
+	d = diff
+	f = fetch
+	g = grep
+	l = log
+	m = merge
+	o = checkout
+	p = pull
+	s = status
+	w = whatchanged
+```
+
+!!! tip
+
+    You can execute shell commands external to git by prefixing them with `!` and PowerShell commands by prefixing them with `pwsh -Command`.
+
+    Example:
+    
+    ```
+    # shell
+    git config --global alias.done 'push origin HEAD && !cp /path/to/file.txt /path/to/other/file.txt'
+    # pwsh
+    git config --global alias.done 'push origin HEAD && pwsh -Command My-PSFunction'
+	```
+
+Git also allows you to include config directives from other sources via the `[include]` and `[includeif]` sections. This is a much better way to add and maintain custom aliases in my opinion. 
+
+Simply create a file anywhere you'd like, define your aliases in the `[alias]` section, and include the config directive in `.gitconfig` like so:
+
+```
+[include]
+	path = /path/to/.gitaliases
+```
+
+!!! note
+
+    On my Windows PC, git didn't like `C:\Users\me\path\to\my\.gitalias-file` but was okay with `~/path/to/my/.gitalias-file`.
+
+!!! info "Conditional includes"
+
+	Vincent Schmalbach has a great [article](https://www.vincentschmalbach.com/git-includeif-the-config-superpower-you-didnt-know-about/) about the `includeif` directive. Interesting stuff.
+
 ### Apply Multiple Stashes
 
 Git doesn't allow you to apply a stash if there are conflicts with modified files in the working tree. You must commit any changes first. Well, what if you want to apply multiple stashes so they can be part of the same commit?

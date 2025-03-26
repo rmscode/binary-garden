@@ -491,3 +491,27 @@ See [here](../../x11.md) for more X11 commands, including how to find the `DISPL
 !!! info
 
     For a more permanent solution, add those commands to the end of your `~/.bashrc` file and the will be executed automatically on login.
+
+## Hyper-V
+
+```
+(EE) Cannot run in framebuffer mode. Please specify busIDs for all frambuffer devices
+...
+(EE) Failed to load module "fbdev" (module does not exist, 0)
+```
+
+Sometime ago, I tried to get DietPi running in Hyper-V for testing purposes but I couldn't get the X window system to work. Recently (3/14/24), I tried again and figured it out.
+
+Follow the DietPi's [guidance](https://dietpi.com/docs/install/#how-to-install-dietpi-hyper-v) for initial setup and then mine:
+
+1. Install missing `fbdev` driver:
+    - `sudo apt install xserver-xorg-video-fbdev`
+2. After installing X or any application that requires it (ie Chromium), run the following command to generate an initial configuration file:
+    - `Xorg -configure`
+3. Copy the generated file to `/etc/X11/xorg.conf`:
+    - `sudo cp /home/dietpi/xorg.conf.new /usr/share/X11/xorg.conf.d/98-custom.conf`
+4. Specify the fbdev driver (replace modesetting) under the "Device" section:
+    - `sudo nano /usr/share/X11/xorg.conf.d/98-custom.conf`
+5. Fix permissions:
+    - `sudo chmod 0666 /dev/fb0`
+    - `sudo chmod 0666 /dev/tty0`
