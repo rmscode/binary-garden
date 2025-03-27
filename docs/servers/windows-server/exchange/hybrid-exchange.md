@@ -294,23 +294,17 @@ Start-ADSyncSyncCycle -PolicyType Delta
 
 ### Prepare Exchange Hybrid Server
 
-Use `Set-AdServerSettings -ViewEntireForest $true` to view all objects in the forest.
-
-Verify there are no mailboxes on-prem with `Get-Mailbox`.
-
-Verify that the ExO tenant coexistence domain is configured.
-
+1. Use `Set-AdServerSettings -ViewEntireForest $true` to view all objects in the forest.
+2. Verify there are no mailboxes on-prem with `Get-Mailbox`.
+3. Verify that the ExO tenant coexistence domain is configured:<br>
     ```powershell
     Get-AcceptedDomain Hybrid* | Format-Table Name, DomainName, TargetDeliveryDomain
     ```
-
-If the coexistence domain isn't added as a remote domain, add it with:
-
+4. If the coexistence domain isn't added as a remote domain, add it:<br>
     ```powershell
     New-RemoteDomain -Name 'Hybrid Domain - biz.mail.onmicrosoft.com' -DomainName 'biz.mail.onmicrosoft.com'
     ```
-
-If it isn’t set as the Target Delivery Domain, set it with:
+5. If it isn’t set as the Target Delivery Domain, set it:<br>
 
     ```powershell
     Set-RemoteDomain -TargetDeliveryDomain: $true -Identity 'Hybrid Domain - biz.mail.onmicrosoft.com'
@@ -318,27 +312,79 @@ If it isn’t set as the Target Delivery Domain, set it with:
 
 ### Install Management Tools
 
-Install Exchange management tools on a computer/server from where you want to manage Exchange.
-
+1. Install Windows Remote Server Administration Tools on the management server/computer:<br>
 ```powershell
 Install-WindowsFeature rsat-adds
 ```
-
-Download [Exchange Server 2019 CU15](https://learn.microsoft.com/en-us/exchange/new-features/build-numbers-and-release-dates?view=exchserver-2019) or newer.
-
-Mount the Exchange Server ISO on a domain joined computer/server and run the wizard.
-
-No updates > Next x2 > Accept license agreement > Next > Select **Use recommended settings** > Next > Select **Management Tools**, Automatically install Windows Server roles... > Next x2 > Install > Finish
-
-Restart management server.
+2. Download the latest [Exchange Server 2019 CU](https://learn.microsoft.com/en-us/exchange/new-features/build-numbers-and-release-dates?view=exchserver-2019), mount and run the wizard.
+    1. **Do not check for updates**. Click **Next** and once again after the welcome screen.
+    2. Accept the License Agreement. Click **Next**.
+    3. Select **Use recommended settings**. Click **Next**.
+    4. Select **Management Tools** and **Automatically install Windows Server roles...**. Click **Next**.
+    5. Choose install location. Click **Next**.
+    6. Click **Install** and **Finish**.
+3. Restart the management server/computer.
 
 ### Create "Recipient Management EMT" Group
 
+1. Sign-in as a Domain Admin to the computer with the Management Tools installed and load the snap-in.<br>
+```powershell
+Add-PSSnapin *RecipientManagement
+```
+3. Run the `Add-PermissionForEMT.ps1` script located in `C:\Program Files\Microsoft\Exchange Server\V15\Scripts`. 
+
+The script creates a security group called "Recipient Management EMT" and members of this group have recipient management permissions. All admins without domain admin rights who need to perform recipient management should be added to this security group.
+
 ### Test
+
+Shut down the Exchange Hybrid server and test.
+
+```powershell
+# The snap-in must be loaded each time it is needed. Starting EMS will not connect to the Exchange Server because it is offline.
+Add-PSSnapin *RecipientManagement
+# Test recipient cmdlets to confirm they work...
+Get-RemoteMailbox
+```
 
 ### Remove Exchange Hybrid Server
 
+1. Turn on your last Exchange Server, start EMS, and run the command below. Ensure that it isn't set to remote. If it is and you want to continue to access the public folders, you need to [migrate them to Exchange Online](https://learn.microsoft.com/en-us/exchange/collaboration-exo/public-folders/batch-migration-of-legacy-public-folders).<br>
+```powershell
+Get-OrganizationConfig | Format-List PublicFoldersEnabled
+```
+2. Point the MX and Autodiscovery DNS records to Exchange Online instead of your on-prem environment. Update both the internal and external DNS records.<br>
+3. Remove the Autodiscovery Service Connection Point (SCP) on the Exchange Servers by clearing the entry.<br>
+```powershell
+Get-ClientAccessService | Set-ClientAccessService -AutoDiscoverServiceInternalUri $null
+```
+4. Remove the Hybrid Configuration object from Active Directory.<br>
+```powershell
+Remove-HybridConfiguration -Confirm:$false
+```
+5. Verify that the Hybrid Configuration is successfully removed. The output will be empty.<br>
+```powershell
+Get-HybridConfiguration
+```
+6. Disable OAuth configuration from on-premises if it’s present.<br>
+```powershell
+Get-IntraOrganizationConnector | Set-IntraOrganizationConnector -Enabled $false
+# Verify that the enabled column is "False"
+Get-IntraOrganizationConnector | Format-Table Name,Enabled,TargetAddressDomains
+```
+7. Connect to Exchange Online PowerShell and disable OAuth configuration from Microsoft 365 if it’s present.<br>
+```powershell
+Connect-ExchangeOnline
+Get-IntraOrganizationConnector | Set-IntraOrganizationConnector -Enabled $false
+```
+
 ### AD Cleanup
+
+!!! warning
+
+    This can't be undone. Proceed only if you never plan to use the Exchange Server(s) again. That said, it is still possible to install a new Exchange Server in the future. 
+
+1. Run the `CleanupActiveDirectoryEMT.ps1` script located in `C:\Program Files\Microsoft\Exchange Server\V15\Scripts`.
+2. When cleanup completes, you can **remove the AD computer object**. **Do not** uninstall the Exchange server.
 
 ## Troubleshooting
 
