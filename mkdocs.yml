@@ -70,6 +70,7 @@ plugins:
       history_limit: 5
   - mkdocs-audio
   - tags
+  - autolinks
 
 # Additional configuration
 extra:
