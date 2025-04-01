@@ -231,6 +231,9 @@ nav:
       - Yealink: hardware/voip-phones/yealink.md
     - Zyxel:
       - ATP800: hardware/zyxel/atp800.md
+  - Microsoft 365:
+    - Exchange Online:
+      - Hybrid Deployment: microsoft-365/exchange-online/hybrid-deployment.md
   - Networking: 
     - networking/index.md
     - Link Aggregation & LACP Basics: networking/link-aggregation.md
@@ -252,8 +255,6 @@ nav:
           - Troubleshooting: servers/windows-server/group-policy/troubleshooting.md
           - Best Practices: servers/windows-server/group-policy/best-practices.md
       #- Data Deduplication: servers/windows-server/dedup.md
-      - Exchange:
-        - Hybrid Deployment: servers/windows-server/exchange/hybrid-exchange.md
       - Failover Clustering:
         - Overview: servers/windows-server/msft-cluster.md
       - Windows LAPS: servers/windows-server/windows-laps.md
