@@ -232,6 +232,7 @@ nav:
     - Zyxel:
       - ATP800: hardware/zyxel/atp800.md
   - Microsoft 365:
+    - microsoft-365/microsoft-365.md
     - Exchange Online:
       - Hybrid Deployment: microsoft-365/exchange-online/hybrid-deployment.md
   - Networking: 
