@@ -272,6 +272,7 @@ nav:
           - Teams Phone: software/microsoft-365/teams/ms-teams-phone.md
       - Microsoft Office:
         - Outlook: software/microsoft-office/outlook/outlook.md
+        - PowerPoint: software/microsoft-office/powerpoint/powerpoint.md
         - Word:
           - Hide Images: software/microsoft-office/word/hide-images.md
           - Track Changes On/Off: software/microsoft-office/word/track-changes-on-off.md
