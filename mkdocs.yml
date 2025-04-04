@@ -142,6 +142,13 @@ nav:
     - ReFS vs NTFS: general/refs-vs-ntfs.md
     - Storage Snapshot: general/storage-snapshots.md
     - Windows Susbsystem for Linux: general/wsl.md
+  - Cloud:
+    - cloud/index.md
+    - Azure:
+      - cloud/azure/entra-domain-services.md
+    - Microsoft 365:
+      - Exchange Online:
+        - Hybrid Deployment: cloud/microsoft-365/exchange-online/hybrid-deployment.md
   - Hardware: 
     - hardware/index.md
     - Dell EMC:
@@ -231,10 +238,6 @@ nav:
       - Yealink: hardware/voip-phones/yealink.md
     - Zyxel:
       - ATP800: hardware/zyxel/atp800.md
-  - Microsoft 365:
-    - microsoft-365/microsoft-365.md
-    - Exchange Online:
-      - Hybrid Deployment: microsoft-365/exchange-online/hybrid-deployment.md
   - Networking: 
     - networking/index.md
     - Link Aggregation & LACP Basics: networking/link-aggregation.md

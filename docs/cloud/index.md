@@ -4,4 +4,4 @@ search:
   exclude: true
 ---
 
-# Microsoft 365
+# Cloud
