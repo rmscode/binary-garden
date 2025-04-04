@@ -1,6 +1,6 @@
 # Microsoft Teams
 
-## [Register Missing Meeting Add-in for Outlook](../../microsoft-office/outlook/outlook.md#register-missing-teams-meeting-add-in)
+## [Register Missing Meeting Add-in for Outlook](outlook.md#register-missing-teams-meeting-add-in)
 
 ## Record a Meeting
 
