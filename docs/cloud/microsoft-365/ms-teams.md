@@ -1,6 +1,46 @@
-# Teams Phone
+# Microsoft Teams
 
-## Prepare Network Environment
+## [Register Missing Meeting Add-in for Outlook](outlook.md#register-missing-teams-meeting-add-in)
+
+## Record a Meeting
+
+!!! info 
+
+    - Anyone can record a meeting as long as:
+        - The option has been enabled by an admin.
+        - They are not a guest from another organization.
+    - Recordings won't capture:
+        - More than four people's video streams at once.
+        - Whiteboards and annotations.
+        - Shared notes.
+        - Content shared by apps.
+        - Videos or animations embedded in PowerPoint Live presentations.
+    - Only one person can record at a time.
+    - Recordings are processed and saved in the organizer's OneDrive for Business.
+    - The recording shows up in the meeting chat or channel conversation.
+    - Guests and external attendees can view a recording only if it's explicitly shared with them.
+
+**To start recording**:
+
+1. Join or start the meeting.
+2. In your meeting controls, select **More** > **Record and transcribe** > **Start recording**.
+
+**To stop recording**:
+
+1. In the meeting controls, select **More actions** > **record and transcribe**.
+2. Choose **Stop recording** or **Stop Transcription**.
+
+[*Reference*](https://support.microsoft.com/en-us/office/record-a-meeting-in-microsoft-teams-34dfbe7f-b07d-4a27-b4c6-de62f1348c24)
+
+## Tips and Tricks
+
+### Quickly edit last message
+
+If you need to edit a message you recently sent on Teams you can press the up arrow key to edit your last message. This only works if no one has replied to your message yet.
+
+## Teams Phone
+
+### Prepare Network Environment
 
 - Review access to: Microsoft Teams, Intune, Microsoft Entra ID, & Microsoft Common destinations.
     - Open required ports to the required destinations documented in [Teams Android Device - Network Security](https://learn.microsoft.com/en-us/microsoftteams/rooms/security?tabs=Android#network-security)
@@ -11,7 +51,7 @@
 
 [*Reference*](https://learn.microsoft.com/en-us/microsoftteams/phones/prepare-network-teams-phones)
 
-### Bandwidth
+#### Bandwidth
 
 Feature | Standard       | Advanced
 ------- | -------------- | -----------------------
@@ -29,7 +69,7 @@ See [here](https://learn.microsoft.com/en-us/microsoftteams/meeting-policies-aud
 
 [*Reference*](https://learn.microsoft.com/en-us/microsoftteams/phones/qos-on-teams-phones#how-much-bandwidth-does-a-microsoft-teams-phone-device-use)
 
-### QoS
+#### QoS
 
 Microsoft Teams Rooms supports Quality of Service (QoS) Differentiated Services Code Point (DSCP) markings to ensure you can manage the media traffic on your corporate network. Microsoft's recommendations are below.
 
@@ -70,9 +110,7 @@ See [here](https://learn.microsoft.com/en-us/microsoftteams/qos-in-teams-clients
 
 [*Reference*](https://learn.microsoft.com/en-us/microsoftteams/phones/qos-on-teams-phones#quality-of-service-qos-with-microsoft-teams-phones)
 
-## Set up and Configure
-
-### Teams Phones (User Accounts)
+### Set up: Teams Phones (User Accounts)
 
 #### Buy the licenses
 
@@ -164,7 +202,7 @@ Your port order request will be updated daily. If your port order is rejected by
 
 [*Reference*](https://learn.microsoft.com/en-us/microsoftteams/assign-change-or-remove-a-phone-number-for-a-user#assign-a-phone-number-to-a-user)
 
-### Common Area Phones (Service Accounts)
+### Set up: Common Area Phones (Service Accounts)
 
 #### Buy the licenses
 
@@ -188,8 +226,8 @@ If you're deploying one device:
 
 !!! note
 
-	You don't need to add a license with Phone System features. It's included with the Teams Shared Devices license.
-	
+    You don't need to add a license with Phone System features. It's included with the Teams Shared Devices license.
+    
 If you're creating and assigning licenses for more than one account at once, use PowerShell:
 
 1. Create a CSV file containing the required user account information.<br>
@@ -217,8 +255,8 @@ foreach ($user in $users) {
     $newUser = New-MgUser -DisplayName $user.DisplayName -GivenName $user.FirstName -Surname $user.LastName -UserPrincipalName $user.UserPrincipalName -UsageLocation $user.UsageLocation -MailNickname $user.MailNickname -PasswordProfile $passwordProfile -AccountEnabled
 
 # Assign a license to the new user
-	$teamsSharedDevicesSku = Get-MgSubscribedSku -All | Where SkuPartNumber -eq 'MCOCAP'
-	Set-MgUserLicense -UserId $newUser.Id -AddLicenses @{SkuId = $teamsSharedDevicesSku.SkuId} -RemoveLicenses @()
+    $teamsSharedDevicesSku = Get-MgSubscribedSku -All | Where SkuPartNumber -eq 'MCOCAP'
+    Set-MgUserLicense -UserId $newUser.Id -AddLicenses @{SkuId = $teamsSharedDevicesSku.SkuId} -RemoveLicenses @()
 
 }
 
@@ -229,7 +267,7 @@ $users | Export-Csv -Path "C:\temp\NewAccountResults.csv" -NoTypeInformation
 
 !!! info 
 
-	[Android mobile phones](https://learn.microsoft.com/en-us/microsoftteams/phones/common-area-mobile-phones) can be set up as common area phones as well. This is ideal for "frontline workers" in the field.
+    [Android mobile phones](https://learn.microsoft.com/en-us/microsoftteams/phones/common-area-mobile-phones) can be set up as common area phones as well. This is ideal for "frontline workers" in the field.
 
 [*Reference*](https://learn.microsoft.com/en-us/microsoftteams/phones/set-up-common-area-phones#step-2---create-a-new-resource-account-and-assign-licenses)
 
@@ -307,9 +345,9 @@ Sign out a device via the Teams Admin center:
 
 We don't have any, but the [Yealink MP45](https://a.co/d/euavurH) seems to be a decent option should we ever decide to buy some.
 
-## Auto Attendants and Call Queues
+### Auto Attendants and Call Queues
 
-### Prerequisites
+#### Prerequisites
 
 - A [Resource Account](#create-a-new-resource-account-and-assign-licenses) for each Auto attendant or Call queue. 
 - Free Teams Phone [Resource Account licenses](https://learn.microsoft.com/en-us/microsoftteams/teams-add-on-licensing/virtual-user#how-to-obtain-microsoft-teams-phone-resource-account-licenses) for said Resource Accounts.
@@ -322,7 +360,7 @@ We don't have any, but the [Yealink MP45](https://a.co/d/euavurH) seems to be a 
 
 Theres a bunch more to read in [Microsoft's docs](https://learn.microsoft.com/en-us/microsoftteams/plan-auto-attendant-call-queue) . . . 
 
-### Auto Attendants
+#### Auto Attendants
 
 [Teams Admin Center](https://admin.teams.microsoft.com/) > Expand **Voice** > Select **Auto attendants** > Select **Add**
 
@@ -369,7 +407,7 @@ Theres a bunch more to read in [Microsoft's docs](https://learn.microsoft.com/en
 
 [*Reference*](https://learn.microsoft.com/en-us/microsoftteams/create-a-phone-system-auto-attendant)
 
-### Call Queues
+#### Call Queues
 
 [Teams Admin Center](https://admin.teams.microsoft.com/) > Expand **Voice** > Select **Call queues** > Select **Add**
 
@@ -459,7 +497,7 @@ Theres a bunch more to read in [Microsoft's docs](https://learn.microsoft.com/en
 
 [*Reference*](https://learn.microsoft.com/en-us/microsoftteams/create-a-phone-system-call-queue)
 
-## Caller ID
+### Caller ID
 
 The default outbound caller ID is the number assigned to the user. To set a substitute number, create a custom caller ID policy:
 
@@ -495,7 +533,7 @@ The default outbound caller ID is the number assigned to the user. To set a subs
 
 [*Reference*](https://learn.microsoft.com/en-us/microsoftteams/caller-id-policies)
 
-## Call Forwarding and Delegation
+### Call Forwarding and Delegation
 
 1. In the Teams admin center, got o **Users** > **Manage users** and select a user.
 2. Go to the **Voice** tab.
@@ -513,7 +551,7 @@ The default outbound caller ID is the number assigned to the user. To set a subs
 
 [*Reference*](https://learn.microsoft.com/en-us/microsoftteams/user-call-settings)
 
-## Shared Line Appearance
+### Shared Line Appearance
 
 Lets a user choose a delegate to answer or handle calls on their behalf. This is helpful if a user has an administrative assistant who regularly handles the user's calls.
 
