@@ -149,6 +149,7 @@ nav:
     - Microsoft 365:
       - Exchange Online:
         - Hybrid Deployment: cloud/microsoft-365/exchange-online/hybrid-deployment.md
+      - Teams: cloud/microsoft-365/ms-teams.md
   - Hardware: 
     - hardware/index.md
     - Dell EMC:
@@ -271,8 +272,6 @@ nav:
     - LibreOffice:
       - Impress: software/libre-office/impress.md
     - Microsoft:
-      - Microsoft 365:
-        - Teams: software/microsoft-365/teams/ms-teams.md
       - Microsoft Office:
         - Outlook: software/microsoft-office/outlook/outlook.md
         - Word:
