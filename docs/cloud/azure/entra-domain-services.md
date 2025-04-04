@@ -6,11 +6,9 @@ Domain Services integrates seamlessly with your existing Entra tenant, enabling 
 
 !!! note
 
-    Microsoft never explicitly declares that you can't connect on-premises machines to Entra Domain Services with a site-to-site VPN nor do they state whether its supported or not. It is very much a gray area. There will be plenty examples of their careful wording in my notes below.
+    Microsoft never explicitly declares that you can't connect on-premises machines to Entra Domain Services with a site-to-site VPN nor do they state whether its supported or not. It is very much a gray area. However, there are plenty examples of their careful wording for what they do support.
 
 ## Use Case Scenarios
-
-### Common ways to provide identity solutions in the cloud
 
 IT admins often use one of the following solutions to provide an identity service to a applications that run in Azure:
 
@@ -24,41 +22,33 @@ IT admins often use one of the following solutions to provide an identity servic
 
     Microsoft Entra Domain Services offers alternatives to the need to create VPN connections back to an on-premises AD DS environment or run and manage VMs in Azure to provide identity services.
 
-### Entra Domain Services for hybrid organizations
+#### Entra Domain Services for hybrid organizations
+
+Applications and server workloads that require domain services are deployed in a virtual network in Azure. Identity information is synchronized from an on-premises directory to a Microsoft Entra tenant using Microsoft Entra Connect. 
 
 !!! quote
 
     Legacy applications migrated to Azure as part of a lift and shift strategy may use traditional LDAP connections to provide identity information. To support this hybrid infrastructure, identity information from an on-premises AD DS environment can be synchronized to a Microsoft Entra tenant. Microsoft Entra Domain Services then provides these legacy applications in Azure with an identity source, without the need to configure and manage application connectivity back to on-premises directory services.
 
-- Applications and server workloads that require domain services are deployed in a virtual network in Azure.
-- To synchronize identity information from their on-premises directory to their Microsoft Entra tenant, Litware Corporation deploys Microsoft Entra Connect.
-- The IT team enables Microsoft Entra Domain Services for their Microsoft Entra tenant in this, or a peered, virtual network.
-- Applications and VMs deployed in the Azure virtual network can then use Microsoft Entra Domain Services features like domain join, LDAP read, LDAP bind, NTLM and Kerberos authentication, and Group Policy.
+#### Entra Domain Services for cloud-only organizations
 
-!!! info "Important"
+All user identities, their credentials, and group memberships are created and managed in Microsoft Entra ID. There is no additional configuration of Microsoft Entra Connect to synchronize any identity information from an on-premises directory. Applications and server workloads that require domain services are deployed in a virtual network in Azure.
 
-    It's not supported to install Microsoft Entra Connect in a managed domain to synchronize objects back to Microsoft Entra ID.
-
-### Entra Domain Services for cloud-only organizations
-
-All user identities, their credentials, and group memberships are created and managed in Microsoft Entra ID. There is no additional configuration of Microsoft Entra Connect to synchronize any identity information from an on-premises directory.
-
-- Applications and server workloads that require domain services are deployed in a virtual network in Azure.
-- The IT team enables Microsoft Entra Domain Services for their Microsoft Entra tenant in this, or a peered, virtual network.
-- Applications and VMs deployed in the Azure virtual network can then use Microsoft Entra Domain Services features like domain join, LDAP read, LDAP bind, NTLM and Kerberos authentication, and Group Policy.
-
-### Secure Administration of Azure VMs
+#### Secure Administration of Azure VMs
 
 Azure VMs joined to a managed domain let you use a single set of AD credentials. There is also the added benefit of being able to ue Group Policy to administer and secure the VMs.
 
-### Lift-and-shift on-premises applications that use LDAP bind authentication
+#### Lift-and-shift on-premises applications that use LDAP
 
-Microsoft provides a sample scenario in their docs where Contoso has an on-premises application purchased many years ago that authenticates users by performing an LDAP bind to an on-premises ADDS. The only solution they provide is migrating the application to an Azure VM and join it to a managed domain.
+Legacy applications that require LDAP authetication or are designed to read directory information using LDAP.
 
 !!! quote 
 
     For this scenario, Microsoft Entra Domain Services lets applications perform LDAP binds as part of the authentication process. Legacy on-premises applications can lift-and-shift into Azure and continue to seamlessly authenticate users without any change in configuration or user experience.
 
+## Site-to-site VPN from Entra Domain Services to on-premises?
+
+This is something I have wondered about and discussed with Matt. My skepticism leans more so towards whether its supported, not so much whether it would work. I know it would work, actually. I came across a reddit thread where someone had mentinoed using Entra Domain Services, so I [asked them](https://www.reddit.com/r/sysadmin/comments/1jqi2y6/entra_id_to_onprem/ml7a9op/) about their setup.
 
 ## References
 
