@@ -1,5 +1,7 @@
 # Entra Domain Services
 
+## Overview
+
 Entra Domain Services (formerly known as Azure Active Directory Domain Services or AADDS) provides managed domain services in the cloud without the need to deploy, manage, or patch domain controllers. This allows you to run legacy applications in the cloud that can't use modern authentication methods, or where you don't want directory lookups to always go back to an on-premises Active Directory environment. 
 
 Domain Services integrates seamlessly with your existing Entra tenant, enabling users to sign in to services and applications connected to the managed domain using their current credentials. According to Microsoft, these features facilitate a smoother *lift-and-shift* of on-premises resources to Azure.
@@ -8,7 +10,7 @@ Domain Services integrates seamlessly with your existing Entra tenant, enabling 
 
     Microsoft never explicitly declares that you can't connect on-premises machines to Entra Domain Services with a site-to-site VPN nor do they state whether its supported or not. It is very much a gray area. However, there are plenty examples of their careful wording for what they do support.
 
-## Use Case Scenarios
+### Use Case Scenarios
 
 IT admins often use one of the following solutions to provide an identity service to a applications that run in Azure:
 
@@ -46,11 +48,13 @@ Legacy applications that require LDAP authetication or are designed to read dire
 
     For this scenario, Microsoft Entra Domain Services lets applications perform LDAP binds as part of the authentication process. Legacy on-premises applications can lift-and-shift into Azure and continue to seamlessly authenticate users without any change in configuration or user experience.
 
-## Site-to-site VPN from Entra Domain Services to on-premises?
+### Site-to-site VPN from Entra Domain Services to on-premises?
 
-This is something I have wondered about and discussed with Matt. My skepticism leans more so towards whether its supported, not so much whether it would work. I know it would work, actually. I came across a reddit thread where someone had mentinoed using Entra Domain Services, so I [asked them](https://www.reddit.com/r/sysadmin/comments/1jqi2y6/entra_id_to_onprem/ml7a9op/) about their setup.
+This is something I have wondered about and discussed with Matt. My skepticism leans more so towards whether its supported, not so much whether it would work. I know it would work, actually. I came across a reddit thread where someone had mentioned using Entra Domain Services, so I [asked them](https://www.reddit.com/r/sysadmin/comments/1jqi2y6/entra_id_to_onprem/ml7a9op/) about their setup.
 
-## References
+A more reliable method of bridging the gap is a combination of [Azure ExpressRoute](https://learn.microsoft.com/en-us/azure/expressroute/expressroute-introduction) and a [two-way forest trust in Entra Domain Services](https://learn.microsoft.com/en-us/entra/identity/domain-services/tutorial-create-forest-trust) with an on-prem domain. This is currently a preview feature. It was first announced in [December of 2023](https://devblogs.microsoft.com/identity/trust-domain-options/).
+
+### References
 
 [What is Microsoft Entra Domain Services?](https://learn.microsoft.com/en-us/entra/identity/domain-services/overview)<br>
 [Common Deployment Scenarios](https://learn.microsoft.com/en-us/entra/identity/domain-services/scenarios#common-ways-to-provide-identity-solutions-in-the-cloud)<br>
