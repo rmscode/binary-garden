@@ -47,6 +47,30 @@ By default, Outlook will automatically delete meeting requests from your inbox a
 
 To launch Outlook in safe mode, hold the **Ctrl** key while clicking the Outlook shortcut. This will launch Outlook in safe mode.
 
+## Export Outlook Data to .pst file
+
+1. At the top of the ribbon in classic Outlook, click **File**.
+2. Click **Open & Export** > **Import/Export**.
+3. Click **Outlook Data File (.pst)** > **Next**.
+4. Select the name of the account to export and make sure that **Include subfolders** is ticked. Click **Next**.
+    - Alternatively, you can choose select folders/items if you do not wish to export all of your data.
+5. Choose where to save the .pst file, anter a file name, and click **OK**.
+6. Click **Finish**.
+
+### Filter by date range
+
+Complete steps 1-4 above, then:
+
+1. Click on **Filter**.
+2. Select the **Advanced** tab.
+3. From the **Field** dropdown, select **All Mail fields** > **Received**.
+4. Choose **between** from the **Condition** dropdown.
+5. Type a date range into the box and click **Add to List**.
+    - **Example**: `01/01/2024 and 12/31/2024` (Yes, you are actually typing the word "and" in between the two dates.)
+6. Click **OK** > **Next**.
+7. Choose where to save the .pst file, anter a file name, and click **OK**.
+8. Click **Finish**.
+
 ## Issues 
 
 ### Mailbox Disconnected
@@ -58,4 +82,4 @@ After adding a second mailbox to Outlook, my main mailbox would not connect to e
 3. Create new data file
 4. Select "Email tab" and delete all email accounts
 5. Re-add email accounts from same tab by selecting "new".
-6. Relaunch Outlook and sign in when prompted. 
+6. Relaunch Outlook and sign in when prompted.
