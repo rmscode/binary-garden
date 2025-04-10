@@ -50,9 +50,11 @@ Legacy applications that require LDAP authetication or are designed to read dire
 
 ### Site-to-site VPN from Entra Domain Services to on-premises?
 
-This is something I have wondered about and discussed with Matt. My skepticism leans more so towards whether its supported, not so much whether it would work. I know it would work, actually. I came across a reddit thread where someone had mentioned using Entra Domain Services, so I [asked them](https://www.reddit.com/r/sysadmin/comments/1jqi2y6/entra_id_to_onprem/ml7a9op/) about their setup.
+This is something I have wondered about and discussed with Matt. My skepticism leans more so towards whether its supported, not so much whether it would work. I know it would work, actually. I came across a reddit thread where someone had mentioned using Entra Domain Services, so I [asked them](https://www.reddit.com/r/sysadmin/comments/1jqi2y6/entra_id_to_onprem/ml7a9op/) about their setup. They use a site-to-site VPN to join their on-prem servers to their managed domain in Azure.
 
-A more reliable method of bridging the gap is a combination of [Azure ExpressRoute](https://learn.microsoft.com/en-us/azure/expressroute/expressroute-introduction) and a [two-way forest trust in Entra Domain Services](https://learn.microsoft.com/en-us/entra/identity/domain-services/tutorial-create-forest-trust) with an on-prem domain. This is currently a preview feature. It was first announced in [December of 2023](https://devblogs.microsoft.com/identity/trust-domain-options/).
+A more reliable method of bridging the gap is a combination of [Azure ExpressRoute](https://learn.microsoft.com/en-us/azure/expressroute/expressroute-introduction) and a [two-way forest trust in Entra Domain Services](https://learn.microsoft.com/en-us/entra/identity/domain-services/tutorial-create-forest-trust) with an on-prem domain. The two-way trust is currently a preview feature. It was first announced in [December of 2023](https://devblogs.microsoft.com/identity/trust-domain-options/).
+
+ExpressRoute looks like it can be quite expensive btw. Aside from the fee paid to Microsoft, you will also have expenses with your connectivity provider. One [example](https://blog.jhnr.ch/2018/05/29/azure-expressroute-overview/#pricing-example) that I saw was ~$9k a month! Knowing that, its completely understandable why someone would want to use a site-to-site VPN instead.
 
 ### References
 
