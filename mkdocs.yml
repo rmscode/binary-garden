@@ -294,6 +294,7 @@ nav:
     - ALSA: software/alsa.md
     - Git: software/git.md
     - Hyper-V: software/hyper-v.md
+    - iPerf3: software/iperf3.md
     - Notepad++: software/notepadpp.md
     - PulseAudio: software/pulse-audio.md
     - Quick Assist: software/quick-assist.md
