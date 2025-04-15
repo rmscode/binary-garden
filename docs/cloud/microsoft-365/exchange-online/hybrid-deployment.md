@@ -2,12 +2,12 @@
 
 ## Pre-check
 
-- [ ] Latest CU or RU thats available for the version of Exchange that you are running. The immediately previous release is also supported.
+- [x] Latest CU or RU thats available for the version of Exchange that you are running. The immediately previous release is also supported.
 - [x] At least one mailbox server.
 - [ ] **Custom domains**: Register any custom domains you want to use in your hybrid deployment with M365. You can do this by using the M365 portal, or by optionally configuring Active Directory Federation Services (AD FS) in your on-prem organization.
 - [x] AD synchronization.
 - [ ] **Autodiscover DNS records**: Configure the Autodiscover record for your existing SMTP domains in you public DNS to point to your on-prem Exchange servers
-- [ ] **Certificates**: Assign Exchange services to a valid digital certificate that you purchased from a trusted public certificate authority (CA). Although you should use self-signed certificates for the on-premises federation trust with the Microsoft Federation Gateway, you can't use self-signed certificates for Exchange services in a hybrid deployment.
+- [ ] **Certificates**: Assign Exchange services to a valid digital certificate that you purchased from a trusted public certificate authority (CA). Even though you can use self-signed certificates for the on-premises federation trust with the Microsoft Federation Gateway, you can't use self-signed certificates for Exchange services in a hybrid deployment.
     - The IIS instance on the Exchange servers that are configured in the hybrid deployment require a valid certificate purchased from a CA
     - The EWS external URL and the Autodiscover endpoint that you specified in your public DNS must be listed in the Subject Alternative Name (SAN) field of the certificate. The certificates that you install on the Exchange servers for mail flow in the hybrid deployment must all be issued by the same certificate authority and have the same subject. 
     - More info [here](https://learn.microsoft.com/en-us/exchange/certificate-requirements).
