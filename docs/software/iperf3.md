@@ -73,7 +73,7 @@ iperf3 -c <test_host> -B <interface_ip>
 
 ### Test to Multiple Interfaces at Once
 
-```tite="Use -T to label the streams:"
+```title="Use -T to label the streams:"
 iperf3 -c <test_host_1> -T s1 &
 iperf3 -c <test_host_2> -T s2
 ```
