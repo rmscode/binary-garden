@@ -1,5 +1,9 @@
 # Accessing the CLI
 
+!!! info 
+
+    Jump to the bottom of the page for a list useful CLI commands.
+
 Embedded within the controller modules is a command-line interface (CLI) that enables you to manage and monitor the storage system. The CLI can be accessed in two ways:
 
 - Use SSH or HTTPS on a management host that is remotely connected to a controller module network port through a LAN. HTTP and Telnet are supported, but not recommended.
@@ -67,3 +71,26 @@ From another host, ping the controllers . . .
 !!! note
 
     If you can't access your storage system for at least three minutes after changing the IP address, restart the controllers using the CLI command `restart mc both`.
+
+## Useful Commands
+
+- `show service-tag-info`
+- `show disks`
+- `show pools`
+- `show volumes`
+- `show volume-names`
+- `show volume-groups`
+- `show ports`
+- `show host-groups`
+- `show audit-log`
+- `show fans`
+- `show firmware-update-status`
+- `show power-supplies`
+- `show sensor-status`
+- `check support-assist-connection`
+- `check support-assist-updates`
+- `send support-assist-logs`
+- `show support-assist-contact`
+- `show alerts`
+- `show events`
+- `show versions`
