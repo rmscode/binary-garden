@@ -4,19 +4,23 @@ Shutting down the controller module in an enclosure ensures that a proper failov
 
 ## Using the PowerVault Manager
 
-1. Sign-in to the PowerVault Manager.
-2. Go to **Maintenance > Hardware**.
-3. Under **Enclosure > Actions** select **Restart/Shutdown System**.
-4. Select the **Shut Down** operation.
-5. Select the controller module to shut down: **A**, **B**, or **both**.
-6. Click **Apply**. A confirmation panel appears.
-7. Click **Yes** to continue; otherwise, click **No**. If you clicked **Yes**, a message describes shutdown activity.
+1. Go to **Maintenance > Hardware**.
+2. From the **Enclosure > Actions** drop down menu, select **Restart/Shutdown System**.
+    - The Controller Restart and Shut Down panel appears.
+3. Choose from the following options:
+    - **Restart MC** to restart just the management controller.
+    - **Restart SC** to restart just the storage controller.
+    - **Shutdown SC** to shutdown the storage controller.
+4. Select the controller module to shut down: **A**, **B**, or **both**.
+5. Click **Apply**. A confirmation panel appears.
+6. Click **Yes** to continue; otherwise, click **No**. If you clicked **Yes**, a message describes shutdown activity.
 
 !!! note
 
     If an iSCSI port is connected to a Microsoft Windows host, the following event is recorded in the Windows event log: Initiator failed to connect to the target.
 
-[*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_om/shutting-down-a-controller-module?guid=guid-3f60a81c-6510-4df3-8709-c5b0e4e48025&lang=en-us)
+[*Reference: Owners Manual*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_om/shutting-down-a-controller-module?guid=guid-3f60a81c-6510-4df3-8709-c5b0e4e48025&lang=en-us)<br>
+[*Reference: Dell KB Doc*](https://www.dell.com/support/kbdoc/en-is/000199903/me5-considerations-when-shutting-down-and-moving-an-array-to-a-new-location?msockid=3e39bc691dc06e7c0b05a97f1c026fbf)
 
 ## Using the CLI
 
