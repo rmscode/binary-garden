@@ -61,13 +61,13 @@ This has been found to resolve the following issues:
     - Related incident [here](2024.md##07152024-0810).
 - The Global Address List (GAL) is not updating in Outlook.
 
+!!! note "4/22/25"
+
+    When Matthew used this method to resolve the GAL issue for a few users, he was not prompted for credentials after restarting Outlook. Not sure why that was, but Outlook continued to work without issues.
+
 1. Open **Control Panel** > **User Accounts** > **Credential Manager**
 2. Look for and remove the **MicrosoftOffice16_Data** entry under **Windows Credentials**.
 3. Restart Outlook and enter your credentials when prompted.
-
-!!! note "4/22/25"
-
-    When Matthew used this method to resolve the GAL issue for a few users, he was not prompted for credentials after restarting Outlook.
 
 ## Outlook Mobile App
 
