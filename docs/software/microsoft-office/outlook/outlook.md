@@ -17,24 +17,6 @@ Resolve missing "New Items > Teams Meeting" in Outlook. This appears to happen a
 8. "Teams Meeting" should now be listed under the "New Items" menu.
 Note: It takes a 5-10 seconds for the meeting code to be generated.
 
-## Outlook Mobile App
-
-### Add Email Account (Exchange)
-
-1. Open the Outlook Mobile App
-2. If it's your first time launching the app, tap **Get Started** and then **Skip**. Otherwise, tap **Menu** > **Settings** > **Add Account**.
-3. Enter your company email address and select **Continue**.
-4. Select **Exchange**.
-5. Enter your password and a description for the account.
-6. Select the **Advanced Settings** toggle at the bottom right of the screen.
-7. Ensure that `mail.northeastprecast.com` is entered in the **Server** field.
-8. Leave the **Domain** field blank and enter your full email address in the **Username** field.
-9. Tap the checkmark in the top right corner to finish.
-
-!!! note
-
-    I can confirm that these steps work for both [Android](../../../notes/2024.md#12042024-1139) and [iOS](../../../notes/2024.md#12182024-1037).
-
 ## Prevent Meeting Requests From Being Deleted After Responding
 
 By default, Outlook will automatically delete meeting requests from your inbox after responding. To prevent this, follow these steps:
@@ -70,6 +52,41 @@ Complete steps 1-4 above, then:
 6. Click **OK** > **Next**.
 7. Choose where to save the .pst file, anter a file name, and click **OK**.
 8. Click **Finish**.
+
+## Remove Saved Credentials
+
+This has been found to resolve the following issues:
+
+- When prompted to enter credentials where multiple accounts are set up in Outlook, the wrong credentials are entered and saved. Outlook will fail to sync with the server and will not prompt for the correct credentials again.
+    - Related incident [here](2024.md##07152024-0810).
+- The Global Address List (GAL) is not updating in Outlook.
+
+1. Open **Control Panel** > **User Accounts** > **Credential Manager**
+2. Look for and remove the **MicrosoftOffice16_Data** entry under **Windows Credentials**.
+3. Restart Outlook and enter your credentials when prompted.
+
+!!! note "4/22/25"
+
+    When Matthew used this method to resolve the GAL issue for a few users, he was not prompted for credentials after restarting Outlook.
+
+## Outlook Mobile App
+
+### Add Email Account (Exchange)
+
+1. Open the Outlook Mobile App
+2. If it's your first time launching the app, tap **Get Started** and then **Skip**. Otherwise, tap **Menu** > **Settings** > **Add Account**.
+3. Enter your company email address and select **Continue**.
+4. Select **Exchange**.
+5. Enter your password and a description for the account.
+6. Select the **Advanced Settings** toggle at the bottom right of the screen.
+7. Ensure that `mail.northeastprecast.com` is entered in the **Server** field.
+8. Leave the **Domain** field blank and enter your full email address in the **Username** field.
+9. Tap the checkmark in the top right corner to finish.
+
+!!! note
+
+    I can confirm that these steps work for both [Android](../../../notes/2024.md#12042024-1139) and [iOS](../../../notes/2024.md#12182024-1037).
+
 
 ## Issues 
 
