@@ -36,7 +36,7 @@ To launch Outlook in safe mode, hold the **Ctrl** key while clicking the Outlook
 3. Click **Outlook Data File (.pst)** > **Next**.
 4. Select the name of the account to export and make sure that **Include subfolders** is ticked. Click **Next**.
     - Alternatively, you can choose select folders/items if you do not wish to export all of your data.
-5. Choose where to save the .pst file, anter a file name, and click **OK**.
+5. Choose where to save the .pst file, enter a file name, and click **OK**.
 6. Click **Finish**.
 
 ### Filter by date range
@@ -50,7 +50,7 @@ Complete steps 1-4 above, then:
 5. Type a date range into the box and click **Add to List**.
     - **Example**: `01/01/2024 and 12/31/2024` (Yes, you are actually typing the word "and" in between the two dates.)
 6. Click **OK** > **Next**.
-7. Choose where to save the .pst file, anter a file name, and click **OK**.
+7. Choose where to save the .pst file, enter a file name, and click **OK**.
 8. Click **Finish**.
 
 ## Remove Saved Credentials
