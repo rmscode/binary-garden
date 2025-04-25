@@ -2,38 +2,40 @@
 
 ## Export/Import Passwords
 
-**Exporting**:
+=== "Exporting"
 
-1. Type `edge://wallet/passwords` in the address bar and press <kbd>Enter</kbd>.
-2. Click on the three dots (`...`) on the right end of the **Passwords** heading.
-3. Click on **Export passwords**.
-    - You will be prompted for your Windows user credentials.
-3. Choose a location to save the csv file.
+    1. Type `edge://wallet/passwords` in the address bar and press <kbd>Enter</kbd>.
+    2. Click on the three dots (`...`) on the right end of the **Passwords** heading.
+    3. Click on **Export passwords**.
+        - You will be prompted for your Windows user credentials.
+    4. Choose a location to save the csv file.
 
-!!! warning
+    !!! warning
 
-    Comma Separated Value (CSV) files store information in plain text. Anyone with access to the file can read the passwords. Be sure to delete the file after importing it into your password manager.
+        Comma Separated Value (CSV) files store information in plain text. Anyone with access to the file can read the passwords. Be sure to delete the file after importing it into your password manager.
 
-**Importing**:
+=== "Importing"
 
-1. Follow steps 1 and 2 from above.
-2. Click on **Import passwords**.
-3. Choose a browser or csv file to import from.
+    1. Type `edge://wallet/passwords` in the address bar and press <kbd>Enter</kbd>.
+    2. Click on the three dots (`...`) on the right end of the **Passwords** heading.
+    3. Click on **Import passwords**.
+    4. Choose a browser or csv file to import from.
 
 ## Export/Import Bookmarks
 
-**Exporting**:
+=== "Exporting"
 
-1. Type `edge://favorites` in the address bar and press <kbd>Enter</kbd>.
-2. Click on the three dots (`...`) on the right end of the **Favorites** heading.
-3. Click on **Export favorites**.
-4. Choose a location to save the html file.
+    1. Type `edge://favorites` in the address bar and press <kbd>Enter</kbd>.
+    2. Click on the three dots (`...`) on the right end of the **Favorites** heading.
+    3. Click on **Export favorites**.
+    4. Choose a location to save the html file.
 
-**Importing**:
+=== "Importing"
 
-1. Follow steps 1 and 2 from above.
-2. Click on **Import favorites**.
-3. Choose a browser or html file ("Import from other browsers") to import from.
+    1. Type `edge://favorites` in the address bar and press <kbd>Enter</kbd>.
+    2. Click on the three dots (`...`) on the right end of the **Favorites** heading.
+    3. Click on **Import favorites**.
+    4. Choose a browser or html file ("Import from other browsers") to import from.
 
 !!! tip "If you can find a use case, this can be done programmatically."
 
