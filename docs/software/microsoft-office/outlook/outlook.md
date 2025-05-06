@@ -58,7 +58,7 @@ Complete steps 1-4 above, then:
 This has been found to resolve the following issues:
 
 - When prompted to enter credentials where multiple accounts are set up in Outlook, the wrong credentials are entered and saved. Outlook will fail to sync with the server and will not prompt for the correct credentials again.
-    - Related incident [here](2024.md##07152024-0810).
+    - Related incident [here](2024.md#07152024-0810).
 - The Global Address List (GAL) is not updating in Outlook.
 
 !!! note "4/22/25"
