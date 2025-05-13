@@ -1,5 +1,17 @@
 # Exchange Hybrid Deployment
 
+!!! info
+
+    Before completing any of the steps towards a hybrid deployment that will involve online migrations, its important to consider the following best practices:
+
+    - Data extraction is intensive. The source system must have sufficient resources (CPU time, memory). Otherwise, migrations will be slow and users may be impacted.
+    - Perform migration after business hours.
+    - Hybrid deployment migration is a cloud-initiated pull/push operation, and an Exchange hybrid server acts as the migration server. Using a low-scale virtual machine to act as the hybrid server can results in poor migration performance.
+    - If possible, use powerful physical servers instead of VMs for Exchange hybrid servers.
+    - Use multiple hybrid servers.
+    - Tweak the MRSProxy [concurrency settings](https://learn.microsoft.com/en-us/exchange/performance-best-practices#mrsproxy-best-practice).
+    - `New-MoveRequest` with the `SuspendWhenReadyToComplete` option to get an indication of migration performance. Remember to remove the migration requests afterwards.
+
 ## Pre-check
 
 - [x] Latest CU or RU thats available for the version of Exchange that you are running. The immediately previous release is also supported.
