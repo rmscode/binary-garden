@@ -279,6 +279,7 @@ nav:
         - Word:
           - Hide Images: software/microsoft-office/word/hide-images.md
           - Track Changes On/Off: software/microsoft-office/word/track-changes-on-off.md
+        - Teams: cloud/microsoft-365/ms-teams.md
       - Windows LAPS: servers/windows-server/windows-laps.md
     - MkDocs:
       - Getting Started: software/mkdocs/getting-started.md
