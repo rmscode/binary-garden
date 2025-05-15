@@ -404,6 +404,7 @@ Get-IntraOrganizationConnector | Set-IntraOrganizationConnector -Enabled $false
 [*Ali Tajran: Error validating hybrid agent*](https://www.alitajran.com/error-validate-hybrid-agent-for-exchange-usage/)<br>
 [*Regain Software: Resolve connection issues*](https://www.regainsoftware.com/blog/hybrid-configuration-wizard-resolve-connection-issues-with-office365/)<br>
 [*MSFT: Troubleshooting HCW modern agent like a pro*](https://techcommunity.microsoft.com/blog/exchange/modern-hcw-hybrid-agent-troubleshooting-like-a-pro/1558725)<br>
+[*MSFT: Troubleshooting Hybrid Migration Endpoints*](https://techcommunity.microsoft.com/blog/exchange/troubleshooting-hybrid-migration-endpoints-in-classic-and-modern-hybrid/953006)<br>
 [*MSFT: Migration Issues*](https://learn.microsoft.com/en-us/exchange/troubleshoot/move-or-migrate-mailboxes/troubleshoot-migration-issues-in-exchange-hybrid)<br>
 [*MSFT: Troubleshooting Hybrid mail flow*](https://techcommunity.microsoft.com/blog/exchange/demystifying-and-troubleshooting-hybrid-mail-flow-when-is-a-message-internal/1420838)<br>
 [*MSFT: Delays in provisioning of user/mailbox or syn changes in ExO*](https://learn.microsoft.com/en-us/exchange/troubleshoot/user-and-shared-mailboxes/delays-provision-mailbox-sync-changes)
