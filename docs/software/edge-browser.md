@@ -37,9 +37,11 @@
     3. Click on **Import favorites**.
     4. Choose a browser or html file ("Import from other browsers") to import from.
 
-!!! tip "If you can find a use case, this can be done programmatically."
+??? tip "If you can find a use case, this can be done programmatically."
 
     Edge stores favorites in a JSON file.
+    
+    The following examples are written in **PowerShell**.
 
     ```powershell title="Exporting"
     $favoritesFile = "$env:LOCALAPPDATA\Microsoft\Edge\User Data\Default\Bookmarks" # This is a file, not a folder
