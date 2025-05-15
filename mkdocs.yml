@@ -293,6 +293,7 @@ nav:
       - Windows: 
         - General: software/operating-systems/windows/windows.md
     - ALSA: software/alsa.md
+    - Bluebeam Revu: software/bluebeam-.md
     - Edge Browser: software/edge-browser.md
     - Git: software/git.md
     - Hyper-V: software/hyper-v.md
