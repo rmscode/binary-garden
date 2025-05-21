@@ -31,6 +31,12 @@ To launch Outlook in safe mode, hold the **Ctrl** key while clicking the Outlook
 
 ## Export Outlook Data to .pst file
 
+!!! tip
+
+    Multiple PST files can be imported at the same time to different associated Exchange Online archive mailboxes in one shot using a mapping file.
+
+    <https://learn.microsoft.com/en-us/purview/importing-pst-files-to-office-365>
+
 1. At the top of the ribbon in classic Outlook, click **File**.
 2. Click **Open & Export** > **Import/Export**.
 3. Click **Outlook Data File (.pst)** > **Next**.
