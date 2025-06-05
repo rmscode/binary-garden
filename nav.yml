@@ -19,7 +19,9 @@ nav:
     - cloud/index.md
     - Azure:
       - cloud/azure/entra-domain-services.md
-    - Microsoft 365:
+    - Microsoft|Office 365:
+      - Entra:
+        - MFA: cloud/microsoft-365/entra/microsoft-365-mfa.md
       - Exchange Online:
         - Hybrid Deployment: cloud/microsoft-365/exchange-online/hybrid-deployment.md
       - OneDrive: cloud/microsoft-365/onedrive.md
