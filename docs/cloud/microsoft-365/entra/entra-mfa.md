@@ -30,7 +30,7 @@ Microsoft strongly recommends that you enforce MFA for your users via security d
 
     If your tenant was created on or after October 22, 2019, security defaults are already enabled.
 
-## Supported Methods
+## Authentication Methods
 
 - Microsoft Authenticator app
 - FIDO2 security keys
@@ -41,6 +41,35 @@ Microsoft strongly recommends that you enforce MFA for your users via security d
 To enable or disable the different authentication methods, browse to **Identity** > **Protection** > **Authentication methods**
 
 For more info, read "[*What authentication and verification methods are available in Microsoft Entra ID?*](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods)".
+
+### Temporary Access Pass (TAP)
+
+A TAP is a time-limited passcode that can be used to onboard passwordless authentication methods or **make recovery easier when a user loses or forgets a strong authentication method**.
+
+!!! info
+
+    TAPs can be created for any user, but only users included in the policy can sign-in with it.
+
+**Configure TAP in the Authentication methods policy**:
+
+1. Open the [Microsoft Entra ID Admin Center](https://entra.microsoft.com/).
+2. In the left navigation pane, expand **Identity** > **Authentication methods** and select **Policies**.
+3. Select **Temporary Access Pass** and enable.
+4. Choose the users to include or exclude.
+5. (Optional) Select **Configure** to adjust the TAP settings.
+6. Save.
+
+**Create a TAP**:
+
+1. Browse to **Identity** > **Users**.
+2. Select a user.
+3. Select **Authentication methods** and select **Add authentication method**.
+4. Select **Temporary Access Pass**.
+5. Define a custom activation time or duration and select **Add**.
+
+Users can use the TAP to update or register a method by visiting <https://aka.ms/mysecurityinfo>.
+
+Users can also use their TAP to register Microsoft Authenticator with their account. By adding a work or school account and signing in with a TAP users can register both passkeys and passwordless phone sign-in directly from the Authenticator app.
 
 ## Enabling/Disabling MFA
 
@@ -63,6 +92,10 @@ MFA is enabled *and* enforced for *all* users when security defaults are turned 
     The per-user settings supersede the MFA enforcement in security defaults. You may enable, enforce or disable MFA on a per-user basis regardless of whether the security defaults are being used or not.
 
 ## Reset User MFA
+
+!!! info "[Temporary Access Pass](#temporary-access-pass-tap)"
+
+    Creating a [TAP](#temporary-access-pass-tap) can make recovery easier when a user loses or forgets a strong authentication method. 
 
 ### Using Microsoft Entra ID Admin Center
 
