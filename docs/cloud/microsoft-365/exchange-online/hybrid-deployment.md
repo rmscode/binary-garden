@@ -16,10 +16,10 @@
 
 - [x] Latest CU or RU thats available for the version of Exchange that you are running. The immediately previous release is also supported.
 - [x] At least one mailbox server.
-- [ ] **Custom domains**: Register any custom domains you want to use in your hybrid deployment with M365. You can do this by using the M365 portal, or by optionally configuring Active Directory Federation Services (AD FS) in your on-prem organization.
+- [x] **Custom domains**: Register any custom domains you want to use in your hybrid deployment with M365. You can do this by using the M365 portal, or by optionally configuring Active Directory Federation Services (AD FS) in your on-prem organization.
 - [x] AD synchronization.
-- [ ] **Autodiscover DNS records**: Configure the Autodiscover record for your existing SMTP domains in you public DNS to point to your on-prem Exchange servers
-- [ ] **Certificates**: Assign Exchange services to a valid digital certificate that you purchased from a trusted public certificate authority (CA). Even though you can use self-signed certificates for the on-premises federation trust with the Microsoft Federation Gateway, you can't use self-signed certificates for Exchange services in a hybrid deployment.
+- [x] **Autodiscover DNS records**: Configure the Autodiscover record for your existing SMTP domains in you public DNS to point to your on-prem Exchange servers
+- [x] **Certificates**: Assign Exchange services to a valid digital certificate that you purchased from a trusted public certificate authority (CA). Even though you can use self-signed certificates for the on-premises federation trust with the Microsoft Federation Gateway, you can't use self-signed certificates for Exchange services in a hybrid deployment.
     - The IIS instance on the Exchange servers that are configured in the hybrid deployment require a valid certificate purchased from a CA
     - The EWS external URL and the Autodiscover endpoint that you specified in your public DNS must be listed in the Subject Alternative Name (SAN) field of the certificate. The certificates that you install on the Exchange servers for mail flow in the hybrid deployment must all be issued by the same certificate authority and have the same subject. 
     - More info [here](https://learn.microsoft.com/en-us/exchange/certificate-requirements).
@@ -54,11 +54,17 @@ The [Remote Connectivity Analyzer](https://testconnectivity.microsoft.com/) is u
 
 There are far better guides that already exist for walking you through the HCW. Here are a few:
 
+- [Office 365 Concepts: Hybrid Configuration Wizard Step by Step (Classic Hybrid Deployment)](https://office365concepts.com/hybrid-configuration-wizard-step-by-step/#run-hybrid-configuration-wizard-step-by-step)
 - [Ali Tajran: Run the Hybrid Configuration Wizard (Modern Hybrid Deployment)](https://www.alitajran.com/hybrid-configuration-wizard/#h-run-hybrid-configuration-wizard)
     - He has a great [collection of Exchange Hybrid articles](https://www.alitajran.com/exchange-hybrid/).
-- [Office 365 Concepts: Hybrid Configuration Wizard Step by Step (Classic Hybrid Deployment)](https://office365concepts.com/hybrid-configuration-wizard-step-by-step/#run-hybrid-configuration-wizard-step-by-step)
 
-I'll probably add more here once we have a chance to test the HCW ourselves. 
+I'll probably add more here once we have a chance to test the HCW ourselves.
+
+!!! note "MX and autodiscover DNS records"
+
+    It is my understanding that there is no need to change the MX records at this point. In fact, the consensus seems to be that the switch shouldn't happen until most/all of your mailboxes have been migrated ([Office365Concepts](https://practical365.com/mx-records-for-exchange-hybrid-deployments/)...I've seen the same mentioned on Reddit plenty as well).
+    
+    For the autodiscover URL DNS record, as long as there are resources on-premises, it should continue to point to the on-premises Exchange servers. [Jaap Wesselius](https://jaapwesselius.com/2015/11/04/autodiscover-in-a-hybrid-scenario/) and [Al Tajran](https://www.alitajran.com/autodiscover-url-exchange-hybrid/) have both written articles about this.
 
 ### Post-check
 
@@ -304,6 +310,8 @@ Start-ADSyncSyncCycle -PolicyType Delta
 
     Ensure that all mailboxes have been migrated to the cloud and that there is no SMTP relay.
 
+I have some notes on this [here](../../../notes/exchange-migration-notes.md#how-and-when-to-decommission-your-on-prem-exchange-server-in-a-hybrid-deployment). Official Microsoft documentation available [here](https://learn.microsoft.com/en-gb/exchange/manage-hybrid-exchange-recipients-with-management-tools). 
+
 ### Prepare Exchange Hybrid Server
 
 1. Use `Set-AdServerSettings -ViewEntireForest $true` to view all objects in the forest.
@@ -365,6 +373,10 @@ Get-RemoteMailbox
 Get-OrganizationConfig | Format-List PublicFoldersEnabled
 ```
 2. Point the MX and Autodiscovery DNS records to Exchange Online instead of your on-prem environment. Update both the internal and external DNS records.<br>
+    1. Sign in to the Microsoft 365 admin center.
+    2. Select **Settings** > **Domains** and select the appropriate domain.
+    3. Go through the wizard or check under **DNS** to find the MX  and auto discovery DNS records. They should look something like `tenant.mail.protection.outlook.com` and `autodiscover.outlook.com`, respectively.
+    4. Sign in to your domain name registrar and update the MX record to point to the new value.
 3. Remove the Autodiscovery Service Connection Point (SCP) on the Exchange Servers by clearing the entry.<br>
 ```powershell
 Get-ClientAccessService | Set-ClientAccessService -AutoDiscoverServiceInternalUri $null
@@ -388,6 +400,9 @@ Get-IntraOrganizationConnector | Format-Table Name,Enabled,TargetAddressDomains
 Connect-ExchangeOnline
 Get-IntraOrganizationConnector | Set-IntraOrganizationConnector -Enabled $false
 ```
+
+<https://o365info.com/microsoft-365-mx-record/#h-get-mx-record-value-from-microsoft-365-portal><br>
+<https://www.alitajran.com/autodiscover-url-exchange-hybrid/>
 
 ### AD Cleanup
 
