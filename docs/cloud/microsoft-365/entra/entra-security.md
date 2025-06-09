@@ -26,7 +26,7 @@ Microsoft recommends them for organizations that don't know where to start with 
 
 !!! info "Revoking active tokens"
 
-    After enabling, administrators should revoke all existing tokens to require all users to register for multifactor authentication. This revocation event forces previously authenticated users to authenticate and register for multifactor authentication. This task can be accomplished using the `[Revoke-AzureADUserAllRefreshToken](https://learn.microsoft.com/en-us/powershell/module/azuread/revoke-azureaduserallrefreshtoken)` PowerShell cmdlet.
+    After enabling, administrators should revoke all existing tokens to require all users to register for multifactor authentication. This revocation event forces previously authenticated users to authenticate and register for multifactor authentication. This task can be accomplished using the [`Revoke-AzureADUserAllRefreshToken`](https://learn.microsoft.com/en-us/powershell/module/azuread/revoke-azureaduserallrefreshtoken) PowerShell cmdlet.
 
 !!! info "Per-User MFA"
 
