@@ -24,7 +24,7 @@ All users who sign into the applications listed above to perform any CRUD operat
 
 Workload identities, such as managed identities and service principals, aren't impacted by this MFA enforcement. User identities that are used to sign in as a service account to run automation need to sign in with MFA. User identities aren't recommended for automation. You should migrate those user identities to [workload identities](https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-overview).
 
-Microsoft strongly recommends that you enforce MFA for your users via security defaults or Conditional Access policies in Entra ID, but its ultimately up to your company's policy. MFA can be disabled by [turning off the security defaults](#enablingdisabling-mfa) or on a [per-user basis](#per-user-mfa).
+Microsoft strongly recommends that you enforce MFA for your users via [security defaults](entra-security.md#security-defaults) or [Conditional Access](entra-security.md#conditional-access) policies in Entra ID, but its ultimately up to your company's policy. MFA can also be enabled or disabled on a [per-user basis](#per-user-mfa).
 
 !!! info "Automatic enablement of security defaults"
 
@@ -38,7 +38,7 @@ Microsoft strongly recommends that you enforce MFA for your users via security d
 - Passkeys
 - SMS or voice approval (not recommended)
 
-To enable or disable the different authentication methods, browse to **Identity** > **Protection** > **Authentication methods**
+To enable or disable the different authentication methods, browse to **Identity** > **Protection** > **Authentication methods**.
 
 For more info, read "[*What authentication and verification methods are available in Microsoft Entra ID?*](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods)".
 
@@ -73,7 +73,7 @@ Users can also use their TAP to register Microsoft Authenticator with their acco
 
 ## Enabling/Disabling MFA
 
-MFA can be enabled and enforced via security defaults, Conditional Access policies or per-user MFA settings.
+MFA can be enabled and enforced via security defaults, Conditional Access policies or per-user MFA settings. [Registration campaigns](https://learn.microsoft.com/en-us/entra/identity/authentication/how-to-mfa-registration-campaign) can help nudge users to set up Microsoft Authenticator during sign-in.
 
 MFA is enabled *and* enforced for *all* users when security defaults are turned on. To enable security defaults, see [here](entra-security.md#enable-or-disable). When security defaults are disabled, Conditional Access policies should be used. To create a policy that requires MFA, see [here](entra-security.md#creating-policies). 
 
