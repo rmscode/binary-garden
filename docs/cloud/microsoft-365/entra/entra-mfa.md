@@ -1,4 +1,4 @@
-# Microsoft 365 MFA
+# Entra Multi-Factor Authentication
 
 ## [The Scope of Microsoft's Enforcement](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mandatory-multifactor-authentication?tabs=dotnet#scope-of-enforcement)
 
@@ -20,7 +20,7 @@ Microsoft has or will be enforcing MFA for the following Apps/URLs:
 
 All users who sign into the applications listed above to perform any CRUD operation must complete MFA when the enforcement begins. Users aren't required to use MFA if they access other applications, websites, or services hosted on Azure. Each application, website, or service owner listed above controls the authentication requirements for users.
 
-*Break glass or emergency access accounts are also required to sign in with MFA once enforcement begins.*
+[Break glass or emergency access accounts](entra-security.md#emergency-access-accounts) are also required to sign in with MFA once enforcement begins. Microsoft recommends that you update these accounts to use passkeys or certificate-based auth.
 
 Workload identities, such as managed identities and service principals, aren't impacted by this MFA enforcement. User identities that are used to sign in as a service account to run automation need to sign in with MFA. User identities aren't recommended for automation. You should migrate those user identities to [workload identities](https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-overview).
 
@@ -91,6 +91,10 @@ MFA is enabled *and* enforced for *all* users when security defaults are turned 
 
     The per-user settings supersede the MFA enforcement in security defaults. You may enable, enforce or disable MFA on a per-user basis regardless of whether the security defaults are being used or not.
 
+## Verify MFA
+
+Ruud Mens (LazyAdmin) has written a decent [article](https://lazyadmin.nl/powershell/msgraph-mfa-status/) that includes a script on how to retrieve the status and method of each Entra user.
+
 ## Reset User MFA
 
 !!! info "[Temporary Access Pass](#temporary-access-pass-tap)"
@@ -137,7 +141,7 @@ Remove-MgUserAuthenticationWindowsHelloForBusinessMethod -UserId $uid -WindowsHe
 
     The default method can only be removed when it is the last registered method, otherwise an error is displayed. `Get-MgUserAuthenticationMethod` does not identify the default method, but [@merrill](https://github.com/merill) shared a clever [script on GitHub](https://github.com/orgs/msgraph/discussions/55) that tracks when/if the error is thrown and then performs a final pass to remove the default method.
 
-    Ruud Mens (LazyAdmin) [tweaked the script](https://github.com/ruudmens/LazyAdmin/blob/master/MsGraph/Reset-MgUserMFA.ps1) so the user ID can be passed as a parameter and to automatically connect to Microsoft Graph.
+    Ruud Mens (LazyAdmin) [improved upon this](https://github.com/ruudmens/LazyAdmin/blob/master/MsGraph/Reset-MgUserMFA.ps1) so the user ID can be passed as a parameter and to automatically connect to Microsoft Graph.
 
 ## Common Issues
 
