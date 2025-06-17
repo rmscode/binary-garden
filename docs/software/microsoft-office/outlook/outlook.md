@@ -1,4 +1,4 @@
-# Outlook
+# Outlook <small>(Classic)</small>
 
 ## Register Missing Teams Meeting Add-in
 
@@ -106,3 +106,9 @@ After adding a second mailbox to Outlook, my main mailbox would not connect to e
 4. Select "Email tab" and delete all email accounts
 5. Re-add email accounts from same tab by selecting "new".
 6. Relaunch Outlook and sign in when prompted.
+
+### UI Rendering Issues
+
+I have experienced strange rendering issues with Outlook from time to time. For a while I was relaunching the app to resolve it, but I discovered that reloading the system's graphics drivers with <kbd>Win</kbd>+<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> also resolves the issue without having to close Outlook.
+
+![Outlook render bug](../../../assets/outlook-rendering-issue.png)
