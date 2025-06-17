@@ -42,7 +42,7 @@ To enable or disable the different authentication methods, browse to **Identity*
 
 For more info, read "[*What authentication and verification methods are available in Microsoft Entra ID?*](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods)".
 
-### Temporary Access Pass (TAP)
+### Temporary Access Pass <small>(TAP)</small> { #temporary-access-pass data-toc-label="Temporary Access Pass" }
 
 A TAP is a time-limited passcode that can be used to onboard passwordless authentication methods or **make recovery easier when a user loses or forgets a strong authentication method**.
 

@@ -2,7 +2,7 @@
 
 ## Identifying Your Hosts Easily
 
-It is highly recommended to use nicknames. The recommended method for easily acquiring and renmaing World-Wide Names (WWNs) is to connect one cable at a time and then rename the WWN to something meaningful. You can change it via the PowerVault Manager (Provisioning > Hosts).
+It is highly recommended to use nicknames. The recommended method for easily acquiring and renaming World-Wide Names (WWNs) is to connect one cable at a time and then rename the WWN to something meaningful. You can change it via the PowerVault Manager (Provisioning > Hosts).
 
 ## Pool Balancing
 
@@ -136,7 +136,7 @@ The following table shows recommended disk counts for RAID-6 and RAID-5 disk gro
 - In the Alerts panel on the dashboard, verify that the system health is OK. If the system health is not OK, expand the view to see the active health alerts and resolve all problems before you update firmware.
 - Run the check firmware-upgrade-health CLI command before upgrading firmware. This command performs a series of health checks to determine whether any conditions exist that must be resolved before upgrading firmware. Any conditions that are detected are listed with their potential risks.
 - If any unwritten cache data is present, firmware update will not proceed. Before you can update firmware, unwritten data must be removed from cache. See [here](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_cli/clear-cache?guid=guid-86378261-ecd5-4c0c-a746-a14ea6363082&lang=en-us) for more information.
-        !!! warning "Removing unwritten data may result in data loss. Contact technincal support for assistance."
+        !!! warning "Removing unwritten data may result in data loss. Contact technical support for assistance."
 - If a disk group is quarantined, resolve the problem that is causing it to be quarantined before updating firmware.
 - To ensure success of an online controller firmware update, select a period of low I/O activity. This helps the update to complete as quickly as possible and avoids disruption to host and applications due to timeouts. Attempting to update a storage system that is processing a large, I/O-intensive batch job may cause hosts to lose connectivity with the storage system.
 - Confirm PFU is enabled by clicking **Settings > System > Properties > Firmware Properties**.

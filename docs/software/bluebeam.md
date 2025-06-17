@@ -11,4 +11,4 @@
 
 !!! info 
 
-    Some plug-ins require elevated permissions before changes can be saved in Revu Administrator. This may not be obvious, as Revu will not prompt you to sign in with a local administrator account. For example, if you launch Revu Administrator with a non-admin account, activate or deactivate the Outlook plug-in, and then save the change, the change will not actually be saved.
+    Some plug-ins, like the one for Microsoft Office, require elevated permissions before changes can be saved in Revu Administrator. This is not immediately obvious as Revu will not prompt you for credentials. For example, if you launch Revu Administrator as a regular user, activate/deactivate the Outlook plug-in, and then save the change, the change will not stick.

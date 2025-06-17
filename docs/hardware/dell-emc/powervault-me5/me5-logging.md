@@ -1,6 +1,6 @@
 # Logging
 
-## Show events (CLI)
+## `show events` <small>(CLI)</small> { data-toc-label="Show events" }
 
 !!! info "The minimum role required to use these commands is `monitor`."
 

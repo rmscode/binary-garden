@@ -6,7 +6,7 @@ Storage snapshots are a critical component of modern data management and protect
 
 ## Types of Storage Snapshots
 
-### 1. Copy on Write (CoW)
+### 1. Copy on Write <small>(CoW)</small> { data-toc-label="Copy on Write" }
 
 Copy on Write (CoW) snapshots are an efficient way to create point-in-time copies of data. When a CoW snapshot is created, it initially requires very little to no additional storage space as it only stores the metadata of the original data blocks. CoW requires storage to be provisioned for snapshots, and then a snapshot of a volume has to be initiated using the reserve capacity. As changes occur to the original volume, the original data is copied into the reserved storage capacity set aside for the snapshot prior to being overwritten. Those original data blocks no longer belong to the active file system, but to the snapshot itself. 
 
@@ -23,7 +23,7 @@ For example, lets say I create a snapshot of a volume that contains 100GB of fil
 - Potential performance impact due to write operations.
 - Increased storage requirements as more changes occur.
 
-### 2. Redirect on Write (RoW)
+### 2. Redirect on Write <small>(RoW)</small> { data-toc-label="Redirect on Write" }
 
 Redirect on Write (RoW) snapshots are similar to CoW snapshots but differ in how they handle data changes. In RoW snapshots, new writes to the original volume are redirected to the storage provisioned for snapshots. This method reduces the performance impact on write operations by reducing the number of writes from two to one. So instead of writing one copy of the original data to the storage space plus a copy of the changed data required with CoW, RoW writes only the changed data. It's the changed data that ends up residing on the snapshot storage.
 

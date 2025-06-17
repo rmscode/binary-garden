@@ -43,7 +43,7 @@ In some cases, you may be able to move a running VM from a host with an older pr
 [Dynamic Processor Compatibility](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/manage/dynamic-processor-compatibility-mode)<br>
 [Altaro](https://www.altaro.com/hyper-v/troubleshooting-hyper-v-live-migration)
 
-## Shared Nothing Live Migration (SNLM)
+## Shared Nothing Live Migration <small>(SNLM)</small> { data-toc-label="Shared Nothing Live Migration" }
 
 SNLM allows you to live migrate a VM, and optionally its storage, from one Hyper-V host to another without the need for shared storage between the hosts.
 
@@ -79,7 +79,7 @@ SNLM allows you to live migrate a VM, and optionally its storage, from one Hyper
 
 NIC Teaming is a feature in Windows Server that allows you to combine multiple physical network adapters (NICs) into a single logical network card. This virtual NIC is then presented to the operating system as a unified interface, streamlining network management and enhancing reliability, performance, and fault tolerance.
 
-### Load Balancing and Failover (LBFO)
+### Load Balancing and Failover <small>(LBFO)</small> { data-toc-label="Load Balancing and Failover" }
 
 #### Create LBFO Team
 
@@ -98,7 +98,7 @@ NIC Teaming is a feature in Windows Server that allows you to combine multiple p
 
     !!! note "The `-AllowNetLbfoTeams $true` parameter is required to attach the virtual switch since LBFO is technically deprecated."
 
-### Switch Embedded Teaming (SET)
+### Switch Embedded Teaming <small>(SET)</small> { data-toc-label="Switch Embedded Teaming" }
 
 #### Create SET Team
 
@@ -118,7 +118,7 @@ NIC Teaming is a feature in Windows Server that allows you to combine multiple p
         New-NetIPAddress -InterfaceAlias "vEthernet (EmbeddedAdapter)" -IPAddress 192.168.1.15 -PrefixLength 24 -DefaultGateway 192.168.1.1
         ```
 
-## Single Root I/O Virtualization (SR-IOV)
+## Single Root I/O Virtualization <small>(SR-IOV)</small> { data-toc-label="Single Root I/O Virtualization" }
 
 SR-IOV allows a host to share PCIe resources with multiple VMs. SR-IOV enables a physical PCIe device to appear as multiple separate virtual devices called Virtual Functions (VFs). These VFs can be directly assigned to a VM. In regard to network traffic, this bypasses the software switch layer of the Hyper-V stack so that traffic flows directly between a VF and a VM...Reducing the I/O overhead in the emulation layer. Microsoft claims that with SR-IOV, network performance is nearly the same as in non-virtualized environments.
 

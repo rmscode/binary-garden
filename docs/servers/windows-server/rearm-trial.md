@@ -1,4 +1,4 @@
-# Rearm Windows Sevrer Trial
+# Rearm Windows Server Trial
 
 From an elevated command prompt, run the following command and then reboot:
 

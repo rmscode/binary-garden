@@ -77,7 +77,7 @@ This has been found to resolve the following issues:
 
 ## Outlook Mobile App
 
-### Add Email Account (Exchange)
+### Add Email Account <small>(Exchange)</small> 
 
 1. Open the Outlook Mobile App
 2. If it's your first time launching the app, tap **Get Started** and then **Skip**. Otherwise, tap **Menu** > **Settings** > **Add Account**.

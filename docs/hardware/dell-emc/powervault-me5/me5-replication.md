@@ -10,12 +10,10 @@ Two internal snapshots (S1,S2) are created on both the primary and secondary sto
 
 - A peer connection between the primary and secondary storage arrays: Creating a replication set walks you through the process of creating this connection.
 
-## Create aand Manage Replication Sets
+## Create and Manage Replication Sets
 
 You create and manage replication sets using the Data Protection Configuration wizard. You can access this wizard from the **Provisioning > Volumes >** *slide-over* **> Replications** panel.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_ag/add-data-protection?guid=guid-9443a395-4c63-47fe-a51a-81f624551499&lang=en-us)
 
-## Disaster Recovery (Accessing Replicated Data)
-
-
+## Disaster Recovery <small>(Accessing Replicated Data)</small> { data-toc-label="Disaster Recovery" }

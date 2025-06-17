@@ -117,7 +117,7 @@
 
     Controller modules, IOMs, and PCMs are available as CRUs.
 
-### Controller enclosure (4-port SAS shown)
+### Controller enclosure <small>(4-port SAS shown)</small> { data-toc-label="Controller enclosure" }
 
 ![ME5024 Rear Panel (FC/iSCSI)](../../../assets/GUID-92234D9B-B20E-49CF-8425-A3370A0F5DC1-low.png)
 
@@ -126,7 +126,7 @@
 3. Power cooling module slot 1
 4. Controller module slot B
 
-### Controller module (4-port SAS shown)
+### Controller module <small>(4-port SAS shown)</small> { data-toc-label="Controller module" }
 
 The top slot for holding controller modules is designated slot A and the bottom slot is designated slot B. The face plate details of the controller modules show the modules aligned for use in slot A. In this orientation, the controller module latch shown at the bottom of the module and it is in a closed/locked position. The following figures identify the ports on the controller modules.
 
@@ -188,7 +188,7 @@ The top slot for holding controller modules is designated slot A and the bottom 
 
 
 
-### Power Cooling Module (PCM)
+### Power Cooling Module <small>(PCM)</small> { data-toc-label="Power Cooling Module" }
 
 This example shows a PCM oriented for use in the left PCM slot of the enclosure rear panel.
 

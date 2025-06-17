@@ -1,4 +1,4 @@
-# Advanced Linux Sound Architecture (ALSA)
+# Advanced Linux Sound Architecture <small>(ALSA)</small>
 
 The Advanced Linux Sound Architecture (ALSA) provides audio and MIDI functionality to the Linux operating system. ALSA is a software framework and part of the Linux kernel that provides an API for sound card device drivers.
 

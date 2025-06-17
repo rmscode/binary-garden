@@ -1,4 +1,4 @@
-# Virtual Link Trunking (VLT)
+# Virtual Link Trunking <small>(VLT)</small>
 
 !!! info "Feature Description"
 
@@ -118,7 +118,7 @@ This establishes the VLT domain.
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.4-config/enabling-vlt-and-creating-a-vlt-domain?guid=guid-4f2e6faf-30b2-4eb3-aef0-d5457c1c33b2&lang=en-us)
 
-## 4. Configure the default VLT MAC address on each peer (Optional)
+## 4. Configure the default VLT MAC address on each peer <small>(Optional)</small> { data-toc-label="4. Configure the default VLT MAC Address on each peer" }
 
 !!! info
 
@@ -195,7 +195,7 @@ Verify matching configuration on both VLT peers with `show vlt mismatch`.
 
     If there are no mismatches between the switches, the output will be blank.
 
-## 6. Create a VLT Peer LAG Between VLT Domain and Connected Devices (TOR switch, server...) 
+## 6. Create a VLT Peer LAG Between VLT Domain and Connected Devices <small>(TOR switch, server...)</small> { data-toc-label="6. Create a VLT Peer LAG between VLT Domain and connected devices" }
 
 To configure both VLT peers to agree on making two separate port-channels (LAG) a single Virtual Link Trunk (MLAG) toward an attached device, each peer must be configured with the same port-channel ID.
 
@@ -217,7 +217,7 @@ To configure both VLT peers to agree on making two separate port-channels (LAG) 
 
     [This](os10.md#unexpected-behavior-while-testing-failure-scenarios) is also probably worth reading.
 
-### Dynamic LAG (LACP)
+### Dynamic LAG <small>(LACP)</small>   { data-toc-label="Dynamic LAG" }
 
 Dell recommends using LACP to benefit from the protocol negotiations. It must be configured on both ends (VLT domain and attached device).
 
@@ -243,7 +243,7 @@ VLT-1(conf-if-te-1/51-lacp)# port-channel 12 mode active    #(4)
 
 *Repeat these steps on the other VLT peer.*
 
-### Static LAG (No LACP)
+### Static LAG <small>(No LACP)</small>  { data-toc-label="Static LAG" }
 
 Despite Dell's recommendation to use LACP, you can still configure a static LAG if you prefer. In fact, in some cases, LACP may not be supported by the attached device. Prime example: Windows servers using Switch Embedded Teaming (SET). In that case, the NIC team will handle the load balancing and failover.
 

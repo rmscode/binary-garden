@@ -1,4 +1,4 @@
-# Remmina (Linux)
+# Remmina <small>(Linux)</small>
 
 Remmina is a free and open source remote desktop client for Linux. It supports Remote Desktop Protocol (RDP), VNC, NX, XDMCP, SPICE, X2Go and SSH. It uses [FreeRDP](https://www.freerdp.com/) as its foundation.
 
@@ -8,7 +8,7 @@ Remmina is available in the official package repositories for Debian and Ubuntu 
 
     For information on how to create a remote desktop thin client using Remmina, click [here](../general/guides/remmina-thin-client.md).
 
-## Installation (Debian/Ubuntu)
+## Installation <small>(Debian/Ubuntu)</small> { data-toc-label="Installation" }
 
 ```bash
 sudo apt install remmina

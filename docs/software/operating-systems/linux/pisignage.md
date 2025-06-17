@@ -8,7 +8,7 @@
 
     As of 12/22/23 we have moved away from PiSignage in favor of DietPi for digital signage purposes. This allows us to update the OS and Chromium on a more regular basis. Something we had to wait on the PiSignage developers for. This was a problem because we moved from a .NET MAUI app to Blazor WASM (for easier development) and it wouldn't work with the PiSignage build we had.
 
-## Configuration (Standalone Player)
+## Configuration <small>(Standalone Player)</small> { data-toc-label="Configuration" }
 
 I wrote a shell script to speed up the deployment of standalone PiSignage players. Follow the steps below to get started.
 
@@ -96,7 +96,7 @@ sudo chown -R <YourUsername>:users data/
 
 ### Get specific asset details
 
-### Create link asset (web link)
+### Create link asset <small>(web link)</small>
 <span style="color:lightgreen">**POST**</span> `http://<PlayerIP>:8000/api/links`
 
 JSON Payload:
@@ -172,7 +172,7 @@ curl -X POST -H "Content-Type: application/json" ^
 -u pi:pi http://<PlayerIP>:8000/api/playlists
 ```
 
-### Edit playlist details (add an asset to a playlist)
+### Edit playlist details <small>(add an asset to a playlist)</small> { data-toc-label="Edit playlist details" }
 <span style="color:lightgreen">**POST**</span> `http://<PlayerIP>:8000/api/playlists`
 
 JSON Payload:
@@ -327,7 +327,7 @@ curl -X POST -H "Content-Type: application/json" ^
 -d "{ \"user\": { \"name\": \"pi\", \"newpasswd\": \"pi\" } }" ^
 -u pi:pi http://<PlayerIP>:8000/api/settings/user
 ```
- 
+
 ### Schedule TV sleep time
 <span style="color:lightgreen">**POST**</span> `http://<PlayerIP>:8000/api/settings/sleep`
 

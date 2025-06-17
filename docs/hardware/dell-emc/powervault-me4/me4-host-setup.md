@@ -1,4 +1,4 @@
-# Host Setup (Windows)
+# Host Setup <small>(Windows)</small>
 
 Attached Windows hosts with iSCSI network adapters need to be properly configured in order to use the iSCSI protocol with the ME4 storage system and MPIO enabled volumes.
 
@@ -25,7 +25,7 @@ Attached Windows hosts with iSCSI network adapters need to be properly configure
       - Default Gateway if appropriate
 3. From the command prompt, ping each of the controller IPs to verify host connectivity to the storage system before proceeding.
 
-## (Optional) Enable Jumbo Frames on the iSCSI network adapters
+## <small>(Optional)</small> Enable Jumbo Frames on the iSCSI network adapters { data-toc-label="Enable Jumbo Frames on the iSCSI network adapters"}
 
 !!! info
 

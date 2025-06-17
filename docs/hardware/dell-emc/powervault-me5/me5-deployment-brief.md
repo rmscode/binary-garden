@@ -33,7 +33,7 @@
 
 [*Reference*](https://www.dell.com/support/manuals/en-us/powervault-me5024/me5_series_dg/connect-to-the-management-network?guid=guid-e1c38f5a-979b-4572-8e37-1416361180c8&lang=en-us)
 
-## Cable the controller host ports (iSCSI)
+## Cable the controller host ports <small>(iSCSI)</small> { data-toc-label="Cable the controller host ports" }
 
 !!! info
 

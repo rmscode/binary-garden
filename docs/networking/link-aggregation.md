@@ -29,7 +29,7 @@ Link aggregation offers the following properties:
 
 With a static link aggregate, all configuration settings will be setup on both participating LAG components once.
 
-## Dynamic Link Aggregation - LACP
+## Dynamic Link Aggregation <small>(LACP)</small> { data-toc-label="Dynamic Link Aggregation" }
 
 LACP allows the exchange of information with regard to the link aggregation between the two members of said aggregation in the form of LACPDU (Link Aggregation Control Protocol Data Unit) frames. The LACPDU frames are exchanged between the two members of the link aggregation at regular intervals. The LACPDU frames contain information about the status of the link aggregation and the individual physical links.
 
@@ -38,7 +38,7 @@ Each port can be configured as an active or passive LACP.
 - Passive LACP: The port prefers not sending LACPDUs. The port will only transmit them when its counterpart uses active LACP (does not speak unless spoken to).
 - Active LACP: The port prefers sending LACPDUs regardless of whether its counterpart uses passive LACP or not (speaks regardless of whether spoken to).
 
-In constrast to static link aggregation, dynamic link aggregation (LACP) offers the following advantages:
+In contrast to static link aggregation, dynamic link aggregation (LACP) offers the following advantages:
 
 - Even if one physical links fails, it will detect if the point-to-point connection is using a media converter, so that the link status at the switching port remains up. Because LACPDUs do not form a component of this connection, the link will be removed from the link aggregate. This ensures that packets will not be lost due to the failed link.
 - Both of the devices can mutually confirm the LAG configuration. With static link aggregation, errors in the configuration or wiring will often not be detected as quickly.

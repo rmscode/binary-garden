@@ -1,4 +1,4 @@
-# Windows Subsystem for Linux (WSL)
+# Windows Subsystem for Linux <small>(WSL)</small>
 
 ## How to Install Linux on Windows with WSL
 
@@ -74,7 +74,7 @@ WSL supports running Linux GUI applications (X11 and Wayland) on Windows.
 
 [*Reference*](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps#run-linux-gui-apps)
 
-## Locate the WSL Virtual Disk (.vhdx)
+## Locate the WSL Virtual Disk <small>(.vhdx)</small> { data-toc-label="Locate the WSL Virtual Disk" }
 
 Replace `<distribution-name>` with the name of your distribution.
 

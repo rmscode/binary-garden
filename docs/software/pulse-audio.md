@@ -1,4 +1,4 @@
-# Pulse Audio (Linux)
+# Pulse Audio <small>(Linux)</small>
 
 PulseAudio is a network-capable sound server program distributed via the [freedesktop.org](https://freedesktop.org) project. It runs mainly on Linux, various BSD distributions, and other Unix-like systems.
 

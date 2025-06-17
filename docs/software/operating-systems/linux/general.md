@@ -26,7 +26,7 @@ The follow commands will disable `root` login for most flavors of Linux.
 	sudo systemctl restart sshd
 	```
 
-## Prevent a user from logging into any shell (console)
+## Prevent a user from logging into any shell <small>(console)</small> { data-toc-label="Prevent a user from logging into any shell"}
 
 You can change the shell (`chsh`) assigned to a user to `/usr/sbin/nologin` to prevent them from logging in.
 

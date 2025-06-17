@@ -1,4 +1,4 @@
-# Spares (Parity Disks)
+# Spares <small>(Parity Disks)</small>
 
 Spare disks are unused disks in your system that you designate to automatically replace a failed disk, restoring fault tolerance to disk groups in the system. Types of spares include:
 

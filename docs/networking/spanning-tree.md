@@ -1,4 +1,4 @@
-# Spanning Tree Protocol (STP)
+# Spanning Tree Protocol <small>(STP)</small>
 
 The Spanning Tree Protocol (STP) is a network protocol that builds a loop-free logical topology for Ethernet networks. The basic function of STP is to prevent bridge loops and the broadcast radiation that results from them (broadcast storms). It helps prevent these loops by actively monitoring the network topology and selectively blocking redundant links. This ensures that there is only one active path between two network devices at any time.
 

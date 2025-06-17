@@ -52,7 +52,7 @@ There are two main flavors of MIMO: SU-MIMO (Single User) and MU-MIMO (Multi Use
 *[Reference: RF Wireless World](https://www.rfwireless-world.com/Terminology/Difference-between-SU-MIMO-and-MU-MIMO.html)*<br>
 *[Reference: Digital Air Wireless](https://www.rfwireless-world.com/Terminology/Difference-between-SU-MIMO-and-MU-MIMO.html)*
 
-## Received Signal Strength Indicator (RSSI)
+## Received Signal Strength Indicator <small>(RSSI)</small> { data-toc-label="Received Signal Strength Indicator" }
 
 The Received Signal Strength Indicator (RSSI) is a measurement of the power level that a wireless device receives from an access point. It is typically measured in decibels relative to 1 milliwatt between 0dBm (strongest) and -120dBm (weakest). RSSI values are used to determine the quality of the wireless signal and can help in troubleshooting connectivity issues.
 

@@ -23,7 +23,7 @@ The following project structure will be created:
 
 There is single configuration file named `mkdocs.yml`, and a folder called `docs` that will contain your documentation source files.
 
-## Configuration (Minimal)
+## Configuration <small>(Minimal)</small>
 
 !!! info 
 

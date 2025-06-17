@@ -67,7 +67,7 @@
     }
     ```
 
-## Backup Edge Data (Profile/Settings)
+## Backup Edge Data <small>(Profile/Settings)</small> { data-toc-label="Backup Edge Data" }
 
 !!! note 
 

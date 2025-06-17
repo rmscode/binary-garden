@@ -13,7 +13,7 @@
 
 To replace modules in a 2U controller enclosure that has one controller module, you must shut down all of the attached hosts before shutting down the controller module. Our system has two controller modules, so we can replace one controller module at a time without shutting down the attached hosts. See also, [Shutting Down a Controller Module](me5-shutdown-controller.md).
 
-## Customer-Replaceable Units (CRUs)
+## Customer-Replaceable Units <small>(CRUs)</small> { data-toc-label="Customer-Replaceable Units" }
 
 A list of CRUs and how to replace them can be found here:
 

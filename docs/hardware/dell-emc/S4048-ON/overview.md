@@ -16,7 +16,7 @@
 
 ---
 
-## Front View (I/O-side)
+## Front View <small>(I/O-side)</small> { #front-view data-toc-label="Front View" }
 
 ![I/O-side view](../../../assets/GUID-9C32485B-D809-43BC-BC69-694387ABDD6A-low.jpg)
 
@@ -24,7 +24,7 @@
 2. QSFP+ ports
 3. USB Type-A storage port
 
-## Rear View (PSU-side)
+## Rear View <small>(PSU-side)</small> { #rear-view data-toc-label="Rear View" }
 
 ![PSU-side view](../../../assets/GUID-C7F3A160-004F-48B8-B539-DC43637449DC-low.jpg)
 

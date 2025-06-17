@@ -1,5 +1,4 @@
-# System Notifications (Optional)
-
+# System Notifications <small>(Optional)</small>
 Optional, but considered best practice.
 
 !!! abstract "Needs better documentation"

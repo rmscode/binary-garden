@@ -45,7 +45,7 @@ You can also join a [test meeting](https://zoom.us/test) to familiarize yourself
 
 Alternatively, you can join the meeting without downloading or opening the Zoom app, by [opening the meeting with the web client](#join-with-the-zoom-web-client).
 
-### Join on a mobile device (Android/iOS)
+### Join on a mobile device <small>(Android/iOS)</small> { data-toc-label="Join on a mobile device" }
 
 1. Open the Zoom mobile app. (Download from Google Play or Apple App app store)
 2. Join a meeting using one of these methods:

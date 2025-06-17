@@ -1,4 +1,4 @@
-# USB Hub Control (uhubctl - Linux)
+# USB Hub Control <small>(uhubctl - Linux)</small>
 
 [uhubctl](https://github.com/mvp/uhubctl) is utility to control USB power per-port on smart USB hubs. Smart hub is defined as one that implements per-port power switching.
 
@@ -6,7 +6,7 @@
 
     I have used this utility to prevent unauthorized access to Raspberry Pi devices by disabling the USB ports. This is useful in a situation where the Pi is deployed in the wild and may be easily accessed, like behind a TV used for signage.
 
-## Installation (Debian/Ubuntu)
+## Installation <small>(Debian/Ubuntu)</small> { data-toc-label="Installation" }
 
 ```shell
 sudo apt install uhubctl

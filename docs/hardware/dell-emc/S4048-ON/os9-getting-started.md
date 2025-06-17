@@ -1,4 +1,4 @@
-# Getting Started: Initial Configuration (OS9)
+# Getting Started: Initial Configuration <small>(OS9)</small>
 
 [CLI Reference Guide for the S4048-ON System (9.14.2.4)](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.5-cli-pub/dell-command-line-reference-guide-for-the-s4048%E2%80%93on-system-9.14.2.5)
 
@@ -221,7 +221,7 @@ The Out-of-Band (OOB) management network is a separate network that is solely fo
 
 With in-band management, devices are managed through the production network switches, avoiding the need of purchasing a dedicated management switch. This solution requires that you initially configure each managed switch locally through a serial port connection.
 
-### Out of Band Management (Recommended)
+### Out of Band Management <small>(Recommended)</small> { #oob-management data-toc-label="Out of Band Management" }
 
 Enter CONFIGURE INTERFACE mode for `ManagementEthernet 1/1` to turn off DHCP, set the IP and enable the port.
 

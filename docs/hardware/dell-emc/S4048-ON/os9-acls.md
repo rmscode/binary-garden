@@ -1,4 +1,4 @@
-# Access Control Lists (ACLs)
+# Access Control Lists <small>(ACLs)</small>
 
 You can create two different types of IP ACLs: standard or extended.
 

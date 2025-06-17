@@ -42,7 +42,7 @@ Azure VMs joined to a managed domain let you use a single set of AD credentials.
 
 #### Lift-and-shift on-premises applications that use LDAP
 
-Legacy applications that require LDAP authetication or are designed to read directory information using LDAP.
+Legacy applications that require LDAP authentication or are designed to read directory information using LDAP.
 
 !!! quote 
 

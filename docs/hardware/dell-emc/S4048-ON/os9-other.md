@@ -10,7 +10,7 @@ configuration mode exclusive auto
 
 [Reference](https://www.dell.com/support/manuals/en-us/dell-emc-os-9/s4048-on-9.14.2.8-config-pub/lock-configuration-mode?guid=guid-f9f1cc49-2114-4ef0-b9b9-c190125978dc&lang=en-us)
 
-## Configuring MTU Size (Jumbo Frames)
+## Configuring MTU Size <small>(Jumbo Frames)</small> { data-toc-label="Configuring MTU Size" }
 
 !!! info "Jumbo Frames + SAN"
 

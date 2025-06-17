@@ -7,7 +7,7 @@
 
 1. Unpack.
 2. Install the controller enclosure and optional expansion enclosure in the rack.
-3. Populate drawers with disks (DDICs). 2U encosures ship with disks installed.
+3. Populate drawers with disks (DDICs). 2U enclosures ship with disks installed.
 4. Cable the optional expansion enclosures.
 5. [Connect the management ports](#connect-the-management-ports).
 6. [Cable the controller host ports](#cable-the-controller-host-ports-iscsi).
@@ -34,7 +34,7 @@
 3. Switch
 4. SAN
 
-## Cable the controller host ports (iSCSI)
+## Cable the controller host ports <small>(iSCSI)</small> { data-toc-label="Cable the controller host ports" }
 
 A host identifies an external port to which the storage system is attached. The external port may be a port in an I/O adapter (such as an FC HBA or ethernet NIC) in a server.
 
@@ -72,7 +72,7 @@ Use the cabling diagram below to connect host servers to a switch-attached stora
     - Provide a power source with electrical overload protection to meet the requirements in the technical specification.
     - The enclosure must be grounded before applying power.
 
-Connect the power cable from each PCM on the enclosure rear panel to the power distibution unit as shown below:
+Connect the power cable from each PCM on the enclosure rear panel to the power distribution unit as shown below:
 
 ![Connection from PDU to PCM](../../../assets/GUID-482BB2AC-110A-44FA-81EF-4807439323D0-low.jpg)
 

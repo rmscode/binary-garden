@@ -8,7 +8,7 @@ Availability is usually expressed as a percentage of uptime in a given year, wit
 
 Continuous Availability is typically achieved through a combination of High Availability (HA) and Fault Tolerance (FT).
 
-### High Availability (HA)
+### High Availability <small>(HA)</small> { data-toc-label="High Availability" }
 
 High Availability ensures that a system is operational for a high percentage of time by minimizing downtime. This is achieved through:
 
@@ -24,7 +24,7 @@ High Availability ensures that a system is operational for a high percentage of 
 - **N+M Redundancy**: Having multiple extra servers to take over in case of a failure. For example, in a 2+2 configuration, two servers are active, and two are on standby.
 - **Clustering**: Multiple servers work together as a single system, sharing resources and ensuring high availability.
 
-### Fault Tolerance (FT)
+### Fault Tolerance <small>(FT)</small> { data-toc-label="Fault Tolerance" }
 
 Fault Tolerance is the ability of a system to continue functioning even when one or more of its components fail. This is achieved through:
 

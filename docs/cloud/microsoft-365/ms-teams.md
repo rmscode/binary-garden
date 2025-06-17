@@ -110,7 +110,7 @@ See [here](https://learn.microsoft.com/en-us/microsoftteams/qos-in-teams-clients
 
 [*Reference*](https://learn.microsoft.com/en-us/microsoftteams/phones/qos-on-teams-phones#quality-of-service-qos-with-microsoft-teams-phones)
 
-### Set up: Teams Phones (User Accounts)
+### Set up: Teams Phones <small>(User Accounts)</small> { data-toc-label="Set up: Teams Phones" }
 
 #### Buy the licenses
 
@@ -202,7 +202,7 @@ Your port order request will be updated daily. If your port order is rejected by
 
 [*Reference*](https://learn.microsoft.com/en-us/microsoftteams/assign-change-or-remove-a-phone-number-for-a-user#assign-a-phone-number-to-a-user)
 
-### Set up: Common Area Phones (Service Accounts)
+### Set up: Common Area Phones <small>(Service Accounts)</small> { data-toc-label="Set up: Common Area Phones" }
 
 #### Buy the licenses
 
@@ -279,7 +279,7 @@ Refer back to [the steps above](#get-new-phone-numbers-for-your-users), but make
 
 Refer back to [the steps above](#assign-a-phone-number-to-a-user)...
 
-### Configure Legacy SIP Phones (SIP Gateway)
+### Configure Legacy SIP Phones <small>(SIP Gateway)</small> { data-toc-label="Configure Legacy SIP Phones" }
 
 Supported legacy SIP phones that are not Teams Certified can be used with Teams by connecting them to Microsoft's SIP Gateway.
 
