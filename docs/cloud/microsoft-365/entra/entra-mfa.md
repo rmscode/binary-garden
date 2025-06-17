@@ -97,9 +97,9 @@ Ruud Mens (LazyAdmin) has written a decent [article](https://lazyadmin.nl/powers
 
 ## Reset User MFA
 
-!!! info "[Temporary Access Pass](#temporary-access-pass-tap)"
+!!! info "[Temporary Access Pass](#temporary-access-pass)"
 
-    Creating a [TAP](#temporary-access-pass-tap) can make recovery easier when a user loses or forgets a strong authentication method. 
+    Creating a [TAP](#temporary-access-pass) can make recovery easier when a user loses or forgets a strong authentication method. 
 
 ### Using Microsoft Entra ID Admin Center
 
