@@ -47,7 +47,7 @@ theme:
 
 # Extra CSS
 extra_css:
-  - stylesheets/extra.css
+  - assets/css/extra.css
 
 # Plugins
 plugins:
