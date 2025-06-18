@@ -14,7 +14,7 @@ nav:
     - RAID: general/raid.md
     - ReFS vs NTFS: general/refs-vs-ntfs.md
     - Storage Snapshot: general/storage-snapshots.md
-    - Windows Susbsystem for Linux: general/wsl.md
+    - Windows Subsystem for Linux: general/wsl.md
   - Cloud:
     - cloud/index.md
     - Azure:
@@ -25,6 +25,7 @@ nav:
         - Security: cloud/microsoft-365/entra/entra-security.md
       - Exchange Online:
         - Hybrid Deployment: cloud/microsoft-365/exchange-online/hybrid-deployment.md
+        - Remote Mailbox Moves: cloud/microsoft-365/exchange-online/remote-moves.md
       - OneDrive: cloud/microsoft-365/onedrive.md
       - Teams: cloud/microsoft-365/ms-teams.md
   - Hardware: 
