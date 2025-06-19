@@ -26,6 +26,7 @@ nav:
       - Exchange Online:
         - Hybrid Deployment: cloud/microsoft-365/exchange-online/hybrid-deployment.md
         - Remote Mailbox Moves: cloud/microsoft-365/exchange-online/remote-moves.md
+        - Provision Online Mailboxes: cloud/microsoft-365/exchange-online/provision-online-mailboxes.md
       - OneDrive: cloud/microsoft-365/onedrive.md
       - Teams: cloud/microsoft-365/ms-teams.md
   - Hardware: 
