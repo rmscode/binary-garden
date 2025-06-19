@@ -1,7 +1,6 @@
 # Remote Mailbox Moves <small>(Hybrid Migration)</small>
 
-Remote mailbox moves are used to migrate mailboxes between on-premises Exchange and Exchange Online in a hybrid deployment. 
-
+Remote mailbox moves are used to migrate mailboxes between on-premises Exchange and Exchange Online in a hybrid deployment.
 ## Exchange Online PowerShell
 
 [Download and install](https://learn.microsoft.com/en-us/powershell/exchange/exchange-online-powershell-v2?view=exchange-ps#install-and-maintain-the-exchange-online-powershell-module) the module.
