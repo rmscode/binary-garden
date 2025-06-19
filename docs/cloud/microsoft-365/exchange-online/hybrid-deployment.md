@@ -64,7 +64,7 @@ I'll probably add more here once we have a chance to test the HCW ourselves.
 
     It is my understanding that there is no need to change the MX records at this point. In fact, the consensus seems to be that the switch shouldn't happen until most/all of your mailboxes have been migrated ([Office365Concepts](https://practical365.com/mx-records-for-exchange-hybrid-deployments/)...I've seen the same mentioned on Reddit plenty as well).
     
-    For the autodiscover URL DNS record, as long as there are resources on-premises, it should continue to point to the on-premises Exchange servers. [Jaap Wesselius](https://jaapwesselius.com/2015/11/04/autodiscover-in-a-hybrid-scenario/) and [Al Tajran](https://www.alitajran.com/autodiscover-url-exchange-hybrid/) have both written articles about this.
+    For the autodiscover URL DNS record, as long as there are resources on-premises, it should continue to point to the on-premises Exchange servers. [Jaap Wesselius](https://jaapwesselius.com/2015/11/04/autodiscover-in-a-hybrid-scenario/) and [Ali Tajran](https://www.alitajran.com/autodiscover-url-exchange-hybrid/) have both written articles about this.
 
 ### Post-check
 
@@ -78,108 +78,9 @@ I'll probably add more here once we have a chance to test the HCW ourselves.
 
 ## [Mailbox Migration](remote-moves.md) <small>(link)</small> { #mailbox-migration data-toc-label="Mailbox Migration" }
 
-## Creating Exchange Online Mailboxes
+## [Provision Online Mailboxes](provision-online-mailboxes.md) <small>(link)</small> { #provision-online-mailboxes data-toc-label="Provision Online Mailboxes" }
 
-!!! info "30-day grace period"
-
-    Whether we provision a new remote mailbox on-premises or migrate a mailbox that never had an Exchange Online license to Exchange Online, the service will allow a period of 30 days for the admins to assign an Exchange Online license to the user. Note that this is not a way to get 30 days of service for free, but to help customers with their own provisioning defined processes and give them some time to assign an Exchange Online license to a regular mailbox instead. Microsoft's recommendation is to ALWAYS assign a license as soon as you see the mailbox provisioned in Exchange Online, and in migration scenario, even before the move is injected.
-
-!!! warning "Important"
-
-    While it is possible to add a user in ADUC, wait for it to sync to Entra, and then license the user in M365, the user's Exchange Online attributes will never sync back to the on-premises environment to create a Mail-enabled user (MEU) object. In this scenario, managing the mailboxes from the on-prem environment isn't possible and since the M365 user is synced with on-prem AD, managing attributes from the cloud is also not possible. 
-
-    Instead, ExO mailboxes can be created from the on-prem Exchange environment (EAC/EMS). This option will create the on-prem AD user *and* the MEU object with the remote routing address (such as jsmith@contoso.mail.onmicorosot.com). AD sync can then occur to establish the appropriate objects/attributes in the cloud.
-
-    <https://techcommunity.microsoft.com/blog/exchange/on-provisioning-mailboxes-in-exchange-online-when-in-hybrid/1406335>
-
-### Create Mailboxes with PowerShell
-
-```powershell
-$Password = Read-Host "Enter password" -AsSecureString
-New-RemoteMailbox -Name "John Smith" -Alias "jsmith" -FirstName "John" -LastName "Smith" -UserPrincipalName jsmith@nep.com -RemoteRoutingAddress "jsmith@nep.mail.onmicrosoft.com" -Password $Password
-Start-ADSyncSyncCycle -PolicyType Delta
-```
-
-<https://learn.microsoft.com/en-us/powershell/module/exchange/new-remotemailbox?view=exchange-ps>
-
-### Create Mailboxes with EAC
-
-!!! info "Sign in to the on-premises Exchange Admin Center and NOT the Exchange Online Admin Center."
-
-1. In the on-premises EAC, go to **Recipients** > **Mailboxes**.
-2. Click on the **+** icon from the toolbar and select Office 365 mailbox.
-3. Fill in the information and click **Save**.
-4. Force sync Entra Connect with `Start-ADSyncSyncCycle -PolicyType Delta`.
-5. On the **Recipients** page, select the new mailbox and click the **Edit (Pencil)** icon from the toolbar.
-6. Click **email address** and verify the following:
-    1. smtp `<user>@tenant.mail.onmicrosoft.com`
-    2. Remote routing address.
-7. Sign in to the Exchange Online Admin Center.
-8. Go to **Recipients > Mailboxes** and click on the new Office 365 mailbox.
-9. Select **General** and click on **Manage email address types**. There is no remote routing address option in the cloud, and you should see two smtp `onmicrosoft.com` addresses:
-    1. `smtp:<user>@tenant.mail.onmicrosoft.com`
-    2. `smtp:<user>@tenant.onmicrosoft.com`
-
-!!! note
-
-    Don't forget that this new user/mailbox still needs to be licensed in order to send/receive mail. 
-    
-    Ali Tajran has a nice [article](https://www.alitajran.com/assign-microsoft-365-licenses-group-based-licensing/) on how to configure group based licensing.
-
-### `Enable-RemoteMailbox`
-
-Let's say there is some scenario where a user was created in ADUC anyway and then synced to M365. You can still create the MEU object with the `Enable-RemoteMailbox` cmdlet.
-
-1. Connect to Exchange Online PowerShell.<br>
-```powershell
-Connect-ExchangeOnline -UserPrincipalName admin@nep.com # This is your admin account for Exchange Online
-```
-2. Run `Enable-RemoteMailbox`.<br>
-```powershell
-Enable-RemoteMailbox -Identity "John Smith" -RemoteRoutingAddress "jsmith@nep.mail.onmicrosoft.com" -Alias "jsmith" -DisplayName "John Smith"
-```
-3. Disconnect from Exchange Online PowerShell<br>
-```powershell
-Disconnect-ExchangeOnline -Confirm:$false
-```
-4. Force sync Entra Connect.<br>
-```powershell
-Start-ADSyncSyncCycle -PolicyType Delta
-```
-
-#### Fixing the "ExchangeGuid is mandatory on UserMailbox" Issue
-
-Ali Tajran's has an [article](https://www.alitajran.com/enable-remotemailbox-exchangeguid-is-mandatory-on-usermailbox/) that explains how to solve this issue but never gets into why it might happen. Other [sources](https://www.mistercloudtech.com/2017/02/06/fixing-the-exchangeguid-is-mandatory-on-usermailbox-issue/) indicate that it may be caused by an internal mailbox decommissioning process failure, so the **msExchHomeServerName** attribute was not cleared properly on the user object.
-
-!!! example
-
-    ```powershell
-    ExchangeGuid is mandatory on UserMailbox.
-        + CategoryInfo          : NotSpecified: (exoip.local/Company/I...Jon Smith:ADObjectId) [Enable-RemoteMailbox], DataValidationException
-        + FullyQualifiedErrorId : [Server=EX01-2019,RequestId=0a83a0bb-6893-4768-8be7-d23f6f65413f,TimeStamp=14-1-2021 18:43:16] [FailureCategory=
-       Cmdlet-DataValidationException] 228B08D6,Microsoft.Exchange.Management.RecipientTasks.EnableRemoteMailbox
-        + PSComputerName        : ex01-2019.exoip.local
-
-    Database is mandatory on UserMailbox.
-        + CategoryInfo          : NotSpecified: (exoip.local/Company/I...Jon Smith:ADObjectId) [Enable-RemoteMailbox], DataValidationException
-        + FullyQualifiedErrorId : [Server=EX01-2019,RequestId=0a83a0bb-6893-4768-8be7-d23f6f65413f,TimeStamp=14-1-2021 18:43:16] [FailureCategory=
-       Cmdlet-DataValidationException] 27A58729,Microsoft.Exchange.Management.RecipientTasks.EnableRemoteMailbox
-        + PSComputerName        : ex01-2019.exoip.local
-    ```
-
-1. Start Active Directory Users and Computers (ADUC) on the on-premises server. Click on **View** and enable **Advanced Features**.
-2. Find the user object and open its properties. Click the **Attribute Editor** tab. Find the attribute m**sExchHomeServerName** and click **Edit**.
-3. Click on **Clear**. The value will be changed to `<not set>`. Click **OK**.
-4. Force sync Entra Connect before running the `Enable-RemoteMailbox` cmdlet again.
-```powershell
-Start-ADSyncSyncCycle -PolicyType Delta
-```
-
-!!! info 
-
-    [This article](https://martinsblog.dk/enable-remotemailbox-exchangeguid-is-mandatory-on-usermailbox/) adds that you should clear any entry beginning with "msExch" so the values are all `<not set>`.
-
-## Decommissioning the Last Exchange Server
+## Decommissioning the Last Exchange Server { #decom-last-exchange-server data-toc-label="Decom Last Exchange Server"}
 
 !!! info "Important"
 
@@ -187,7 +88,7 @@ Start-ADSyncSyncCycle -PolicyType Delta
 
 I have some notes on this [here](../../../notes/exchange-migration-notes.md#how-and-when-to-decommission-your-on-prem-exchange-server-in-a-hybrid-deployment). Official Microsoft documentation available [here](https://learn.microsoft.com/en-gb/exchange/manage-hybrid-exchange-recipients-with-management-tools). 
 
-### Prepare Exchange Hybrid Server
+### Prepare the Exchange Server { data-toc-label="Prepare the Exchange Server" }
 
 1. Use `Set-AdServerSettings -ViewEntireForest $true` to view all objects in the forest.
 2. Verify there are no mailboxes on-prem with `Get-Mailbox`.
@@ -220,7 +121,7 @@ Install-WindowsFeature rsat-adds
     6. Click **Install** and **Finish**.
 3. Restart the management server/computer.
 
-### Create "Recipient Management EMT" Group
+### Create Recipient Management Group { data-toc-label="Recipient Management Group" }
 
 1. Sign-in as a Domain Admin to the computer with the Management Tools installed and load the snap-in.<br>
 ```powershell
@@ -241,7 +142,7 @@ Add-PSSnapin *RecipientManagement
 Get-RemoteMailbox
 ```
 
-### Remove Exchange Hybrid Server
+### Remove the Exchange Server
 
 1. Turn on your last Exchange Server, start EMS, and run the command below. Ensure that it isn't set to remote. If it is and you want to continue to access the public folders, you need to [migrate them to Exchange Online](https://learn.microsoft.com/en-us/exchange/collaboration-exo/public-folders/batch-migration-of-legacy-public-folders).<br>
 ```powershell

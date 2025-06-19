@@ -34,7 +34,11 @@ New-MoveRequest -Identity "jsmith@nep.com" -Remote -RemoteHostName "mail.nep.com
 
 ### Many Mailboxes
 
-The benefit of creating multiple mailbox moves this way instead of using `New-MigrationBatch` is that it is supposedly faster since there is no migration arbitration mailbox involved.
+!!! note
+
+    The benefit of creating multiple mailbox moves this way instead of using `New-MigrationBatch` is that it is supposedly faster since there is no arbitration mailbox involved. If you want finer control and reporting of the migration process, [create a migration batch](#with-new-migrationbatch) instead.
+
+    "[Exchange Hybrid Migrations: More Than Just a Pretty Face](https://techcommunity.microsoft.com/blog/exchange/exchange-hybrid-migrations-more-than-just-a-pretty-face/1623109)" is the first in a five-part series that explains hybrid migrations in depth, including when the arbitration mailbox is used.
 
 1. Create a CSV file that contains a single column with the email addresses for the mailboxes that will be moved. The header for this column must be named `EmailAddress`.
 2. Connect to Exchange Online PowerShell and use the following script:
@@ -57,7 +61,7 @@ foreach ($Mailbox in $Mailboxes) {
 }
 ```
 
-!!! tip 
+!!! tip "Export email addresses to CSV using the EAC"
 
     You can use the EAC to export a list of all your email addresses to a CSV file.
 
