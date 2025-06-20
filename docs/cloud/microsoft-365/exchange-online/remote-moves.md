@@ -1,7 +1,8 @@
 # Remote Mailbox Moves <small>(Hybrid Migration)</small>
 
 Remote mailbox moves are used to migrate mailboxes between on-premises Exchange and Exchange Online in a hybrid deployment.
-## Exchange Online PowerShell
+
+## Move with Exchange Online PowerShell { data-toc-label="Move with PowerShell" }
 
 [Download and install](https://learn.microsoft.com/en-us/powershell/exchange/exchange-online-powershell-v2?view=exchange-ps#install-and-maintain-the-exchange-online-powershell-module) the module.
 
@@ -17,7 +18,7 @@ Disconnect-ExchangeOnline -Confirm:$false
 
 <small>*Always remember to disconnect your session when you're done. Closing the PowerShell window is not enough.*</small>
 
-### Single Mailbox
+### Move Single Mailbox
 
 ```powershell title="1. Find migration endpoint remote server URL"
 Get-MigrationEndpoint | Format-List Identity, RemoteServer
@@ -31,11 +32,11 @@ New-MoveRequest -Identity "jsmith@nep.com" -Remote -RemoteHostName "mail.nep.com
 
 <small>*`-RemoteCredential` is your on-premises admin account.*</small>
 
-### Many Mailboxes
+### Move Many Mailboxes
 
 !!! note
 
-    The benefit of creating multiple mailbox moves this way instead of using `New-MigrationBatch` is that it is supposedly faster since there is no arbitration mailbox involved. If you want finer control and reporting of the migration process, [create a migration batch](#with-new-migrationbatch) instead.
+    The benefit of creating multiple mailbox moves this way instead of using `New-MigrationBatch` (or EAC) is that it is supposedly faster since there is no arbitration mailbox involved. If you want finer control scheduling and reporting of the migration process, create a migration batch instead.
 
     "[Exchange Hybrid Migrations: More Than Just a Pretty Face](https://techcommunity.microsoft.com/blog/exchange/exchange-hybrid-migrations-more-than-just-a-pretty-face/1623109)" is the first in a five-part series that explains hybrid migrations in depth, including when the arbitration mailbox is used.
 
@@ -70,11 +71,24 @@ foreach ($Mailbox in $Mailboxes) {
 
 #### with `New-MigrationBatch`
 
-Sign in to the Exchange Online Admin center and navigate to **Migration** > **Add migration batch**.
+Connect to Exchange Online PowerShell.
 
-...
+```powershell title="Create a new migration endpoint"
+$MigrationEndpointOnPrem = New-MigrationEndpoint -ExchangeRemoteMove -Name OnPremEndpoint -Autodiscover -EmailAddress admin@onpremdomain.com -Credentials (Get-Credential)
+```
+<small>This migration endpoint points to the on-prem organization as the source location of the mailboxes that will be migrated.</small>
 
-### Suspend & Resume
+```powershell title="Create a new migration batch"
+$OnboardingBatch = New-MigrationBatch -Name RemoteOnboarding01 -SourceEndpoint $MigrationEndpointOnPrem.Identity -TargetDeliveryDomain contoso.mail.onmicrosoft.com -CSVData ([System.IO.File]::ReadAllBytes("C:\Users\Administrator\Desktop\RemoteOnBoarding1.csv"))
+```
+
+<small>The CSVData parameter specifies the CSV file that contains information about the user mailboxes to be moved or migrated. The required attribute in the header row of the CSV for this type of migration is `EmailAddress` (same as in section above). For more information, see [CSV files for mailbox migration](https://learn.microsoft.com/en-us/exchange/csv-files-for-mailbox-migration-exchange-2013-help).</small>
+
+```powershell title="Start the migration batch"
+Start-MigrationBatch -Identity $OnboardingBatch.Identity.Name
+```
+
+### Suspend & Resume Moves
 
 !!! tip
     
@@ -96,7 +110,36 @@ Resume-MoveRequest -Identity "jsmith@nep.com"
 Get-MoveRequest -MoveStatus Suspended | Resume-MoveRequest
 ```
 
-## Exchange Admin Center <small>(EAC)</small> { data-toc-label="Exchange Admin Center" }
+### Get Move Request Status
+
+```powershell title="Get a single move request"
+Get-MoveRequest -Identity "jsmith@nep.com" | Get-MoveRequestStatistics
+```
+
+```powershell title="Get all in progress move requests"
+Get-MoveRequest -MoveStatus InProgress -ResultSize Unlimited | Get-MoveRequestStatistics
+```
+
+```powershell title="Get all completed move requests"
+Get-MoveRequest -MoveStatus Completed -ResultSize Unlimited | Get-MoveRequestStatistics
+```
+
+```powershell title="Get the migration progress of a batch"
+Get-MigrationUser -ResultSize Unlimited -BatchId "MigrationBatch01" | Get-MoveRequestStatistics | ft -AutoSize
+```
+
+Other available statuses for `Get-MoveRequest`:
+
+- `AutoSuspended`
+- `Completed`
+- `CompletedWithWarning`
+- `CompletionInProgress`
+- `Failed`
+- `Queued`
+- `Retrying`
+- `Suspended`
+
+## Move with Exchange Admin Center <small>(EAC)</small> { data-toc-label="Move with EAC" }
 
 1. In the on-premises EAC, got to **Home** > **Migration**.
 2. Select **Add migration batch**.
@@ -123,11 +166,38 @@ Get-MoveRequest -MoveStatus Suspended | Resume-MoveRequest
 11. Select your migration batch from the **Migration batches** page and select **Resume migration**.
 12. Select **Confirm** and close the page that displays the notification message **Operation successful**.
 
+## Remove Completed Migration Batches & Move Requests { data-toc-label="Remove Completed Moves" }
+
+Completed move requests can be removed to clean up the mailbox move history. Completed migration batches should be removed to minimize the likelihood of errors if the same users are moved again...According to Microsoft anyway.
+
+### Remove with EAC
+
+1. Go to **Home** > **Migration**. The **Migration batches** page appears.
+2. Select a completed migration batch that has the value **Completed** under the column titled **Status**. The dialog containing the details of the migration batch displays.
+3. Select the **Delete** icon on the dialog. A prompt displays, seeking confirmation of whether the user wants to delete the migration batch.
+4. Select **Confirm**. A notification message that reads **Operation successful** is displayed, indicating that the migration batch has been successfully deleted.
+
+### Remove with PowerShell
+
+```powershell title="Remove completed move requests"
+Get-MoveRequest -MoveStatus Completed -ResultSize Unlimited | Remove-MoveRequest
+```
+
+```powershell title="Remove completed migration batches"
+Get-MigrationBatch -Status Completed -ResultSize Unlimited | Remove-MigrationBatch
+```
+
+#### when removing a completed move request fails
+
+According to an [Ali Tajran article](https://www.alitajran.com/remove-move-request-fails-in-exchange-server/), this can happen if users are recreated, deleted, or moved to another OU in AD before the move request is cleared. The solution is to remove the completed request by using the `-MailboxGuid` parameter.
+
 ## References
 
 :material-microsoft: [*Move Mailboxes Using PowerShell*](https://learn.microsoft.com/en-us/exchange/hybrid-deployment/move-mailboxes-using-powershell#use-powershell-to-move-mailboxes)<br>
 :material-microsoft: [*Exchange PowerShell*](https://learn.microsoft.com/en-us/powershell/module/exchange/?view=exchange-ps)<br>
 :material-microsoft: [*Exchange Online PowerShell*](https://learn.microsoft.com/en-us/powershell/exchange/exchange-online-powershell?view=exchange-ps)<br>
 :material-microsoft: [*Connect to Exchange Online PowerShell*](https://learn.microsoft.com/en-us/powershell/exchange/connect-to-exchange-online-powershell)<br>
-:material-microsoft: [*Use the EAC to move mailboxes*](https://learn.microsoft.com/en-us/exchange/hybrid-deployment/move-mailboxes-using-eac#use-the-eac-to-move-mailboxes)
+:material-microsoft: [*New-MigrationBatch*](https://learn.microsoft.com/en-us/powershell/module/exchange/new-migrationbatch?view=exchange-ps)<br>
+:material-microsoft: [*Use the EAC to move mailboxes*](https://learn.microsoft.com/en-us/exchange/hybrid-deployment/move-mailboxes-using-eac#use-the-eac-to-move-mailboxes)<br>
+
 
