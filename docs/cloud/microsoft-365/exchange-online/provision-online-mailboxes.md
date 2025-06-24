@@ -2,11 +2,11 @@
 
 !!! warning "Avoid deletion of mailbox data"
 
-    Whether a new online mailbox is provisioned or an existing on-prem mailbox is migrated to the cloud, the service will allow a period of 30 days for admins to assign the proper licensing. After this period, the mailbox and all of it contents will be deleted.
+    Whether a new online mailbox is provisioned or an existing on-prem mailbox is migrated to the cloud, the service will allow a period of 30 days for admins to assign the proper licensing. After this period, the mailbox and all of it contents will be permanently deleted. There is no way to recover the mailbox or its contents after this period.
     
-    Microsoft's recommendation is to ALWAYS assign a license as soon as you see the mailbox provisioned in Exchange Online and in migration scenarios even before the move is started.
+    Microsoft's recommendation is to always assign a license as soon as you see the mailbox provisioned in Exchange Online and in migration scenarios even before the move is injected.
 
-!!! info ":material-microsoft: [On Provisioning Mailboxes in Exchange Online When in Hybrid](https://techcommunity.microsoft.com/blog/exchange/on-provisioning-mailboxes-in-exchange-online-when-in-hybrid/1406335)"
+!!! info "Provisioning Online Mailboxes in Exchange Hybrid"
 
     While it is possible to add a user in ADUC, allow for them to sync to Entra, and then license the user in M365, the user's Exchange Online attributes will never sync back to the on-premises environment to create a "Mail-enabled User" (MEU) object. In this scenario, managing the mailboxes from the on-prem environment isn't possible and since the M365 user is synced with on-prem AD, managing attributes from the cloud is also not possible. 
 
@@ -31,8 +31,6 @@ Name          RecipientTypeDetails RemoteRecipientType
 ----          -------------------- -------------------
 jsmith        RemoteUserMailbox    ProvisionMailbox
 ```
-
-<https://learn.microsoft.com/en-us/powershell/module/exchange/new-remotemailbox?view=exchange-ps>
 
 ## Provision with the EAC
 
@@ -82,7 +80,9 @@ Disconnect-ExchangeOnline -Confirm:$false
 Start-ADSyncSyncCycle -PolicyType Delta
 ```
 
-### Error: "ExchangeGuid is mandatory on UserMailbox" { data-toc-label="Error: ExchangeGuid is Mandatory..." }
+## Potential Errors 
+
+### ExchangeGuid is mandatory on UserMailbox
 
 You may encounter this error after running the `Enable-RemoteMailbox` cmdlet.
 
@@ -112,3 +112,34 @@ Ali Tajran's has an [article](https://www.alitajran.com/enable-remotemailbox-exc
 !!! note
 
     [This article](https://martinsblog.dk/enable-remotemailbox-exchangeguid-is-mandatory-on-usermailbox/) adds that you should clear any entry beginning with "msExch" so the values are all `<not set>`.
+
+### This user’s on-premises mailbox hasn’t been migrated to Exchange Online...
+
+When you create a new user in on-premise AD and sync to Entra ID, you might get the following message:
+
+```
+This user's on-premises mailbox hasn't been migrated to Exchange Online. 
+The Exchange Online mailbox will be available after migration is completed.
+```
+
+This occurs when `msExchMailboxGuid` is set for the user object in AD. Therefore, Exchange Online will report that the mailbox has not been migrated yet and will not provision a mailbox for the user.
+
+1. Start Active Directory Users and Computers (ADUC) on the on-premises server. Click on **View** and enable **Advanced Features**.
+2. Find the user object and open its properties. Click the **Attribute Editor** tab. Find the attribute `msExchMailboxGuid` and click **Edit**.
+3. Click on **Clear**. The value will be changed to `<not set>`. Click **OK**.
+4. Do the same for the `msExchRecipientDisplayType` and `msExchRecipientTypeDetails` attributes.
+5. Delete the user from M365 and re-sync
+    1. Move the user to an OU that is not synced with Entra ID.
+    2. Perform a delta sync with `Start-ADSyncSyncCycle -PolicyType delta`.
+    3. In the 365 admin center, check that the user appears in **Users** > **Deleted**.
+    4. Permanently delete the user from the Deleted Users list (Delete permanently button).
+    5. Move the user back to the original Entra synced OU and perform another delta sync.
+
+<https://techpress.net/this-users-on-premises-mailbox-hasnt-been-migrated-to-exchange-online/>
+
+# References
+
+:material-microsoft: [On Provisioning Mailboxes in Exchange Online When in Hybrid](https://techcommunity.microsoft.com/blog/exchange/on-provisioning-mailboxes-in-exchange-online-when-in-hybrid/1406335)<br>
+:material-microsoft: [New-RemoteMailbox](https://learn.microsoft.com/en-us/powershell/module/exchange/new-remotemailbox?view=exchange-ps)<br>
+:material-microsoft: [Enable-RemoteMailbox](https://learn.microsoft.com/en-us/powershell/module/exchange/enable-remotemailbox?view=exchange-ps)<br>
+:material-microsoft: [Demystifying Exchange Online Provisioning: 30 day grace period](https://techcommunity.microsoft.com/blog/exchange/demystifying-exchange-online-provisioning-architecture-exchange-object-types-and/4204206)
