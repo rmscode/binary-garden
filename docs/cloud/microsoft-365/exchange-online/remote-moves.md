@@ -36,7 +36,7 @@ New-MoveRequest -Identity "jsmith@nep.com" -Remote -RemoteHostName "mail.nep.com
 
 !!! note
 
-    The benefit of creating multiple mailbox moves this way instead of using `New-MigrationBatch` (or EAC) is that it is supposedly faster since there is no arbitration mailbox involved. If you want finer control scheduling and reporting of the migration process, create a migration batch instead.
+    The benefit of creating multiple mailbox moves this way instead of using `New-MigrationBatch` (or EAC) is that it is supposedly faster since there is no arbitration mailbox involved. If you want finer control over scheduling and reporting of the migration process, create a migration batch instead.
 
     "[Exchange Hybrid Migrations: More Than Just a Pretty Face](https://techcommunity.microsoft.com/blog/exchange/exchange-hybrid-migrations-more-than-just-a-pretty-face/1623109)" is the first in a five-part series that explains hybrid migrations in depth, including when the arbitration mailbox is used.
 
@@ -199,5 +199,8 @@ According to an [Ali Tajran article](https://www.alitajran.com/remove-move-reque
 :material-microsoft: [*Connect to Exchange Online PowerShell*](https://learn.microsoft.com/en-us/powershell/exchange/connect-to-exchange-online-powershell)<br>
 :material-microsoft: [*New-MigrationBatch*](https://learn.microsoft.com/en-us/powershell/module/exchange/new-migrationbatch?view=exchange-ps)<br>
 :material-microsoft: [*Use the EAC to move mailboxes*](https://learn.microsoft.com/en-us/exchange/hybrid-deployment/move-mailboxes-using-eac#use-the-eac-to-move-mailboxes)<br>
-
-
+:material-microsoft: [*Get-MoveRequest*](https://learn.microsoft.com/en-us/powershell/module/exchange/get-moverequest?view=exchange-ps)<br>
+:material-microsoft: [*Get-MigrationBatch*](https://learn.microsoft.com/en-us/powershell/module/exchange/get-migrationbatch?view=exchange-ps)<br>
+:material-microsoft: [*Remove Completed Migration Batches*](https://learn.microsoft.com/en-us/exchange/hybrid-deployment/remove-completed-migration-batches)<br>
+:material-microsoft: [*Remove-MoveRequest*](https://learn.microsoft.com/en-us/powershell/module/exchange/remove-moverequest?view=exchange-ps)<br>
+:material-microsoft: [*Remove-MigrationBatch*](https://learn.microsoft.com/en-us/powershell/module/exchange/remove-migrationbatch?view=exchange-ps)
