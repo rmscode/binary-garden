@@ -82,11 +82,21 @@ I'll probably add more here once we have a chance to test the HCW ourselves.
 
 ## Decommissioning the Last Exchange Server { #decom-last-exchange-server data-toc-label="Decom Last Exchange Server"}
 
-!!! info "Important"
+If you maintain an on-premises Exchange server just for recipient management in Exchange Hybrid, you *might* be able to shut down your last Exchange server and manage recipients using Windows PowerShell. Shutting down the Exchange server is completely optional. This will work for you if the following statements are true:
 
-    Ensure that all mailboxes have been migrated to the cloud and that there is no SMTP relay.
+- [ ] You migrated all mailboxes and public folders to Exchange Online (no on-premises Exchange recipients).
+- [ ] You use AD for recipient management and cloud sync or Microsoft Entra Connect for synchronization.
+- [ ] You don't use or require the on-premises Exchange admin center or Exchange role-based access control (RBAC).
+- [ ] You're comfortable using Windows PowerShell only for recipient management.
+- [ ] You don't require auditing or logging of recipient management activity.
+- [ ] You're running only one on-premises Exchange server and only for recipient management.
+- [ ] You want to manage recipients without running any Exchange servers.
 
-I have some notes on this [here](../../../notes/exchange-migration-notes.md#how-and-when-to-decommission-your-on-prem-exchange-server-in-a-hybrid-deployment). Official Microsoft documentation available [here](https://learn.microsoft.com/en-gb/exchange/manage-hybrid-exchange-recipients-with-management-tools). 
+!!!info "Important"
+
+    Additionally, if you use your last Exchange server for any purpose other than recipient management (for example, SMTP relay), then don't shut it down.
+
+I have some notes on this [here](../../../notes/exchange-migration-notes.md#how-and-when-to-decommission-your-on-prem-exchange-server-in-a-hybrid-deployment). Official Microsoft documentation available [here](https://learn.microsoft.com/en-gb/exchange/manage-hybrid-exchange-recipients-with-management-tools).
 
 ### Prepare the Exchange Server { data-toc-label="Prepare the Exchange Server" }
 
@@ -108,7 +118,7 @@ I have some notes on this [here](../../../notes/exchange-migration-notes.md#how-
 
 ### Install Management Tools
 
-1. Install Windows Remote Server Administration Tools on the management server/computer:<br>
+1. Install Windows Remote Server Administration Tools on the management server/computer (any domain joined computer):<br>
 ```powershell
 Install-WindowsFeature rsat-adds
 ```
@@ -123,7 +133,7 @@ Install-WindowsFeature rsat-adds
 
 ### Create Recipient Management Group { data-toc-label="Recipient Management Group" }
 
-1. Sign-in as a Domain Admin to the computer with the Management Tools installed and load the snap-in.<br>
+1. Sign-in as a Domain Admin to the computer where the Management Tools are installed and load the snap-in.<br>
 ```powershell
 Add-PSSnapin *RecipientManagement
 ```
