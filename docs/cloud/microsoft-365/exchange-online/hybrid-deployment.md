@@ -46,8 +46,6 @@ Exchange 2019 Mailbox/Edge | 80                | ctldl.windowsupdate.com/*  | Fo
 
 The [Mail Migration Advisor](https://learn.microsoft.com/en-us/exchange/mail-migration-jump) will recommend the best migration path for your organization based on your current mail system.
 
-The [Exchange Server Deployment Assistant](https://setup.cloud.microsoft/exchange/deployment-assistant) will create a customized checklist with instructions to configure your hybrid deployment.
-
 The [Remote Connectivity Analyzer](https://testconnectivity.microsoft.com/) is useful for testing the external connectivity of your on-prem Exchange org prior to running the HCW.
 
 ## Hybrid Configuration Wizard

@@ -27,7 +27,7 @@ Set-OrganizationConfig -AutoExpandingArchiveEnabled $true
 ```
 3. Disconnect from Exchange Online PowerShell.
 
-## Enable a Cloud Based Archive for a Primary On-Premises Mailbox or an Online Mailbox { data-toc-label="Enable Cloud Based Archives" }
+## Configure a Cloud Based Archive for a Primary On-Premises Mailbox or an Online Mailbox { data-toc-label="Configure Cloud Based Archives" }
 
 ### With Exchange Admin Center <small>(EAC)</small> { data-toc-label="With EAC" }
 
@@ -46,6 +46,10 @@ Set-OrganizationConfig -AutoExpandingArchiveEnabled $true
 ```powershell
 Enable-Mailbox -Identity jsmith@nep.com -RemoteArchive -ArchiveDomain "nep.mail.onmicrosoft.com"
 ```
+
+### Move Items to Archive
+
+Use [retention policies in Microsoft Purview](../purview/dlm.md) to move items to the archive.
 
 ## References
 
