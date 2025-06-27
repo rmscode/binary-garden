@@ -16,7 +16,7 @@
 
 ## Provision with PowerShell <small>`New-RemoteMailbox`</small> { #provision-with-powershell data-toc-label="Provision with PowerShell" }
 
-From Exchange Management Shell...
+From **on-prem** Exchange Management Shell:
 
 ```powershell title="1. Set a password for the new user"
 $Credentials = Get-Credential
@@ -60,23 +60,13 @@ jsmith        RemoteUserMailbox    ProvisionMailbox
 
 Let's say there is some scenario where a user was created in ADUC and then synced to M365. You can still create the MEU object and set the remote routing address with the `Enable-RemoteMailbox` cmdlet.
 
-```powershell title="1. Connect to Exchange Online PowerShell"
-Connect-ExchangeOnline -UserPrincipalName admin@nep.com
-```
+1. [Connect to Exchange Online PowerShell](exo-powershell.md#usage) and run:<br>
 
-<small>This is an interactive login. A new window will open where you can sign in to your Exchange Online admin account.</small>
-
-```powershell title="2. Run Enable-RemoteMailbox"
+```powershell
 Enable-RemoteMailbox -Identity "John Smith" -RemoteRoutingAddress "jsmith@nep.mail.onmicrosoft.com" -Alias "jsmith" -DisplayName "John Smith"
 ```
-
-```powershell title="3. Disconnect from Exchange Online PowerShell"
-Disconnect-ExchangeOnline -Confirm:$false
-```
-
-<small>Always remember to disconnect your session when you're done. Closing the PowerShell window is not enough.</small>
-
-```powershell title="4. Force sync Entra Connect"
+2. [Disconnect to Exchange Online PowerShell](exo-powershell.md#usage) and force sync Entra Connect:<br>
+```powershell
 Start-ADSyncSyncCycle -PolicyType Delta
 ```
 

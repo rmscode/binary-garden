@@ -179,9 +179,8 @@ Get-IntraOrganizationConnector | Set-IntraOrganizationConnector -Enabled $false
 # Verify that the enabled column is "False"
 Get-IntraOrganizationConnector | Format-Table Name,Enabled,TargetAddressDomains
 ```
-7. Connect to Exchange Online PowerShell and disable OAuth configuration from Microsoft 365 if it’s present.<br>
+7. [Connect to Exchange Online PowerShell](exo-powershell.md#usage) and disable OAuth configuration from Microsoft 365 if it’s present.<br>
 ```powershell
-Connect-ExchangeOnline
 Get-IntraOrganizationConnector | Set-IntraOrganizationConnector -Enabled $false
 ```
 

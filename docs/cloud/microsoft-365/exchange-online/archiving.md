@@ -20,12 +20,12 @@ It can take up to 30 days for the additional storage to be provisioned.
 
     In an Exchange hybrid deployment, you can't use the `Enable-Mailbox -AutoExpandingArchive` cmdlet to enable auto-expanding archiving for a specific user whose primary mailbox is on-prem and whose archive mailbox is cloud-based. Instead, you must enable the feature for the entire organization. Once enabled globally, it can not be turned off.
 
-1. Connect to Exchange Online PowerShell.
+1. [Connect to Exchange Online PowerShell](exo-powershell.md#usage).
 2. Run the following command:
 ```powershell
 Set-OrganizationConfig -AutoExpandingArchiveEnabled $true
 ```
-3. Disconnect from Exchange Online PowerShell.
+3. [Disconnect from Exchange Online PowerShell](exo-powershell.md#usage).
 
 ## Configure a Cloud Based Archive for a Primary On-Premises Mailbox or an Online Mailbox { data-toc-label="Configure Cloud Based Archives" }
 

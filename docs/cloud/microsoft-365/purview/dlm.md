@@ -23,7 +23,7 @@ Data Lifecycle Management <small>(DLM)</small> in Microsoft Purview helps organi
 
 #### with PowerShell
 
-Connect to Exchange Online PowerShell.
+[Connect to Exchange Online PowerShell](exo-powershell.md#usage).
 
 ```powershell title="Create a new tag"
 New-RetentionPolicyTag "2 year move to archive" -Type All -RetentionEnabled $true -AgeLimitForRetention 730 -RetentionAction MoveToArchive
@@ -62,7 +62,7 @@ Remove-RetentionPolicyTag "2 year move to archive"
 
 #### with PowerShell
 
-Connect to Exchange Online PowerShell.
+[Connect to Exchange Online PowerShell](exo-powershell.md#usage).
 
 ```powershell title="Edit an existing policy"
 Set-RetentionPolicy "Default MRM Policy" -RetentionPolicyTagLinks "name of tag"

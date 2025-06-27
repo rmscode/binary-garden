@@ -6,19 +6,7 @@ Duration estimates for mailbox migration in Exchange Online can be found [here](
 
 ## Move with Exchange Online PowerShell { data-toc-label="Move with PowerShell" }
 
-[Download and install](https://learn.microsoft.com/en-us/powershell/exchange/exchange-online-powershell-v2?view=exchange-ps#install-and-maintain-the-exchange-online-powershell-module) the module.
-
-```powershell title="Connecting to Exchange Online PowerShell"
-Connect-ExchangeOnline -UserPrincipalName admin@nep.com
-```
-
-<small>*This is an interactive login. A new window will open where you can sign in to your Exchange Online admin account.*</small>
-
-```powershell title="Disconnecting from Exchange Online PowerShell"
-Disconnect-ExchangeOnline -Confirm:$false
-```
-
-<small>*Always remember to disconnect your session when you're done. Closing the PowerShell window is not enough.*</small>
+For information on installing and connecting to Exchange Online PowerShell, see [here](exo-powershell.md).
 
 ### Move Single Mailbox
 
@@ -43,7 +31,7 @@ New-MoveRequest -Identity "jsmith@nep.com" -Remote -RemoteHostName "mail.nep.com
     "[Exchange Hybrid Migrations: More Than Just a Pretty Face](https://techcommunity.microsoft.com/blog/exchange/exchange-hybrid-migrations-more-than-just-a-pretty-face/1623109)" is the first in a five-part series that explains hybrid migrations in depth, including when the arbitration mailbox is used.
 
 1. Create a CSV file that contains a single column with the email addresses for the mailboxes that will be moved. The header for this column must be named `EmailAddress`.
-2. Connect to Exchange Online PowerShell and use the following script:
+2. [Connect to Exchange Online PowerShell](exo-powershell.md#usage) and use the following script:
 
 ```powershell
 $Mailboxes = Import-Csv "C:\migration\mailboxes.csv"
@@ -73,7 +61,7 @@ foreach ($Mailbox in $Mailboxes) {
 
 #### with `New-MigrationBatch`
 
-Connect to Exchange Online PowerShell.
+[Connect to Exchange Online PowerShell](exo-powershell.md#usage).
 
 ```powershell title="Create a new migration endpoint"
 $MigrationEndpointOnPrem = New-MigrationEndpoint -ExchangeRemoteMove -Name OnPremEndpoint -Autodiscover -EmailAddress admin@onpremdomain.com -Credentials (Get-Credential)
@@ -198,7 +186,7 @@ According to an [Ali Tajran article](https://www.alitajran.com/remove-move-reque
 :material-microsoft: [*Move Mailboxes Using PowerShell*](https://learn.microsoft.com/en-us/exchange/hybrid-deployment/move-mailboxes-using-powershell#use-powershell-to-move-mailboxes)<br>
 :material-microsoft: [*Exchange PowerShell*](https://learn.microsoft.com/en-us/powershell/module/exchange/?view=exchange-ps)<br>
 :material-microsoft: [*Exchange Online PowerShell*](https://learn.microsoft.com/en-us/powershell/exchange/exchange-online-powershell?view=exchange-ps)<br>
-:material-microsoft: [*Connect to Exchange Online PowerShell*](https://learn.microsoft.com/en-us/powershell/exchange/connect-to-exchange-online-powershell)<br>
+:material-microsoft: [*[Connect to Exchange Online PowerShell](exo-powershell.md#usage)*](https://learn.microsoft.com/en-us/powershell/exchange/connect-to-exchange-online-powershell)<br>
 :material-microsoft: [*New-MigrationBatch*](https://learn.microsoft.com/en-us/powershell/module/exchange/new-migrationbatch?view=exchange-ps)<br>
 :material-microsoft: [*Use the EAC to move mailboxes*](https://learn.microsoft.com/en-us/exchange/hybrid-deployment/move-mailboxes-using-eac#use-the-eac-to-move-mailboxes)<br>
 :material-microsoft: [*Get-MoveRequest*](https://learn.microsoft.com/en-us/powershell/module/exchange/get-moverequest?view=exchange-ps)<br>
