@@ -65,9 +65,15 @@ plugins:
         - notes/20**.md
   - git-latest-changes:
       limit_to_docs_dir: True
+      timestamp_format: "%m.%d.%Y %H:%M"
       repo_vendor: github
       enabled_on_serve: True
       history_limit: 5
+      table_features:
+        - "page_path_link"
+        - "timestamp"
+        - "author"
+        - "message"
   - mkdocs-audio
   - tags
   - autolinks
