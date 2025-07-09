@@ -112,3 +112,12 @@ After adding a second mailbox to Outlook, my main mailbox would not connect to e
 I have experienced strange rendering issues with Outlook from time to time. For a while I was relaunching the app to resolve it, but I discovered that reloading the system's graphics drivers with <kbd>Win</kbd>+<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> also resolves the issue without having to close Outlook.
 
 ![Outlook render bug](../../../assets/outlook-rendering-issue.png)
+
+### "Incorrect Log in"
+
+I was assisting a user add their work email to the Outlook mobile app on their new Android phone, but kept getting the error "Incorrect log in" (or something very similar, I can't remember the exact wording). I knew that the credentials were correct because I had them log in to OWA without issue. The following steps resolved the issue:
+
+1. Android Settings > Applications > Outlook
+2. Open Storage and Cache, clear both.
+3. Go back and force stop the app.
+4. Add the mail account to Outlook again.
