@@ -29,6 +29,7 @@ nav:
         - Hybrid Deployment: cloud/microsoft-365/exchange-online/hybrid-deployment.md
         - Provision Online Mailboxes: cloud/microsoft-365/exchange-online/provision-online-mailboxes.md
         - Remote Mailbox Moves: cloud/microsoft-365/exchange-online/remote-moves.md
+        - Send From Alias: cloud/microsoft-365/exchange-online/send-from-alias.md
       - OneDrive: cloud/microsoft-365/onedrive.md
       - Purview:
         - Data Lifecycle Management: cloud/microsoft-365/purview/dlm.md
