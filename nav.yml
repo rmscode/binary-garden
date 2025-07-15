@@ -20,6 +20,8 @@ nav:
     - Azure:
       - cloud/azure/entra-domain-services.md
     - Microsoft|Office 365:
+      - Defender for Office 365:
+        - Quarantine: cloud/microsoft-365/defender-for-365/quarantine.md
       - Entra:
         - MFA: cloud/microsoft-365/entra/entra-mfa.md
         - Security: cloud/microsoft-365/entra/entra-security.md
@@ -30,6 +32,7 @@ nav:
         - Provision Online Mailboxes: cloud/microsoft-365/exchange-online/provision-online-mailboxes.md
         - Remote Mailbox Moves: cloud/microsoft-365/exchange-online/remote-moves.md
         - Send From Alias: cloud/microsoft-365/exchange-online/send-from-alias.md
+        - Quarantine: cloud/microsoft-365/defender-for-365/quarantine.md
       - OneDrive: cloud/microsoft-365/onedrive.md
       - Purview:
         - Data Lifecycle Management: cloud/microsoft-365/purview/dlm.md
