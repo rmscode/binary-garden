@@ -67,6 +67,4 @@ Certificate based authentication (CBA) or app-only authentication supports unatt
 
 === "Using a local cert"
 
-    !!! note    
-
     Using a `ConvertTo-SecureString` command to store the password of the certificate locally defeats the purpose of a secure connection method for automation scenarios. Using a `Get-Credential` command to prompt you for the password of the certificate securely isn't ideal for automation scenarios. In other words, there's really no automated and secure way to connect using a local certificate.
