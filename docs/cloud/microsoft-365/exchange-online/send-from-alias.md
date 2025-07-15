@@ -2,8 +2,8 @@
 
 ## Enable the feature
 
-1. Open the Exchange Admin Center
-2. Click **Settings** > **Mail Flow**
+1. Open the [Exchange Online Admin Center](https://admin.exchange.microsoft.com/)
+2. In the side bar, open **Settings** and then **Mail Flow**
 3. Tick the box for **Turn on sending from aliases**
 
 ### With Powershell
@@ -16,18 +16,20 @@ Set-OrganizationConfig -SendFromAliasEnabled $true
 
 ## How to Send From Alias
 
-### Outlook New
-
-### Outlook Classic
+### Classic Outlook Client
 
 1. Select **From**
     - You probably have to enable the **From** field first: Compose a **New Email** > **Options** tab > **Show Fields**
 2. Choose **Other email address**
 3. Type your alias and click **OK**
 
-### Outlook on the Web <small>outlook.com</small>  { data-toc-label="Outlook on the Web" }
+### New Outlook Client
 
-1. Open Settings (gear icon) in Outlook on the Web
+!!! note
+
+    These steps can be used for Outlook on the Web <small>(outlook.com)</small> as well. The two share the same code base.
+
+1. Open Settings (gear icon)
 2. Go to **General** > Toggle on **Use my Microsoft 365 Settings**
 3. Go to **Mail** > **Compose and reply**
 4. Under **Addresses to send from**, select the desired alias(es).
@@ -46,7 +48,7 @@ Once the above steps are complete, you will be able to select your alias in the 
 
 !!! note
 
-    In addition to these steps, if you have not already done so, you may also need to complete the steps listed under [Outlook on the Web](#outlook-on-the-web). That is according to an [Ali Tajran post](https://www.alitajran.com/send-as-alias-outlook-mobile-app/), anyway. As of 7/13/25, I had first tested sending from an alias using Outlook on the Web, so I can't confirm that these steps alone will work.
+    In addition to these steps, if you have not already done so, you may also need to complete the steps listed under [New Outlook Client](#new-outlook-client).
 
 ## References 
 
