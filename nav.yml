@@ -188,6 +188,7 @@ nav:
     - PulseAudio: software/pulse-audio.md
     - Quick Assist: software/quick-assist.md
     - Remote Desktop: software/remote-desktop.md
+    - RustDesk Client: software/rustdesk-client.md
     - Remmina: software/remmina.md
     - Tint2: software/tint2.md
     - Uhubctl: software/uhubctl.md
