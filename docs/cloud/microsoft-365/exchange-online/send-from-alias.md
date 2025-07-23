@@ -1,5 +1,9 @@
 # Send from Alias
 
+!!! info "How the [`proxyAddresses`](https://learn.microsoft.com/en-us/troubleshoot/entra/entra-id/user-prov-sync/proxyaddresses-attribute-populate) attribute is populated in Entra ID"
+
+    The `proxyAddresses` attribute is a multi-value property that stores address entries in Active Directory. Each alias is prefixed with `smtp:` (smtp:alias@contoso.com). Case is important as all caps (SMTP:) refers to the primary address. Prior to migrating a user's mailbox who has aliases, it should be confirmed that their `proxyAddresses` attribute has been properly synced to Entra ID. Entra ID takes into account the values of this property to set or update the Primary SMTP address and additional secondary addresses based on the on-premises ProxyAddresses or UserPrincipalName.
+
 ## Enable the feature
 
 1. Open the [Exchange Online Admin Center](https://admin.exchange.microsoft.com/)
