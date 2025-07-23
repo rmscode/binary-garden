@@ -75,7 +75,7 @@ plugins:
         - "author"
         - "message"
   - mkdocs-audio
-  - tags
+  # - tags
   - autolinks
 
 # Additional configuration
@@ -83,13 +83,13 @@ extra:
   status:
     new: Recently added
     deprecated: Deprecated
-  tags:
-    Documentation: docs
-    Hardware: hardware
-    Networking: networking
-    Notes: notes
-    Software: software
-    Standard Operating Procedures: sop
+  # tags:
+  #   Documentation: docs
+  #   Hardware: hardware
+  #   Networking: networking
+  #   Notes: notes
+  #   Software: software
+  #   Standard Operating Procedures: sop
 
 # Extensions
 markdown_extensions:
