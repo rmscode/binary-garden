@@ -7,8 +7,8 @@
 !!! info 
 
     - Anyone can record a meeting as long as:
-        - The option has been enabled by an admin.
-        - They are not a guest from another organization.
+        - The option has been enabled for the organization by an admin.
+        - Attendees are not a guest from another organization.
     - Recordings won't capture:
         - More than four people's video streams at once.
         - Whiteboards and annotations.
@@ -17,7 +17,8 @@
         - Videos or animations embedded in PowerPoint Live presentations.
     - Only one person can record at a time.
     - Recordings are processed and saved in the organizer's OneDrive for Business.
-    - The recording shows up in the meeting chat or channel conversation.
+    - The recording shows up in the meeting chat or channel conversation via a link. 
+    - Co-organizers can also manage the recording and who it is shared with.
     - Guests and external attendees can view a recording only if it's explicitly shared with them.
 
 **To start recording**:
