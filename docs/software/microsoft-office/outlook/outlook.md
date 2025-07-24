@@ -64,7 +64,6 @@ Complete steps 1-4 above, then:
 This has been found to resolve the following issues:
 
 - When prompted to enter credentials where multiple accounts are set up in Outlook, the wrong credentials are entered and saved. Outlook will fail to sync with the server and will not prompt for the correct credentials again.
-    - Related incident [here](2024.md#07152024-0810).
 - The Global Address List (GAL) is not updating in Outlook.
 
 !!! note "4/22/25"
@@ -88,11 +87,6 @@ This has been found to resolve the following issues:
 7. Ensure that `mail.northeastprecast.com` is entered in the **Server** field.
 8. Leave the **Domain** field blank and enter your full email address in the **Username** field.
 9. Tap the checkmark in the top right corner to finish.
-
-!!! note
-
-    I can confirm that these steps work for both [Android](../../../notes/2024.md#12042024-1139) and [iOS](../../../notes/2024.md#12182024-1037).
-
 
 ## Issues 
 

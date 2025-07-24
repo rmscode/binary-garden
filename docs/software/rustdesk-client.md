@@ -2,7 +2,7 @@
 
 !!! note "Not ready yet..."
 
-    Privacy mode seems a bit immature and does not work with multiple monitors. This is a deal breaker for unattended access. See my note from [7/21/25](2025.md#07212025-1541).
+    Privacy mode seems a bit immature and does not work with multiple monitors. This is a deal breaker for unattended access.
 
 ## Quick Start
 

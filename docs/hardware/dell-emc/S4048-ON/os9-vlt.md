@@ -10,7 +10,7 @@
 
 !!! warning "rSTP has the potential to disrupt traffic if not configured correctly"
 
-    During our initial configuration and testing of VLT we experienced some traffic flow issues that we later learned was due to the spanning-tree protocol. Whenever the primary VLT peer reloaded or was the subject of a simulated power failure, we lost client connectivity via our access switch for 30 seconds and our cluster's networking was disrupted. You can find a detailed explanation of this in my notes on [9/3/2024](../../../notes/2024.md#t-09032024). See also, "[RSTP and VLT](./os9-other.md#rstp-and-vlt)". 
+    During our initial configuration and testing of VLT we experienced some traffic flow issues that we later learned was due to the spanning-tree protocol. Whenever the primary VLT peer reloaded or was the subject of a simulated power failure, we lost client connectivity via our access switch for 30 seconds and our cluster's networking was disrupted. See also, "[RSTP and VLT](./os9-other.md#rstp-and-vlt)".
     
     What it boils down to is either configuring EdgePorts or disabling spanning-tree once the VLT configuration is complete. 
 

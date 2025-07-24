@@ -81,7 +81,7 @@ DellEMC(conf-if-te-1/1)# no mtu
 
 ## Edgeport/Portfast
 
-Another thing we need to do is enable portfast on all iSCSI ports for the Dell switches. Side note, I [previously took some notes](../../../notes/2024.md#m-03252024) on the two and I was a bit confused about the difference. There is no difference in the way they're configured and they both begin forwarding frames approximately 30 seconds sooner than they would with spanning-tree enabled. However, `edgeport` will lose its portfast status and transition to normal spanning tree operation when it receives a BPDU. Portfast skips listening and learning which makes sense for an iSCSI port...No need for that.
+Another thing we need to do is enable portfast on all iSCSI ports for the Dell switches. There is no difference in the way they're configured and they both begin forwarding frames approximately 30 seconds sooner than they would with spanning-tree enabled. However, `edgeport` will lose its portfast status and transition to normal spanning tree operation when it receives a BPDU. Portfast skips listening and learning which makes sense for an iSCSI port...No need for that.
 
 ```shell
 DELEMC# configure

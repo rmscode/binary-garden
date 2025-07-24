@@ -94,7 +94,7 @@ If you maintain an on-premises Exchange server just for recipient management in 
 
     Additionally, if you use your last Exchange server for any purpose other than recipient management (for example, SMTP relay), then don't shut it down.
 
-I have some notes on this [here](../../../notes/exchange-migration-notes.md#how-and-when-to-decommission-your-on-prem-exchange-server-in-a-hybrid-deployment). Official Microsoft documentation available [here](https://learn.microsoft.com/en-gb/exchange/manage-hybrid-exchange-recipients-with-management-tools).
+Official Microsoft documentation available [here](https://learn.microsoft.com/en-gb/exchange/manage-hybrid-exchange-recipients-with-management-tools).
 
 ### Prepare the Exchange Server { data-toc-label="Prepare the Exchange Server" }
 
