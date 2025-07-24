@@ -35,7 +35,7 @@ Certificate based authentication (CBA) or app-only authentication supports unatt
 
 !!! note
 
-    Use the `SkipLoadingFormatData` switch on the Connect-ExchangeOnline cmdlet if you get the following error when using the Windows PowerShell SDK to connect: 
+    Use the `SkipLoadingFormatData` switch on the `Connect-ExchangeOnline` cmdlet if you get the following error when using the Windows PowerShell SDK to connect: 
     
     `The term 'Update-ModuleManifest' is not recognized as a name of a cmdlet, function, script file, or executable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.`
 
