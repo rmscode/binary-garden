@@ -213,7 +213,7 @@ features = [
     # When sections are enabled, top-level sections are rendered as groups in
     # the sidebar for viewports above 1220px, but remain as-is on mobile.
     # https://zensical.org/docs/setup/navigation/#navigation-sections
-    "navigation.sections",
+    #"navigation.sections",
 
     # When tabs are enabled, top-level sections are rendered in a menu layer
     # below the header for viewports above 1220px, but remain as-is on mobile.
@@ -307,4 +307,32 @@ repo = "lucide/github"
 #icon = "fontawesome/brands/github"
 #link = "https://github.com/user/repo"
 
+[project.extra.tags]
+Art = "art"
+"Belief Systems" = "belief-sys"
+"Brain Food" = "brain-food"
+Health = "health"
+"Justice & Society" = "justice-society"
+Languages = "lang"
+"Life Management" = "life-mgmt"
+Philosophy = "philosophy"
+Projects = "projects"
+Science = "science"
+Technology = "tech"
+Writings = "writing"
+Seed = "seed"
 
+[project.theme.icon.tag]
+art = "lucide/palette"
+belief-sys = "lucide/church"
+brain-food = "lucide/sparkles"
+health = "lucide/heart-plus"
+justice-society = "lucide/scale"
+lang = "lucide/languages"
+life-mgmt = "lucide/layout-dashboard"
+philosophy = "lucide/brain"
+projects = "lucide/folder-open"
+science = "lucide/atom"
+tech = "lucide/cpu"
+writing = "lucide/notebook-pen"
+seed = "lucide/bean"
