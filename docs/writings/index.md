@@ -2,4 +2,4 @@
 icon: lucide/notebook-pen
 ---
 
-# Journal
+# Writings
