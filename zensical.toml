@@ -298,7 +298,7 @@ toggle.name = "Switch to light mode"
 # ----------------------------------------------------------------------------
 [project.theme.icon]
 logo = "lucide/brain-circuit"
-repo = "lucide/github"
+repo = "fontawesome/brands/github"
 
 # ----------------------------------------------------------------------------
 # The "extra" section contains miscellaneous settings.
